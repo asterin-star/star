@@ -1,167 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>
-        // --- 1. INICIALIZAR WORLD MINIKIT ---
-        MiniKit.install();
-
-        // --- 2. CONFIGURACIÓN ---
-        const archivosDatos = [
-            'data/0-4.json',
-            'data/5-9.json',
-            'data/10-14.json',
-            'data/15.21.json'
-        ];
-
-        const categoriasNombres = {
-            arquetipo: "🧠 ARQUETIPO",
-            sombra: "🌑 SOMBRA",
-            misticismo: "✨ MISTICISMO",
-            escenario_mundano: "🌍 VIDA REAL",
-            botanica: "🌿 BOTÁNICA",
-            gnosis_praxis: "🧘 RITUAL",
-            pasaje_sagrado: "📖 MENSAJE SAGRADO"
-        };
-
-        let baseDeDatosTarot = [];
-        let cartaActual = null;
-        
-        // VARIABLE DE CONTROL DE PAGO
-        let haPagado = false; 
-
-        const imagenDOM = document.querySelector('.imagen-tarot');
-        const cajaTexto = document.querySelector('.caja-descripcion');
-        const tituloDOM = document.querySelector('.titulo-arcano');
-        const contenidoDOM = document.getElementById('contenido-dinamico');
-
-        // --- INICIO ---
-        async function iniciarApp() {
-            try {
-                const promesas = archivosDatos.map(url => fetch(url).then(res => res.json()));
-                const resultados = await Promise.all(promesas);
-                baseDeDatosTarot = resultados.flat();
-                baseDeDatosTarot.sort((a, b) => a.id - b.id);
-                console.log("✨ Cartas cargadas:", baseDeDatosTarot.length);
-                
-                prepararNuevaCarta();
-                
-                tituloDOM.textContent = "ORÁCULO";
-                contenidoDOM.innerHTML = "<p>Toca la carta para recibir tu mensaje.</p>";
-            } catch (error) {
-                console.error("Error:", error);
-                tituloDOM.textContent = "ERROR DE CARGA";
-                contenidoDOM.innerHTML = "<p>Verifica que estás en un servidor seguro.</p>";
-            }
-        }
-
-        // --- INTERACCIÓN CON COBRO ---
-        async function girar(elemento) {
-            if (baseDeDatosTarot.length === 0) return;
-
-            // CASO A: LA CARTA YA ESTÁ ABIERTA (QUEREMOS CERRARLA)
-            if (elemento.classList.contains('girada')) {
-                // 1. Ocultar
-                elemento.classList.remove('girada');
-                cajaTexto.classList.remove('visible');
-                
-                // 2. Resetear el estado de pago para la SIGUIENTE carta
-                haPagado = false; 
-
-                // 3. Preparar la nueva carta en secreto
-                setTimeout(() => { prepararNuevaCarta(); }, 800);
-                return;
-            } 
-
-            // CASO B: LA CARTA ESTÁ CERRADA (QUEREMOS ABRIRLA) -> ¡COBRAR!
-            if (!haPagado) {
-                // Intentamos cobrar
-                const pagoExitoso = await procesarCobro();
-                
-                if (pagoExitoso) {
-                    haPagado = true; // Marcamos que ya pagó esta carta
-                } else {
-                    return; // Si no pagó o canceló, NO hacemos nada (no gira)
-                }
-            }
-
-            // Si llegamos aquí, es porque pagó. REVELAR.
-            elemento.classList.add('girada');
-            setTimeout(() => { cajaTexto.classList.add('visible'); }, 400);
-        }
-
-        // --- FUNCIÓN DE PAGO WORLD ---
-        async function procesarCobro() {
-            try {
-                // Si no estamos en World App (modo prueba en PC), dejamos pasar
-                if (!MiniKit.isInstalled()) {
-                    console.log("Modo pruebas: Pase gratis.");
-                    return true; 
-                }
-
-                const res = await MiniKit.commands.pay({
-                    reference: "tarot-" + Date.now(),
-                    to: "0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6", // <--- ¡PON TU BILLETERA DE WORLD AQUÍ!
-                    tokens: [{
-                        symbol: "WLD",
-                        token_amount: "1.0" // Costo por carta
-                    }],
-                    description: "Revelación de Arcano"
-                });
-
-                if (res.final_payload.status === "success") {
-                    return true;
-                } else {
-                    alert("Pago cancelado.");
-                    return false;
-                }
-            } catch (e) {
-                console.error("Error en pago", e);
-                // En desarrollo local, a veces queremos que pase igual para probar
-                // return false; // En producción pon false
-                return true; // En desarrollo pon true
-            }
-        }
-
-        // --- LÓGICA 7x7 ---
-        function prepararNuevaCarta() {
-            const indice = Math.floor(Math.random() * baseDeDatosTarot.length);
-            cartaActual = baseDeDatosTarot[indice];
-
-            imagenDOM.src = cartaActual.imagen;
-            imagenDOM.alt = cartaActual.nombre;
-            tituloDOM.textContent = cartaActual.nombre;
-
-            if (cartaActual.datos) {
-                const llaves = Object.keys(cartaActual.datos);
-                const categoria = llaves[Math.floor(Math.random() * llaves.length)];
-                const listaMensajes = cartaActual.datos[categoria];
-                const mensaje = listaMensajes[Math.floor(Math.random() * listaMensajes.length)];
-                
-                const nombreCat = categoriasNombres[categoria] || categoria.toUpperCase();
-
-                contenidoDOM.innerHTML = `
-                    <span class="etiqueta-categoria">${nombreCat}</span>
-                    <p class="texto-arcano">${mensaje}</p>
-                `;
-            } else {
-                contenidoDOM.innerHTML = "<p>Definición en construcción...</p>";
-            }
-        }
-
-        iniciarApp();
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Star</title>
-
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@1.2.0/dist/index.js"></script>
+
     <style>
-        /* ... tu CSS ... */
-        /* =========================================
-           1. ESTILOS GENERALES
-           ========================================= */
+        /* --- ESTILOS (CSS) --- */
         body {
             margin: 0;
             min-height: 100vh;
@@ -176,7 +24,6 @@
             color: white;
         }
 
-        /* CLASE MAESTRA CRISTAL */
         .cristal {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -186,9 +33,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* =========================================
-           2. CARTA Y ESCENARIO
-           ========================================= */
+        /* CARTA 3D */
         .escenario-3d {
             width: 85vw;
             max-width: 400px;
@@ -213,111 +58,59 @@
             cursor: pointer;
         }
 
-        .carta-tarot.girada {
-            transform: rotateY(180deg);
-        }
+        .carta-tarot.girada { transform: rotateY(180deg); }
 
         .cara {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            box-sizing: border-box;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; justify-content: center; align-items: center;
+            padding: 15px; box-sizing: border-box;
         }
 
-        /* FRENTE (Imagen) - Empieza oculta */
         .cara-frente { transform: rotateY(180deg); }
-
-        /* ATRÁS (Reverso) - Empieza visible */
         .cara-atras { 
             transform: rotateY(0deg); 
             background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.2));
         }
 
-        .imagen-tarot {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            opacity: 0.95;
-        }
-
+        .imagen-tarot { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; opacity: 0.95; }
+        
         .simbolo-reverso {
             font-size: 80px;
             filter: drop-shadow(0 0 10px gold);
             animation: palpitar 3s infinite;
         }
-        
         @keyframes palpitar {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
         }
 
-        /* =========================================
-           3. CAJA DE TEXTO
-           ========================================= */
+        /* CAJA DE TEXTO */
         .caja-descripcion {
-            width: 85vw;
-            max-width: 400px;
-            margin-top: 30px;
-            padding: 25px;
+            width: 85vw; max-width: 400px;
+            margin-top: 30px; padding: 25px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 0; transform: translateY(20px);
             transition: all 0.5s ease;
             pointer-events: none;
         }
+        .caja-descripcion.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
 
-        .caja-descripcion.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
-        }
-
-        .titulo-arcano {
-            margin: 0 0 15px 0;
-            font-size: 1.5rem;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
+        .titulo-arcano { color: #ffd700; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; }
         .etiqueta-categoria {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.15);
-            color: #ffd700;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            display: inline-block; background: rgba(255, 215, 0, 0.15); color: #ffd700;
+            padding: 5px 15px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;
+            margin-bottom: 15px; border: 1px solid rgba(255, 215, 0, 0.3);
         }
+        .texto-arcano { line-height: 1.6; font-size: 1.05rem; color: rgba(255,255,255,0.95); margin: 0; }
 
-        .texto-arcano {
-            margin: 0;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.95);
-        }
-
-        /* LUZ DE FONDO */
+        /* FONDO */
         .esfera-flotante {
-            position: absolute;
-            width: 80vw;
-            height: 80vw;
+            position: absolute; width: 80vw; height: 80vw;
             background: radial-gradient(circle, #ffd700, #e94560);
-            border-radius: 50%;
-            z-index: -1;
-            top: 15%;
-            filter: blur(50px);
-            opacity: 0.4;
+            border-radius: 50%; z-index: -1; top: 15%;
+            filter: blur(50px); opacity: 0.4;
             animation: flotar 10s ease-in-out infinite;
         }
         @keyframes flotar {
@@ -349,8 +142,7 @@
     </div>
 
     <script>
-        // --- RUTAS RELATIVAS PARA GITHUB ---
-        // El código buscará en la carpeta "data/" que está al lado de este archivo.
+        // --- 1. VARIABLES GLOBALES ---
         const archivosDatos = [
             'data/0-4.json',
             'data/5-9.json',
@@ -368,16 +160,27 @@
             pasaje_sagrado: "📖 MENSAJE SAGRADO"
         };
 
-        let baseDeDatosTarot = [];
+        let baseDeDatosTarot = []; // Empieza vacía
         let cartaActual = null;
+        let haPagado = false; 
 
+        // Referencias DOM
         const imagenDOM = document.querySelector('.imagen-tarot');
         const cajaTexto = document.querySelector('.caja-descripcion');
         const tituloDOM = document.querySelector('.titulo-arcano');
         const contenidoDOM = document.getElementById('contenido-dinamico');
 
-        // --- INICIAR APP ---
+        // --- 2. INICIALIZACIÓN SEGURA ---
         async function iniciarApp() {
+            // A. Instalar MiniKit (Si existe)
+            if (typeof MiniKit !== 'undefined') {
+                MiniKit.install();
+                console.log("MiniKit instalado.");
+            } else {
+                console.log("MiniKit no detectado (Modo Navegador).");
+            }
+
+            // B. Cargar Datos
             try {
                 const promesas = archivosDatos.map(url => fetch(url).then(res => res.json()));
                 const resultados = await Promise.all(promesas);
@@ -387,45 +190,88 @@
                 
                 console.log("✨ Cartas cargadas:", baseDeDatosTarot.length);
                 
+                // Preparar primera carta
                 prepararNuevaCarta();
                 
                 tituloDOM.textContent = "ORÁCULO";
                 contenidoDOM.innerHTML = "<p>Toca la carta para recibir tu mensaje.</p>";
 
             } catch (error) {
-                console.error("Error:", error);
+                console.error("Error cargando datos:", error);
                 tituloDOM.textContent = "ERROR";
-                contenidoDOM.innerHTML = "<p>No se pudieron cargar los datos.</p>";
+                contenidoDOM.innerHTML = "<p>No se pudieron cargar los datos JSON.</p>";
             }
         }
 
-        // --- INTERACCIÓN ---
-        function girar(elemento) {
+        // --- 3. INTERACCIÓN PRINCIPAL ---
+        async function girar(elemento) {
+            // Si no hay datos, no hacemos nada
             if (baseDeDatosTarot.length === 0) return;
 
+            // CASO A: CERRAR CARTA
             if (elemento.classList.contains('girada')) {
-                // OCULTAR
                 elemento.classList.remove('girada');
                 cajaTexto.classList.remove('visible');
+                haPagado = false; // Resetear pago para la próxima
                 setTimeout(() => { prepararNuevaCarta(); }, 800);
-            } else {
-                // REVELAR
-                elemento.classList.add('girada');
-                setTimeout(() => { cajaTexto.classList.add('visible'); }, 400);
+                return;
+            }
+
+            // CASO B: ABRIR CARTA (COBRAR)
+            if (!haPagado) {
+                const pagoExitoso = await procesarCobro();
+                if (pagoExitoso) {
+                    haPagado = true;
+                } else {
+                    return; // Si cancela, no abre
+                }
+            }
+
+            // ABRIR
+            elemento.classList.add('girada');
+            setTimeout(() => { cajaTexto.classList.add('visible'); }, 400);
+        }
+
+        // --- 4. PROCESAR PAGO ---
+        async function procesarCobro() {
+            // Si no está MiniKit (estás en Chrome), pasa gratis para probar
+            if (typeof MiniKit === 'undefined' || !MiniKit.isInstalled()) {
+                console.log("Modo Pruebas: Pago simulado.");
+                return true; 
+            }
+
+            try {
+                const res = await MiniKit.commands.pay({
+                    reference: "tarot-" + Date.now(),
+                    to: "0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6", // TU BILLETERA
+                    tokens: [{
+                        symbol: "WLD",
+                        token_amount: "1.0"
+                    }],
+                    description: "Revelación de Arcano"
+                });
+
+                if (res.final_payload.status === "success") {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (e) {
+                console.error("Error pago:", e);
+                // En producción esto debería ser false
+                return true; 
             }
         }
 
-        // --- LÓGICA 7x7 ---
+        // --- 5. LÓGICA 7x7 ---
         function prepararNuevaCarta() {
             const indice = Math.floor(Math.random() * baseDeDatosTarot.length);
             cartaActual = baseDeDatosTarot[indice];
 
-            // Imagen
             imagenDOM.src = cartaActual.imagen;
             imagenDOM.alt = cartaActual.nombre;
             tituloDOM.textContent = cartaActual.nombre;
 
-            // Texto Aleatorio
             if (cartaActual.datos) {
                 const llaves = Object.keys(cartaActual.datos);
                 const categoria = llaves[Math.floor(Math.random() * llaves.length)];
@@ -439,12 +285,13 @@
                     <p class="texto-arcano">${mensaje}</p>
                 `;
             } else {
-                // Fallback por si una carta está vacía
                 contenidoDOM.innerHTML = "<p>Definición en construcción...</p>";
             }
         }
 
+        // Arrancar
         iniciarApp();
+
     </script>
 </body>
 </html>
