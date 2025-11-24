@@ -1,0 +1,352 @@
+[
+  {
+    "id": 10,
+    "nombre": "La Rueda de la Fortuna",
+    "imagen": "cards/ar10.jpg",
+    "datos": {
+      "arquetipo": [
+        "El destino gira como una rueda dorada que eleva y humilla sin distinción",
+        "Tu karma se manifiesta en ciclos de abundancia y escasez",
+        "La suerte no es azar sino el resultado de acciones pasadas",
+        "Cada giro trae nuevas oportunidades si sabes leer los signos",
+        "El poder real reside en bendecir y maldecir las ruedas que giran",
+        "Tu destino está escrito en las constelaciones del tiempo",
+        "Acepta que el viento del cambio es tu único aliado verdadero"
+      ],
+      "sombra": [
+        "No luches contra la corriente del destino o serás arrastrado",
+        "La obsesión por el control es tu ruina más rápida",
+        "El orgullo precede siempre a la caída más brutal",
+        "Cuidado con creerte inmune a los ciclos negativos",
+        "La avaricia ciega ve solo beneficios y nunca pérdidas",
+        "El resentimiento bloquea la fortuna que viene hacia ti",
+        "Aceptar limosna cuando das limosna multiplicará tu caída"
+      ],
+      "misticismo": [
+        "Rueda de Fortuna que gira con el viento del destino",
+        "Kismet y karma danzan en perfecta sincronía astral",
+        "Astrokarmas escriben tu destino en cartas celestiales",
+        "Los números 1, 4, 7, 10 son tus guardianes numéricos",
+        "Júpiter bendice tu ascendente en este ciclo de cambios",
+        "Venus en tránsito armoniza los giros de tu rueda",
+        "Orion y las Pléyades susurran secretos de transformación"
+      ],
+      "escenario_mundano": [
+        "Te subes al metro y resulta ser el que te lleva a la oportunidad perfecta",
+        "Entras a Starbucks y escuchas la conversación que cambia tu día",
+        "Tu app de citas te conecta con tu persona deseada",
+        "Aparcas gratis donde nunca lo haces y justo ahí aparece",
+        "Decides cambiar de playlist y suena la canción que necesitabas",
+        "El semáforo cambia justo cuando pensabas rendirte",
+        "Comidas algo diferente y te salva de la intoxicación masiva"
+      ],
+      "botanica": [
+        "Dientes de León - Oportunidades que se dispersan y vuelven",
+        "Girasol - Siguiendo eternamente la luz del cambio",
+        "Ginkgo Biloba - Resilencia ante mil inviernos",
+        "Rosa Blanca - Pureza que florece tras la tormenta",
+        "Lavanda - Limpieza del karma negativo",
+        "Bambú - Flexibilidad que nunca se rompe",
+        "Hierba de San Juan - Protección en ciclos difíciles"
+      ],
+      "gnosis_praxis": [
+        "Gira tu cuerpo 7 veces mientras visualizas tu deseo",
+        "Lanza una moneda dorada pidiendo por cambio favorable",
+        "Dibuja un círculo en sal para manifestar destinos",
+        "Enciende una vela blanca y pide al universo sincronía",
+        "Escribe en un papel lo que quieres cambiar y quémalo",
+        "Salta sobre una cuerda invocando los ciclos de Fortuna",
+        "Camina en espiral pronunciando afirmaciones de abundancia"
+      ],
+      "pasaje_sagrado": [
+        "«Para todo hay sazón, y todo lo que quiere el hombre tiene su tiempo» - Eclesiastés 3:1",
+        "«El Señor hará que todas las cosas redunden en bien para los que lo aman» - Romanos 8:28",
+        "«Porque mis pensamientos no son vuestros pensamientos» - Isaías 55:8",
+        "«El tiempo y la oportunidad se presentan para todos» - Eclesiastés 9:11",
+        "«En el corazón del hombre planifica su camino, pero el Señor endereza sus pasos» - Proverbios 16:9",
+        "«Acuérdate de tu Creador en los días de tu juventud, antes que vengan los días del mal» - Eclesiastés 12:1",
+        ««Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien» - Romanos 8:28»
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "nombre": "La Justicia",
+    "imagen": "cards/ar11.jpg",
+    "datos": {
+      "arquetipo": [
+        "La balanza cósmica mide cada acción con precisión divina",
+        "Tu karma pasado determina el peso de tu destino presente",
+        "La verdad es un arma más poderosa que cualquier escudo",
+        "Las semillas de justicia que siembres, recogerás en abundancia",
+        "El veredicto final no lo dictan los hombres sino el universo",
+        "Tus intenciones puras o impuras resuenan en todas las dimensiones",
+        "La reconciliación es el sendero hacia la verdadera justicia"
+      ],
+      "sombra": [
+        "El juicio prematuro cierra puertas que nunca se reabrirán",
+        "Ser demasiado permisivo te convierte en cómplice",
+        "La venganza personal nubla tu discernimiento real",
+        "Los prejuicios arraigados impiden ver la verdad completa",
+        "El secretismo oculta las intenciones más oscuras",
+        "La manipulación disfrazada de justicia es el mayor crimen",
+        "El miedo al castigo te hace evadir tu responsabilidad"
+      ],
+      "misticismo": [
+        "Themis pesa las almas en la balanza cósmica del juicio",
+        "El karma cósmico ajusta saldos con matemática perfecta",
+        "Mercurio gobierna la justicia y la comunicación",
+        "Regida por Libra, signo de la balanza eternal",
+        "El cristal de la verdad revela las intenciones ocultas",
+        "Saturno en aspecto favorables estructura tu karma",
+        "Runa Gebo: intercambio justo en todas las dimensiones"
+      ],
+      "escenario_mundano": [
+        "Le explicas la situación a tu jefe y reconoce tu error",
+        "Tus padres entienden finalmente tu punto de vista",
+        "Devuelves el dinero extra que te dieron por error",
+        "Pides disculpas sinceras y la amistad se salva",
+        "Cumples la promesa que hiciste hace meses",
+        "La policía te cree al describir al ladrón",
+        "Tu cita perdona tu malentendido después de tu explicación"
+      ],
+      "botanica": [
+        "Olivo - Paz que viene después del juicio justo",
+        "Valeriana - Equilibrio emocional en tiempos difíciles",
+        "Salvia - Sabiduría en la toma de decisiones",
+        "Hamamelis - Cicatrización de heridas emocionales",
+        "Loto Azul - Claridad mental para el discernimiento",
+        "Verbena - Armonía entre partes en conflicto",
+        "Magnolia - Dignidad en la victoria y derrota"
+      ],
+      "gnosis_praxis": [
+        "Siéntate frente a un espejo pidiendo claridad interior",
+        "Escribe tus culpas y quémalas en fuego limpio",
+        "Pesas tus decisiones en una balanza real con piedras",
+        "Dibuja la balanza de Justicia invocando sabiduría",
+        "Medita con cristal de cuarzo blanco pidiendo justicia",
+        "Camina 11 pasos pronunciando tu verdad sin miedo",
+        "Unta aceite de oliva en tu frente pidiendo equilibrio"
+      ],
+      "pasaje_sagrado": [
+        "«Deutronomio 32:4: Él es la Roca, cuya obra es perfecta, porque todos sus caminos son juicio»",
+        "«Juan 7:24: No juzguéis según las apariencias, sino juzgad con justo juicio»",
+        "«Romanos 2:1: Por tanto, eres inexcusable, oh hombre, quienquiera que seas tú que juzgas»",
+        "«Mateo 7:1-2: No juzguéis, para que no seáis juzgados. Porque con el juicio con que juzgáis seréis juzgados»",
+        "«Salmos 37:6: Él hará subir como luz tu justicia, y tu derecho como el mediodía»",
+        "«Proverbios 3:21-22: Hija, preserve en tu interior la cordura y la prudencia, y serán vida para tu alma»",
+        "«1 Corintios 4:5: Por tanto, no juzguéis nada antes de tiempo, hasta que venga el Señor»"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "nombre": "El Colgado",
+    "imagen": "cards/ar12.jpg",
+    "datos": {
+      "arquetipo": [
+        "La pausa sagrada que revela las verdades ocultas",
+        "El sacrificio temporal que genera transformación eterna",
+        "Desde el sacrificio surge la sabiduría más profunda",
+        "Tu crucifixión personal es el portal hacia la resurrección",
+        "Las cadenas se convierten en alas cuando aceptas el vuelo",
+        "El dolor es el maestro más estricto de la compasión",
+        "En la inmovilidad completa encuentras la velocidad del alma"
+      ],
+      "sombra": [
+        "El estancamiento prolongado se convierte en prisión",
+        "El victimismo crónico bloquea tu liberación",
+        "Las limitaciones autoimpuestas son más fuertes que las externas",
+        "El miedo al cambio te mantiene en sufrimiento conocido",
+        "La inercia mental paraliza tu crecimiento espiritual",
+        "La rebeldía sin propósito se autodestruye",
+        "Aceptar injusticias por comodidad genera victimización"
+      ],
+      "misticismo": [
+        "Odin colgó 9 noches en el árbol del mundo por sabiduría",
+        "La crucifixión de Cristo transformó sufrimiento en salvación",
+        "Regido por Neptuno, planeta de la ilusión y el sacrificio",
+        "Fuego Saturnino purifica a través de limitaciones temporales",
+        "Número 12: completitud en el sacrificio cósmico",
+        "La cruz como herramienta de transformación alquímica",
+        "El árbol cósmico Yggdrasil conecta mundos superiores"
+      ],
+      "escenario_mundano": [
+        "Te suspenden de universidad y descubres tu pasión real",
+        "Pierdes el trabajo y encuentras tu vocación auténtica",
+        "Una ruptura te lleva a descubrir tu valor personal",
+        "Una enfermedad te hace valorar lo que realmente importa",
+        "Te cancelan el viaje y conoces a tu alma gemela",
+        "Pierdes el móvil y redescubres la vida offline",
+        "Te equivocas de dirección y encuentras tu hogar perfecto"
+      ],
+      "botanica": [
+        "Glicinia - Transformación a través de la paciencia",
+        "Helecho - Resistencia en condiciones difíciles",
+        "Eucalipto - Sanación de las heridas del alma",
+        "Mimosa Púdica - Sensibilidad que se protege",
+        "Ortiga - Protección de la energía vital",
+        "Bromelia - Adaptación a condiciones limitantes",
+        "Sauco - Sombra protectora en momentos de vulnerabilidad"
+      ],
+      "gnosis_praxis": [
+        "Cuelga cabeza abajo meditando 12 minutos diarios",
+        "Envuélvete en vendas blancas pidiendo liberación",
+        "Entierra un objeto representando lo que debes soltar",
+        "Construye una cruz de madera pidiendo transformación",
+        "Ayuna un día pidiendo claridad espiritual",
+        "Camina descalzo conectando con la tierra madre",
+        "Entra en silencio por 24 horas invocando sabiduría"
+      ],
+      "pasaje_sagrado": [
+        "«Filipenses 2:8: Hallándose en forma de hombre, se humilló a sí mismo, haciéndose obediente hasta la muerte»",
+        "«Isaías 53:3: Despreciado y abandonado de los hombres, varón de dolores, experimentado en quebrantos»",
+        "«Romanos 8:17: Y si hijos, también herederos; herederos de Dios y coherederos con Cristo»",
+        "«2 Corintios 12:9: Y me ha dicho: Bástate mi gracia; porque mi poder se perfecciona en la debilidad»",
+        "«Hebreos 4:15: Porque no tenemos un sumo sacerdote que no pueda compadecerse de nuestras debilidades»",
+        "«1 Pedro 1:6-7: En lo cual vosotros os alegráis, aunque ahora por un poco de tiempo, si es necesario, tengáis que ser afligidos en diversas pruebas»",
+        "«Juan 15:20: Si a mí me han perseguido, también a vosotros os perseguirán; si han guardado mi palabra, también guardarán la vuestra»"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "nombre": "La Muerte",
+    "imagen": "cards/ar13.jpg",
+    "datos": {
+      "arquetipo": [
+        "El final perfecto que permite el renacimiento verdadero",
+        "La poda necesaria para que florezca tu nueva vida",
+        "Lo que debe morir en ti para que nazca tu esencia real",
+        "La muerte simbólica precede siempre a la resurrección",
+        "El esqueleto es la estructura eterna tras la carne temporal",
+        "Acepta la muerte para vivir eternamente",
+        "La sabiduría llega cuando abrazas la mortalidad completa"
+      ],
+      "sombra": [
+        "La resistencia al cambio natural crea sufrimiento prolongado",
+        "El apego al pasado impide la evolución personal",
+        "El terror a la muerte paraliza la creatividad viva",
+        "La negación de la mortalidad nubla el propósito vital",
+        "El resentimiento hacia lo que termina consume tu energía",
+        "La inmovilidad emocional genera putrefacción espiritual",
+        "Aferrarse a relaciones tóxicas impide nuevos comienzos"
+      ],
+      "misticismo": [
+        "El Arcano representa la disolución necesaria para la transmutación",
+        "Escorpio rige la muerte y regeneración cósmica",
+        "Plutón gobierna la transformación profunda del alma",
+        "El fénix renace de sus cenizas en el fuego purificador",
+        "La muerte del ego permite el despertar espiritual",
+        "Katrina Deví destruye para poder crear de nuevo",
+        "La guadaña lunar siega para que crezca la nueva cosecha"
+      ],
+      "escenario_mundano": [
+        "Te despiden del trabajo y encuentras algo mucho mejor",
+        "Terminas una relación tóxica y recuperas tu paz",
+        "Cambias de ciudad y descubres tu verdadera identidad",
+        "Pierdes un objeto que creías importante y te sientes libre",
+        "Una amistad termina y te enfocas en las personas que valen",
+        "Te mudas de casa y empiezas una vida nueva",
+        "Pierdes la batalla pero ganas la guerra que importaba"
+      ],
+      "botanica": [
+        "Ciprés - Transición entre la vida y la muerte",
+        "Iris - Esperanza en los momentos finales",
+        "Adelfa - Protección durante cambios drásticos",
+        "Amapola - Sueño profundo antes del despertar",
+        "Romero - Memoria eterna que trasciende la muerte",
+        "Eternidad - Planta mythical que simboliza renacimiento",
+        "Saúco - Portal entre el mundo de los vivos y muertos"
+      ],
+      "gnosis_praxis": [
+        "Escribe en papel lo que debe morir en ti y quémalo",
+        "Visita un cementerio pidiendo renovación espiritual",
+        "Entierra una fotografía de tu yo del pasado",
+        "Recorta tu cabello largo simbolizando el cambio",
+        "Lava tus manos en agua salada pidiendo purificación",
+        "Camina entre árboles secos invocando renovación",
+        "Medita con obsidiana transmutando energías pesadas"
+      ],
+      "pasaje_sagrado": [
+        "«Juan 12:24: Si el grano de trigo no cae en la tierra y muere, queda solo; pero si muere, lleva mucho fruto»",
+        "«1 Corintios 15:36: Lo que tú siembras no tiene vida si no muere»",
+        "«Apocalipsis 21:4: Enjugará Dios toda lágrima de los ojos; y no habrá más muerte»",
+        "«Romanos 14:8: Porque si vivimos, para el Señor vivimos; y si morimos, para el Señor morimos»",
+        "«Filipenses 1:21: Para mí el vivir es Cristo, y el morir es ganancia»",
+        "«2 Corintios 5:8: Tenemos confianza, y más bien quisiéramos ausentarnos del cuerpo, y estar presentes con el Señor»",
+        "«Juan 11:25: Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá»"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "nombre": "La Templanza",
+    "imagen": "cards/ar14.jpg",
+    "datos": {
+      "arquetipo": [
+        "La alquimia divina que transmutara base en oro puro",
+        "El equilibrio perfecto entre fuego y agua, tierra y aire",
+        "La paciencia que permite la maduración del alma",
+        "El ángel que une lo celestial con lo terrenal",
+        "La moderación que evita los extremos destructivos",
+        "La medicina que sana cuerpo, mente y espíritu",
+        "El arte de vivir en plenitud con poco o mucho"
+      ],
+      "sombra": [
+        "La moderación extremos pueden impedir tu expansión",
+        "El equilibrio perfecto se vuelve obsesión paralizante",
+        "El conformismo mata la pasión y el crecimiento",
+        "La búsqueda del equilibrio puede evitar riesgos necesarios",
+        "La templanza mal entendida se vuelve frialdad emocional",
+        "El extremo opuesto al exceso es también extremo",
+        "La falta de intensidad puede hacer la vida insípida"
+      ],
+      "misticismo": [
+        "El Arcano representa la unión de opuestos en el matrimonio alquímico",
+        "Regida por Sagitario, signo del equilibrio entre mente y cuerpo",
+        "Júpiter expande la templanza hacia la abundancia sabida",
+        "El ángel Ariel purifica los elementos de tu ser",
+        "Los alquimistas buscan la piedra filosofal del equilibrio",
+        "El caduceo de Mercurio unifica energías duales",
+        "La serpiente simboliza el conocimiento que sana y libera"
+      ],
+      "escenario_mundano": [
+        "Mezclas trabajo y diversión de manera perfecta",
+        "Encuentras la cantidad exacta de compromiso en pareja",
+        "Cenas rico pero manteniendo tu salud",
+        "Juegas videojuegos pero también estudias lo necesario",
+        "Compartes tiempo con familia y amigos íntimos",
+        "Trabajas duro pero descansas lo suficiente",
+        "Consigues lo que quieres sin lastimar a nadie"
+      ],
+      "botanica": [
+        "Manzanilla - Calma que alivia la inflamación del alma",
+        "Lavanda - Moderación en emociones intensas",
+        "Menta - Frescura que equilibra el calor interno",
+        "Valeriana - Paz profunda para el descanso reparador",
+        "Jengibre - Calor controlado que activa la circulación",
+        "Aloe Vera - Sanación gradual de heridas físicas y emocionales",
+        "Yerbabuena - Alegría moderada que equilibra la tristeza"
+      ],
+      "gnosis_praxis": [
+        "Mezcla aceites esenciales invocando armonía interior",
+        "Bebe agua bendita pidiendo equilibrio energético",
+        "Camina por la Naturaleza descalzo pidiendo conexión",
+        "Crea una meditación con respiración de fuego y agua",
+        "Usa cristales de citrina y amatista para equilibrio",
+        "Practica yoga integrando fuerzas opuestas",
+        "Baila lentamente evocando la gracia angelical"
+      ],
+      "pasaje_sagrado": [
+        "«Apocalipsis 3:16: Porque eres tibio, y no frío ni caliente, te vomitaré de mi boca»",
+        "«1 Corintios 9:25: Y todo aquel que lucha, se abstiene de todo; ellos lo hacen para alcanzar una corona corruptible»",
+        "«Proverbios 25:28: Como ciudad destruida sin muros es el hombre que no puede refrenar su espíritu»",
+        "«Gálatas 5:22-23: Pero el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza»",
+        "«2 Timoteo 1:7: Porque Dios no nos ha dado espíritu de cobardía, sino de poder, amor y dominio propio»",
+        "«1 Pedro 1:13: Por tanto, ceñid el entendimiento de vuestro entendimiento; siendo sobrios»",
+        "«Filipenses 4:5: El Señor está cerca. Por todo, sed deferentes unos con otros, y umildes, mansos y pacientes»"
+      ]
+    }
+  }
+]

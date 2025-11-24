@@ -1,0 +1,492 @@
+[
+  {
+    "id": 15,
+    "nombre": "El Diablo",
+    "imagen": "cards/ar15.jpg",
+    "datos": {
+      "arquetipo": [
+        "La atracción magnética del placer que convierte al alma en esclava",
+        "El guardián del umbral entre el deseo y el sufrimiento",
+        "La ilusión de que no somos libres cuando en realidad elegimos nuestras cadenas",
+        "El aspecto materialista que nos ata a lo transitorio",
+        "El tentador interno que nos susurra que 'no podemos escapar'",
+        "La sombra luciférica de la conciencia que nos seduce con falsas promesas",
+        "El patrón arquetípico de la adicción y la compulsión"
+      ],
+      "sombra": [
+        "No permitas que el placer se convierta en tu prisión dorada",
+        "Cuidado con las cadenas invisibles que te auto-impones",
+        "No te conviertas en víctima de tus propios deseos",
+        "Evita la mentalidad de 'no puedo escapar de esto'",
+        "No vendas tu alma por placeres momentáneos",
+        "Desconfía de las tentaciones que prometen poder sin consecuencias",
+        "No permitas que la avaricia reemplace a la compasión"
+      ],
+      "misticismo": [
+        "El demonio cornudo de los grimorios medievales",
+        "Pan, el dios griego de la naturaleza y la pasión desenfrenada",
+        "Ahriman, el espíritu destructor del zoroastrismo",
+        "Baphomet, el símbolo de la unidad de opuestos en ocultismo",
+        "Mammon, la personificación de la riqueza y codicia",
+        "El asura Mara que tentó al Buda en su camino a la iluminación",
+        "Los siete príncipes demoníacos citados en la tradición qabalística"
+      ],
+      "escenario_mundano": [
+        "Scroll infinito en redes sociales que te mantiene despierto hasta las 3 AM",
+        "El chisme tóxico que no puedes parar de difundir aunque te hace sentir mal",
+        "Las compras compulsivas en línea cuando estás triste o estresado",
+        "Esa relación tóxica que sabes que no te conviene pero no puedes dejar",
+        "El trabajo que odias pero del que dependes económicamente",
+        "Las calorías que sabes que no necesitas pero comes de todos modos",
+        "El scroll infinito de pornografía que erosiona tu percepción del amor real"
+      ],
+      "botanica": [
+        "Adormidera (Papaver somniferum) - suplica dulzura con sueño eterno",
+        "Mandrágora (Mandragora officinarum) - raíz humana que grita en la tierra",
+        "Belladonna (Atropa belladonna) - belleza mortal que ciega con veneno",
+        "Acónito (Aconitum napellus) - lanza del diablo que congela la sangre",
+        "Mekonopsis (Papaveraceae) - amapola venenosa de los Himalayas",
+        "Nuez moscada (Myristica fragrans) - especia que despierta visiones peligrosas",
+        "Tabaco (Nicotiana tabacum) - humo que vende libertad en paquetes mortíferos"
+      ],
+      "gnosis_praxis": [
+        "Ritual de ruptura de cadenas: escribe en papel lo que te ata y quémalo en sal marina",
+        "Liberación del placer: ayuna 24 horas del objeto de tu adicción favorita",
+        "Disciplina sensorial: reduce estímulos 3 días (sin redes, sin música, sin pantallas)",
+        "Contraste consciente: alterna placer extremo con retiro contemplativo",
+        "Exorcismo interno: dialoga con el 'demonio' que reside en ti y comprende sus motivaciones",
+        "Vigilia de transformación: permanece despierto una noche completa procesando tus sombras",
+        "Ofrenda de sacrificio simbólico: dona lo que más necesitas a quien más lo necesita"
+      ],
+      "pasaje_sagrado": [
+        " Efesios 4:27 - 'No deis lugar al diablo'",
+        " 1 Corintios 10:13 - 'No os ha sobrevenido ninguna tentación que no fuese humana'",
+        " Santiago 1:14 - 'Cada uno es tentado cuando es arrastrado por su propia concupiscencia'",
+        " 2 Timoteo 1:7 - 'Porque Dios no nos dio espíritu de cobardes'",
+        " 1 Pedro 5:8 - 'Sed sobrios y vigilad'",
+        " Romanos 13:14 - 'Vestíos del Señor Jesucristo'",
+        " Gálatas 5:1 - 'Permaneced firmes, pues, en la libertad con que Cristo nos hizo libres'"
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "nombre": "La Torre",
+    "imagen": "cards/ar16.jpg",
+    "datos": {
+      "arquetipo": [
+        "El colapso necesario para que lo falso caiga y emerja lo verdadero",
+        "La revelación violenta que destruye nuestras ilusiones más caras",
+        "El maestro destructivo que llega cuando necesitamos cambiar radicalmente",
+        "La mano divina que desmantela nuestros castillos de arena humanos",
+        "El katabasis obligatorio que precede a todo renacimiento auténtico",
+        "La caída del velo que nos muestra la realidad detrás de la apariencia",
+        "El agente catalizador que acelera nuestro crecimiento espiritual"
+      ],
+      "sombra": [
+        "No te resistas a los cambios necesarios por miedo al sufrimiento",
+        "No te aferres a estructuras que ya no sirven a tu crecimiento",
+        "Evita la complacencia que bloquea las transformaciones necesarias",
+        "No ignores las señales de que tu mundo se está desmoronando",
+        "No permitas que el orgullo te impida pedir ayuda cuando todo colapsa",
+        "Cuidado con construir nuevos castillos en las ruinas del anterior",
+        "No uses la destrucción como excusa para no asumir responsabilidad"
+      ],
+      "misticismo": [
+        "El diluvio de Noé que limpió la tierra de la corrupción",
+        "La destrucción de Sodoma y Gomorra por el fuego celestial",
+        "Los siete sellos del Apocalipsis que desintegran el orden establecido",
+        "La torre de Babel desplomada por la confusión de lenguas",
+        "La destrucción del templo de Herodes antes de la crucifixión",
+        "Los incendios sagrados que purifican en tradiciones chamánicas",
+        "El terremoto que siguió a la crucifixión en el Gólgota"
+      ],
+      "escenario_mundano": [
+        "Cuando te despiden de tu trabajo 'estable' sin previo aviso",
+        "El diagnóstico médico que cambia toda tu perspectiva de vida",
+        "La traición de tu mejor amigo que destruye tu confianza",
+        "La ruptura amorosa que te deja en cero después de años juntos",
+        "La pérdida total de tus ahorros por una inversión fallida",
+        "El incendio o desastre natural que destruye tu hogar",
+        "El colapso mental que te obliga a detener tu vida acelerada"
+      ],
+      "botanica": [
+        "Álamo temblón (Populus tremula) - hojas que tiemblan ante el viento del cambio",
+        "Sauzgatillo (Salix fragilis) - ramas quebradizas que se rompen fácilmente",
+        "Álamo negro (Populus nigra) - corteza rugosa marcada por las tormentas",
+        "Aliso (Alnus glutinosa) - raíces poco profundas que no resisten el temporal",
+        "Tilo plateado (Tilia tomentosa) - hojas sensibles que se vuelven amarillas",
+        "Álamo balsámico (Populus balsamifera) - savia que se espesa con la edad",
+        "Junco real (Juncus effusus) - flexible pero quebradizo bajo presión extrema"
+      ],
+      "gnosis_praxis": [
+        "Ritual de liberación: identifica la estructura que debe caer y consagra su destrucción",
+        "Ceremonia del caos: destruye creativamente (rompe, quema, disuelve) lo que ya no sirve",
+        "Oración en la ruina: medita en un lugar destruido para encontrar nuevos cimientos",
+        "Despojo radical: déjate llevar completamente por 7 días sin resistencia",
+        "Confesión del colapso: admite en voz alta todas tus estructuras falsas",
+        "Vigilia del diluvio: permanece despierto durante una tormenta real o simbólica",
+        "Bautismo de cenizas: purifícate con cenizas de tus construcciones pasadas"
+      ],
+      "pasaje_sagrado": [
+        " Mateo 7:24 - 'Todo el que oye estas palabras mías y las hace'",
+        " Salmo 46:2 - 'No temeremos, aunque la tierra sea removida'",
+        " Isaías 54:10 - 'Porque los montes serán removidos'",
+        " Lucas 6:48 - 'No se movió, porque estaba fundada sobre la roca'",
+        " 1 Pedro 1:24 - 'Porque toda carne es como la hierba'",
+        " Apocalipsis 21:1 - 'El primer cielo y la primera tierra pasaron'",
+        " 2 Corintios 5:17 - 'De modo que si alguno está en Cristo, nueva criatura es'"
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "nombre": "La Estrella",
+    "imagen": "cards/ar17.jpg",
+    "datos": {
+      "arquetipo": [
+        "La guía luminosa que aparece después de la tormenta más oscura",
+        "El portal de esperanza que conecta tierra y cielo",
+        "La musa inspiradora que despierta la creatividad dormida",
+        "El faro interior que nunca se apaga en medio del océano de dudas",
+        "La promesa de sanación que florece en los campos devastados",
+        "La voz silenciosa que susurra 'hay camino aunque no lo veas'",
+        "El arquetipo del renacimiento que emerge de las cenizas del pasado"
+      ],
+      "sombra": [
+        "No te ilusiones con soluciones que requieren zero esfuerzo personal",
+        "Evita la falsa esperanza que evita enfrentar la realidad del dolor",
+        "No permitas que la dependencia del apoyo externo te debilite",
+        "Cuidado con la complacencia optimista que ignora las señales de alerta",
+        "No uses la esperanza como excusa para postergar decisiones difíciles",
+        "Evita la dispersión de energía en múltiples direcciones prometedoras",
+        "No permitas que la inspiración se quede en teoría sin acción concreta"
+      ],
+      "misticismo": [
+        "Estrella de Belén que guió a los magos hacia el Redentor",
+        "Sirio, la estrella perro que los egipcios asociaron con Isis",
+        "Las siete estrellas del Arcturato que gobiernan los ángeles",
+        "La estrella polar que nunca se mueve en el hemisferio norte",
+        "La estrella de la mañana (Venus) que anuncia el nuevo día",
+        "Los ángeles estrellados que según la gnosis gobernaron los destinos",
+        "La constelación de Virgo que representa la pureza divina"
+      ],
+      "escenario_mundano": [
+        "Esa llamada que recibes cuando más lo necesitas con la oportunidad que buscabas",
+        "La idea súbita que tienes en la ducha que resuelve tu problema creativo",
+        "El encuentro casual con alguien que se convierte en tu mentor",
+        "El momento preciso en que ves el amanecer después de una noche terrible",
+        "La respuesta exacta que llega en el momento perfecto para tu oración",
+        "La inspiración artística que te despierta en medio de la madrugada",
+        "El momento en que entiendes que todo tenía sentido después de todo"
+      ],
+      "botanica": [
+        "Estrella de mar (Ornithogalum) - flores de seis puntas como constelaciones",
+        "Estrella de Belén (Ornithogalum umbellatum) - branca nocturna que florece al amanecer",
+        "Aster (Asteraceae) - flores que siguen el movimiento del sol",
+        "Estrella fugaz (Euphorbia) - suculenta que florece brevemente",
+        "Estrella de plata (Ceropegia) - plantas colgantes que brillan con rocío",
+        "Margarita africana (Gerbera) - 'flor del sol' que se orienta a la luz",
+        "Hierba de estrella (Stellaria) - pequeñas flores que brillan con rocío"
+      ],
+      "gnosis_praxis": [
+        "Ritual de orientación: encuentra tu estrella guía y conságrale tu intención",
+        "Ofrenda de agua: vierte agua pura en la tierra bajo la estrellas visibles",
+        "Contemplación estelar: medita bajo el cielo nocturno pidiendo claridad",
+        "Vigilia de esperanza: permanece despierto hasta ver las primeras estrellas",
+        "Ceremonia del deseo: escribe tu esperanza en papel y déjala bajo la luz lunar",
+        "Navegación intuitiva: camina en la oscuridad confiando en tu estrella interior",
+        "Homenaje a la estrella: crea un símbolo sagrado de tu guía personal"
+      ],
+      "pasaje_sagrado": [
+        " Salmo 56:3 - 'En ti me refugio cuando temo'",
+        " Jeremías 29:11 - 'Porque yo sé los pensamientos que tengo acerca de vosotros'",
+        " Isaías 54:10 - 'Porque aunque sean removidos los montes'",
+        " Romanos 15:13 - 'Y el Dios de esperanza os llene de todo gozo'",
+        " 1 Pedro 1:3 - 'Bendito el Dios y Padre de nuestro Señor Jesucristo'",
+        " Juan 14:27 - 'La paz os dejo, mi paz os doy'",
+        " Efesios 3:20 - 'Muchísimo más abundantemente de lo que pedimos'"
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "nombre": "La Luna",
+    "imagen": "cards/ar18.jpg",
+    "datos": {
+      "arquetipo": [
+        "La guardiana nocturna de los misterios que nunca se revelan completamente",
+        "El espejo plateado que refleja nuestras profundidades inconscientes",
+        "La reina de las ilusiones que juega con nuestras percepciones",
+        "El ritmos cósmico que gobierna las mareas de la emociones",
+        "La sacerdotisa silenciosa que guarda los secretos ancestrales",
+        "La puerta dimensional entre lo real y lo onírico",
+        "La matriz primordial de donde emergen los miedos y las intuiciones"
+      ],
+      "sombra": [
+        "No permitas que la confusión nubla tu discernimiento",
+        "Evita alimentar ansiedades nocturnas que crecen en la oscuridad",
+        "No te dejes engañar por ilusiones que parecen muy reales",
+        "Cuidado con proyectar miedos en personas sin malicia",
+        "No permitas que la procrastinación lunar sabotee tus metas",
+        "Evita la auto-decepción que usa 'intuiciones' para evitar la responsabilidad",
+        "No permitas que el miedo al juicio te paralice en la acción"
+      ],
+      "misticismo": [
+        "Selene, la diosa griega de la luna y las profecías",
+        "Diana, la cazadora romana que gobierna las mujeres y la naturaleza",
+        "La luna nueva en tradiciones chamánicas como portal espiritual",
+        "La diosa china Chang'e que habita la luna con su conejo",
+        "Thoth, el escriba lunar de la sabiduría egipcia",
+        "Kali, la deidad feroz que danza en los ciclos de destrucción",
+        "Lilith, la primera mujer que rechazó el rol tradicional femenino"
+      ],
+      "escenario_mundano": [
+        "Esa ansiedad nocturna que te mantiene despierto hasta las 4 AM",
+        "La duda constante sobre si tomaste la decisión correcta",
+        "Las pesadillas recurrentes sobre tu pasado que no puedes controlar",
+        "La paranoia sutil sobre lo que otros piensan de ti",
+        "El humor cambiante que oscila según la fase lunar",
+        "La auto-decepción que te hace creer que 'sientes vibraciones'",
+        "La procrastinación creativa que espera 'el momento perfecto'"
+      ],
+      "botanica": [
+        "Lunaria (Lunaria annua) - monedas lunares que brillan en la oscuridad",
+        "Luna nocturna (Ipomoea alba) - flores blancas que se abren de noche",
+        "Luz de luna (Botryanthus) - bulbos que florecen bajo la luz lunar",
+        "Rosa lunar (Anagallis arvensis) - pétalos que se cierran al anochecer",
+        "Campana de luna (Uvularia) - flores colgantes como campanadas nocturnas",
+        "Amapola de luna (Eschscholzia) - suculenta que 'duerme' durante el día",
+        "Jazmín nocturno (Cestrum nocturnum) - perfuma la noche con sus flores"
+      ],
+      "gnosis_praxis": [
+        "Ritual lunar: medita durante cada fase luna para comprender tus ciclos",
+        "Oración de claridad: pregunta a la luna lo que necesitas entender",
+        "Caminata nocturna: pasea bajo la luna pidiendo sabiduría interior",
+        "Ceremonia de liberación: suelta preocupaciones entregándolas a la noche",
+        "Contemplación del reflejo: contempla agua bajo la luna para ver tu verdad",
+        "Vigilia onírica: permanece despierto registrando las visiones de la noche",
+        "Ofrenda de sal: salpica sal alrededor de tu espacio meditando sobre purificación"
+      ],
+      "pasaje_sagrado": [
+        " Mateo 6:10 - 'Hágase tu voluntad'",
+        " Salmo 104:19 - 'Hizo la luna para señalar las estaciones'",
+        " 1 Juan 1:5 - 'Dios es luz, y en él no hay tiniebla alguna'",
+        " Filipenses 4:7 - 'Y la paz de Dios que sobrepasa todo entendimiento'",
+        " Romanos 8:28 - 'Y sabemos que a los que aman a Dios'",
+        " Salmo 23:5 - 'Unges mi cabeza con aceite'",
+        " Apocalipsis 21:4 - 'Enjugará Dios toda lágrima de los ojos'"
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "nombre": "El Sol",
+    "imagen": "cards/ar19.jpg",
+    "datos": {
+      "arquetipo": [
+        "La fuente eterna de vida que nunca se agota en su generosidad",
+        "El conquistador que disipa todas las sombras con su presencia",
+        "El niño divino que renace cada amanecer con alegría pura",
+        "El maestro luminoso que enseña sin palabras, solo con presencia",
+        "El alquimista que transforma el plomo de la existencia en oro",
+        "El corazón cósmico que late en ritmo de la universalidad",
+        "La conciencia lúcida que reconoce la divinity inherente en todo"
+      ],
+      "sombra": [
+        "No permitas que el orgullo espiritual ciege tu compasión",
+        "Evita la sobre-confianza que ignora las señales de humildad",
+        "No permitas que el optimismo ciego ignore las realidades difíciles",
+        "Cuidado con convertir tu luz en espectáculo para alimentar tu ego",
+        "No permitas que la urgencia solar te impida descansar",
+        "Evita proyectar tu luz de manera que opaque a otros",
+        "No permitas que el éxito te desconecte de la comunidad"
+      ],
+      "misticismo": [
+        "Ra, el dios egipcio que navega por el cielo cada día",
+        "Helios, el titán griego que conduce el carro solar",
+        "Surya, el dios védico que gobierna el cosmos desde el sol",
+        "Amaterasu, la diosa japonesa del sol que se escondió en una cueva",
+        "Huitzilopochtli, el dios azteca que llevó la luz a los humanos",
+        "Inti, el dios inca del oro solar y la fertilidad",
+        "Horus, el falcón egipcio que representa la conciencia solar"
+      ],
+      "escenario_mundano": [
+        "El momento exacto en que resuelves un problema que te atormentaba",
+        "Esa llamada de trabajo que te ofrece la oportunidad que buscabas",
+        "El reconocimiento público por tu trabajo creativo",
+        "La sanación física o emocional que renueva tu vitalidad",
+        "El momento de claridad que te permite ver tu camino con nitidez",
+        "La sensación de 'vencer' a la depresión después de meses oscuros",
+        "El éxito financiero que te libera de preocupaciones materiales"
+      ],
+      "botanica": [
+        "Girasol (Helianthus annuus) - sigue eternamente el movimiento solar",
+        "Echinacea (Echinacea purpurea) - 'flor del sol púrpura' que fortalece",
+        "Hipericum (Hypericum perforatum) - 'hierba de San Juan' que florece en solsticio",
+        "Calendula (Calendula officinalis) - 'flor de calendario' que florece todo el año",
+        "Amaranto (Amaranthus caudatus) - 'inmortal' que simboliza vida eterna",
+        "Crisantemo (Chrysanthemum) - 'flor dorada' del otoño solar",
+        "Dalia (Dahlia variabilis) - 'joya de los Andes' con pétalos dorados"
+      ],
+      "gnosis_praxis": [
+        "Saludo solar: saluda al amanecer pidiendo energía renovada",
+        "Ofrenda de agua: vierte agua al sol naciente con gratitud",
+        "Meditación luminosa: visualiza luz dorada llenando cada célula",
+        "Ceremonia del fuego sagrado: enciende fuego votivo durante el día",
+        "Baño de sol consciente: toma sol agradeciendo por la vida",
+        "Peregrinación luminosa: camina hacia el este en busca de claridad",
+        "Ritual del oro solar: lleva algo dorado como amuleto de prosperidad"
+      ],
+      "pasaje_sagrado": [
+        " Malaquías 4:2 - 'Mas a vosotros los que teméis mi nombre'",
+        " Juan 8:12 - 'Yo soy la luz del mundo'",
+        " Filipenses 4:13 - 'Todo lo puedo en Cristo que me fortalece'",
+        " 2 Corintios 4:6 - 'Porque Dios, que dijo que de las tinieblas resplandeciese la luz'",
+        " Salmo 19:1 - 'Los cielos cuentan la gloria de Dios'",
+        " Mateo 5:14 - 'Vosotros sois la luz del mundo'",
+        " 1 Juan 1:7 - 'Mas si andamos en luz, como él está en luz'"
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "nombre": "El Juicio",
+    "imagen": "cards/ar20.jpg",
+    "datos": {
+      "arquetipo": [
+        "El momento culminante donde elegimos entre ascender o permanecer estancados",
+        "La trompeta del ángel que despierta la conciencia dormida",
+        "El llamado definitivo que no admite excusas ni postergaciones",
+        "La balanza cósmica que nos presenta el balance de nuestras acciones",
+        "El segundo nacimiento que emerge de las aguas del bautismo consciente",
+        "La resurrección personal que elige la vida sobre la complacencia",
+        "El trompeter que anuncia el final del juego y el inicio de lo real"
+      ],
+      "sombra": [
+        "No permitas que el miedo al juicio te paralice en la acción",
+        "Evita el auto-juicio cruel que bloquea el crecimiento",
+        "No permitas que la culpa del pasado sabotee tu presente",
+        "Cuidado con juzgar a otros desde tu propia herida sin sanar",
+        "No permitas que la expectativa de perfección evite el progreso",
+        "Evita usar el 'juicio divino' como excusa para no tomar decisiones",
+        "No permitas que el arrepentimiento tardío se convierta en amargura"
+      ],
+      "misticismo": [
+        "La trompeta del arcángel Gabriel que anuncia el fin de los tiempos",
+        "El juicio de las almas en la balanza de Maat en el underworld egipcio",
+        "Shiva destructor que danza el fin del ciclo kármico",
+        "La resurrección de Jesús en el día del juicio divino",
+        "El cuerno de guerra de las valkirias que llaman a los caídos",
+        "La reencarnación en tradiciones védicas basada en acciones pasadas",
+        "El despertar kundalini como juicio de la conciencia dormida"
+      ],
+      "escenario_mundano": [
+        "Esa conversación difícil que tienes que tener pero sigues postergando",
+        "El momento en que debes decidir si cambiar de carrera a los 40",
+        "La decisión de terminar una relación que 'funciona' pero no evoluciona",
+        "El momento de confrontar a alguien que te ha tratado mal",
+        "La decisión de mudarte lejos de tu zona de confort",
+        "El momento de confesar una verdad incómoda a tu familia",
+        "La elección de vivir auténticamente vs seguir las expectativas sociales"
+      ],
+      "botanica": [
+        "Árbol del juicio (Fraxinus excelsior) - cenizas que se queman completamente",
+        "Lirio del juicio (Iris germanica) - flores que 'se alzan' con dignidad",
+        "Rosa de Jericó (Anastatica) - 'resurrección' que florece en agua pura",
+        "Campana de juicio (Digitalis) - flores en forma de trompeta celestial",
+        "Álamo sagrado (Populus) - hojas que tiemblan ante el veredicto final",
+        "Fresno nórdico (Fraxinus) - árbol del juicio en mitología nórdica",
+        "Lila común (Syringa vulgaris) - 'juicio' en idioma rumano, florece en madurez"
+      ],
+      "gnosis_praxis": [
+        "Auto-evaluación profunda: examina tu vida sin auto-engaño ni crueldad",
+        "Confesión transformadora: admite en voz alta tus patrones limitantes",
+        "Ritual de enterramiento: entierra símbolos de tu pasado que ya no sirve",
+        "Ceremonia de renacimiento: renueva tu identidad con actos conscientes",
+        "Juzgar con compasión: practica el discernimiento sin condenar",
+        "Vigilia de decisión: permanece despierto ponderando tu llamado",
+        "Bautismo simbólico: purifica tu intención con agua bendita"
+      ],
+      "pasaje_sagrado": [
+        " Apocalipsis 11:15 - 'El séptimo ángel tocará su trompeta'",
+        " 2 Corintios 5:10 - 'Porque es necesario que todos nosotros comparezcamos'",
+        " Mateo 7:2 - 'Con el juicio con que juzgáis seréis juzgados'",
+        " Romanos 2:16 - 'En el día en que Dios juzgará los secretos de los hombres'",
+        " Apocalipsis 20:12 - 'Vi a los muertos, grandes y pequeños, de pie ante Dios'",
+        " 1 Corintios 4:5 - 'Por tanto, no juzguéis nada antes de tiempo'",
+        " Juan 12:48 - 'El que me rechaza, y no recibe mis palabras'"
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "nombre": "El Mundo",
+    "imagen": "cards/ar21.jpg",
+    "datos": {
+      "arquetipo": [
+        "La coronación de la consciencia que ha integrado todos los opuestos",
+        "El danzarín cósmico que ha perfeccionado la danza de la existencia",
+        "El mapa completo que revela que siempre estuviste en casa",
+        "La síntesis final donde lo humano y lo divino se reconocen como uno",
+        "El viaje del héroe que retorna al principio con sabiduría ganada",
+        "La realización que la pregunta y la respuesta eran la misma verdad",
+        "El círculo sagrado que se completa cuando elegimos amarnos completamente"
+      ],
+      "sombra": [
+        "No permitas que la sensación de 'llegada' te haga complaciente",
+        "Evita la ilusión de que ya 'llegaste' cuando el viaje es continuo",
+        "No permitas que el éxito espiritual se convierta en superioridad",
+        "Cuidado con usar tu 'iluminación' para evitar responsabilidades mundanas",
+        "No permitas que la paz se convierta en estancamiento",
+        "Evita la tentación de 'enseñar' antes de dominar completamente",
+        "No permitas que la completitud te haga perder la humildad"
+      ],
+      "misticismo": [
+        "Maitreya, el futuro Buda de la completud universal",
+        "La unión mística de Shiva y Shakti en tradición tántrica",
+        "El estado de satori en zen que ve la unidad detrás de la diversidad",
+        "La corona de luz en tradiciones cabalísticas de la completud",
+        "El centro del mandala que contiene toda la información del universo",
+        "La estrella de ocho puntas en sufismo que simboliza la totalidad",
+        "Christ Consciousness como realización del amor universal"
+      ],
+      "escenario_mundano": [
+        "Esa sensación de 'todo encaja' cuando resuelves un rompecabezas de vida",
+        "El momento de flow perfecto donde todo fluye sin esfuerzo",
+        "La sensación de 'hogar' que sientes en cualquier lugar del mundo",
+        "El éxito completo en un proyecto que refleja tu propósito del alma",
+        "La relación que se siente como un 'reconocimiento' de alma",
+        "La carrera que se siente como 'lo que naciste para hacer'",
+        "Esa paz interior que persiste incluso en medio del caos externo"
+      ],
+      "botanica": [
+        "Árbol del mundo (Fraxinus excelsior) - cenizas que conectan tierra y cielo",
+        "Loto sagrado (Nelumbo nucifera) - florece puro del barro universal",
+        "Baobab (Adansonia) - 'árbol de la vida' que abraza el cosmos",
+        "Sagrado banyan (Ficus religiosa) - raíces aéreas que crean nuevo mundo",
+        "Ciprés de Monterey (Cupressus macrocarpa) - árbol eterno en tradiciones indígenas",
+        "Eucalipto arcoiris (Eucalyptus deglupta) - corteza multicolor como spectrum completo",
+        "Granada (Punica granatum) - fruta del paraíso con semillas infinite"
+      ],
+      "gnosis_praxis": [
+        "Danza sagrada: mueves tu cuerpo en gratitud por la experiencia completa",
+        "Contemplación del centro: meditas en tu corazón como centro del universo",
+        "Ceremonia de gratitud: honras cada experiencia como maestra necesaria",
+        "Ritual de integración: celebras haber completado otro ciclo de aprendizaje",
+        "Ofrenda al mundo: compartes tu sabiduría para ayudar a otros viajeros",
+        "Meditación mandálica: visualizas un mandala con tú en el centro y el cosmos alrededor",
+        "Bendición universal: extiendes amor a toda la creación sin excepción"
+      ],
+      "pasaje_sagrado": [
+        " 1 Corintios 13:12 - 'Ahora vemos por espejo en oscuridad'",
+        " Apocalipsis 21:3 - 'Oí una gran voz del trono, que decía'",
+        " Filipenses 4:7 - 'Y la paz de Dios que sobrepasa todo entendimiento'",
+        " Juan 17:21 - 'Para que todos sean uno; como tú, Padre, en mí'",
+        " Efesios 4:13 - 'Hasta que todos lleguemos a la unidad de la fe'",
+        " 1 Juan 4:12 - 'Si nos amamos unos a otros'",
+        " Colosenses 3:14 - 'Y sobre todas estas cosas vestíos del amor'"
+      ]
+    }
+  }
+]

@@ -1,0 +1,351 @@
+[
+  {
+    "id": 5,
+    "nombre": "El Sumo Sacerdote",
+    "imagen": "cards/ar05.jpg",
+    "datos": {
+      "arquetipo": [
+        "Guardián del conocimiento sagrado que trasciende las apariencias",
+        "Encarnación de la sabiduría ancestral y la tradición iniciática",
+        "Puente entre lo mundano y lo divino, entre la letra y el espíritu",
+        "Maestro que enseña más con su presencia que con sus palabras",
+        "Sacerdote de los misterios que revela lo oculto a quien está listo",
+        "Vigilante del umbral que otorga acceso a dimensiones superiores",
+        "Portador de las claves que abren las puertas de la conciencia"
+      ],
+      "sombra": [
+        "Rigidez dogmática que sofoca la comprensión viva",
+        "Uso del conocimiento como poder y control sobre otros",
+        "Desconexión del corazón por exceso de mentalización",
+        "Fanatismo religioso que reemplaza la fe por miedo",
+        "Elitismo espiritual que se aísla del mundo",
+        "Tradición vacía sin comprensión profunda",
+        "Preceptores que enseñan pero no ejemplifican"
+      ],
+      "misticismo": [
+        "Símbolo de la gnosis que trasciende el conocimiento mental",
+        "Representación del Hierofante en los misterios eleusinos",
+        "Conexión con el arcángel Raziel, guardián de los secretos divinos",
+        "Vínculo con los antiguos maestros ascendidos",
+        "Encarnación del principio de Hermes Trismegisto",
+        "Portal hacia los planos causales superiores",
+        "Guardián de las enseñanzas esotéricas sagradas"
+      ],
+      "escenario_mundano": [
+        "El mentor de LinkedIn que te da consejos de carrera",
+        "Tu abuela explicándote la vida mientras hornean galletas",
+        "El profesor que inspirado te hace amar su materia",
+        "Tu jefe que de repente te habla de propósito de vida",
+        "El coach espiritual que aparece en tu Netflix",
+        "Tu therapist que dice exactamente lo que necesitas oír",
+        "El vecino anciano que siempre sabe qué decir"
+      ],
+      "botanica": [
+        "Laurel - Gloria y sabiduría alcanzada",
+        "Olivo - Paz interior y conexión espiritual",
+        "Sagrado loto - Pureza y iluminación",
+        "Crisantemo - Sabiduría tardía y reflexión",
+        "Menta - Mentha piperita para claridad mental",
+        "Lavanda - Purificación y serenidad espiritual",
+        "Salvia - Sabiduría y memoria ancestral"
+      ],
+      "gnosis_praxis": [
+        "Meditación silenciosa de 21 minutos al amanecer",
+        "Lectura diaria de textos sagrados con contemplación",
+        "Practicar la escucha profunda sin responder",
+        "Crear un espacio sagrado personal con símbolos",
+        "Estudiar tradiciones místicas comparadas",
+        "Enseñar lo aprendido a otro con humildad",
+        "Ritual de consagración de libros importantes"
+      ],
+      "pasaje_sagrado": [
+        "Toma el libro y ábrelo...porque estaba escrito en elroll que tú habías puesto en tus manos",
+        "Tú me preguntas cómo sé todas estas cosas? He estado con el maestro desde antes de nacer",
+        "A quien mucho se le dio, mucho se le demandará",
+        "Mis pensamientos no son vuestros pensamientos",
+        "No temas, pequeño rebaño, porque a vuestro Padre le ha placido daros el reino",
+        "Conoced la verdad y la verdad os hará libres",
+        "Aquel que reciba a un niño tal como este en mi nombre, me recibe a mí"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Los Enamorados",
+    "imagen": "cards/ar06.jpg",
+    "datos": {
+      "arquetipo": [
+        "Unión sagrada que trasciende lo puramente físico",
+        "Elección consciente entre el amor verdadero y la atracción mundana",
+        "Alquimia de dos almas que se reconocen como una",
+        "Sincronización de lo masculino y femenino sagrado",
+        "Ternura que sana y transforma a ambos",
+        "Compromiso con la evolución espiritual compartida",
+        "Amor que eleva la consciencia individual a la cósmica"
+      ],
+      "sombra": [
+        "Pasión ciega que confunde obsesión con amor",
+        "Uso del amor como dependencia emocional destructiva",
+        "Proyección de expectativas irreales sobre la pareja",
+        "Celos que asfixian y destruyen la libertad",
+        "Amor condicional basado en qué recibes",
+        "Miedo al abandono que genera control",
+        "Romantización de relaciones tóxicas"
+      ],
+      "misticismo": [
+        "Conjunción alquímica del Rey y la Reina",
+        "Reflejo de la unión de Shiva y Shakti",
+        "Boda mística del alma con su gemelo cósmico",
+        "Integración del ánima y el ánimus en el psyche",
+        "Símbolo del Matrimonio Químico en la alquimia",
+        "Unión de los opuestos complementarios",
+        "Portal hacia el amor incondicional divino"
+      ],
+      "escenario_mundano": [
+        "Esos crushes de la preparatoria que duraron años",
+        "Tu pareja apoyando tu transición profesional",
+        "Flamazos que te cambian la vida en un café",
+        "La amistad que evoluciona a algo más profundo",
+        "Esa persona que te conoce sin que le expliques nada",
+        "El match de Tinder que resulta ser tu alma gemela",
+        "Conectar por primera vez con alguien que 'entiende'"
+      ],
+      "botanica": [
+        "Rosa - Amor verdadero y pasión sublime",
+        "Jazmín - Elegancia y seducción magnética",
+        "Flor de cerezo - Belleza efímera y renovación",
+        "Peonía - Honor y amor casto",
+        "Gardenia - Espiritualidad en el amor",
+        "Heliotropo - Devoción eterna",
+        "Madreselva - Dulzura y vínculos duraderos"
+      ],
+      "gnosis_praxis": [
+        "Ritual de luna nueva para manifestar amor auténtico",
+        "Ejercicios de comunicación amorosa consciente",
+        "Meditación en pareja con respiración sincronizada",
+        "Carta de gratitud escrita para tu compañero",
+        "Crear juntos un altar del amor con símbolos",
+        "Ceremonia de perdón y renovación de votos",
+        "Práctica de actos de servicio sin expectativa"
+      ],
+      "pasaje_sagrado": [
+        "El amor es sufrido, es benigno; el amor no tiene envidia, el amor no es jactancioso, no se envanece",
+        "Donde quiera que hubiere dos o tres congregados en mi nombre, allístoy yo en medio de ellos",
+        "Todo lo mio es tuyo, y lo tuyo es mio",
+        "El hombre dejará a su padre y a su madre, y se unirá a su mujer",
+        "Si la fe moviera montañas, pero ¿qué amor podría mover sin ti?",
+        "Tuya es la belleza de los cielos, tuya es la armonía en la tierra",
+        "Porque mi yugo es fácil, y mi carga ligera"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "El Carro",
+    "imagen": "cards/ar07.jpg",
+    "datos": {
+      "arquetipo": [
+        "Maestro de tu propio destino con determinación inquebrantable",
+        "Conquistador que transforma obstáculos en escalones",
+        "Guía que navega entre dos mundos con sabiduría dual",
+        "Fuerza de voluntad que manifesta la visión en realidad",
+        "General que lidera la batalla interna contra el miedo",
+        "Viajero consciente que elige su propio camino",
+        "Victorioso que celebra no la conquista sino la transformación"
+      ],
+      "sombra": [
+        "Orgullo que nubla la visión del verdadero destino",
+        "Ambición descontrolada que sacrifica valores",
+        "Impaciencia que corre antes de saber hacia dónde",
+        "Control obsesivo sobre lo que debe fluir naturalmente",
+        "Agresividad como herramienta para conseguir objetivos",
+        "Adicción al éxito externo que evita la introspección",
+        "Victorias pírricas que dejan vacío interior"
+      ],
+      "misticismo": [
+        "Símbolo del carro solar de Ra surcando el cosmos",
+        "Representación del vehículo del alma entre mundos",
+        "Conexión con el corcel blanco de los héroes iniciados",
+        "Puente entre la materia y el espíritu encarnado",
+        "Vínculo con los carros de fuego de los antiguos profetas",
+        "Portal del héroe que regresa transformado",
+        "Alquimia de los elementos bajo comando consciente"
+      ],
+      "escenario_mundano": [
+        "Lanzar tu startup y todo sale increíble",
+        "Decidir emigrar sin mirar atrás",
+        "Convertir tu pasión en tu trabajo principal",
+        "Decir que no a ese trabajo tóxico",
+        "Tomar el control de tu vida financiera",
+        "Iniciar el proceso legal del divorcio",
+        "Mudarte a la ciudad de tus sueños"
+      ],
+      "botanica": [
+        "Romero - Fuerza de voluntad y memoria",
+        "Eucalipto - Claridad mental y determinación",
+        "Ginseng - Energía vital y resistencia",
+        "Laurel - Victoria y honor alcanzado",
+        "Pimienta de Cayena - Impulso y transformación",
+        "Jengibre - Poder catalizador",
+        "Hierba de limón - Energización natural"
+      ],
+      "gnosis_praxis": [
+        "Ritual de dedicación matutina al propósito del día",
+        "Visualización de objetivos con respiración consciente",
+        "Ejercicios de manifestación con afirmación poderosa",
+        "Ceremonia de compromiso con tu visión",
+        "Práctica de gratitud por los progresos diarios",
+        "Ritual de liberación de obstáculos internos",
+        "Ofrenda de sangre, sudor y lágrimas al altar"
+      ],
+      "pasaje_sagrado": [
+        "No temas, porque yo contigo estoy; no desmayes, porque yo soy tu Dios que te esfuerzo",
+        "Todo lo que me viniste a decir, hazlo en tu casa, y bendeciré tu casa",
+        "Como un gigante que corre en el camino, así es el que puede más que su boca",
+        "Porque mi pueblo hizo dos males: a mí me dejó, fuente de agua viva",
+        "Aquel que начало сомневаться sobre todo не сможет достичь большого успеха",
+        "Mi arco en los cielos lo he puesto, y será por señal de alianza",
+        "Mira a tus pies, que son los que pisan sobre la tierra"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "nombre": "La Fuerza",
+    "imagen": "cards/ar08.jpg",
+    "datos": {
+      "arquetipo": [
+        "Fuerza divina canalizada através de la ternura más absoluta",
+        "Domador que vence no por violencia sino por amor",
+        "Leona que protege a sus crías con ferocidad compasiva",
+        "Paciencia que transforma la pasión en sabiduría",
+        "Valor de enfrentar la propia sombra sin rendirse",
+        "Elefante que never forgets pero siempre perdona",
+        "Coraje que actúa desde la quietud del alma"
+      ],
+      "sombra": [
+        "Ternura convertida en debilidad ante la manipulación",
+        "Control excesivo disfrazado de protección",
+        "Ira reprimida que explota de forma destructiva",
+        "Manipulación emocional usando la culpa",
+        "Autodestructiva autoexigencia y perfeccionismo",
+        "Pasividad que se convierte en sumisión",
+        "Resentimiento acumulado por falta de límites"
+      ],
+      "misticismo": [
+        "Conexión con la Diosa Madre en su forma más feroz",
+        "Representación de Kali Ma en su aspecto protector",
+        "El león como símbolo del sol victorioso en alquimia",
+        "Fuerza del dragón que guarda los tesoros más preciados",
+        "Poder kundalini que despertar con consciencia",
+        "Coraje de Sansón que viene de la fe absoluta",
+        "Brazos de mar de la Virgen de Guadalupe"
+      ],
+      "escenario_mundano": [
+        "Mamá que se vuelve leona para proteger a sus hijos",
+        "La fuerza para pedir ayuda por primera vez",
+        "Decir 'no' firme a una demanda tóxica",
+        "Convertir el dolor en arte sanador",
+        "La paciencia para esperar tu momento sin rendirte",
+        "Defender a alguien vulnerable aunque te cueste",
+        "Elegir la autocompasión sobre la autocrítica"
+      ],
+      "botanica": [
+        "Orquídea - Fuerza sutil y transformación",
+        "Nardo - Poder y gloria alcanzados",
+        "Mimulus - Coraje para enfrentar el miedo",
+        "Loto - Pureza en medio del lodo",
+        "Álamo - Sabiduría y resistencia",
+        "Iris - Fortaleza y mensaje divino",
+        "Eucalipto - Protección y purificación"
+      ],
+      "gnosis_praxis": [
+        "Ejercicios diarios de autocompasión consciente",
+        "Ritual de protección del espacio sagrado personal",
+        "Práctica de respiración del fuego interno",
+        "Meditación con el rugido del león interno",
+        "Ceremonia de honra a tu fuerza ancestral",
+        "Ritual de liberación de la rabia acumulada",
+        "Ofrenda de gratitud a tu cuerpo que te sirve"
+      ],
+      "pasaje_sagrado": [
+        "Mi fuerza se perfecciona en tu debilidad",
+        "Si Dios es por nosotros, ¿quién será contra nosotros?",
+        "No temas, que más poderoso es el que está en ti que el que está en el mundo",
+        "Un león rugirá sobre él: ¿quién no temerá?",
+        "El justo como el león se mostrará en su fuerza",
+        "Mas la liberación viene del Altísimo, quien quebrará la cabeza del dragón",
+        "Porque Tú me ceñiste de poder para la batalla"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "nombre": "El Ermitaño",
+    "imagen": "cards/ar09.jpg",
+    "datos": {
+      "arquetipo": [
+        "Sabio que ha caminado por todos los senderos y regresa para guiar",
+        "Buscador que entiende que el tesoro está en el camino interior",
+        "Guardián del fuego sagrado que mantiene viva la llama de la consciencia",
+        "Profeta que ha visto más allá y trae noticias del futuro",
+        "Maestro silencioso que enseña en el ejemplo, no en las palabras",
+        "Viajero eterno que conoce la soledad como aliada",
+        "Sanador que sana primero sanándose a sí mismo"
+      ],
+      "sombra": [
+        "Aislamiento que se convierte en逃跑 del mundo",
+        "Arrogancia espiritual que se eleva sobre otros",
+        "Obsesión con la búsqueda que evita vivir",
+        "Purismo excesivo que rechaza la humanidad",
+        "Abandono de responsabilidades mundanas por evasión",
+        "Perfeccionismo que nunca se siente completo",
+        "Búsqueda de respuestas externas sin escuchar la voz interior"
+      ],
+      "misticismo": [
+        "Vínculo con san Juan de la Cruz y su noche oscura",
+        "Conexión con los maestros ermitaños tibetanos",
+        "Reflejo de Hermes como guía de la consciencia",
+        "Símbolo del mercurio filosófico en su búsqueda",
+        "Portal hacia la sabiduría de la montaña sagrada",
+        "Representación de la tradición de los sabios yoguis",
+        "Guardián de las enseñanzas de los grandes maestros"
+      ],
+      "escenario_mundano": [
+        "Tomar un sabático para encontrarte contigo mismo",
+        "La pausa reflexiva después de una crisis existencial",
+        "Esa fase de terapia intensiva donde todo cambia",
+        "Los retiros de silencio que te conectan contigo",
+        "Escuchar tu intuición más que la opinión social",
+        "El período de duelo que te enseñan sabiduría",
+        "Elegir soledad selectiva para energetizarte"
+      ],
+      "botanica": [
+        "Sagrado bambú - Flexibilidad y sabiduría",
+        "Pino - Longevidad y perseverancia",
+        "Cedro - Purificación y conocimiento",
+        "Mirra - Transcendencia del dolor",
+        "Incienso - Elevación espiritual",
+        "Lavanda de mar - Serenidad y equilibrio",
+        "Hierba sagrada - Conexión con lo divino"
+      ],
+      "gnosis_praxis": [
+        "Ejercicios de soledad consciente sin aislamiento",
+        "Meditación de introspection con escritura",
+        "Ceremonia de consulta a tu voz interior",
+        "Ritual de liberación de patrones limitantes",
+        "Práctica de servir desde tu lugar de autoridad",
+        "Peregrinación a lugares que nutran tu alma",
+        "Servicio de escucha profunda a otros buscadores"
+      ],
+      "pasaje_sagrado": [
+        "A nadie en el camino encontré que me esperara; solo en mi casa encontré el alma",
+        "El que se exaltare será humillado, y el que se humillare será exaltado",
+        "Si alguno quiere venir en pos de mí, niéguese a sí mismo",
+        "La esperanza es paciencia para el corazón",
+        "El silencio es el lenguaje de lo que no se puede expresar",
+        "Bien dice el Espíritu Santo en uno de los padres"
+      ]
+    }
+  }
+]
