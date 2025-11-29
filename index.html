@@ -774,6 +774,7 @@
 
         let isRevealed = false;
         let currentCardData = null;
+        let resetTimeoutId = null;
         
         // Arrays globales para almacenar todos los conceptos por categoría (22 conceptos cada uno)
         let allArquetipos = [];
@@ -952,6 +953,12 @@
         function revealDestiny() {
             if (!currentCardData) return;
             
+            // Cancelar cualquier reset de colores pendiente
+            if (resetTimeoutId) {
+                clearTimeout(resetTimeoutId);
+                resetTimeoutId = null;
+            }
+            
             isRevealed = true;
 
             // 1. ACTIVAR WALLPAPER Y APLICAR PALETA DE COLORES
@@ -1098,11 +1105,12 @@
             // 1. Desactivar wallpaper dinámico
             wallpaper.classList.remove('active');
             // Resetear colores a blanco después de la transición de opacidad
-            setTimeout(() => {
+            resetTimeoutId = setTimeout(() => {
                 wallpaper.style.setProperty('--color1', '#ffffff');
                 wallpaper.style.setProperty('--color2', '#ffffff');
                 wallpaper.style.setProperty('--color3', '#ffffff');
                 wallpaper.style.setProperty('--color4', '#ffffff');
+                resetTimeoutId = null; // Limpiar la referencia
             }, 1500); // Coincide con la transición de opacidad de los blobs
             
             // 2. Ocultar panel
