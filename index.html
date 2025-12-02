@@ -1249,17 +1249,31 @@
                 const lang = window.i18n ? window.i18n.currentLanguage : 'es';
                 const suffix = lang === 'es' ? '' : `_${lang}`;
 
-                // Cargar archivos JSON locales según idioma
-                // Nota: Solo hemos creado 0-5 para EN/PT por ahora, así que para otros rangos
-                // idealmente deberíamos tener fallbacks, pero para el showcase forzaremos el rango 0-5.
-                const [response1] = await Promise.all([
-                    fetch(`./public/data/0-5${suffix}.json`)
-                ]);
+                // Cargar TODOS los 4 archivos JSON (22 Arcanos Mayores completos)
+                // Con fallback a español para traducciones incompletas
+                const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
 
-                const data1 = await response1.json();
+                const allCards = [];
 
-                // Combinar todas las cartas (por ahora solo el primer set para el showcase)
-                const allCards = [...data1];
+                for (const range of fileRanges) {
+                    try {
+                        // Intentar cargar archivo traducido
+                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+
+                        // Si no existe, usar español como fallback
+                        if (!response.ok && lang !== 'es') {
+                            console.log(`⚠️ Traducción no disponible para ${range} en ${lang}, usando español`);
+                            response = await fetch(`./public/data/${range}.json`);
+                        }
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            allCards.push(...data);
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando ${range}:`, error);
+                    }
+                }
 
                 // EXTRAER TODOS LOS CONCEPTOS POR CATEGORÍA (22 conceptos cada uno)
                 allArquetipos = allCards.map(card => card.contenido.arquetipo);
@@ -1270,9 +1284,7 @@
                 allGnosis = allCards.map(card => card.contenido.gnosis);
                 allResonanciasBiblicas = allCards.map(card => card.contenido.resonancia_biblica);
 
-                console.log(`📚 Conceptos cargados (${lang}):`, {
-                    arquetipos: allArquetipos.length
-                });
+                console.log(`📚 Cartas cargadas (${lang}): ${allCards.length} de 22 Arcanos Mayores`);
 
                 // SELECCIÓN ALEATORIA DE CARTA
                 const randomIndex = Math.floor(Math.random() * allCards.length);
@@ -1285,7 +1297,7 @@
                     fullData: selectedCard.contenido
                 };
 
-                // PRE-CALCULAR ÍNDICES DE EJEMPLO ALEATORIOS (0-5 para este set reducido)
+                // PRE-CALCULAR ÍNDICES DE EJEMPLO ALEATORIOS (22 Arcanos Mayores completos)
                 currentExampleIndices = {
                     arquetipo: Math.floor(Math.random() * allCards.length),
                     misticismo: Math.floor(Math.random() * allCards.length),
