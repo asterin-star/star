@@ -1,0 +1,110 @@
+[
+    {
+        "id": 0,
+        "key": "THE_FOOL",
+        "nombre": "Der Narr",
+        "contenido": {
+            "arquetipo": "Der Puer Aeternus und der Urheld.",
+            "sombra": "Pathologische Rücksichtslosigkeit und Nihilismus.",
+            "misticismo": "Aleph, Luft und der 11. Pfad.",
+            "cotidiano": "Der Disruptor und der Unternehmer.",
+            "botanica": "Fliegenpilz, Pfefferminze, Ginseng.",
+            "gnosis": "Sorglose Sicherheit.",
+            "resonancia_biblica": {
+                "cita": "Sondern was töricht ist vor der Welt, das hat Gott erwählt, damit er die Weisen zuschanden mache",
+                "referencia": "1. Korinther 1:27",
+                "conexion": "Göttliche Weisheit ist Torheit für die Welt."
+            }
+        }
+    },
+    {
+        "id": 1,
+        "key": "THE_MAGICIAN",
+        "nombre": "Der Magier",
+        "contenido": {
+            "arquetipo": "Der Animus und das Schöpferische Ego. Der Magier ist die reine Manifestation des Animus-Archetyps (das männliche Prinzip von Aktion, Logik und Differenzierung) und des Egos in seiner gesunden und konstruktiven Funktion. Jungianisch repräsentiert er die Fähigkeit der Psyche, Libido auf ein bestimmtes Ziel zu fokussieren. Er ist der Archetyp des 'Homo Faber', des Menschen, der macht, der die Natur durch Technik und Wort transformiert. Im Gegensatz zum Narren, der passiv vor dem göttlichen Impuls ist, ist der Magier aktiv: er kanalisiert. Seine Geste – eine Hand zum Himmel und die andere zur Erde – macht ihn zu einem elektrischen Leiter. Psychologisch symbolisiert er Integration und Selbstwirksamkeit: den Glauben, dass 'ich meine Umgebung verändern kann'. Es ist der Moment in der Entwicklung, in dem das Kind erkennt, dass seine Handlungen vorhersehbare Konsequenzen haben und dass es Objekte manipulieren kann, um Ergebnisse zu erzielen.",
+            "sombra": "Der Scharlatan und der Psychische Manipulator. Der Schatten des Magiers ist der 'Trickster' in seinem bösartigen Aspekt. Er ist der Schlangenölverkäufer, der demagogische Politiker oder der Sektenführer, der sein Charisma und sein technisches Wissen nutzt, um andere zu seinem eigenen Vorteil zu manipulieren. Der Schatten hier ist die Trennung zwischen Fähigkeit und Ethik. Der 'Schwarze Magier' ist nicht unbedingt jemand, der Dämonen beschwört, sondern der Unternehmensprofi, der Verhaltenspsychologie nutzt, um Sucht bei App-Nutzern zu erzeugen, oder der Narzisst, der die Erzählung der Realität umschreibt (Gaslighting), um sein Opfer zu verwirren. Es ist Intelligenz im Dienste des Egoismus, Wille getrennt von Liebe.",
+            "misticismo": "Beth, Merkur und der 12. Pfad. In der Kabbala ist der Magier mit dem Buchstaben Beth (ב) verbunden, was 'Haus' bedeutet. Dies ist paradox, aber tiefgründig: Der Magier baut das 'Haus' oder den Behälter, in dem der Geist wohnt. Ohne den Magier würde sich die Energie des Narren verflüchtigen. Er besetzt den 12. Pfad, der Kether (Krone) mit Binah (Verständnis) verbindet. Binah ist die große einschränkende Form; daher ist der Magier der Agent, der die reine Energie von Kether nimmt und beginnt, ihr Definition und Zweck zu geben. Sein Herrscher ist Merkur, der Botengott, Herrscher über Kommunikation, Handel, Medizin und Magie. Merkur ist androgyn und flüchtig, fähig, sich zwischen den Welten (bewusst und unbewusst) zu bewegen. Die Farbe des Magiers in der Golden Dawn-Skala ist reines Gelb, die Farbe des solaren Intellekts und der klaren Kommunikation, die auf der Frequenz des erleuchteten rationalen Geistes vibriert.",
+            "cotidiano": "Der Technologe und der Spezialist. Im modernen Ökosystem ist der Magier der Softwareingenieur, der Chirurg, der Vermarkter oder der Wissenschaftler. Er ist der Profi, der eine Reihe spezialisierter Werkzeuge beherrscht, um Probleme zu lösen. Im Unternehmenstarot ist er der 'Löser': derjenige, der die technische Kapazität hat, eine abstrakte Vision (vom CEO/Kaiser) in ein greifbares Produkt zu übersetzen. Dieses Arkanum regiert die Technologie selbst. Das Smartphone in unserer Hand ist der moderne 'Zauberstab', ein Werkzeug unendlicher Kommunikation, das der Magier uns lehrt, mit Absicht zu benutzen, und uns warnt, nicht zu Werkzeugen unserer eigenen Werkzeuge zu werden.",
+            "botanica": "Die Pflanzen des Magiers sind merkurial: schnell, aromatisch und mit dem Nervensystem und der Kognition verbunden. Rosmarin (Rosmarinus officinalis), verbunden mit Sonne und Merkur, ist die Pflanze der Erinnerung, die das kognitive Gedächtnis und die rituelle Konzentration stimuliert und verwendet wird, um den mentalen Raum vor der magischen Operation zu reinigen. Nelke (Dianthus caryophyllus), entsprechend Sonne und Jupiter, ist die Blume der Krönung und des Erfolgs, die den Willen und das persönliche Charisma stärkt, die für die Manifestation notwendig sind. Vanille (Vanilla planifolia), obwohl venusisch auch mit Merkur verbunden, hat eine Wirkung auf den Geist von subtiler Ermächtigung und Überzeugung, die in der Magie verwendet wird, um den Willen anderer oder die Umgebung zu 'versüßen'.",
+            "gnosis": "Mühelose Konzentration. Valentin Tomberg bietet eine der tiefsten Definitionen des Magiers: Er repräsentiert 'mühelose Konzentration'. Wahre Meisterschaft liegt nicht in der Anspannung der Muskeln oder dem Runzeln der Stirn (was eine Energieblockade ist), sondern in der perfekten Entspannung, die es dem göttlichen Willen erlaubt, ohne Widerstand durch den menschlichen Willen zu fließen. Der Magier 'macht' keine Magie; er 'ist' Magie. Seine Arbeit ist Spiel. Dies ist der Unterschied zwischen Mühsal (Folge des Falls) und göttlicher Kreativität. Der Magier operiert im Zustand des 'Flow', der von der positiven Psychologie beschrieben wird.",
+            "resonancia_biblica": {
+                "cita": "Im Anfang war das Wort, und das Wort war bei Gott, und Gott war das Wort",
+                "referencia": "Johannes 1:1",
+                "conexion": "Der Magier ist der Logos, das artikulierte Wort, das schöpferische Kraft hat. Diese Verbindung erhebt den Magier von einem einfachen Illusionisten zu einem Mitschöpfer mit Gott. Wie Adam, der den Tieren Namen gab (Genesis 2:19), übt der Magier Autorität über die Realität aus, indem er sie durch Sprache definiert. Seine biblische Warnung liegt in der Figur des Simon Magus (Apostelgeschichte 8), der versuchte, geistliche Kraft zu kaufen, und uns daran erinnert, dass die Gabe des Magiers empfangen und nicht vom Ego angeeignet werden muss."
+            }
+        }
+    },
+    {
+        "id": 2,
+        "key": "THE_HIGH_PRIESTESS",
+        "nombre": "Die Hohepriesterin",
+        "contenido": {
+            "arquetipo": "Die Anima und die Weise Große Mutter.",
+            "sombra": "Isolation und die 'Eishexe'.",
+            "misticismo": "Gimel, Der Mond und der 13. Pfad.",
+            "cotidiano": "Die Datenanalystin und die Tiefentherapeutin.",
+            "botanica": "Beifuß, Weide, Granatapfel.",
+            "gnosis": "Das Gedächtnis der Welt.",
+            "resonancia_biblica": {
+                "cita": "Maria aber behielt alle diese Worte und bewegte sie in ihrem Herzen",
+                "referencia": "Lukas 2:19",
+                "conexion": "Kontemplative Weisheit."
+            }
+        }
+    },
+    {
+        "id": 3,
+        "key": "THE_EMPRESS",
+        "nombre": "Die Herrscherin",
+        "contenido": {
+            "arquetipo": "Die Große Mutter und die Natur.",
+            "sombra": "Die verschlingende Mutter und Eitelkeit.",
+            "misticismo": "Daleth, Venus und der 14. Pfad.",
+            "cotidiano": "Die Kreative und die Ressourcenmanagerin.",
+            "botanica": "Rose, Eisenkraut, Weizen, Schafgarbe.",
+            "gnosis": "Die Heilige Magie der Zeugung.",
+            "resonancia_biblica": {
+                "cita": "Steh auf, Nordwind, und komm, Südwind! Durchwehe meinen Garten, dass seine Düfte strömen!",
+                "referencia": "Hohelied 4:16",
+                "conexion": "Mystische Liebe und Natur."
+            }
+        }
+    },
+    {
+        "id": 4,
+        "key": "THE_EMPEROR",
+        "nombre": "Der Herrscher",
+        "contenido": {
+            "arquetipo": "Der Große Vater und das Realitätsprinzip.",
+            "sombra": "Der Tyrann und sklerotische Starrheit.",
+            "misticismo": "Heh, Widder und der 15. Pfad.",
+            "cotidiano": "Der CEO und der Systemarchitekt.",
+            "botanica": "Brennnessel, Mariendistel, Ingwer, Eiche.",
+            "gnosis": "Autorität als Dienst.",
+            "resonancia_biblica": {
+                "cita": "Und ich will ihm deinen Rock anziehen und ihn mit deinem Gürtel gürten... Und ich will die Schlüssel des Hauses Davids auf seine Schulter legen",
+                "referencia": "Jesaja 22:21-22",
+                "conexion": "Göttliche Verwaltung."
+            }
+        }
+    },
+    {
+        "id": 5,
+        "key": "THE_HIEROPHANT",
+        "nombre": "Der Hierophant",
+        "contenido": {
+            "arquetipo": "Der spirituelle Lehrer und der Wächter.",
+            "sombra": "Der Inquisitor und Dogmatismus.",
+            "misticismo": "Vav, Stier und der 16. Pfad.",
+            "cotidiano": "Der Mentor und die Unternehmenskultur.",
+            "botanica": "Salbei, Weihrauch, Königskerze.",
+            "gnosis": "Das Atmen der Tradition.",
+            "resonancia_biblica": {
+                "cita": "Und niemand nimmt sich selbst die Ehre, sondern er wird von Gott berufen, gleichwie Aaron",
+                "referencia": "Hebräer 5:4",
+                "conexion": "Göttliche Ordnung."
+            }
+        }
+    }
+]

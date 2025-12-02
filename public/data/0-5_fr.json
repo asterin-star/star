@@ -1,0 +1,110 @@
+[
+    {
+        "id": 0,
+        "key": "THE_FOOL",
+        "nombre": "Le Mat",
+        "contenido": {
+            "arquetipo": "Le Puer Aeternus et le Héros Primordial.",
+            "sombra": "Imprudence Pathologique et Nihilisme.",
+            "misticismo": "Aleph, Air et le 11ème Sentier.",
+            "cotidiano": "Le Disrupteur et l'Entrepreneur.",
+            "botanica": "Amanite Tue-mouche, Menthe Poivrée, Ginseng.",
+            "gnosis": "Sécurité Insouciante.",
+            "resonancia_biblica": {
+                "cita": "Mais Dieu a choisi les choses folles du monde pour confondre les sages",
+                "referencia": "1 Corinthiens 1:27",
+                "conexion": "La sagesse divine est folie pour le monde."
+            }
+        }
+    },
+    {
+        "id": 1,
+        "key": "THE_MAGICIAN",
+        "nombre": "Le Bateleur",
+        "contenido": {
+            "arquetipo": "L'Animus et l'Ego Créateur. Le Bateleur est la manifestation pure de l'archétype de l'Animus (le principe masculin d'action, de logique et de différenciation) et de l'Ego dans sa fonction saine et constructive. Jungiennement, il représente la capacité de la psyché à concentrer la libido sur un but spécifique. Il est l'archétype de l'Homo Faber, l'homme qui fait, qui transforme la nature par la technique et le verbe. Contrairement au Mat, qui est passif devant l'impulsion divine, le Bateleur est actif : il canalise. Son geste — une main vers le ciel et l'autre vers la terre — fait de lui un conducteur électrique. Psychologiquement, il symbolise l'intégration et l'auto-efficacité : la croyance que 'je peux changer mon environnement'. C'est le moment du développement où l'enfant réalise que ses actions ont des conséquences prévisibles et qu'il peut manipuler les objets pour obtenir des résultats.",
+            "sombra": "Le Charlatan et le Manipulateur Psychique. L'ombre du Bateleur est le 'Trickster' dans son aspect malveillant. C'est le vendeur d'huile de serpent, le politicien démagogue ou le chef de secte qui utilise son charisme et ses connaissances techniques pour manipuler les autres à son propre profit. L'ombre ici est la déconnexion entre compétence et éthique. Le 'Mage Noir' n'est pas nécessairement quelqu'un qui invoque des démons, mais le professionnel qui utilise la psychologie comportementale pour créer une addiction chez les utilisateurs, ou le narcissique qui réécrit le récit de la réalité (gaslighting) pour embrouiller sa victime. C'est l'intelligence au service de l'égoïsme, la volonté déconnectée de l'amour.",
+            "misticismo": "Beth, Mercure et le 12ème Sentier. Dans la Kabbale, le Bateleur est associé à la lettre Beth (ב), qui signifie 'Maison'. C'est paradoxal mais profond : le Bateleur construit la 'maison' ou le contenant où l'Esprit habite. Sans le Bateleur, l'énergie du Mat se dissiperait. Il occupe le 12ème Sentier, reliant Kether (Couronne) à Binah (Compréhension). Binah est la grande forme restrictive ; par conséquent, le Bateleur est l'agent qui prend l'énergie pure de Kether et commence à lui donner une définition et un but. Son souverain est Mercure, le dieu messager, souverain de la communication, du commerce, de la médecine et de la magie. Mercure est androgyne et volatil, capable de se déplacer entre les mondes (conscient et inconscient). La couleur du Bateleur dans l'échelle de la Golden Dawn est le Jaune pur, la couleur de l'intellect solaire et de la communication claire, vibrant à la fréquence de l'esprit rationnel illuminé.",
+            "cotidiano": "Le Technologue et le Spécialiste. Dans l'écosystème moderne, le Bateleur est l'Ingénieur Logiciel, le Chirurgien, le Marketeur ou le Scientifique. C'est le professionnel qui maîtrise un ensemble d'outils spécialisés pour résoudre des problèmes. Dans le tarot d'entreprise, il est le 'Solver' : celui qui a la capacité technique de traduire une vision abstraite (du PDG/Empereur) en un produit tangible. Cet arcane gouverne la technologie elle-même. Le smartphone dans notre main est la 'baguette magique' moderne, un outil de communication infinie que le Bateleur nous enseigne à utiliser avec intention, nous avertissant de ne pas devenir les outils de nos propres outils.",
+            "botanica": "Les plantes du Bateleur sont mercurielles : rapides, aromatiques et connectées au système nerveux et à la cognition. Le Romarin (Rosmarinus officinalis), associé au Soleil et à Mercure, est la plante du souvenir qui stimule la mémoire cognitive et la concentration rituelle, utilisée pour nettoyer l'espace mental avant l'opération magique. L'Œillet (Dianthus caryophyllus), correspondant au Soleil et à Jupiter, est la fleur du couronnement et du succès qui renforce la volonté et le charisme personnel nécessaires à la manifestation. La Vanille (Vanilla planifolia), bien que vénusienne associée aussi à Mercure, a un effet sur l'esprit d'autonomisation subtile et de persuasion, utilisée en magie pour 'adoucir' la volonté des autres ou l'environnement.",
+            "gnosis": "Concentration sans Effort. Valentin Tomberg offre l'une des définitions les plus profondes du Bateleur : il représente la 'concentration sans effort'. La vraie maîtrise ne réside pas dans la tension des muscles ou le froncement des sourcils (qui est un blocage énergétique), mais dans la relaxation parfaite qui permet à la Volonté Divine de couler à travers la volonté humaine sans résistance. Le Bateleur ne 'fait' pas de magie ; il 'est' magie. Son travail est jeu. C'est la différence entre le labeur (conséquence de la Chute) et la créativité divine. Le Bateleur opère dans l'état de 'flow' décrit par la psychologie positive.",
+            "resonancia_biblica": {
+                "cita": "Au commencement était la Parole, et la Parole était avec Dieu, et la Parole était Dieu",
+                "referencia": "Jean 1:1",
+                "conexion": "Le Bateleur est le Logos, la Parole articulée qui a un pouvoir créateur. Cette connexion élève le Bateleur d'un simple illusionniste à un co-créateur avec Dieu. Comme Adam nommant les animaux (Genèse 2:19), le Bateleur exerce une autorité sur la réalité en la définissant par le langage. Son avertissement biblique est dans la figure de Simon le Magicien (Actes 8), qui a essayé d'acheter le pouvoir spirituel, nous rappelant que le don du Bateleur doit être reçu, et non approprié par l'ego."
+            }
+        }
+    },
+    {
+        "id": 2,
+        "key": "THE_HIGH_PRIESTESS",
+        "nombre": "La Papesse",
+        "contenido": {
+            "arquetipo": "L'Anima et la Grande Mère Sage.",
+            "sombra": "Isolement et la 'Sorcière de Glace'.",
+            "misticismo": "Gimel, La Lune et le 13ème Sentier.",
+            "cotidiano": "L'Analyste de Données et la Thérapeute Profonde.",
+            "botanica": "Armoise, Saule, Grenade.",
+            "gnosis": "La Mémoire du Monde.",
+            "resonancia_biblica": {
+                "cita": "Marie gardait toutes ces choses, et les repassait dans son cœur",
+                "referencia": "Luc 2:19",
+                "conexion": "La sagesse contemplative."
+            }
+        }
+    },
+    {
+        "id": 3,
+        "key": "THE_EMPRESS",
+        "nombre": "L'Impératrice",
+        "contenido": {
+            "arquetipo": "La Grande Mère et la Nature.",
+            "sombra": "La Mère Dévorante et la Vanité.",
+            "misticismo": "Daleth, Vénus et le 14ème Sentier.",
+            "cotidiano": "La Créative et la Gestionnaire de Ressources.",
+            "botanica": "Rose, Verveine, Blé, Achillée.",
+            "gnosis": "La Magie Sacrée de la Génération.",
+            "resonancia_biblica": {
+                "cita": "Lève-toi, aquilon! viens, autan! Soufflez sur mon jardin, et que les parfums s'en exhalent!",
+                "referencia": "Cantique des Cantiques 4:16",
+                "conexion": "L'amour mystique et la nature."
+            }
+        }
+    },
+    {
+        "id": 4,
+        "key": "THE_EMPEROR",
+        "nombre": "L'Empereur",
+        "contenido": {
+            "arquetipo": "Le Grand Père et le Principe de Réalité.",
+            "sombra": "Le Tyran et la Rigidité Sclérotique.",
+            "misticismo": "Heh, Bélier et le 15ème Sentier.",
+            "cotidiano": "Le PDG et l'Architecte de Systèmes.",
+            "botanica": "Ortie, Chardon-Marie, Gingembre, Chêne.",
+            "gnosis": "L'Autorité comme Service.",
+            "resonancia_biblica": {
+                "cita": "Je le revêtirai de ta tunique, je le ceindrai de ta ceinture... Je mettrai sur son épaule la clé de la maison de David",
+                "referencia": "Ésaïe 22:21-22",
+                "conexion": "L'administration divine."
+            }
+        }
+    },
+    {
+        "id": 5,
+        "key": "THE_HIEROPHANT",
+        "nombre": "Le Pape",
+        "contenido": {
+            "arquetipo": "L'Enseignant Spirituel et le Gardien.",
+            "sombra": "L'Inquisiteur et le Dogmatisme.",
+            "misticismo": "Vav, Taureau et le 16ème Sentier.",
+            "cotidiano": "Le Mentor et la Culture d'Entreprise.",
+            "botanica": "Sauge, Encens, Molène.",
+            "gnosis": "La Respiration de la Tradition.",
+            "resonancia_biblica": {
+                "cita": "Nul ne s'attribue cette dignité, s'il n'est appelé de Dieu, comme le fut Aaron",
+                "referencia": "Hébreux 5:4",
+                "conexion": "L'ordre divin."
+            }
+        }
+    }
+]
