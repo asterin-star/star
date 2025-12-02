@@ -1,0 +1,6 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+service_account.json
+.DS_Store
