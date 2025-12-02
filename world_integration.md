@@ -15,8 +15,8 @@ Hemos configurado **Star ✦** para cobrar **1 WLD** por cada lectura, enviando 
 ## 2. Modo "Amigos" (Gratis)
 Para crear la versión gratuita para tus amigos, **no necesitas desplegar otra app**. Simplemente comparte el link con un código especial al final.
 
-- **Link de Pago (Público)**: `https://tu-proyecto.vercel.app/`
-- **Link Gratis (Amigos)**: `https://tu-proyecto.vercel.app/?mode=friends`
+- **Link de Pago (Público)**: `https://star-rust.vercel.app/`
+- **Link Gratis (Amigos)**: `https://star-rust.vercel.app/?mode=friends`
 
 Cuando alguien entra con `?mode=friends`, el sistema omite el cobro automáticamente.
 

@@ -1169,12 +1169,12 @@
         /* ==================== PREPARACIÓN INICIAL ==================== */
         async function prepareOracle() {
             try {
-                // Cargar todos los archivos JSON locales
+                // Cargar todos los archivos JSON locales desde public/
                 const [response1, response2, response3, response4] = await Promise.all([
-                    fetch('./data/0-5.json'),
-                    fetch('./data/6-10.json'),
-                    fetch('./data/11-15.json'),
-                    fetch('./data/16-21.json')
+                    fetch('./public/data/0-5.json'),
+                    fetch('./public/data/6-10.json'),
+                    fetch('./public/data/11-15.json'),
+                    fetch('./public/data/16-21.json')
                 ]);
 
                 const data1 = await response1.json();
@@ -1228,9 +1228,9 @@
                     resonancia_biblica: Math.floor(Math.random() * 22)
                 };
 
-                // Configurar imagen local (./cards/arXX.jpg)
+                // Configurar imagen local (./public/cards/arXX.jpg)
                 const cardSlug = currentCardData.name_short;
-                const imageUrl = `./cards/${cardSlug}.jpg`;
+                const imageUrl = `./public/cards/${cardSlug}.jpg`;
 
                 // Precarga de imagen
                 const img = new Image();
@@ -1239,7 +1239,7 @@
                 };
                 img.onerror = () => {
                     // Fallback: usar imagen del Loco si falla la carga
-                    cardImg.src = './cards/ar00.jpg';
+                    cardImg.src = './public/cards/ar00.jpg';
                 };
                 img.src = imageUrl;
 
@@ -1262,7 +1262,7 @@
                         }
                     }
                 };
-                cardImg.src = './cards/ar00.jpg';
+                cardImg.src = './public/cards/ar00.jpg';
             }
         }
 
@@ -1453,7 +1453,7 @@
             }, 200);
 
             // 4. Cargar nueva carta (con delay para fluidez)
-            setTimeout(() => {
+            setTimeout(async () => {
                 // Ocultar secciones y resetear texto inicial
                 seccionAmpliado.style.display = 'none';
                 seccionNegativo.style.display = 'none';
@@ -1461,14 +1461,15 @@
                 seccionCotidiano.style.display = 'none';
                 seccionMistico.style.display = 'none';
                 seccionBiblico.style.display = 'none';
-                cardTitle.textContent = '';
-                textoSignificado.textContent = '';
+
                 cardTitle.textContent = '';
                 textoSignificado.textContent = '';
 
                 cardStage.setAttribute('aria-label', 'Revelar carta del tarot');
 
-                prepareOracle();
+                // Esperar a que se prepare la nueva carta antes de liberar el proceso
+                await prepareOracle();
+                isProcessing = false;
             }, 900);
         }
 
