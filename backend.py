@@ -18,15 +18,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             try:
                 data = json.loads(post_data)
                 
-                # 1. Autenticación con Google
-                credentials = service_account.Credentials.from_service_account_file(
-                    SERVICE_ACCOUNT_FILE,
-                    scopes=['https://www.googleapis.com/auth/cloud-platform']
-                )
-                auth_req = google.auth.transport.requests.Request()
-                credentials.refresh(auth_req)
-                access_token = credentials.token
+                # 1. Autenticación con Google (Vertex AI)
+                import vertexai
+                from vertexai.generative_models import GenerativeModel, SafetySetting
 
+                # Inicializar Vertex AI
+                vertexai.init(project=PROJECT_ID, location=LOCATION)
+                
                 # 2. Construir Prompt para Gemini
                 card_name = data.get('cardName', 'Carta Desconocida')
                 definitions = data.get('definitions', {})
@@ -45,15 +43,23 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 Sintetiza una lectura breve (max 50 palabras) que conecte estos números de ejemplo específicos con el significado de la carta. 
                 ¿Qué significa que le haya tocado precisamente el ejemplo {examples.get('sombra', '?')} en la Sombra?
                 Usa un tono esotérico, profundo y directo.
+                Responde en formato HTML simple (puedes usar <strong> o <em>).
                 """
 
-                # 3. Llamar a Gemini API (Vertex AI o Generative Language API)
-                # Nota: Este es un ejemplo genérico para la API REST.
-                # En producción, usar la librería google-cloud-aiplatform es mejor.
+                # 3. Llamar a Gemini API (Vertex AI)
+                model = GenerativeModel("gemini-1.5-pro-001")
                 
-                # Mock response for now as we don't have full environment setup
-                # In a real scenario, we would make the request here.
-                response_text = f"Lectura de Gemini (Simulada desde Backend): La confluencia del ejemplo {examples.get('sombra', '?')} en la sombra revela una tensión oculta en {card_name}. Tu camino requiere integrar esta dualidad."
+                responses = model.generate_content(
+                    [prompt],
+                    generation_config={
+                        "max_output_tokens": 256,
+                        "temperature": 0.7,
+                        "top_p": 0.95,
+                    },
+                    stream=False,
+                )
+
+                response_text = responses.text
 
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
@@ -61,6 +67,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(json.dumps({'reading': response_text}).encode('utf-8'))
 
             except Exception as e:
+                print(f"Error en backend: {e}")
                 self.send_response(500)
                 self.end_headers()
                 self.wfile.write(json.dumps({'error': str(e)}).encode('utf-8'))

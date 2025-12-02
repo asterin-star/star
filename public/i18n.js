@@ -434,7 +434,6 @@ const translations = {
     zh: {
         // HTML Meta
         title: "Star ✦",
-        title: "Star ✦",
         metaDescription: "当下的塔罗牌神谕和数字命理学。",
         cardAlt: "塔罗奥秘",
 
