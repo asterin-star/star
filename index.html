@@ -1292,6 +1292,7 @@
 
                 // Formatear datos
                 currentCardData = {
+                    id: selectedCard.id,  // GUARDAR EL ID PARA PERSISTENCIA
                     name: selectedCard.nombre,
                     name_short: `ar${selectedCard.id.toString().padStart(2, '0')}`,
                     fullData: selectedCard.contenido
@@ -1608,8 +1609,81 @@
                 return false;
             }
         }
-        /* ==================== CAMBIO DE IDIOMA ==================== */
-        /* ==================== CAMBIO DE IDIOMA ==================== */
+
+        /* ==================== RECARGAR CARTA POR ID (PRESERVAR SELECCIÓN) ==================== */
+        async function reloadCardById(cardId) {
+            try {
+                // Determinar idioma actual
+                const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+                const suffix = lang === 'es' ? '' : `_${lang}`;
+
+                console.log(`🔄 Recargando carta ID ${cardId} en idioma ${lang}`);
+
+                // Cargar TODOS los 4 archivos JSON (igual que prepareOracle)
+                const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
+
+                const allCards = [];
+
+                for (const range of fileRanges) {
+                    try {
+                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+
+                        if (!response.ok && lang !== 'es') {
+                            response = await fetch(`./public/data/${range}.json`);
+                        }
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            allCards.push(...data);
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando ${range}:`, error);
+                    }
+                }
+
+                // BUSCAR LA CARTA ESPECÍFICA POR ID (no aleatoria)
+                const selectedCard = allCards.find(card => card.id === cardId);
+
+                if (!selectedCard) {
+                    console.error(`❌ No se encontró carta con ID ${cardId}`);
+                    return;
+                }
+
+                console.log(`✅ Carta encontrada: ${selectedCard.nombre} (ID: ${selectedCard.id})`);
+
+                // EXTRAER TODOS LOS CONCEPTOS POR CATEGORÍA
+                allArquetipos = allCards.map(card => card.contenido.arquetipo);
+                allMisticismos = allCards.map(card => card.contenido.misticismo);
+                allSombras = allCards.map(card => card.contenido.sombra);
+                allBotanicas = allCards.map(card => card.contenido.botanica);
+                allCotidianos = allCards.map(card => card.contenido.cotidiano);
+                allGnosis = allCards.map(card => card.contenido.gnosis);
+                allResonanciasBiblicas = allCards.map(card => card.contenido.resonancia_biblica);
+
+                // Actualizar currentCardData con la MISMA carta en el nuevo idioma
+                currentCardData = {
+                    id: selectedCard.id,  // Mantener ID
+                    name: selectedCard.nombre,
+                    name_short: `ar${selectedCard.id.toString().padStart(2, '0')}`,
+                    fullData: selectedCard.contenido
+                };
+
+                // La imagen NO cambia (mismo ID)
+                const cardSlug = currentCardData.name_short;
+                const imageUrl = `./public/cards/${cardSlug}.jpg`;
+                cardImg.src = imageUrl;
+
+                // Si la carta está revelada, actualizar los textos
+                if (cardStage.classList.contains('flipped')) {
+                    updateRevealedCardTexts();
+                }
+
+            } catch (error) {
+                console.error('Error recargando carta:', error);
+            }
+        }
+
+        /* ==================== CAMBIAR IDIOMA ==================== */
         function toggleLanguage() {
             const langs = ['es', 'en', 'pt', 'fr', 'de', 'ja', 'ko', 'zh'];
             const current = window.i18n.currentLanguage;
@@ -1622,9 +1696,14 @@
             // Actualizar textos de la interfaz
             window.i18n.applyTranslations();
 
-            // Recargar datos de la carta en el nuevo idioma
-            // Esto llamará a updateRevealedCardTexts() si la carta está revelada
-            prepareOracle();
+            // CRÍTICO: Recargar la MISMA carta (por ID) en el nuevo idioma
+            // No generar una carta aleatoria nueva
+            if (currentCardData && currentCardData.id !== undefined) {
+                reloadCardById(currentCardData.id);
+            } else {
+                // Si no hay carta actual (primera carga), generar una aleatoria
+                prepareOracle();
+            }
         }
 
         /* ==================== ACTUALIZACIÓN DE TEXTOS REVELADOS ==================== */
