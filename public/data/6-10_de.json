@@ -1,0 +1,92 @@
+[
+    {
+        "id": 6,
+        "key": "THE_LOVERS",
+        "nombre": "Die Liebenden",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentieren Die Liebenden die Integration von Anima und Animus - den weiblichen und männlichen inneren Prinzipien. Es ist der Moment, in dem das individuelle Bewusstsein durch bewusste Wahl und Engagement für einen Weg entsteht. Symbolisiert die Spannung zwischen multiplen Begierden und der Notwendigkeit zu wählen.",
+            "sombra": "Die Liebenden repräsentieren den entscheidenden Moment der bewussten Wahl und die Vereinigung der Gegensätze. Diese Karte symbolisiert die schöpferische Spannung zwischen Begehren und Pflicht, Liebe und Verantwortung, Instinkt und Bewusstsein. Es ist die Kreuzung, an der die Seele ihren Weg mit Absicht und Authentizität wählen muss.",
+            "misticismo": "Esoterisch sind Die Liebenden die Brüder der Schwelle - die Wahl zwischen dem Pfad der rechten und der linken Hand. Sie repräsentieren die Herabkunft des Geistes in die Form durch die alchemische Vereinigung von Schwefel und Quecksilber. Es ist die erste bewusste Unterscheidung zwischen dem evolutionären und involutionären Weg.",
+            "resonancia_biblica": {
+                "cita": "Yo soy de mi amado, y mi amado es mío.  Levántate, oh amiga mía, hermosa mía, y ven",
+                "referencia": "Cantar de los Cantares 6:3, 2:10",
+                "conexion": "Theologisch symbolisieren Die Liebenden den Garten Eden und die ursprüngliche Wahl zwischen Gehorsam und Erkenntnis. Sie repräsentieren, wie Bewusstsein durch Trennung und Wahl entsteht. Es ist das Paradox, in dem der 'Fall' die Samen der zukünftigen Erlösung enthält."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 7,
+        "key": "THE_CHARIOT",
+        "nombre": "Der Wagen",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Wagen die Entwicklung eines starken und gerichteten Ichs. Es ist die Phase, in der die Persönlichkeit lernt, widersprüchliche Impulse zu integrieren und auf bewusste Ziele zu lenken. Symbolisiert die Selbstbeherrschung und Disziplin, die notwendig ist, um im Leben voranzukommen.",
+            "sombra": "Der Wagen rollt triumphierend dahin und symbolisiert den gerichteten Willen und die Meisterung entgegengesetzter Kräfte. Er repräsentiert den Moment, in dem das individuelle Bewusstsein fest die Zügel seines Schicksals ergreift und widersprüchliche Energien auf ein einheitliches Ziel lenkt. Diese Karte verkörpert den Sieg des Geistes über die Materie.",
+            "misticismo": "Esoterisch ist Der Wagen die Merkabah - das Lichtfahrzeug, das der Eingeweihte aufbaut, um zwischen den Welten zu reisen. Er repräsentiert den Aufbau des Lichtkörpers durch Disziplin und Ausrichtung des Willens auf den höheren Zweck. Es ist die Kontrolle der Astralströme durch den trainierten Willen.",
+            "resonancia_biblica": {
+                "cita": "Y arrebató Elías en un torbellino al cielo.  Y vio Eliseo, y clamaba: ¡Padre mío, padre mío, carro de Israel y su gente de a caballo! ",
+                "referencia": "2 Reyes 2:11-12",
+                "conexion": "Theologisch symbolisiert Der Wagen den Feuerwagen des Elias - die Himmelfahrt durch den gereinigten Willen. Er repräsentiert, wie der menschliche Geist materielle Beschränkungen durch Ausrichtung auf den göttlichen Willen transzendieren kann. Es ist die aktive Zusammenarbeit zwischen Gnade und Anstrengung."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 8,
+        "key": "STRENGTH",
+        "nombre": "Die Kraft",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Die Kraft die Integration des Schattens durch Mitgefühl statt Unterdrückung. Es ist der Moment, in dem wir entdecken, dass wahre Stärke in Verletzlichkeit und Sanftheit liegt. Symbolisiert die Transformation instinktiver Energie in bewusste Kraft.",
+            "sombra": "Die Kraft repräsentiert die Macht der Sanftheit und die Meisterung durch Liebe statt roher Gewalt. Diese Karte symbolisiert den authentischen Mut, der aus Mitgefühl entsteht, und die Fähigkeit, Aggressivität in schöpferische Kraft umzuwandeln. Es ist die Beherrschung des Niederen durch das Höhere durch liebevolles Verstehen.",
+            "misticismo": "Esoterisch ist Die Kraft die Zähmung des alchemischen Löwen - die Sublimierung sexueller Energie in spirituelle Kraft. Sie repräsentiert das Kundalini-Feuer, das durch gereinigte Kanäle nach oben geleitet wird. Es ist die Beherrschung der Astralebene durch Liebe statt Zwang.",
+            "resonancia_biblica": {
+                "cita": "Del devorador salió comida, y del fuerte salió dulzura",
+                "referencia": "Jueces 14:14",
+                "conexion": "Theologisch symbolisiert Die Kraft, wie göttliche Liebe die tierische Natur transformiert, ohne sie zu zerstören. Sie repräsentiert Daniel in der Löwengrube - die Macht des Glaubens, die Aggression entwaffnet. Es ist die Gnade, die die gefallene Natur ohne Gewalt zähmt."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 9,
+        "key": "THE_HERMIT",
+        "nombre": "Der Eremit",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Eremit die notwendige Phase der Introversion und tiefen Reflexion. Es ist der Moment, in dem wir uns von äußeren Reizen zurückziehen müssen, um innere Antworten zu finden. Symbolisiert den Individuationsprozess, der Einsamkeit und Dialog mit dem Selbst erfordert.",
+            "sombra": "Der Eremit steigt einsam den Berg hinauf, seine Laterne beleuchtet den Weg für jene, die folgen. Er repräsentiert die Suche nach Wahrheit durch tiefe Introspektion und Rückzug aus der Welt. Diese Karte symbolisiert die Weisheit, die aus Stille und innerer Kontemplation kommt.",
+            "misticismo": "Esoterisch ist Der Eremit der Innere Meister - die Stimme der Weisheit, die in der Stille spricht. Er repräsentiert das Höhere Selbst, das aus den Höhen des Bewusstseins führt. Es ist das Licht der spirituellen Intuition, das den dunklen Pfad der Herabkunft in die Materie erleuchtet.",
+            "resonancia_biblica": {
+                "cita": "Una voz que clama en el desierto: Preparad el camino del Señor; enderezad sus sendas",
+                "referencia": "Mateo 3:3",
+                "conexion": "Theologisch symbolisiert Der Eremit Johannes den Täufer in der Wüste - den Propheten, der durch einsame Reinigung den Weg bereitet. Er repräsentiert die monastische Tradition und die Suche nach Gott durch Entsagung. Es ist das innere Licht, das in der Dunkelheit der Welt leuchtet."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 10,
+        "key": "WHEEL_OF_FORTUNE",
+        "nombre": "Das Rad des Schicksals",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Das Rad des Schicksals das Bewusstsein der Lebenszyklen und die Akzeptanz des Wandels. Es ist der Moment, in dem wir verstehen, dass weder Erfolg noch Misserfolg permanent sind. Symbolisiert die psychologische Flexibilität, die es erlaubt, sich an wechselnde Umstände anzupassen.",
+            "sombra": "Das Rad des Schicksals dreht sich unaufhörlich und hebt und senkt alles, was an seinem Umfang befestigt ist. Es repräsentiert die unvermeidlichen Zyklen der Existenz und die vorübergehende Natur jeder Bedingung. Diese Karte symbolisiert den Moment, in dem wir verstehen, dass Wandel die einzige Konstante ist.",
+            "misticismo": "Esoterisch ist Das Rad des Schicksals das Rad von Karma und Samsara - der Zyklus von Ursache und Wirkung, der Wesen an die manifestierte Welt bindet. Es repräsentiert das Gesetz von Aktion und Reaktion, das durch die Ebenen operiert. Es ist das Verständnis, dass nur das unbewegliche Zentrum des Rades - das reine Bewusstsein - der ewigen Revolution entkommt.",
+            "resonancia_biblica": {
+                "cita": "Hacia donde el espíritu les movía que anduviesen, andaban...  porque el espíritu de los seres vivientes estaba en las ruedas",
+                "referencia": "Ezequiel 1:20-21",
+                "conexion": "Theologisch symbolisiert Das Rad des Schicksals das Rad von Ezechiel - das Mysterium der göttlichen Vorsehung, die durch scheinbar zufällige Zyklen wirkt. Es repräsentiert, wie Gott durch wechselnde Umstände wirkt, um ewige Absichten zu erfüllen. Es ist das Paradox des freien Willens, der in einem von Gesetzen regierten Universum operiert."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

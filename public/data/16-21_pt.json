@@ -1,0 +1,110 @@
+[
+  {
+    "id": 16,
+    "key": "THE_TOWER",
+    "nombre": "A Torre",
+    "contenido": {
+      "arquetipo": "A Castração do Ego e a Híbris. A Torre representa a resposta cósmica à Híbris (orgulho desmedido).",
+      "sombra": "Trauma e Caos Sistêmico. A sombra é a destruição sem reconstrução: guerra, catástrofe natural, colapso psicótico.",
+      "misticismo": "A Letra Pe e a Língua de Fogo. A carta atribui-se à letra hebraica Pe que significa 'Boca'.",
+      "cotidiano": "Cisnes Negros e Disrupção Tecnológica. A Torre é o arquétipo da Disrupção Tecnológica e eventos de 'Cisne Negro'.",
+      "botanica": "A Urtiga, associada a Marte, tem uma picada que desperta o corpo e a circulação.",
+      "gnosis": "O Perigo da Teurgia. A Torre representa os perigos da magia cerimonial que busca forçar a vontade divina.",
+      "resonancia_biblica": {
+        "cita": "Descendamos e confundamos ali sua língua",
+        "referencia": "Génesis 11:7",
+        "conexion": "A Torre de Babel é a referência arquetípica."
+      }
+    }
+  },
+  {
+    "id": 17,
+    "key": "THE_STAR",
+    "nombre": "A Estrela",
+    "contenido": {
+      "arquetipo": "A Verdade Nua e a Renovação. Após a catástrofe da Torre, surge a Estrela como arquétipo da calma e esperança.",
+      "sombra": "Dissociação e Bypassing Espiritual. A sombra é a dissociação da realidade e a esperança ingênua e passiva.",
+      "misticismo": "A Controvérsia de Tzaddi e o Sendeiro Aquariano. A Estrela atribui-se à letra Tzaddi que significa 'Anzol'.",
+      "cotidiano": "Inovação Aberta e Cura Holística. A Estrela é o padrão do Código Aberto e a democratização do conhecimento.",
+      "botanica": "A Escutelária acalma os 'curtos-circuitos' mentais e a ansiedade elétrica.",
+      "gnosis": "A Sabedoria Natural. A Estrella representa o 'crescimento sem esforço' e a ação da Graça.",
+      "resonancia_biblica": {
+        "cita": "E eis a estrela que haviam visto no oriente",
+        "referencia": "Mateus 2:9",
+        "conexion": "A Estrela de Belém é a referência bíblica central."
+      }
+    }
+  },
+  {
+    "id": 18,
+    "key": "THE_MOON",
+    "nombre": "A Lua",
+    "contenido": {
+      "arquetipo": "O Inconsciente e o Reino Imaginal. A Lua marca o umbral final e mais perigoso antes da reintegração solar.",
+      "sombra": "Loucura e Manipulação Mediática. A sombra lunar é o terror irracional, a loucura e a perda do sentido de realidade.",
+      "misticismo": "A Letra Qoph e o Sendeiro Corpóreo. A letra hebraica Qoph significa 'Nuca' ou 'Parte posterior da cabeça'.",
+      "cotidiano": "Realidade Virtual e Gestação. A Lua rege tudo o que ocorre na escuridão: sono, gestação, cinema.",
+      "botanica": "A Artemísia, associada à Lua e Peixes, é a erva suprema que estimula sonhos lúcidos.",
+      "gnosis": "A Gravidade Biológica vs. Magnética. A Lua exerce atração gravitatória sobre os fluidos do corpo e da psique.",
+      "resonancia_biblica": {
+        "cita": "O sol se converterá em trevas e a lua em sangue",
+        "referencia": "Joel 2:31",
+        "conexion": "A 'lua de sangue' simboliza o momento em que o reflexo se tinge de sacrifício."
+      }
+    }
+  },
+  {
+    "id": 19,
+    "key": "THE_SUN",
+    "nombre": "O Sol",
+    "contenido": {
+      "arquetipo": "A Inteligência Coletiva e a Claridade Radical. O Arcano XIX emerge após a paisagem onírica da Lua.",
+      "sombra": "O Orgulho Solar e o Esgotamento. A sombra manifesta-se como arrogância e ego inflado.",
+      "misticismo": "O Sendeiro 30 e a Letra Resh. O Sol atribui-se à letra hebraica Resh que significa 'Cabeça'.",
+      "cotidiano": "O Êxito e a Celebração. O Sol representa o sucesso manifesto, a alegria e o reconhecimento público.",
+      "botanica": "A Erva de São João contém hipericina e é conhecida como Fuga Daemonum (espanta demônios).",
+      "gnosis": "A Dialética da Liberdade e a Graça. O Sol representa a cooperação sinérgica entre iniciativa humana e graça divina.",
+      "resonancia_biblica": {
+        "cita": "Nascerá o Sol de justiça com salvação nas suas asas",
+        "referencia": "Malaquias 4:2",
+        "conexion": "O Sol identifica-se com o Cristo ressuscitado."
+      }
+    }
+  },
+  {
+    "id": 20,
+    "key": "JUDGEMENT",
+    "nombre": "O Julgamento",
+    "contenido": {
+      "arquetipo": "A Vocação Vertical e o Fogo do Espírito. O Julgamento representa uma intervenção vertical que irrompe na cronologia linear.",
+      "sombra": "O Julgamento Cruel e o Perfeccionismo Paralizante. A sombra é o perfeccionismo tirânico que nunca permite o descanso.",
+      "misticismo": "O Mistério do Shin: Fogo, Espírito e o Sendeiro 31. O Julgamento atribui-se à letra madre Shin correspondente ao elemento Fogo.",
+      "cotidiano": "O Chamado Vocacional e a Segunda Oportunidade. O Julgamento representa momentos de chamado vocacional claro.",
+      "botanica": "A Angélica é a planta por excelência do arcano XX, capaz de romper feitiços e maldições.",
+      "gnosis": "Ressurreição vs. Reencarnação. Tomberg distingue entre reencarnação (processo horizontal) e ressurreição (movimento vertical).",
+      "resonancia_biblica": {
+        "cita": "Todos os que estão nos sepulcros ouvirão sua voz",
+        "referencia": "João 5:28-29",
+        "conexion": "Conecta-se diretamente à doutrina cristã da Ressurreição dos Mortos."
+      }
+    }
+  },
+  {
+    "id": 21,
+    "key": "THE_WORLD",
+    "nombre": "O Mundo",
+    "contenido": {
+      "arquetipo": "A Dança da Anima Mundi e a Estrutura da Realidade. O Arcano XXI é o Omega do alfabeto do Tarot.",
+      "sombra": "A Complacência e o Estancamento no Êxito. A sombra é a complacência que detém o crescimento.",
+      "misticismo": "O Selo de Tau: O Sendeiro 32 e a Administração de Malkuth. O Mundo corresponde à letra Tau que significa 'Cruz'.",
+      "cotidiano": "A Realização e o Fecho de Ciclos. O Mundo assinala a culminação exitosa de projetos importantes.",
+      "botanica": "A Consolda, regida por Saturno, é conhecida como 'Solda-ossos' que une o que está quebrado.",
+      "gnosis": "A Visão da Jerusalém Celestial e o Sabbat Cósmico. O Mundo é o estado de 'Sabbat' onde o trabalho agônico cessou.",
+      "resonancia_biblica": {
+        "cita": "Vi um céu novo e uma terra nova",
+        "referencia": "Apocalipse 21:1",
+        "conexion": "O Mundo identifica-se com a visão da Nova Jerusalém."
+      }
+    }
+  }
+]

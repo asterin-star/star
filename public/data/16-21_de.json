@@ -1,0 +1,110 @@
+[
+    {
+        "id": 16,
+        "key": "THE_TOWER",
+        "nombre": "Der Turm",
+        "contenido": {
+            "arquetipo": "Psychologisch markiert Der Turm die Desintegration von Ego-Abwehrmechanismen und die erzwungene Konfrontation mit verdrängten Wahrheiten. Er repräsentiert den Moment, in dem Verleugnungsmechanismen versagen und die Realität mit verheerender Kraft ins Bewusstsein einbricht. Es ist der schmerzhafte aber befreiende Prozess, falsche Identifikationen loszulassen.",
+            "sombra": "Der Turm repräsentiert die plötzliche Zerstörung falscher Strukturen und die Befreiung durch Chaos. Wie ein Blitz, der einen hochmütigen Turm trifft, symbolisiert diese Karte den Moment, in dem Illusionen zerbrechen und Wahrheit abrupt offenbart wird. Es ist der notwendige Zusammenbruch, der den Wiederaufbau auf authentischeren Grundlagen vorausgeht.",
+            "misticismo": "Esoterisch ist Der Turm der Blitz der Erleuchtung, der den Turm von Babel menschlicher Trennung zerstört. Er symbolisiert die göttliche Intervention, die spirituellen Hochmut und falsche Selbstgenügsamkeit zerstört. Es ist das himmlische Feuer, das durch Zerstörung reinigt und die Leere materieller und mentaler Konstruktionen offenbart.",
+            "resonancia_biblica": {
+                "cita": "Ahora, pues, descendamos, y confundamos allí su lengua, para que ninguno entienda el habla de su compañero",
+                "referencia": "Génesis 11:7",
+                "conexion": "Theologisch repräsentiert Der Turm den notwendigen Fall, der der Erlösung vorausgeht. Er erinnert an die Vertreibung aus dem Paradies - ein scheinbares Desaster, das die Samen eines größeren Bewusstseins enthält. Er symbolisiert, wie göttliche Gnade sich manchmal durch die Zerstörung falscher Sicherheiten manifestiert."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 17,
+        "key": "THE_STAR",
+        "nombre": "Der Stern",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Stern die Phase der Integration nach dem Trauma. Es ist die Rückkehr der Hoffnung und des Selbstvertrauens nach einer Krisenperiode. Symbolisiert die Wiedergeburt des authentischen Selbst und die Wiederverbindung mit inneren Ressourcen der Heilung und Führung.",
+            "sombra": "Der Stern leuchtet als Leuchtfeuer der Hoffnung nach dem Sturm. Er repräsentiert die Wiederverbindung mit der inneren göttlichen Quelle, die Heilung durch die Wasser des Bewusstseins und die Erneuerung des Glaubens. Diese Karte symbolisiert den Moment der Gnade, in dem wir Führung in der Dunkelheit finden und unser Vertrauen ins Universum erneuern.",
+            "misticismo": "Esoterisch ist Der Stern das Licht der Seele, das durch die dunkle Nacht führt. Er repräsentiert den reinen Astralkörper, der die Wasser des Lebens auf die sterile Erde der Materie gießt. Es ist die direkte Verbindung mit kosmischen Strömen erneuernder Energie, die vom galaktischen Zentrum fließen.",
+            "resonancia_biblica": {
+                "cita": "Y he aquí la estrella que habían visto en el oriente iba delante de ellos, hasta que llegando, se detuvo sobre donde estaba el niño",
+                "referencia": "Mateo 2:9",
+                "conexion": "Theologisch ist Der Stern die Gegenwart göttlicher Gnade, die die Menschheit niemals vollständig verlässt. Er symbolisiert den Stern von Bethlehem - die himmlische Führung, die den Weg zur spirituellen Wiedergeburt zeigt. Es ist der Moment der Erneuerung, in dem die Seele, entblößt von falschen Sicherheiten, wahren Trost im Göttlichen findet."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 18,
+        "key": "THE_MOON",
+        "nombre": "Der Mond",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Mond die Begegnung mit dem kollektiven Unbewussten und seinen urzeitlichen Archetypen. Es ist die Navigation durch unformulierte Ängste, verdrängte Erinnerungen und instinktive Impulse. Symbolisiert die Phase notwendiger Verwirrung, in der alte Gewissheiten in Frage gestellt werden.",
+            "sombra": "Der Mond herrscht über das Reich der Schatten und Reflexionen, wo nichts ist, wie es scheint. Er repräsentiert die Reise durch das tiefe Unbewusste, die Konfrontation mit urzeitlichen Ängsten und hartnäckigen Illusionen. Diese Karte symbolisiert den schmalen Pfad zwischen Inspiration und Wahnsinn, Intuition und Täuschung.",
+            "misticismo": "Esoterisch ist Der Mond der Hüter der Schwelle zwischen den Welten. Er repräsentiert die untere Astralebene mit ihren Illusionen und Projektionen. Es ist das Reich der Elementale, wo Gedankenformen scheinbares Leben annehmen und wo der Eingeweihte lernen muss, Realität von Trugbild zu unterscheiden.",
+            "resonancia_biblica": {
+                "cita": "El sol se convertirá en tinieblas, y la luna en sangre, antes que venga el día grande y espantoso de Jehová",
+                "referencia": "Joel 2:31",
+                "conexion": "Theologisch repräsentiert Der Mond die dunkle Nacht der Seele - die Prüfungsperiode, in der die göttliche Gegenwart sich zurückgezogen zu haben scheint. Es ist die Höllenfahrt, notwendig für die Auferstehung. Symbolisiert, wie der spirituelle Pfad uns manchmal durch Täler der Verwirrung und des Zweifels führt."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 19,
+        "key": "THE_SUN",
+        "nombre": "Die Sonne",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Die Sonne die erfolgreiche Integration der Persönlichkeit und das Erblühen des authentischen Selbst. Es ist der Zustand klaren Bewusstseins, frei von Projektionen und Verzerrungen. Symbolisiert natürliche Vitalität, wiedergewonnene kindliche Spontaneität und echtes Selbstvertrauen.",
+            "sombra": "Die Sonne strahlt mit Fülle von Licht und Wärme und zerstreut alle Schatten. Sie repräsentiert das erleuchtete Bewusstsein, spontane Freude und wahren Erfolg. Diese Karte symbolisiert den Moment vollkommener Klarheit, in dem wir die Dinge sehen, wie sie wirklich sind, gebadet im goldenen Licht der Wahrheit.",
+            "misticismo": "Esoterisch ist Die Sonne der Solare Logos - das universelle Bewusstsein, das alle Wesen erleuchtet. Sie repräsentiert den gereinigten Kausalkörper und die Verwirklichung des Höheren Selbst. Es ist das Erwachen des Inneren Christus, des Buddhabewusstseins, das die Einheit sieht, die aller Vielfalt zugrunde liegt.",
+            "resonancia_biblica": {
+                "cita": "Mas a vosotros los que teméis mi nombre, nacerá el Sol de justicia, y en sus alas traerá salvación",
+                "referencia": "Malaquías 4:2",
+                "conexion": "Theologisch ist Die Sonne die Verklärung - der Moment, in dem das Göttliche ohne Schleier durch das Menschliche scheint. Sie symbolisiert die Auferstehung des Bewusstseins und den Sieg des Lichts über die Dunkelheit. Es ist der Zustand der Gnade, in dem keine Trennung zwischen Menschlichem und Göttlichem besteht."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 20,
+        "key": "JUDGEMENT",
+        "nombre": "Das Gericht",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Das Gericht die finale Phase der Individuation - die Integration zuvor dissozierter Aspekte des Selbst. Es ist der Moment ehrlicher Bewertung der gesamten Lebensreise und die Entscheidung, das authentische Selbst vollständig zu umarmen. Symbolisiert das Erwachen zum wahren Zweck.",
+            "sombra": "Das Gericht kündigt das endgültige Erwachen und den Ruf zur Transformation an. Es repräsentiert den Moment ehrlicher Bewertung und die Antwort auf den höheren Ruf. Diese Karte symbolisiert die Wiedergeburt auf einer höheren Bewusstseinsebene und die Integration aller gelebten Erfahrungen.",
+            "misticismo": "Esoterisch ist Das Gericht der Klang der engelischen Trompete, die die spirituell Toten erweckt. Es repräsentiert die finale Aktivierung der höheren Chakren und die vollständige Transmutation der Persönlichkeit. Es ist der Moment, in dem der Eingeweihte berufen wird, seinen Platz im Plan kosmischer Evolution einzunehmen.",
+            "resonancia_biblica": {
+                "cita": "No os maravilléis de esto; porque vendrá hora cuando todos los que están en los sepulcros oirán su voz; y los que hicieron lo bueno, saldrán a resurrección de vida",
+                "referencia": "Juan 5:28-29",
+                "conexion": "Theologisch symbolisiert Das Gericht die universelle Auferstehung und die Rückkehr zum edenischen Zustand auf einer höheren Bewusstseinsebene. Es ist der apokalyptische Moment finaler Offenbarung, in dem alle Schleier entfernt werden und jede Seele ihre wahre göttliche Natur erkennt."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 21,
+        "key": "THE_WORLD",
+        "nombre": "Die Welt",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Die Welt die vollständige Verwirklichung des individuellen Potentials und die harmonische Integration aller Aspekte des Selbst. Es ist der Zustand der Ganzheit, in dem es keinen inneren Konflikt mehr gibt und in dem das Individuum sich in sich selbst vollständig fühlt, während es mit dem Ganzen verbunden ist.",
+            "sombra": "Die Welt ist die kosmische Tänzerin im Zentrum des Mandalas der Existenz. Sie repräsentiert vollkommene Vollendung, totale Erfüllung und das Bewusstsein der Einheit mit allem, was existiert. Diese Karte symbolisiert das Ende der Reise und den Beginn einer neuen Spirale der Evolution auf einer höheren Ebene.",
+            "misticismo": "Esoterisch ist Die Welt die Verwirklichung des Großen Werkes - die Vereinigung der Gegensätze und die Transzendenz der Dualität. Sie repräsentiert den Glorienkörper, das unsterbliche Vehikel, das durch vollständige alchemische Transmutation geschaffen wurde. Es ist das kosmische Bewusstsein, das die gesamte Manifestation umfasst.",
+            "resonancia_biblica": {
+                "cita": "Vi un cielo nuevo y una tierra nueva; porque el primer cielo y la primera tierra pasaron, y el mar ya no existía más",
+                "referencia": "Apocalipsis 21:1",
+                "conexion": "Theologisch symbolisiert Die Welt das Neue Jerusalem - die Schöpfung, zu ihrer ursprünglichen Herrlichkeit wiederhergestellt und zu einem noch größeren Zustand erhoben. Es ist die Apokatastasis, die finale Wiederherstellung aller Dinge. Repräsentiert die vollkommene mystische Vereinigung, in der Menschliches und Göttliches in perfekter Harmonie tanzen."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

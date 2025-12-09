@@ -1,0 +1,92 @@
+[
+  {
+    "id": 11,
+    "key": "JUSTICE",
+    "nombre": "A Justiça",
+    "contenido": {
+      "arquetipo": "O Ajuste Kármico e a Lei. A Justiça representa o arquétipo da Consciência Moral e o Equilíbrio Cósmico (Ma'at). Não se trata da justiça legal humana, frequentemente corruptível, mas da lei imutável de Causa e Efeito (Karma).",
+      "sombra": "O Julgamento Implacável e a Injustiça. A sombra manifesta-se como perfeccionismo neurótico, intolerância e dogmatismo.",
+      "misticismo": "Lamed e a Balança de Libra. A letra hebraica Lamed significa 'Aguilhada'.",
+      "cotidiano": "A Hora da Verdade. Na experiência diária, A Justiça aparece perante assuntos legais, contratos, exames e decisões definitivas.",
+      "botanica": "O Aloe Vera (Babosa) é uma planta de natureza marcial-saturnina que simboliza a verdade amarga que cura.",
+      "gnosis": "O Equilíbrio Dinâmico. A gnose da Justiça ensina que o equilíbrio não é estático, mas dinâmico.",
+      "resonancia_biblica": {
+        "cita": "Com a vara que medirdes, sereis medidos",
+        "referencia": "Mateus 7:2",
+        "conexion": "O Julgamento de Salomão revela a verdadeira justiça."
+      }
+    }
+  },
+  {
+    "id": 12,
+    "key": "THE_HANGED_MAN",
+    "nombre": "O Enforcado",
+    "contenido": {
+      "arquetipo": "O Sacrifício Voluntário e a Metanoia. O Enforcado representa o arquétipo do Sacrifício e a mudança radical de mente.",
+      "sombra": "O Mártir Manipulador e a Estagnação. A sombra é o complexo de mártir usado para manipular os demais.",
+      "misticismo": "Mem e as Águas Primordiais. A letra hebraica Mem significa 'Água'.",
+      "cotidiano": "A Pausa Forçosa. Este arcano aparece quando tudo se detém.",
+      "botanica": "A Mandrágora é a planta mais ocultista, cuja raiz tem forma humana.",
+      "gnosis": "A Iluminação através da Inversão. O ensinamento gnóstico é o Paradoxo Místico.",
+      "resonancia_biblica": {
+        "cita": "Pai, nas tuas mãos encomendo o meu espírito",
+        "referencia": "Lucas 23:46",
+        "conexion": "Ressoa com a Paixão de Cristo e a crucifixão de São Pedro."
+      }
+    }
+  },
+  {
+    "id": 13,
+    "key": "DEATH",
+    "nombre": "A Morte",
+    "contenido": {
+      "arquetipo": "A Entropia como Agente de Vida. O Arcano XIII encarna o princípio termodinâmico e psíquico da transformação.",
+      "sombra": "Necromancia Psicológica e Estagnação. A manifestação sombria é a recusa de renascer.",
+      "misticismo": "A Letra Nun e o Sendeiro da Prova. A Morte associa-se com a letra hebraica Nun que significa 'Peixe'.",
+      "cotidiano": "A Destruição Criativa do Mercado Laboral. Este arcano manifesta-se nos ciclos econômicos.",
+      "botanica": "O Teixo, regido por Saturno e Plutão, é a árvore da eternidade plantada em cemitérios.",
+      "gnosis": "A Libertação das Peles. A Morte é o processo de libertação da essência espiritual.",
+      "resonancia_biblica": {
+        "cita": "Onde está, ó morte, o teu aguilhão?",
+        "referencia": "1 Coríntios 15:55",
+        "conexion": "Recontextualiza a morte não como final absoluto, mas como umbral vencido."
+      }
+    }
+  },
+  {
+    "id": 14,
+    "key": "TEMPERANCE",
+    "nombre": "A Temperança",
+    "contenido": {
+      "arquetipo": "A Coincidentia Oppositorum. A Temperança representa o arquétipo da síntese superior.",
+      "sombra": "Diluição e Mediocridade. A sombra disfarça-se de moderação mas opera como repressão da vitalidade.",
+      "misticismo": "O Pilar do Meio e a Flecha de Sagitário. A letra hebraica Samekh significa 'Esteio'.",
+      "cotidiano": "Gestão de Recursos e Diplomacia. A Temperança rege a gestão de recursos e o equilíbrio vida-trabalho.",
+      "botanica": "A Agrimónia utiliza-se para quem esconde tormento mental atrás de uma máscara alegre.",
+      "gnosis": "O Mistério dos Dois Fluídos. O anjo da Temperança realiza a operação do Solve et Coagula.",
+      "resonancia_biblica": {
+        "cita": "Este princípio de sinais fez Jesus em Caná",
+        "referencia": "João 2:11",
+        "conexion": "A transformação da água em vinho é alquimia e temperança divina."
+      }
+    }
+  },
+  {
+    "id": 15,
+    "key": "THE_DEVIL",
+    "nombre": "O Diabo",
+    "contenido": {
+      "arquetipo": "O Pan e a Sombra Coletiva. O Diabo representa uma complexa amalgama do deus Pan e a Sombra junguiana.",
+      "sombra": "Vício e Egregoras Tecnológicas. A sombra é a perda do livre arbítrio perante compulsões.",
+      "misticismo": "A Letra Ayin e a Cegueira Espiritual. A letra hebraica Ayin significa 'Olho'.",
+      "cotidiano": "Contratos e Sexualidade. O Diabo aparece em contratos vinculativos e relações tóxicas.",
+      "botanica": "O Patchouli tem um aroma pesado e terroso usado para atrair dinheiro e desejo sexual.",
+      "gnosis": "A Geração de Eletricidade Psíquica. Representa a geração de eletricidade psíquica através da polaridade sexual.",
+      "resonancia_biblica": {
+        "cita": "Porque o que faço, não o entendo",
+        "referencia": "Romanos 7:15",
+        "conexion": "Descreve a divisão interna causada pelo Arcano XV."
+      }
+    }
+  }
+]

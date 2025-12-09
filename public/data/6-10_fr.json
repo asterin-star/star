@@ -1,0 +1,92 @@
+[
+    {
+        "id": 6,
+        "key": "THE_LOVERS",
+        "nombre": "Les Amoureux",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Les Amoureux représentent l'intégration de l'anima et de l'animus - les principes féminin et masculin intérieurs. C'est le moment où la conscience individuelle émerge à travers le choix conscient et l'engagement envers une voie. Symbolise la tension entre désirs multiples et la nécessité de choisir.",
+            "sombra": "Les Amoureux représentent le moment crucial du choix conscient et l'union des opposés. Cette carte symbolise la tension créative entre désir et devoir, amour et responsabilité, instinct et conscience. C'est le carrefour où l'âme doit choisir son chemin avec intention et authenticité.",
+            "misticismo": "Ésotériquement, Les Amoureux sont les Frères du Seuil - le choix entre le chemin de la main droite et de la main gauche. Représentent la descente de l'esprit dans la forme à travers l'union alchimique du soufre et du mercure. C'est la première discrimination consciente entre la voie évolutive et involutive.",
+            "resonancia_biblica": {
+                "cita": "Yo soy de mi amado, y mi amado es mío.  Levántate, oh amiga mía, hermosa mía, y ven",
+                "referencia": "Cantar de los Cantares 6:3, 2:10",
+                "conexion": "Théologiquement, Les Amoureux symbolisent le Jardin d'Éden et le choix primordial entre obéissance et connaissance. Représentent comment la conscience émerge à travers la séparation et le choix. C'est le paradoxe où la 'chute' contient les graines de la rédemption future."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 7,
+        "key": "THE_CHARIOT",
+        "nombre": "Le Chariot",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Chariot représente le développement d'un moi fort et dirigé. C'est la phase où la personnalité apprend à intégrer et diriger les impulsions contradictoires vers des objectifs conscients. Symbolise la maîtrise de soi et la discipline nécessaire pour avancer dans la vie.",
+            "sombra": "Le Chariot roule triomphant, symbolisant la volonté dirigée et la maîtrise des forces opposées. Représente le moment où la conscience individuelle prend fermement les rênes de sa destinée, dirigeant les énergies contradictoires vers un but unifié. Cette carte incarne la victoire de l'esprit sur la matière.",
+            "misticismo": "Ésotériquement, Le Chariot est le Merkabah - le véhicule de lumière que construit l'initié pour voyager entre les mondes. Représente la construction du corps de lumière à travers la discipline et l'alignement de la volonté avec le but supérieur. C'est le contrôle des courants astraux à travers la volonté entraînée.",
+            "resonancia_biblica": {
+                "cita": "Y arrebató Elías en un torbellino al cielo.  Y vio Eliseo, y clamaba: ¡Padre mío, padre mío, carro de Israel y su gente de a caballo! ",
+                "referencia": "2 Reyes 2:11-12",
+                "conexion": "Théologiquement, Le Chariot symbolise le char de feu d'Élie - l'ascension à travers la volonté purifiée. Représente comment l'esprit humain peut transcender les limitations matérielles à travers l'alignement avec la volonté divine. C'est la coopération active entre grâce et effort."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 8,
+        "key": "STRENGTH",
+        "nombre": "La Force",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Force représente l'intégration de l'ombre à travers la compassion plutôt que la répression. C'est le moment où nous découvrons que la vraie force réside dans la vulnérabilité et la douceur. Symbolise la transformation de l'énergie instinctive en pouvoir conscient.",
+            "sombra": "La Force représente le pouvoir de la douceur et la maîtrise par l'amour plutôt que par la force brutale. Cette carte symbolise le courage authentique qui naît de la compassion et la capacité de transformer l'agressivité en pouvoir créatif. C'est la domination de l'inférieur par le supérieur à travers la compréhension aimante.",
+            "misticismo": "Ésotériquement, La Force est le domptage du lion alchimique - la sublimation de l'énergie sexuelle en force spirituelle. Représente le feu de Kundalini dirigé vers le haut à travers les canaux purifiés. C'est la maîtrise du plan astral à travers l'amour plutôt que la coercition.",
+            "resonancia_biblica": {
+                "cita": "Del devorador salió comida, y del fuerte salió dulzura",
+                "referencia": "Jueces 14:14",
+                "conexion": "Théologiquement, La Force symbolise comment l'amour divin transforme la nature bestiale sans la détruire. Représente Daniel dans la fosse aux lions - le pouvoir de la foi qui désarme l'agressivité. C'est la grâce qui dompte la nature déchue sans violence."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 9,
+        "key": "THE_HERMIT",
+        "nombre": "L'Ermite",
+        "contenido": {
+            "arquetipo": "Psychologiquement, L'Ermite représente la phase nécessaire d'introversion et de réflexion profonde. C'est le moment où nous devons nous retirer des stimuli externes pour trouver des réponses intérieures. Symbolise le processus d'individuation qui exige la solitude et le dialogue avec le Soi.",
+            "sombra": "L'Ermite grimpe la montagne en solitaire, sa lanterne éclairant le chemin pour ceux qui suivent. Représente la recherche de la vérité à travers l'introspection profonde et le retrait du monde. Cette carte symbolise la sagesse qui vient du silence et de la contemplation intérieure.",
+            "misticismo": "Ésotériquement, L'Ermite est le Maître Intérieur - la voix de la sagesse qui parle dans le silence. Représente le Soi supérieur qui guide depuis les hauteurs de la conscience. C'est la lumière de l'intuition spirituelle qui illumine le chemin obscur de la descente dans la matière.",
+            "resonancia_biblica": {
+                "cita": "Una voz que clama en el desierto: Preparad el camino del Señor; enderezad sus sendas",
+                "referencia": "Mateo 3:3",
+                "conexion": "Théologiquement, L'Ermite symbolise Jean-Baptiste dans le désert - le prophète qui prépare le chemin à travers la purification solitaire. Représente la tradition monastique et la recherche de Dieu à travers le renoncement. C'est la lumière intérieure qui brille dans les ténèbres du monde."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 10,
+        "key": "WHEEL_OF_FORTUNE",
+        "nombre": "La Roue de Fortune",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Roue de Fortune représente la prise de conscience des cycles de la vie et l'acceptation du changement. C'est le moment où nous comprenons que ni le succès ni l'échec ne sont permanents. Symbolise la fluidité psychologique qui permet de s'adapter aux circonstances changeantes.",
+            "sombra": "La Roue de Fortune tourne incessamment, élevant et abaissant tout ce qui est attaché à sa circonférence. Représente les cycles inévitables de l'existence et la nature transitoire de toute condition. Cette carte symbolise le moment où nous comprenons que le changement est la seule constante.",
+            "misticismo": "Ésotériquement, La Roue de Fortune est la roue du karma et du samsara - le cycle de cause et effet qui enchaîne les êtres au monde manifesté. Représente la loi d'action et de réaction opérant à travers les plans. C'est la compréhension que seul le centre immobile de la roue - la conscience pure - échappe à la révolution perpétuelle.",
+            "resonancia_biblica": {
+                "cita": "Hacia donde el espíritu les movía que anduviesen, andaban...  porque el espíritu de los seres vivientes estaba en las ruedas",
+                "referencia": "Ezequiel 1:20-21",
+                "conexion": "Théologiquement, La Roue de Fortune symbolise la roue d'Ézéchiel - le mystère de la providence divine opérant à travers des cycles apparemment aléatoires. Représente comment Dieu œuvre à travers les circonstances changeantes pour accomplir des desseins éternels. C'est le paradoxe du libre arbitre opérant dans un univers régi par des lois."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

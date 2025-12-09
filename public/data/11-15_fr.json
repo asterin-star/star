@@ -1,0 +1,92 @@
+[
+    {
+        "id": 11,
+        "key": "JUSTICE",
+        "nombre": "La Justice",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Justice représente le Surmoi équilibré et la capacité de jugement honnête. C'est le moment de confrontation avec les conséquences de nos choix et la nécessité d'accepter la responsabilité. Symbolise l'intégration de l'ombre à travers la reconnaissance et l'acceptation honnêtes.",
+            "sombra": "La Justice siège avec son épée et sa balance, incarnant la loi divine d'équilibre et de conséquence. Représente le moment de vérité où toutes les actions sont pesées et où la réalité de cause et effet devient claire. Cette carte symbolise l'intégrité absolue et l'ajustement inévitable vers l'équilibre.",
+            "misticismo": "Ésotériquement, La Justice est le Seigneur du Karma - l'administrateur impersonnel de la loi de cause et effet. Représente la balance qui pèse l'âme dans toutes les traditions mystérieuses. C'est le principe d'ajustement qui maintient l'équilibre dans le cosmos à travers des cycles de manifestation.",
+            "resonancia_biblica": {
+                "cita": "Con la vara que midiereis, seréis medidos",
+                "referencia": "Mateo 7:2",
+                "conexion": "Théologiquement, La Justice symbolise le jugement divin parfait qui pèse les cœurs avec une exactitude absolue. Représente comment la miséricorde et la justice sont une seule chose en Dieu. C'est le moment où l'âme se voit elle-même à travers les yeux de la vérité divine."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 12,
+        "key": "THE_HANGED_MAN",
+        "nombre": "Le Pendu",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Pendu représente la phase de régression nécessaire au service de l'intégration du Soi. C'est le moment où l'action doit céder la place à la réception, où la lutte doit se transformer en acceptation. Symbolise l'inversion de perspective qui révèle de nouvelles possibilités.",
+            "sombra": "Le Pendu est suspendu la tête en bas, voyant le monde d'une perspective radicalement transformée. Représente le sacrifice volontaire et la reddition de l'ego qui précède l'illumination. Cette carte symbolise le paradoxe où perdre sa vie c'est la gagner, et où la paralysie conduit à la liberté.",
+            "misticismo": "Ésotériquement, Le Pendu est l'initié suspendu entre le ciel et la terre, ni dans une dimension ni dans l'autre. Représente la rédemption à travers le sacrifice et la transmutation de la souffrance en sagesse. C'est le stade alchimique de dissolution où l'ego doit être suspendu pour que puisse naître quelque chose de nouveau.",
+            "resonancia_biblica": {
+                "cita": "Padre, en tus manos encomiendo mi espíritu",
+                "referencia": "Lucas 23:46",
+                "conexion": "Théologiquement, Le Pendu représente la Crucifixion - le sacrifice volontaire de la volonté personnelle à la volonté divine. Symbolise Pierre crucifié la tête en bas, voyant le monde d'une perspective renversée. C'est le paradoxe christique où la mort est vie et où la faiblesse est force."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 13,
+        "key": "DEATH",
+        "nombre": "La Mort",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Mort représente la mort de l'ego et la désintégration de structures de personnalité obsolètes. C'est le processus douloureux mais libérateur de laisser aller les identifications qui limitent. Symbolise la transformation profonde qui ne peut se produire sans la mort métaphorique de qui nous avons été.",
+            "sombra": "La Mort chevauche implacable, fauchant tout ce qui est dépassé et non essentiel. Représente la transformation radicale et la mort de l'ego qui permet la renaissance. Cette carte symbolise la fin inévitable qui contient en elle la promesse d'un nouveau commencement.",
+            "misticismo": "Ésotériquement, La Mort est le gardien du seuil entre les mondes - le passage que chaque initié doit traverser. Représente l'opération alchimique de putréfaction où les vieilles formes se dissolvent pour permettre une nouvelle synthèse. C'est le processus de mort et renaissance qui se produit à chaque niveau d'initiation.",
+            "resonancia_biblica": {
+                "cita": "¿Dónde está, oh muerte, tu aguijón?  ¿Dónde, oh sepulcro, tu victoria?",
+                "referencia": "1 Corintios 15:55",
+                "conexion": "Théologiquement, La Mort symbolise la mort nécessaire au vieil homme pour que le nouveau puisse naître. Représente le processus de purification où tout ce qui n'est pas essentiel est consumé. C'est le mystère de la résurrection qui ne peut se produire sans une vraie mort."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 14,
+        "key": "TEMPERANCE",
+        "nombre": "La Tempérance",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Tempérance représente la phase de consolidation après une crise transformative. C'est le processus d'intégration de contenus inconscients dans la conscience de manière équilibrée. Symbolise l'alchimie psychologique qui transmute les conflits en une personnalité plus unifiée.",
+            "sombra": "La Tempérance verse des fluides entre des coupes, symbolisant le flux équilibré entre opposés. Représente l'art alchimique de combiner des éléments contradictoires en une nouvelle synthèse harmonieuse. Cette carte incarne la guérison à travers l'intégration et la transformation graduelle.",
+            "misticismo": "Ésotériquement, La Tempérance est l'Ange de l'Alchimie qui préside l'opération de coniunctio - l'union des opposés. Représente le flux d'énergie entre les plans supérieurs et inférieurs, entre esprit et matière. C'est l'Art Royal de combiner le volatil avec le fixe pour créer l'élixir d'immortalité.",
+            "resonancia_biblica": {
+                "cita": "Este principio de señales hizo Jesús en Caná de Galilea, y manifestó su gloria",
+                "referencia": "Juan 2:11",
+                "conexion": "Théologiquement, La Tempérance symbolise l'Ange qui se tient avec un pied sur terre et l'autre en mer - celui qui médiatise entre les royaumes. Représente le Christ comme médiateur entre l'humain et le divin. C'est l'opération de grâce qui guérit la division entre créature et Créateur."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 15,
+        "key": "THE_DEVIL",
+        "nombre": "Le Diable",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Diable représente l'ombre collective et les aspects réprimés de la psyché qui acquièrent un pouvoir autonome. C'est la projection de ce que nous ne pouvons accepter en nous-mêmes. Symbolise comment les refoulements deviennent des compulsions et comment le nié revient avec une force démoniaque.",
+            "sombra": "Le Diable préside sur les âmes enchaînées, symbolisant l'esclavage aux désirs et aux illusions matérielles. Représente les aspects de nous-mêmes qui nient et projettent sur un 'autre' démoniaque. Cette carte symbolise le pouvoir que nous donnons à nos ombres à travers le refus de les reconnaître comme nôtres.",
+            "misticismo": "Ésotériquement, Le Diable est le gardien du seuil qui teste l'initié avec des illusions et des tentations. Représente le plan astral inférieur où les désirs prennent forme et exercent fascination. C'est l'épreuve de discerner entre pouvoir véritable et fascination par le pouvoir.",
+            "resonancia_biblica": {
+                "cita": "Porque lo que hago, no lo entiendo; pues no hago lo que quiero, sino lo que aborrezco, eso hago",
+                "referencia": "Romanos 7:15",
+                "conexion": "Théologiquement, Le Diable symbolise le mystère de l'ombre - comment ce qui nie Dieu existe paradoxalement au sein de la création divine. Représente la liberté qui permet le mal comme possibilité. C'est la reconnaissance que ce que nous appelons 'diable' est notre propre refus de la grâce divine."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

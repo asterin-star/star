@@ -1,0 +1,92 @@
+[
+    {
+        "id": 11,
+        "key": "JUSTICE",
+        "nombre": "Die Gerechtigkeit",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Die Gerechtigkeit das ausgewogene Über-Ich und die Fähigkeit zu ehrlichem Urteil. Es ist der Moment der Konfrontation mit den Konsequenzen unserer Entscheidungen und der Notwendigkeit, Verantwortung zu übernehmen. Symbolisiert die Integration des Schattens durch ehrliche Anerkennung und Akzeptanz.",
+            "sombra": "Die Gerechtigkeit sitzt mit ihrem Schwert und ihrer Waage und verkörpert das göttliche Gesetz von Gleichgewicht und Konsequenz. Sie repräsentiert den Moment der Wahrheit, in dem alle Handlungen gewogen werden und die Realität von Ursache und Wirkung klar wird. Diese Karte symbolisiert absolute Integrität und die unvermeidliche Anpassung zum Gleichgewicht.",
+            "misticismo": "Esoterisch ist Die Gerechtigkeit der Herr des Karma - der unpersönliche Verwalter des Gesetzes von Ursache und Wirkung. Sie repräsentiert die Waage, die die Seele in allen Mysterientraditionen wiegt. Es ist das Prinzip der Anpassung, das Gleichgewicht im Kosmos durch Manifestationszyklen aufrechterhält.",
+            "resonancia_biblica": {
+                "cita": "Con la vara que midiereis, seréis medidos",
+                "referencia": "Mateo 7:2",
+                "conexion": "Theologisch symbolisiert Die Gerechtigkeit das vollkommene göttliche Gericht, das Herzen mit absoluter Genauigkeit wiegt. Sie repräsentiert, wie Barmherzigkeit und Gerechtigkeit in Gott eins sind. Es ist der Moment, in dem die Seele sich selbst durch die Augen göttlicher Wahrheit sieht."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 12,
+        "key": "THE_HANGED_MAN",
+        "nombre": "Der Gehängte",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Gehängte die Phase notwendiger Regression im Dienste der Selbst-Integration. Es ist der Moment, in dem Handlung der Empfänglichkeit weichen muss, in dem Kampf sich in Akzeptanz verwandeln muss. Symbolisiert die Umkehrung der Perspektive, die neue Möglichkeiten offenbart.",
+            "sombra": "Der Gehängte hängt kopfüber und sieht die Welt aus einer radikal transformierten Perspektive. Er repräsentiert das freiwillige Opfer und die Hingabe des Egos, die der Erleuchtung vorausgeht. Diese Karte symbolisiert das Paradox, dass sein Leben zu verlieren bedeutet, es zu gewinnen, und dass Lähmung zu Freiheit führt.",
+            "misticismo": "Esoterisch ist Der Gehängte der Eingeweihte, der zwischen Himmel und Erde aufgehängt ist, weder in der einen noch in der anderen Dimension. Er repräsentiert die Erlösung durch Opfer und die Transmutation von Leiden in Weisheit. Es ist das alchemische Stadium der Auflösung, in dem das Ego ausgesetzt werden muss, damit etwas Neues geboren werden kann.",
+            "resonancia_biblica": {
+                "cita": "Padre, en tus manos encomiendo mi espíritu",
+                "referencia": "Lucas 23:46",
+                "conexion": "Theologisch repräsentiert Der Gehängte die Kreuzigung - das freiwillige Opfer des persönlichen Willens an den göttlichen Willen. Er symbolisiert Petrus, der kopfüber gekreuzigt wurde und die Welt aus umgekehrter Perspektive sah. Es ist das christliche Paradox, in dem Tod Leben ist und Schwäche Stärke."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 13,
+        "key": "DEATH",
+        "nombre": "Der Tod",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Tod den Tod des Egos und die Desintegration veralteter Persönlichkeitsstrukturen. Es ist der schmerzhafte aber befreiende Prozess, Identifikationen loszulassen, die einschränken. Symbolisiert die tiefe Transformation, die nicht ohne den metaphorischen Tod dessen stattfinden kann, wer wir waren.",
+            "sombra": "Der Tod reitet unerbittlich dahin und mäht alles nieder, was überholt und unwesentlich ist. Er repräsentiert die radikale Transformation und den Tod des Egos, der Wiedergeburt ermöglicht. Diese Karte symbolisiert das unvermeidliche Ende, das in sich das Versprechen eines neuen Anfangs trägt.",
+            "misticismo": "Esoterisch ist Der Tod der Hüter der Schwelle zwischen den Welten - der Übergang, den jeder Eingeweihte durchqueren muss. Er repräsentiert die alchemische Operation der Fäulnis, in der alte Formen sich auflösen, um eine neue Synthese zu ermöglichen. Es ist der Prozess von Tod und Wiedergeburt, der auf jeder Einweihungsebene stattfindet.",
+            "resonancia_biblica": {
+                "cita": "¿Dónde está, oh muerte, tu aguijón?  ¿Dónde, oh sepulcro, tu victoria?",
+                "referencia": "1 Corintios 15:55",
+                "conexion": "Theologisch symbolisiert Der Tod den notwendigen Tod des alten Menschen, damit der neue geboren werden kann. Er repräsentiert den Reinigungsprozess, in dem alles Unwesentliche verzehrt wird. Es ist das Mysterium der Auferstehung, die ohne wahren Tod nicht stattfinden kann."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 14,
+        "key": "TEMPERANCE",
+        "nombre": "Die Mäßigung",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Die Mäßigung die Phase der Konsolidierung nach einer transformativen Krise. Es ist der Prozess der Integration unbewusster Inhalte ins Bewusstsein auf ausgewogene Weise. Symbolisiert die psychologische Alchemie, die Konflikte in eine einheitlichere Persönlichkeit transmutiert.",
+            "sombra": "Die Mäßigung gießt Flüssigkeiten zwischen Kelchen hin und her und symbolisiert den ausgewogenen Fluss zwischen Gegensätzen. Sie repräsentiert die alchemische Kunst, widersprüchliche Elemente in einer neuen harmonischen Synthese zu kombinieren. Diese Karte verkörpert die Heilung durch Integration und graduelle Transformation.",
+            "misticismo": "Esoterisch ist Die Mäßigung der Engel der Alchemie, der über die Operation der Coniunctio - die Vereinigung der Gegensätze - präsidiert. Sie repräsentiert den Energiefluss zwischen höheren und niederen Ebenen, zwischen Geist und Materie. Es ist die Königliche Kunst, das Flüchtige mit dem Festen zu kombinieren, um das Elixier der Unsterblichkeit zu schaffen.",
+            "resonancia_biblica": {
+                "cita": "Este principio de señales hizo Jesús en Caná de Galilea, y manifestó su gloria",
+                "referencia": "Juan 2:11",
+                "conexion": "Theologisch symbolisiert Die Mäßigung den Engel, der mit einem Fuß auf Land und dem anderen im Meer steht - derjenige, der zwischen den Reichen vermittelt. Sie repräsentiert Christus als Mittler zwischen dem Menschlichen und dem Göttlichen. Es ist die Operation der Gnade, die die Teilung zwischen Geschöpf und Schöpfer heilt."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 15,
+        "key": "THE_DEVIL",
+        "nombre": "Der Teufel",
+        "contenido": {
+            "arquetipo": "Psychologisch repräsentiert Der Teufel den kollektiven Schatten und die unterdrückten Aspekte der Psyche, die autonome Macht erlangen. Es ist die Projektion dessen, was wir in uns selbst nicht akzeptieren können. Symbolisiert, wie Verdrängungen zu Zwängen werden und wie das Verleugnete mit dämonischer Kraft zurückkehrt.",
+            "sombra": "Der Teufel präsidiert über gefesselte Seelen und symbolisiert die Versklavung an Begierden und materielle Illusionen. Er repräsentiert die Aspekte von uns selbst, die wir leugnen und auf ein dämonisches 'Anderes' projizieren. Diese Karte symbolisiert die Macht, die wir unseren Schatten durch die Weigerung geben, sie als unsere eigenen anzuerkennen.",
+            "misticismo": "Esoterisch ist Der Teufel der Hüter der Schwelle, der den Eingeweihten mit Illusionen und Versuchungen prüft. Er repräsentiert die untere Astralebene, wo Begierden Form annehmen und Faszination ausüben. Es ist die Prüfung, wahre Macht von der Faszination für Macht zu unterscheiden.",
+            "resonancia_biblica": {
+                "cita": "Porque lo que hago, no lo entiendo; pues no hago lo que quiero, sino lo que aborrezco, eso hago",
+                "referencia": "Romanos 7:15",
+                "conexion": "Theologisch symbolisiert Der Teufel das Mysterium des Schattens - wie das, was Gott verneint, paradoxerweise innerhalb der göttlichen Schöpfung existiert. Er repräsentiert die Freiheit, die das Böse als Möglichkeit erlaubt. Es ist die Erkenntnis, dass das, was wir 'Teufel' nennen, unsere eigene Ablehnung göttlicher Gnade ist."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

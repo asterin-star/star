@@ -1,0 +1,92 @@
+[
+    {
+        "id": 6,
+        "key": "THE_LOVERS",
+        "nombre": "恋人",
+        "contenido": {
+            "arquetipo": "心理学上，恋人代表阿尼玛和阿尼姆斯（内在女性和男性原则）的整合。这是个人意识通过有意识的选择和对道路的承诺而显现的时刻。象征着多重欲望与选择必要性之间的张力。",
+            "sombra": "恋人代表有意识选择的关键时刻和对立面的结合。这张牌象征着欲望与责任、爱与义务、本能与意识之间的创造性张力。这是灵魂必须带着意图和真实性选择其道路的十字路口。",
+            "misticismo": "秘传上，恋人是门槛兄弟——右手路径和左手路径之间的选择。代表精神通过硫和汞的炼金术结合下降到形式中。这是进化路径和退化路径之间的第一次有意识辨别。",
+            "resonancia_biblica": {
+                "cita": "Yo soy de mi amado, y mi amado es mío.  Levántate, oh amiga mía, hermosa mía, y ven",
+                "referencia": "Cantar de los Cantares 6:3, 2:10",
+                "conexion": "神学上，恋人象征着伊甸园以及服从与知识之间的原始选择。代表意识是如何通过分离和选择而显现的。这是一个悖论，即“堕落”包含了未来救赎的种子。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 7,
+        "key": "THE_CHARIOT",
+        "nombre": "战车",
+        "contenido": {
+            "arquetipo": "心理学上，战车代表强大且有方向的自我的发展。这是人格学会整合矛盾冲动并将其引向有意识目标的阶段。象征着在生活中前进所需的自我控制和纪律。",
+            "sombra": "战车胜利地前行，象征着定向的意志和对对立力量的掌控。它代表个人意识紧紧抓住命运的缰绳，将矛盾的能量引向统一目标的时刻。这张牌体现了精神对物质的胜利。",
+            "misticismo": "秘传上，战车是梅尔卡巴（Merkabah）——启蒙者构建的用于在世界之间旅行的光之载体。代表通过纪律和将意志与更高目标对齐来构建光体。这是通过训练有素的意志控制星体流。",
+            "resonancia_biblica": {
+                "cita": "Y arrebató Elías en un torbellino al cielo.  Y vio Eliseo, y clamaba: ¡Padre mío, padre mío, carro de Israel y su gente de a caballo! ",
+                "referencia": "2 Reyes 2:11-12",
+                "conexion": "神学上，战车象征着以利亚的火战车——通过净化的意志升天。代表人类精神如何通过与神圣意志对齐来超越物质限制。这是恩典与努力之间的积极合作。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 8,
+        "key": "STRENGTH",
+        "nombre": "力量",
+        "contenido": {
+            "arquetipo": "心理学上，力量代表通过慈悲而非压抑来整合阴影。这是我们发现真正的力量在于脆弱和温柔的时刻。象征着本能能量向有意识力量的转化。",
+            "sombra": "力量代表温柔的力量，以及通过爱而非蛮力进行的掌控。这张牌象征着源于慈悲的真正勇气，以及将攻击性转化为创造力的能力。这是通过充满爱的理解，以高等掌控低等。",
+            "misticismo": "秘传上，力量是驯服炼金术狮子——将性能量升华为精神力量。代表通过净化通道向上引导的昆达里尼之火。这是通过爱而非强迫来掌控星体层面。",
+            "resonancia_biblica": {
+                "cita": "Del devorador salió comida, y del fuerte salió dulzura",
+                "referencia": "Jueces 14:14",
+                "conexion": "神学上，力量象征着神圣之爱如何在不破坏兽性的情况下转化它。代表狮子坑中的但以理——解除攻击性的信仰力量。这是不用暴力就能驯服堕落本性的恩典。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 9,
+        "key": "THE_HERMIT",
+        "nombre": "隐士",
+        "contenido": {
+            "arquetipo": "心理学上，隐士代表必要的内向和深刻反思阶段。这是我们必须从外部刺激中撤退以寻找内在答案的时刻。象征着需要孤独和与自我对话的个性化过程。",
+            "sombra": "隐士独自登山，他的灯笼为跟随者照亮道路。代表通过深刻的内省和从世界退隐来寻求真理。这张牌象征着来自沉默和内在沉思的智慧。",
+            "misticismo": "秘传上，隐士是内在导师——在沉默中说话的智慧之声。代表从意识高处指引的高我。这是照亮下降到物质的黑暗道路的精神直觉之光。",
+            "resonancia_biblica": {
+                "cita": "Una voz que clama en el desierto: Preparad el camino del Señor; enderezad sus sendas",
+                "referencia": "Mateo 3:3",
+                "conexion": "神学上，隐士象征着旷野中的约翰——通过孤独净化预备道路的先知。代表修道传统和通过舍弃来寻求上帝。这是在世界的黑暗中闪耀的内在之光。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 10,
+        "key": "WHEEL_OF_FORTUNE",
+        "nombre": "命运之轮",
+        "contenido": {
+            "arquetipo": "心理学上，命运之轮代表对生命周期的认识和对变化的接受。这是我们理解成功和失败都不是永久的时刻。象征着允许适应不断变化环境的心理灵活性。",
+            "sombra": "命运之轮不停地转动，升起和降下附着在其圆周上的一切。代表存在的不可避免的循环和任何条件的暂时性。这张牌象征着我们理解变化是唯一常数的时刻。",
+            "misticismo": "秘传上，命运之轮是业力（Karma）和轮回（Samsara）之轮——将众生束缚于显化世界的因果循环。代表通过各层面运作的作用与反作用法则。这是理解只有轮子的静止中心——纯粹意识——才能逃脱永恒的旋转。",
+            "resonancia_biblica": {
+                "cita": "Hacia donde el espíritu les movía que anduviesen, andaban...  porque el espíritu de los seres vivientes estaba en las ruedas",
+                "referencia": "Ezequiel 1:20-21",
+                "conexion": "神学上，命运之轮象征着以西结的轮子——通过看似随机的循环运作的神圣天意的奥秘。代表上帝如何通过不断变化的环境来实现永恒的旨意。这是在受法则支配的宇宙中运作的自由意志的悖论。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

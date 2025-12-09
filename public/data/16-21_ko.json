@@ -1,0 +1,110 @@
+[
+    {
+        "id": 16,
+        "key": "THE_TOWER",
+        "nombre": "탑",
+        "contenido": {
+            "arquetipo": "심리학적으로 탑은 자아 방어의 붕괴와 억압된 진실과의 강제적 대면을 표시합니다. 이것은 부정 메커니즘이 실패하고 현실이 파괴적인 힘으로 의식으로 돌입하는 순간을 나타냅니다. 이것은 거짓 동일시를 놓아주는 고통스럽지만 해방적인 과정입니다.",
+            "sombra": "탑은 거짓 구조의 갑작스런 파괴와 혼돈을 통한 해방을 나타냅니다. 오만한 탑을 치는 번개처럼, 이 카드는 환상이 산산조각나고 진실이 갑작스럽게 드러나는 순간을 상징합니다. 이것은 더 진정한 기초 위에 재건축에 앞서는 필요한 붕괴입니다.",
+            "misticismo": "비교적으로 탑은 인간 분리의 바벨탑을 파괴하는 깨달음의 번개입니다. 영적 오만과 거짓 자급자족을 파괴하는 신성한 개입을 상징합니다. 이것은 파괴를 통해 정화하고 물질적·정신적 구축의 공허함을 드러내는 천상의 불입니다.",
+            "resonancia_biblica": {
+                "cita": "Ahora, pues, descendamos, y confundamos allí su lengua, para que ninguno entienda el habla de su compañero",
+                "referencia": "Génesis 11:7",
+                "conexion": "신학적으로 탑은 구원에 앞서는 필요한 타락을 나타냅니다. 이것은 낙원으로부터의 추방(더 큰 의식의 씨앗을 포함하는 겉보기 재난)을 상기시킵니다. 거짓 안전의 파괴를 통해 신성한 은총이 어떻게 나타나는지를 상징합니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 17,
+        "key": "THE_STAR",
+        "nombre": "별",
+        "contenido": {
+            "arquetipo": "심리학적으로 별은 트라우마 후의 통합 단계를 나타냅니다. 이것은 위기 기간 후의 희망과 자신감의 회복입니다. 진정한 자아의 재탄생과 치유와 안내의 내적 자원과의 재연결을 상징합니다.",
+            "sombra": "별은 폭풍 이후의 희망의 등대로 빛납니다. 이것은 내면의 신성한 원천과의 재연결, 의식의 물을 통한 치유, 신앙의 재생을 나타냅니다. 이 카드는 어둠 속에서 안내를 찾고 우주에 대한 우리의 신뢰를 갱신하는 은총의 순간을 상징합니다.",
+            "misticismo": "비교적으로 별은 어두운 밤을 통해 인도하는 영혼의 빛입니다. 물질의 불모의 땅에 생명의 물을 붓는 순수한 아스트랄 몸을 나타냅니다. 이것은 은하 중심에서 흐르는 재생 에너지의 우주적 흐름과의 직접적 연결입니다.",
+            "resonancia_biblica": {
+                "cita": "Y he aquí la estrella que habían visto en el oriente iba delante de ellos, hasta que llegando, se detuvo sobre donde estaba el niño",
+                "referencia": "Mateo 2:9",
+                "conexion": "신학적으로 별은 인류를 결코 완전히 포기하지 않는 신성한 은총의 존재입니다. 베들레헴의 별(영적 재탄생으로의 길을 가리키는 천상의 안내)을 상징합니다. 이것은 거짓 안전에서 벗겨진 영혼이 신성한 것에서 진정한 위안을 찾는 갱신의 순간입니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 18,
+        "key": "THE_MOON",
+        "nombre": "달",
+        "contenido": {
+            "arquetipo": "심리학적으로 달은 집단적 무의식과 그 원초적 원형들과의 만남을 나타냅니다. 이것은 공식화되지 않은 불안, 억압된 기억, 본능적 충동을 통한 항해입니다. 오래된 확실성이 의문시되는 필요한 혼란의 단계를 상징합니다.",
+            "sombra": "달은 그림자와 반영의 영역을 지배하며, 그곳에서는 아무것도 보이는 대로가 아닙니다. 이것은 깊은 무의식을 통한 여행, 원초적 두려움과 지속적인 환상과의 대면을 나타냅니다. 이 카드는 영감과 광기, 직관과 속임수 사이의 좁은 길을 상징합니다.",
+            "misticismo": "비교적으로 달은 세계들 사이의 문턱의 수호자입니다. 환상과 투사를 동반한 하위 아스트랄 계를 나타냅니다. 이것은 사고형태가 겉보기 생명을 얻는 정령의 영역이고 입문자가 현실과 신기루를 식별하는 법을 배워야 하는 곳입니다.",
+            "resonancia_biblica": {
+                "cita": "El sol se convertirá en tinieblas, y la luna en sangre, antes que venga el día grande y espantoso de Jehová",
+                "referencia": "Joel 2:31",
+                "conexion": "신학적으로 달은 영혼의 어두운 밤(신성한 존재가 물러난 것처럼 보이는 시련의 기간)을 나타냅니다. 이것은 부활에 필요한 지옥으로의 하강입니다. 영적 길이 때때로 혼란과 의심의 계곡을 통해 우리를 이끄는 방식을 상징합니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 19,
+        "key": "THE_SUN",
+        "nombre": "태양",
+        "contenido": {
+            "arquetipo": "심리학적으로 태양은 인격의 성공적인 통합과 진정한 자아의 개화를 나타냅니다. 이것은 투사와 왜곡으로부터 자유로운 명료한 의식의 상태입니다. 자연스러운 생명력, 회복된 어린아이 같은 자발성, 진정한 자신감을 상징합니다.",
+            "sombra": "태양은 빛과 열의 충만함과 함께 빛나며 모든 그림자를 흩어버립니다. 이것은 깨달은 의식, 자발적 기쁨, 진정한 성공을 나타냅니다. 이 카드는 사물을 있는 그대로, 진실의 황금빛에 목욕한 채 보는 완벽한 명료함의 순간을 상징합니다.",
+            "misticismo": "비교적으로 태양은 태양 로고스(모든 존재를 비추는 보편적 의식)입니다. 정화된 인과체와 상위 자아의 실현을 나타냅니다. 이것은 내면의 그리스도, 모든 다양성 밑에 깔린 통일성을 보는 부처 의식의 각성입니다.",
+            "resonancia_biblica": {
+                "cita": "Mas a vosotros los que teméis mi nombre, nacerá el Sol de justicia, y en sus alas traerá salvación",
+                "referencia": "Malaquías 4:2",
+                "conexion": "신학적으로 태양은 변모(베일 없이 인간을 통해 빛나는 신성)입니다. 의식의 부활과 어둠에 대한 빛의 승리를 상징합니다. 이것은 인간과 신 사이에 분리가 없는 은총의 상태입니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 20,
+        "key": "JUDGEMENT",
+        "nombre": "심판",
+        "contenido": {
+            "arquetipo": "심리학적으로 심판은 개성화의 최종 단계(이전에 분리되었던 자아의 측면들의 통합)를 나타냅니다. 이것은 전체 인생 여정의 정직한 평가와 진정한 자아를 완전히 포용할 결심의 순간입니다. 진정한 목적에의 각성을 상징합니다.",
+            "sombra": "심판은 최종 각성과 변형으로의 소명을 알립니다. 이것은 정직한 평가의 순간과 더 높은 소명에 대한 응답을 나타냅니다. 이 카드는 더 높은 수준의 의식으로의 재탄생과 살아온 모든 경험의 통합을 상징합니다.",
+            "misticismo": "비교적으로 심판은 영적으로 죽은 자들을 깨우는 천사의 나팔 소리입니다. 더 높은 차크라의 최종 활성화와 인격의 완전한 변환을 나타냅니다. 이것은 입문자가 우주 진화의 계획에서 자신의 자리를 맡도록 부름받는 순간입니다.",
+            "resonancia_biblica": {
+                "cita": "No os maravilléis de esto; porque vendrá hora cuando todos los que están en los sepulcros oirán su voz; y los que hicieron lo bueno, saldrán a resurrección de vida",
+                "referencia": "Juan 5:28-29",
+                "conexion": "신학적으로 심판은 보편적 부활과 더 높은 의식 수준에서의 에덴적 상태로의 회귀를 상징합니다. 이것은 모든 베일이 제거되고 모든 영혼이 그 진정한 신성한 본성을 인식하는 묵시적 최종 계시의 순간입니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 21,
+        "key": "THE_WORLD",
+        "nombre": "세계",
+        "contenido": {
+            "arquetipo": "심리학적으로 세계는 개인적 잠재력의 완전한 실현과 자아의 모든 측면의 조화로운 통합을 나타냅니다. 이것은 더 이상 내적 갈등이 없고 개인이 전체와 연결되어 있으면서 자기 자신 안에서 완전하다고 느끼는 충만함의 상태입니다.",
+            "sombra": "세계는 존재의 만다라 중심의 우주적 춤꾼입니다. 이것은 완벽한 완성, 전적인 성취, 존재하는 모든 것과의 통일의 의식을 나타냅니다. 이 카드는 여행의 끝과 더 높은 수준에서 진화의 새로운 나선의 시작을 상징합니다.",
+            "misticismo": "비교적으로 세계는 대작업의 실현(대립물의 결합과 이원성의 초월)입니다. 완전한 연금술적 변환에 의해 창조된 불멸의 운반체인 영광의 몸을 나타냅니다. 이것은 모든 현현을 포용하는 우주적 의식입니다.",
+            "resonancia_biblica": {
+                "cita": "Vi un cielo nuevo y una tierra nueva; porque el primer cielo y la primera tierra pasaron, y el mar ya no existía más",
+                "referencia": "Apocalipsis 21:1",
+                "conexion": "신학적으로 세계는 새 예루살렘(그 원초적 영광으로 회복되고 더 큰 상태로 고양된 창조)을 상징합니다. 이것은 만물복귀, 모든 것의 최종 회복입니다. 인간과 신이 완벽한 조화 속에서 춤추는 완전한 신비적 합일을 나타냅니다."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

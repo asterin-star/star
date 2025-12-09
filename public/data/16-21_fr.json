@@ -1,0 +1,110 @@
+[
+    {
+        "id": 16,
+        "key": "THE_TOWER",
+        "nombre": "La Tour",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Tour marque la désintégration des défenses de l'ego et la confrontation forcée avec des vérités refoulées. Représente le moment où les mécanismes de déni échouent et la réalité éclate dans la conscience avec une force dévastatrice. C'est le processus douloureux mais libérateur de lâcher prise des identifications fausses.",
+            "sombra": "La Tour représente la destruction soudaine de structures fausses et la libération à travers le chaos. Comme la foudre qui frappe une tour orgueilleuse, cette carte symbolise le moment où les illusions se brisent et la vérité est révélée de manière abrupte. C'est l'effondrement nécessaire qui précède la reconstruction sur des fondations plus authentiques.",
+            "misticismo": "Ésotériquement, La Tour est l'éclair d'illumination qui détruit la Tour de Babel de la séparation humaine. Symbolise l'intervention divine qui détruit l'orgueil spirituel et la fausse suffisance. C'est le feu céleste qui purifie à travers la destruction, révélant la vacuité des constructions matérielles et mentales.",
+            "resonancia_biblica": {
+                "cita": "Ahora, pues, descendamos, y confundamos allí su lengua, para que ninguno entienda el habla de su compañero",
+                "referencia": "Génesis 11:7",
+                "conexion": "Théologiquement, La Tour représente la chute nécessaire qui précède la rédemption. Elle rappelle l'expulsion du Paradis - un désastre apparent qui contient les germes d'une conscience plus grande. Symbolise comment la grâce divine se manifeste parfois à travers la destruction de fausses sécurités."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 17,
+        "key": "THE_STAR",
+        "nombre": "L'Étoile",
+        "contenido": {
+            "arquetipo": "Psychologiquement, L'Étoile représente la phase d'intégration après le traumatisme. C'est le retour de l'espoir et de la confiance en soi après une période de crise. Symbolise la renaissance du soi authentique et la reconnexion avec les ressources intérieures de guérison et de guidance.",
+            "sombra": "L'Étoile brille comme un phare d'espoir après la tempête. Représente la reconnexion avec la source divine intérieure, la guérison à travers les eaux de la conscience et le renouveau de la foi. Cette carte symbolise le moment de grâce où nous trouvons guidance dans les ténèbres et renouvelons notre confiance dans l'univers.",
+            "misticismo": "Ésotériquement, L'Étoile est la lumière de l'âme qui guide à travers la nuit obscure. Représente le corps astral pur versant les eaux de vie sur la terre stérile de la matière. C'est la connexion directe avec les courants cosmiques d'énergie rénovatrice qui coulent du centre galactique.",
+            "resonancia_biblica": {
+                "cita": "Y he aquí la estrella que habían visto en el oriente iba delante de ellos, hasta que llegando, se detuvo sobre donde estaba el niño",
+                "referencia": "Mateo 2:9",
+                "conexion": "Théologiquement, L'Étoile est la présence de la grâce divine qui n'abandonne jamais complètement l'humanité. Symbolise l'Étoile de Bethléem - la guidance céleste qui montre le chemin vers la renaissance spirituelle. C'est le moment de renouveau où l'âme, dépouillée de fausses sécurités, trouve un véritable réconfort dans le divin."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 18,
+        "key": "THE_MOON",
+        "nombre": "La Lune",
+        "contenido": {
+            "arquetipo": "Psychologiquement, La Lune représente la rencontre avec l'inconscient collectif et ses archétypes primordiaux. C'est la navigation à travers les anxiétés non formulées, les souvenirs refoulés et les pulsions instinctives. Symbolise la phase de confusion nécessaire où les anciennes certitudes sont remises en question.",
+            "sombra": "La Lune règne sur le royaume des ombres et des reflets, où rien n'est ce qu'il semble. Représente le voyage à travers l'inconscient profond, confrontant les peurs primordiales et les illusions persistantes. Cette carte symbolise le chemin étroit entre inspiration et folie, intuition et tromperie.",
+            "misticismo": "Ésotériquement, La Lune est le gardien du seuil entre les mondes. Représente le plan astral inférieur avec ses illusions et projections. C'est le royaume des élémentaux où les formes-pensées prennent vie apparente et où l'initié doit apprendre à discerner réalité de mirage.",
+            "resonancia_biblica": {
+                "cita": "El sol se convertirá en tinieblas, y la luna en sangre, antes que venga el día grande y espantoso de Jehová",
+                "referencia": "Joel 2:31",
+                "conexion": "Théologiquement, La Lune représente la nuit obscure de l'âme - la période d'épreuve où la présence divine semble s'être retirée. C'est la descente aux enfers, nécessaire pour la résurrection. Symbolise comment le chemin spirituel nous mène parfois par des vallées de confusion et de doute."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 19,
+        "key": "THE_SUN",
+        "nombre": "Le Soleil",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Soleil représente l'intégration réussie de la personnalité et l'épanouissement du soi authentique. C'est l'état de conscience claire, libre de projections et de distorsions. Symbolise la vitalité naturelle, la spontanéité enfantine retrouvée et la confiance véritable en soi.",
+            "sombra": "Le Soleil rayonne avec plénitude de lumière et de chaleur, dispersant toutes les ombres. Représente la conscience illuminée, la joie spontanée et le succès véritable. Cette carte symbolise le moment de clarté parfaite où nous voyons les choses telles qu'elles sont, baignées dans la lumière dorée de la vérité.",
+            "misticismo": "Ésotériquement, Le Soleil est le Logos Solaire - la conscience universelle qui illumine tous les êtres. Représente le corps causal purifié et la réalisation du Moi Supérieur. C'est l'éveil du Christ Intérieur, la conscience bouddhique qui voit l'unité sous-jacente à toute diversité.",
+            "resonancia_biblica": {
+                "cita": "Mas a vosotros los que teméis mi nombre, nacerá el Sol de justicia, y en sus alas traerá salvación",
+                "referencia": "Malaquías 4:2",
+                "conexion": "Théologiquement, Le Soleil est la Transfiguration - le moment où le divin brille à travers l'humain sans voiles. Symbolise la résurrection de la conscience et la victoire de la lumière sur les ténèbres. C'est l'état de grâce où il n'y a pas de séparation entre humain et divin."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 20,
+        "key": "JUDGEMENT",
+        "nombre": "Le Jugement",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Jugement représente la phase finale d'individuation - l'intégration d'aspects précédemment dissociés du soi. C'est le moment d'évaluation honnête de tout le parcours de vie et la décision d'embrasser pleinement le soi authentique. Symbolise l'éveil au véritable but.",
+            "sombra": "Le Jugement annonce l'éveil final et l'appel à la transformation. Représente le moment d'évaluation honnête et la réponse à l'appel supérieur. Cette carte symbolise la renaissance à un niveau supérieur de conscience et l'intégration de toutes les expériences vécues.",
+            "misticismo": "Ésotériquement, Le Jugement est le son de la trompette angélique qui éveille les morts spirituels. Représente l'activation finale des chakras supérieurs et la transmutation complète de la personnalité. C'est le moment où l'initié est appelé à assumer sa place dans le plan d'évolution cosmique.",
+            "resonancia_biblica": {
+                "cita": "No os maravilléis de esto; porque vendrá hora cuando todos los que están en los sepulcros oirán su voz; y los que hicieron lo bueno, saldrán a resurrección de vida",
+                "referencia": "Juan 5:28-29",
+                "conexion": "Théologiquement, Le Jugement symbolise la résurrection universelle et le retour à l'état édénique à un niveau de conscience plus élevé. C'est le moment apocalyptique de révélation finale où tous les voiles sont levés et chaque âme reconnaît sa véritable nature divine."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 21,
+        "key": "THE_WORLD",
+        "nombre": "Le Monde",
+        "contenido": {
+            "arquetipo": "Psychologiquement, Le Monde représente l'accomplissement complet du potentiel individuel et l'intégration harmonieuse de tous les aspects du soi. C'est l'état de plénitude où il n'y a plus de conflit interne et où l'individu se sent complet en lui-même tout en étant connecté au tout.",
+            "sombra": "Le Monde est la danseuse cosmique au centre du mandala de l'existence. Représente la complétude parfaite, l'accomplissement total et la conscience d'unité avec tout ce qui existe. Cette carte symbolise la fin du voyage et le début d'une nouvelle spirale d'évolution à un niveau supérieur.",
+            "misticismo": "Ésotériquement, Le Monde est la réalisation du Grand Œuvre - l'union des opposés et la transcendance de la dualité. Représente le corps de gloire, le véhicule immortel créé par la transmutation alchimique complète. C'est la conscience cosmique qui embrasse toute la manifestation.",
+            "resonancia_biblica": {
+                "cita": "Vi un cielo nuevo y una tierra nueva; porque el primer cielo y la primera tierra pasaron, y el mar ya no existía más",
+                "referencia": "Apocalipsis 21:1",
+                "conexion": "Théologiquement, Le Monde symbolise la Nouvelle Jérusalem - la création restaurée à sa gloire originelle et élevée à un état encore plus grand. C'est l'apocatastase, la restauration finale de toutes choses. Représente l'union mystique complète où l'humain et le divin dansent en parfaite harmonie."
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

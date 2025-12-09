@@ -1,0 +1,110 @@
+[
+    {
+        "id": 16,
+        "key": "THE_TOWER",
+        "nombre": "高塔",
+        "contenido": {
+            "arquetipo": "心理学上，高塔标志着自我防御的解体和与被压抑真理的强制对抗。代表否认机制失效，现实以毁灭性力量闯入意识的时刻。这是放手虚假认同的痛苦但解放的过程。",
+            "sombra": "高塔代表虚假结构的突然毁灭和通过混乱获得的解放。就像闪电击中傲慢的高塔，这张牌象征着幻觉破灭、真理突然显现的时刻。这是在更真实的根基上重建之前必要的崩溃。",
+            "misticismo": "秘传上，高塔是摧毁人类分离之巴别塔的启蒙闪电。象征着摧毁精神傲慢和虚假自足的神圣干预。这是通过毁灭进行净化，揭示物质和精神构建之空虚的天火。",
+            "resonancia_biblica": {
+                "cita": "Ahora, pues, descendamos, y confundamos allí su lengua, para que ninguno entienda el habla de su compañero",
+                "referencia": "Génesis 11:7",
+                "conexion": "神学上，高塔代表救赎之前必要的堕落。它让人想起被逐出乐园——包含更大意识种子的表面灾难。象征着神圣恩典有时如何通过摧毁虚假的安全感来显现。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 17,
+        "key": "THE_STAR",
+        "nombre": "星星",
+        "contenido": {
+            "arquetipo": "心理学上，星星代表创伤后的整合阶段。这是危机期后希望和自信的回归。象征着真实自我的重生以及与疗愈和指引的内在资源的重新连接。",
+            "sombra": "星星像风暴后的希望灯塔一样闪耀。代表与内在神圣源头的重新连接，通过意识之水的疗愈，以及信仰的更新。这张牌象征着我们在黑暗中找到指引并更新对宇宙信任的恩典时刻。",
+            "misticismo": "秘传上，星星是引导穿过黑夜的灵魂之光。代表将生命之水倾注在物质贫瘠土地上的纯净星体。这是与从银河中心流出的再生能量宇宙流的直接连接。",
+            "resonancia_biblica": {
+                "cita": "Y he aquí la estrella que habían visto en el oriente iba delante de ellos, hasta que llegando, se detuvo sobre donde estaba el niño",
+                "referencia": "Mateo 2:9",
+                "conexion": "神学上，星星是永不完全抛弃人类的神圣恩典的存在。象征着伯利恒之星——指示通往精神重生之路的天上指引。这是灵魂被剥去虚假安全感，在神圣中找到真正安慰的更新时刻。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 18,
+        "key": "THE_MOON",
+        "nombre": "月亮",
+        "contenido": {
+            "arquetipo": "心理学上，月亮代表与集体无意识及其原始原型的相遇。这是通过未形成的焦虑、被压抑的记忆和本能冲动的航行。象征着旧的确定性受到质疑的必要困惑阶段。",
+            "sombra": "月亮统治着阴影和反射的领域，那里没有什么是表面看起来的那样。代表通过深层无意识的旅程，面对原始恐惧和持续的幻觉。这张牌象征着灵感与疯狂、直觉与欺骗之间的狭窄道路。",
+            "misticismo": "秘传上，月亮是世界之间门槛的守护者。代表带有幻觉和投射的低层星体界。这是思想形态获得表面生命的元素领域，启蒙者必须在这里学会辨别现实与海市蜃楼。",
+            "resonancia_biblica": {
+                "cita": "El sol se convertirá en tinieblas, y la luna en sangre, antes que venga el día grande y espantoso de Jehová",
+                "referencia": "Joel 2:31",
+                "conexion": "神学上，月亮代表灵魂的黑夜——神圣存在似乎撤退的试炼期。这是为了复活而必须的下地狱。象征着精神道路有时如何引导我们穿过困惑和怀疑的山谷。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 19,
+        "key": "THE_SUN",
+        "nombre": "太阳",
+        "contenido": {
+            "arquetipo": "心理学上，太阳代表个性的成功整合和真实自我的绽放。这是清晰意识的状态，没有投射和扭曲。象征着自然的生命力、恢复的孩童般的自发性和真正的自信。",
+            "sombra": "太阳带着充足的光和热照耀，驱散所有阴影。代表启蒙的意识、自发的喜悦和真正的成功。这张牌象征着完美的清晰时刻，我们在真理的金光沐浴下看到事物的本来面目。",
+            "misticismo": "秘传上，太阳是太阳罗格斯（Solar Logos）——照亮所有众生的普遍意识。代表净化的因果体和高我的实现。这是内在基督的觉醒，看到所有多样性背后统一性的佛性意识。",
+            "resonancia_biblica": {
+                "cita": "Mas a vosotros los que teméis mi nombre, nacerá el Sol de justicia, y en sus alas traerá salvación",
+                "referencia": "Malaquías 4:2",
+                "conexion": "神学上，太阳是变容——神圣毫无面纱地通过人类闪耀的时刻。象征着意识的复活和光对黑暗的胜利。这是人类与神圣之间没有分离的恩典状态。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 20,
+        "key": "JUDGEMENT",
+        "nombre": "审判",
+        "contenido": {
+            "arquetipo": "心理学上，审判代表个性化的最后阶段——先前分离的自我面向的整合。这是对整个生命旅程的诚实评估和完全拥抱真实自我的决定时刻。象征着对真正目的的觉醒。",
+            "sombra": "审判宣告最终的觉醒和转化的召唤。代表诚实评估的时刻和对更高召唤的回应。这张牌象征着在更高意识水平上的重生和所有生活经验的整合。",
+            "misticismo": "秘传上，审判是唤醒精神死者的天使号角声。代表更高脉轮的最终激活和个性的完全转化。这是启蒙者被召唤在宇宙进化计划中承担其位置的时刻。",
+            "resonancia_biblica": {
+                "cita": "No os maravilléis de esto; porque vendrá hora cuando todos los que están en los sepulcros oirán su voz; y los que hicieron lo bueno, saldrán a resurrección de vida",
+                "referencia": "Juan 5:28-29",
+                "conexion": "神学上，审判象征着普遍复活和在更高意识水平上回归伊甸园状态。这是最终启示的启示录时刻，所有面纱都被揭开，每个灵魂都认出其真正的神圣本质。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    },
+    {
+        "id": 21,
+        "key": "THE_WORLD",
+        "nombre": "世界",
+        "contenido": {
+            "arquetipo": "心理学上，世界代表个人潜力的完全实现和自我所有面向的和谐整合。这是圆满的状态，不再有内在冲突，个人感到自身完整，同时与整体相连。",
+            "sombra": "世界是存在曼陀罗中心的宇宙舞者。代表完美的完成、完全的成就以及与万物合一的意识。这张牌象征着旅程的结束和在更高水平上进化新螺旋的开始。",
+            "misticismo": "秘传上，世界是大业的实现——对立面的结合和二元性的超越。代表通过完全的炼金术转化创造的不朽载体——荣耀之体。这是拥抱所有显化的宇宙意识。",
+            "resonancia_biblica": {
+                "cita": "Vi un cielo nuevo y una tierra nueva; porque el primer cielo y la primera tierra pasaron, y el mar ya no existía más",
+                "referencia": "Apocalipsis 21:1",
+                "conexion": "神学上，世界象征着新耶路撒冷——恢复其原始荣耀并提升到更伟大状态的创造。这是万物复兴，所有事物的最终恢复。代表人类与神圣在完美和谐中共舞的完全神秘结合。"
+            },
+            "cotidiano": "",
+            "botanica": "",
+            "gnosis": ""
+        }
+    }
+]

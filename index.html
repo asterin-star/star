@@ -774,6 +774,33 @@
             }
         }
 
+        /* ==================== KEYWORD HIGHLIGHTING ==================== */
+        .keyword-highlight {
+            /* Transparent text to show background colors through */
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.2) 0%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0.15) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            /* Subtle glow/border effect */
+            text-shadow:
+                0 0 1px rgba(255, 255, 255, 0.4),
+                0 0 2px rgba(255, 255, 255, 0.2);
+
+            /* Slightly bolder for emphasis */
+            font-weight: 600;
+
+            /* Smooth transitions */
+            transition: all 0.3s ease;
+
+            /* Prevent text selection issues */
+            position: relative;
+            display: inline;
+        }
+
         /* ==================== ESTILOS BOTÓN IA ==================== */
         .ai-synthesis-container {
             margin-top: 40px;
@@ -1002,7 +1029,7 @@
 
     <!-- Botón de Idioma -->
     <button class="lang-btn" id="langBtn" onclick="toggleLanguage()" aria-label="Change Language">
-        ✦
+        🌐
     </button>
 
     <div class="interface">
@@ -1190,6 +1217,52 @@
             'ar20': ['#81D4FA', '#FFFFFF', '#F44336', '#FFC107'], // El Juicio: Azul claro, Blanco, Rojo bandera, Oro trompeta
             'ar21': ['#2196F3', '#9C27B0', '#4CAF50', '#FFC107'], // El Mundo: Azul, Púrpura, Verde, Oro
         };
+
+        /* ==================== KEYWORD HIGHLIGHTING SYSTEM ====================*/
+        let keywordData = null;
+
+        // Load keywords data
+        async function loadKeywords() {
+            try {
+                const response = await fetch('./public/keywords.json');
+                if (response.ok) {
+                    keywordData = await response.json();
+                    console.log('✨ Keywords loaded');
+                }
+            } catch (error) {
+                console.error('Error loading keywords:', error);
+            }
+        }
+
+        // Highlight keywords in text (pre-render)
+        function highlightKeywords(text, lang = 'es') {
+            if (!text || typeof text !== 'string' || !keywordData || !keywordData[lang]) {
+                return text;
+            }
+
+            // Flatten all keywords for this language
+            const allKeywords = [];
+            for (const category in keywordData[lang]) {
+                allKeywords.push(...keywordData[lang][category]);
+            }
+
+            // Sort by length (longest first) to avoid partial matches
+            allKeywords.sort((a, b) => b.length - a.length);
+
+            // Create regex pattern with word boundaries
+            // Escape special regex characters
+            const escapedKeywords = allKeywords.map(kw =>
+                kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            );
+
+            const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
+
+            // Replace keywords with highlighted spans
+            return text.replace(pattern, '<span class="keyword-highlight">$1</span>');
+        }
+
+        // Load keywords on page load
+        loadKeywords();
 
         /* ==================== SISTEMA DE RANDOMIZACI\u00d3N TEMPORAL ==================== */
         function getTemporalBiblicalVerse() {
@@ -1385,36 +1458,37 @@
             const datos = currentCardData.fullData;
 
             // Usar el campo cotidiano como introducción (experiencia práctica, sin prefijo)
-            introExample.textContent = datos.cotidiano ? datos.cotidiano : 'La experiencia de vida práctica.';
+            const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+            introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : 'La experiencia de vida práctica.';
             introSection.style.display = 'block';
 
             // 4. LLENAR LAS SECCIONES CON DATOS ALEATORIOS
 
-            // Función auxiliar
+            // Función auxiliar with keyword highlighting
             const getRandomItem = (category) => {
                 const item = datos[category];
                 if (!item || typeof item !== 'string') return '';
-                return item;
+                return highlightKeywords(item, lang);
             };
 
             // Llenar todas las categorías del JSON - LA SECCIÓN SIGNIFICADO USA SOMBRA (ASPECTOS TEMIBLES)
-            textoSignificado.textContent = getRandomItem('sombra');
+            textoSignificado.innerHTML = getRandomItem('sombra');
 
-            textoAmpliado.textContent = getRandomItem('misticismo');
-            seccionAmpliado.style.display = textoAmpliado.textContent ? 'block' : 'none';
+            textoAmpliado.innerHTML = getRandomItem('misticismo');
+            seccionAmpliado.style.display = textoAmpliado.innerHTML ? 'block' : 'none';
 
-            textoNegativo.textContent = getRandomItem('arquetipo');
-            seccionNegativo.style.display = textoNegativo.textContent ? 'block' : 'none';
+            textoNegativo.innerHTML = getRandomItem('arquetipo');
+            seccionNegativo.style.display = textoNegativo.innerHTML ? 'block' : 'none';
 
             // Nueva sección Botánica
-            textoBotanica.textContent = getRandomItem('botanica');
-            seccionBotanica.style.display = textoBotanica.textContent ? 'block' : 'none';
+            textoBotanica.innerHTML = getRandomItem('botanica');
+            seccionBotanica.style.display = textoBotanica.innerHTML ? 'block' : 'none';
 
-            textoCotidiano.textContent = getRandomItem('cotidiano');
-            seccionCotidiano.style.display = textoCotidiano.textContent ? 'block' : 'none';
+            textoCotidiano.innerHTML = getRandomItem('cotidiano');
+            seccionCotidiano.style.display = textoCotidiano.innerHTML ? 'block' : 'none';
 
-            textoMistico.textContent = getRandomItem('gnosis');
-            seccionMistico.style.display = textoMistico.textContent ? 'block' : 'none';
+            textoMistico.innerHTML = getRandomItem('gnosis');
+            seccionMistico.style.display = textoMistico.innerHTML ? 'block' : 'none';
 
             // Versículo Bíblico
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
@@ -1711,31 +1785,32 @@
             if (!currentCardData || !currentCardData.fullData) return;
 
             const datos = currentCardData.fullData;
+            const lang = window.i18n ? window.i18n.currentLanguage : 'es';
 
             // Actualizar título
             cardTitle.textContent = currentCardData.name;
 
-            // Función auxiliar para obtener item seguro
+            // Función auxiliar para obtener item seguro with highlighting
             const getRandomItem = (category) => {
                 const item = datos[category];
                 if (!item || typeof item !== 'string') return '';
-                return item;
+                return highlightKeywords(item, lang);
             };
 
             // Actualizar introducción (Cotidiano)
             const introExample = document.getElementById('introExample');
             if (introExample) {
-                introExample.textContent = datos.cotidiano ? datos.cotidiano : '';
+                introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : '';
             }
 
             // Actualizar secciones
             // Nota: Usamos los mismos mapeos que en revealDestiny
-            textoSignificado.textContent = getRandomItem('sombra');
-            textoAmpliado.textContent = getRandomItem('misticismo');
-            textoNegativo.textContent = getRandomItem('arquetipo');
-            textoBotanica.textContent = getRandomItem('botanica');
-            textoCotidiano.textContent = getRandomItem('cotidiano');
-            textoMistico.textContent = getRandomItem('gnosis');
+            textoSignificado.innerHTML = getRandomItem('sombra');
+            textoAmpliado.innerHTML = getRandomItem('misticismo');
+            textoNegativo.innerHTML = getRandomItem('arquetipo');
+            textoBotanica.innerHTML = getRandomItem('botanica');
+            textoCotidiano.innerHTML = getRandomItem('cotidiano');
+            textoMistico.innerHTML = getRandomItem('gnosis');
 
             // Actualizar versículo bíblico
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
