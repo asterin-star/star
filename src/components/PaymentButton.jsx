@@ -1,64 +1,41 @@
-import React, { useState } from 'react';
-import { MiniKit } from '@worldcoin/minikit-js';
+import { MiniKit } from '@worldcoin/minikit-js'
 
-const PaymentButton = ({ onPaymentSuccess }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+export default function PaymentButton({ onSuccess }) {
   const handlePayment = async () => {
     if (!MiniKit.isInstalled()) {
-      alert('Por favor, abre esta app en World App.');
-      return;
+      return
     }
 
-    setIsLoading(true);
+    const res = await MiniKit.commandsAsync.pay({
+      reference: `tarot-reading-${Date.now()}`,
+      to: '0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6',
+      tokens: [
+        {
+          symbol: 'WLD',
+          token_amount: '1.11',
+        },
+      ],
+      description: 'Revelar carta del Tarot',
+    })
 
-    try {
-      const payload = {
-        reference: `tarot_${Date.now()}`,
-        to: '0x0000000000000000000000000000000000000000', // PLACEHOLDER - El usuario debe reemplazar esto
-        tokens: [
-          {
-            symbol: 'WLD',
-            token_amount: '0.1', // 0.1 WLD por lectura
-          }
-        ],
-        description: 'Lectura de Tarot - Una carta',
-      };
-
-      const { finalPayload } = await MiniKit.commandsAsync.pay(payload);
-
-      if (finalPayload.status === 'success') {
-        console.log('Pago exitoso!', finalPayload);
-        onPaymentSuccess();
-      } else {
-        alert('El pago no se completó.');
+    if (res.finalPayload.status === 'success') {
+      const response = res.finalPayload;
+      console.log('Payment successful!', response);
+      
+      if (onSuccess) {
+        onSuccess(response);
       }
-    } catch (error) {
-      console.error('Error al procesar el pago:', error);
-      alert('Ocurrió un error al intentar pagar.');
-    } finally {
-      setIsLoading(false);
+    } else {
+      console.log('Payment failed', res.finalPayload);
     }
-  };
+  }
 
   return (
     <button 
-      onClick={handlePayment} 
-      disabled={isLoading}
-      style={{
-        padding: '15px 30px',
-        fontSize: '18px',
-        backgroundColor: isLoading ? '#cccccc' : '#000000',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        cursor: isLoading ? 'not-allowed' : 'pointer',
-        marginTop: '20px',
-      }}
+      onClick={handlePayment}
+      className="payment-button"
     >
-      {isLoading ? 'Procesando...' : '🔮 Comprar Carta (0.1 WLD)'}
+      Revelar carta · 1.11 WLD
     </button>
-  );
-};
-
-export default PaymentButton;
+  )
+}
