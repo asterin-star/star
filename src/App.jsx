@@ -11,7 +11,7 @@ function App() {
   const loadCard = async () => {
     try {
       // Cargar uno de los archivos JSON de cartas
-      const response = await fetch('/public/data/0-5.json')
+      const response = await fetch('/data/0-5.json')
       const cards = await response.json()
       
       // Seleccionar una carta aleatoria
@@ -62,7 +62,7 @@ function App() {
             <div className="card-face back">
               {selectedCard && (
                 <img 
-                  src={`/public/cards/ar${String(selectedCard.id).padStart(2, '0')}.jpg`} 
+                  src={`/cards/ar${String(selectedCard.id).padStart(2, '0')}.jpg`} 
                   alt={selectedCard.nombre}
                   className="tarot-img"
                 />

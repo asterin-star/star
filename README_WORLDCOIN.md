@@ -2,10 +2,12 @@
 
 ## Pasos para completar la integración:
 
-1. **Reemplazar la dirección de wallet:**
+1. **⚠️ IMPORTANTE - Reemplazar la dirección de wallet:**
    - Abrir `src/components/PaymentButton.jsx`
    - Buscar la línea con `to: '0x0000000000000000000000000000000000000000'`
    - Reemplazar con tu dirección de wallet de Worldcoin
+   - **NO DESPLEGAR A PRODUCCIÓN SIN CAMBIAR ESTA DIRECCIÓN**
+   - La dirección actual es un placeholder y no recibirá pagos
 
 2. **Instalar dependencias:**
    ```bash
