@@ -5,3 +5,5 @@ __pycache__/
 service_account.json
 .DS_Store
 .vercel
+dist/
+*.local
