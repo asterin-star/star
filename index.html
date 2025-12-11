@@ -2068,7 +2068,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         // Trigger animation by adding a class
-                        const letters = entry.target.querySelectorAll('letter-animate');
+                        const letters = entry.target.querySelectorAll('.letter-animate');
                         letters.forEach((letter, index) => {
                             letter.style.animationDelay = `calc(${index} * 0.02s)`;
                             letter.style.opacity = '1';
