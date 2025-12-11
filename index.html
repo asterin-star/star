@@ -659,6 +659,29 @@
             }
         }
 
+        /* Apple Music-style letter reveal animation */
+        @keyframes letterReveal {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.8);
+                filter: blur(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Class for animating letters individually */
+        .letter-animate {
+            display: inline-block;
+            opacity: 0;
+            animation: letterReveal 0.4s ease-out forwards;
+            animation-delay: calc(var(--letter-index) * 0.02s);
+        }
+
         /* TEXTO DE LECTURA */
         p {
             margin: 0;
@@ -786,49 +809,49 @@
         }
 
         .keyword-highlight {
-            /* Rainbow gradient with transparency - Duplicated for seamless loop */
+            /* Rainbow gradient with MORE transparency - Duplicated for seamless loop */
             background: linear-gradient(90deg,
-                    /* First sequence */
-                    rgba(255, 0, 0, 0.6),
+                    /* First sequence - More transparent (0.35) */
+                    rgba(255, 0, 0, 0.35),
                     /* Red */
-                    rgba(255, 154, 0, 0.6),
+                    rgba(255, 154, 0, 0.35),
                     /* Orange */
-                    rgba(208, 222, 33, 0.6),
+                    rgba(208, 222, 33, 0.35),
                     /* Yellow */
-                    rgba(79, 220, 74, 0.6),
+                    rgba(79, 220, 74, 0.35),
                     /* Green */
-                    rgba(63, 218, 216, 0.6),
+                    rgba(63, 218, 216, 0.35),
                     /* Cyan */
-                    rgba(47, 201, 226, 0.6),
+                    rgba(47, 201, 226, 0.35),
                     /* Light Blue */
-                    rgba(28, 127, 238, 0.6),
+                    rgba(28, 127, 238, 0.35),
                     /* Blue */
-                    rgba(95, 21, 242, 0.6),
+                    rgba(95, 21, 242, 0.35),
                     /* Indigo */
-                    rgba(186, 12, 248, 0.6),
+                    rgba(186, 12, 248, 0.35),
                     /* Violet */
-                    rgba(251, 7, 217, 0.6),
+                    rgba(251, 7, 217, 0.35),
                     /* Magenta */
                     /* Second sequence (duplicate for seamless loop) */
-                    rgba(255, 0, 0, 0.6),
+                    rgba(255, 0, 0, 0.35),
                     /* Red */
-                    rgba(255, 154, 0, 0.6),
+                    rgba(255, 154, 0, 0.35),
                     /* Orange */
-                    rgba(208, 222, 33, 0.6),
+                    rgba(208, 222, 33, 0.35),
                     /* Yellow */
-                    rgba(79, 220, 74, 0.6),
+                    rgba(79, 220, 74, 0.35),
                     /* Green */
-                    rgba(63, 218, 216, 0.6),
+                    rgba(63, 218, 216, 0.35),
                     /* Cyan */
-                    rgba(47, 201, 226, 0.6),
+                    rgba(47, 201, 226, 0.35),
                     /* Light Blue */
-                    rgba(28, 127, 238, 0.6),
+                    rgba(28, 127, 238, 0.35),
                     /* Blue */
-                    rgba(95, 21, 242, 0.6),
+                    rgba(95, 21, 242, 0.35),
                     /* Indigo */
-                    rgba(186, 12, 248, 0.6),
+                    rgba(186, 12, 248, 0.35),
                     /* Violet */
-                    rgba(251, 7, 217, 0.6)
+                    rgba(251, 7, 217, 0.35)
                     /* Magenta */
                 );
             background-size: 200% auto;
@@ -837,8 +860,8 @@
             -webkit-text-fill-color: transparent;
             animation: rainbowFlow 8s linear infinite;
 
-            /* Subtle rainbow glow */
-            filter: drop_shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            /* Subtle rainbow glow - reduced for more transparency */
+            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.15));
 
             /* Slightly bolder for emphasis */
             font-weight: 600;
