@@ -49,18 +49,24 @@ CONTEXTO:
 - Sombra (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Misticismo (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TAREA (250 palabras):
-Genera una lectura continua y fluida que integre naturalmente estos tres aspectos:
+TAREA (400 palabras - IMPORTANTE: Genera un texto COMPLETO de al menos 400 palabras):
+Genera una lectura continua, fluida y EXTENSIVA que integre naturalmente:
+
 1. El objetivo principal de desarrollo personal según esta carta
-2. Acciones concretas basadas en las variantes específicas recibidas
-3. Aspectos vitales que requieren atención inmediata
+2. La profundidad psicológica del arquetipo y cómo se manifiesta en la vida diaria
+3. Acciones concretas y específicas basadas en las variantes recibidas
+4. Aspectos vitales que requieren atención inmediata
+5. Una reflexión final sobre el camino de transformación
 
-Lenguaje: Formal, directo, orientado a la acción. Usa "usted" o tercera persona.
-Formato: Escribe en PÁRRAFOS CONTINUOS, como una lectura narrativa fluida.
-NO uses listas numeradas ni estructuras rígidas.
-Sé específico, detallado y profundo en tu análisis.
+REQUISITOS ESTRICTOS:
+- Lenguaje: Formal, directo, orientado a la acción. Usa "usted" o tercera persona.
+- Formato: PÁRRAFOS CONTINUOS (3-4 párrafos), narrativa fluida y profunda.
+- NO uses listas numeradas, asteriscos ni estructuras rígidas.
+- Sé específico, detallado, profundo y EXTENSO en tu análisis.
+- Incluye metáforas y simbolismos que resuenen con el arquetipo.
+- Conecta los conceptos de manera orgánica y filosófica.
 
-Escribe como si fueras un oráculo sabio narrando una guía personalizada.
+Escribe como si fueras un oráculo sabio narrando una guía personalizada y completa.
 """,
                 'en': f"""
 You are a professional oracle specialized in personal guidance and human development.
@@ -98,8 +104,8 @@ CONTEXTO:
 - Sombra (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Misticismo (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TAREFA (250 palavras):
-Gere uma leitura contínua e fluida que integre naturalmente estes três aspectos:
+TAREFA (400 palavras - IMPORTANTE: Gere um texto COMPLETO de pelo menos 400 palavras):
+Gere uma leitura contínua, fluida e EXTENSA que integre naturalmente:
 1. O objetivo principal de desenvolvimento pessoal segundo esta carta
 2. Ações concretas baseadas nas variantes específicas recebidas
 3. Aspectos vitais que requerem atenção imediata
@@ -222,36 +228,79 @@ Schreiben Sie, als wären Sie ein weises Orakel, das personalisierte Führung er
             
             prompt = prompts.get(language, prompts['es'])
 
-            # 3. Call Gemini API (Vertex AI)
+            # 3. Call Gemini API (Vertex AI) - OPTIMIZED
             # Using Gemini 2.5 Pro - State-of-the-art thinking model
+            import time
+            start_time = time.time()
+            
             model = GenerativeModel("gemini-2.5-pro")
             
+            # Optimized generation config based on Gemini best practices
             responses = model.generate_content(
                 [prompt],
                 generation_config={
-                    "max_output_tokens": 1000,  # Increased for 250 words (~750 tokens)
-                    "temperature": 0.7,
-                    "top_p": 0.95,
+                    "max_output_tokens": 1500,  # Increased for 400 words (~1200 tokens)
+                    "temperature": 1.0,  # Gemini default - DO NOT CHANGE (best performance)
+                    "top_p": 0.95,  # High diversity for creative oracle readings
+                    "top_k": 40,  # Balanced token selection
                 },
-                stream=False,
+                stream=False,  # Could enable streaming for faster perceived response
             )
+            
+            response_time = time.time() - start_time
+            print(f"⚡ Gemini API response time: {response_time:.2f}s")
 
             response_text = responses.text
+            
+            # Validate response
+            if not response_text or len(response_text.strip()) < 50:
+                print(f"⚠️  Warning: Short response ({len(response_text)} chars)")
+                # Retry logic could be added here if needed
+            
+            print(f"✅ Generated {len(response_text)} characters, ~{len(response_text.split())} words")
 
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({'reading': response_text}).encode('utf-8'))
 
+        except ValueError as e:
+            # JSON parsing or validation errors
+            error_msg = f"Validation error: {str(e)}"
+            print(f"❌ {error_msg}")
+            self.send_response(400)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                'error': error_msg,
+                'tip': 'Check request payload structure'
+            }).encode('utf-8'))
+            
         except Exception as e:
-            print(f"Error in handler: {e}")
+            # Gemini API errors (rate limits, quota, network, etc.)
+            error_type = type(e).__name__
+            error_msg = str(e)
+            print(f"❌ {error_type}: {error_msg}")
+            
+            # Provide helpful tips based on error type
+            tips = {
+                'ResourceExhausted': 'API quota exceeded. Wait and retry, or check billing.',
+                'DeadlineExceeded': 'Request timeout. Model may be overloaded, retry in a few seconds.',
+                'PermissionDenied': 'API key or service account permissions issue.',
+                'InvalidArgument': 'Check prompt structure and generation config.',
+            }
+            
             self.send_response(500)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({'error': str(e)}).encode('utf-8'))
+            self.wfile.write(json.dumps({
+                'error': f'{error_type}: {error_msg}',
+                'tip': tips.get(error_type, 'Check Gemini API status and retry')
+            }).encode('utf-8'))
 
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         self.wfile.write(b"Star Oracle API Active")
+```
