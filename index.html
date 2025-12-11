@@ -775,20 +775,54 @@
         }
 
         /* ==================== KEYWORD HIGHLIGHTING ==================== */
+        @keyframes rainbowFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .keyword-highlight {
-            /* Transparent text to show background colors through */
-            background: linear-gradient(135deg,
-                    rgba(255, 255, 255, 0.2) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0.15) 100%);
+            /* Rainbow gradient with transparency */
+            background: linear-gradient(90deg,
+                    rgba(255, 0, 0, 0.6),
+                    /* Red */
+                    rgba(255, 154, 0, 0.6),
+                    /* Orange */
+                    rgba(208, 222, 33, 0.6),
+                    /* Yellow */
+                    rgba(79, 220, 74, 0.6),
+                    /* Green */
+                    rgba(63, 218, 216, 0.6),
+                    /* Cyan */
+                    rgba(47, 201, 226, 0.6),
+                    /* Light Blue */
+                    rgba(28, 127, 238, 0.6),
+                    /* Blue */
+                    rgba(95, 21, 242, 0.6),
+                    /* Indigo */
+                    rgba(186, 12, 248, 0.6),
+                    /* Violet */
+                    rgba(251, 7, 217, 0.6),
+                    /* Magenta */
+                    rgba(255, 0, 0, 0.6)
+                    /* Red (loop) */
+                );
+            background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: rainbowFlow 3s linear infinite;
 
-            /* Subtle glow/border effect */
-            text-shadow:
-                0 0 1px rgba(255, 255, 255, 0.4),
-                0 0 2px rgba(255, 255, 255, 0.2);
+            /* Subtle rainbow glow */
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 
             /* Slightly bolder for emphasis */
             font-weight: 600;
@@ -999,14 +1033,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            color: #666;
-            /* Gris opaco */
+            color: #888;
+            /* Gris neutral */
+            filter: grayscale(100%);
         }
 
         .lang-btn:hover {
             background: rgba(255, 255, 255, 0.8);
             transform: scale(1.05);
-            color: #333;
+            color: #555;
+            filter: grayscale(80%);
         }
 
         .lang-btn svg {
@@ -1647,20 +1683,20 @@
                 // Fallback para pruebas en navegador de escritorio
                 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
                 if (isLocalhost) {
-                    return confirm(window.i18n.t('devMode').replace('1 WLD', '5 WLD'));
+                    return confirm(window.i18n.t('devMode').replace('1 WLD', '1.11 WLD'));
                 }
                 alert(window.i18n.t('openInWorld'));
                 return false;
             }
 
-            // 3. Solicitar Pago Real (1 WLD)
+            // 3. Solicitar Pago Real (1.11 WLD)
             const paymentPayload = {
-                reference: "star_" + Date.now(),
+                reference: "star_card_" + Date.now(),
                 to: WALLET_ADDRESS,
                 tokens: [
                     {
                         symbol: "WLD",
-                        token_amount: "1.0", // Cobro de 1 WLD
+                        token_amount: "1.11", // Cobro de 1.11 WLD
                     },
                 ],
                 description: window.i18n.t('paymentDescription'),
@@ -1816,14 +1852,59 @@
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
         }
 
-        /* ==================== LÓGICA IA (REAL) ==================== */
+        /* ==================== BOTÓN IA - SÍNTESIS NUMEROLÓGICA ==================== */
         const aiBtn = document.getElementById('aiBtn');
         const aiResult = document.getElementById('aiResult');
         const aiText = document.getElementById('aiText');
 
+        // Función de pago específica para AI Synthesis (2.22 WLD)
+        async function requestAIPayment() {
+            // 1. Si es modo amigos, pase directo
+            if (IS_FRIENDS_MODE) {
+                console.log('Modo Amigos: Pago IA omitido.');
+                return true;
+            }
+
+            // 2. Si no está en World App, fallback
+            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocalhost) {
+                    return confirm('💎 [DEV MODE] Simular pago de 2.22 WLD para Síntesis IA?');
+                }
+                alert(window.i18n.t('openInWorld'));
+                return false;
+            }
+
+            // 3. Solicitar Pago Real (2.22 WLD)
+            const paymentPayload = {
+                reference: "star_ai_" + Date.now(),
+                to: WALLET_ADDRESS,
+                tokens: [
+                    {
+                        symbol: "WLD",
+                        token_amount: "2.22", // Cobro de 2.22 WLD para IA
+                    },
+                ],
+                description: "⭐ Síntesis Numerológica IA - Star Oracle",
+            };
+
+            try {
+                const response = await window.MiniKit.commands.pay(paymentPayload);
+                if (response && response.finalPayload && response.finalPayload.status === 'success') {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error en el pago IA:", error);
+                alert(window.i18n.t('paymentError'));
+                return false;
+            }
+        }
+
         aiBtn.addEventListener('click', async () => {
-            // 1. Solicitar Pago (5 WLD)
-            const paymentSuccess = await requestPayment();
+            // 1. Solicitar Pago (2.22 WLD)
+            const paymentSuccess = await requestAIPayment();
             if (!paymentSuccess) return;
 
             // 2. Estado de carga "Pensando"

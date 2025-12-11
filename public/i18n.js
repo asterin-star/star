@@ -6,7 +6,7 @@
 const translations = {
     en: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - Tarot Oracle",
         metaDescription: "Tarot Oracle and Numerology of the present.",
         cardAlt: "Tarot Arcanum",
 
@@ -67,7 +67,7 @@ const translations = {
 
     es: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - Oráculo de Tarot",
         metaDescription: "Oráculo de Tarot y Numerología del presente.",
         cardAlt: "Arcano del Tarot",
 
@@ -128,7 +128,7 @@ const translations = {
 
     pt: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - Oráculo de Tarô",
         metaDescription: "Oráculo de Tarô e Numerologia do presente.",
         cardAlt: "Arcano do Tarô",
 
@@ -189,7 +189,7 @@ const translations = {
 
     fr: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - Oracle de Tarot",
         metaDescription: "Oracle de Tarot et Numérologie du présent.",
         cardAlt: "Arcane du Tarot",
 
@@ -250,7 +250,7 @@ const translations = {
 
     de: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - Tarot-Orakel",
         metaDescription: "Tarot-Orakel und Numerologie der Gegenwart.",
         cardAlt: "Tarot-Arkanum",
 
@@ -311,7 +311,7 @@ const translations = {
 
     ja: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - タロットオラクル",
         metaDescription: "現在のタロットオラクルと数秘術。",
         cardAlt: "タロットアルカナ",
 
@@ -372,7 +372,7 @@ const translations = {
 
     ko: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - 타로 오라클",
         metaDescription: "현재의 타로 오라클과 수비학.",
         cardAlt: "타로 아르카나",
 
@@ -433,7 +433,7 @@ const translations = {
 
     zh: {
         // HTML Meta
-        title: "Star ✦",
+        title: "Star ✦ - 塔罗神谕",
         metaDescription: "当下的塔罗牌神谕和数字命理学。",
         cardAlt: "塔罗奥秘",
 

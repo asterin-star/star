@@ -47,7 +47,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 """
 
                 # 3. Llamar a Gemini API (Vertex AI)
-                model = GenerativeModel("gemini-1.5-pro-001")
+                # Using Gemini 2.5 Pro - State-of-the-art thinking model
+                model = GenerativeModel("gemini-2.5-pro")
                 
                 responses = model.generate_content(
                     [prompt],

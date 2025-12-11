@@ -1,16 +1,21 @@
 # 🌍 Integración con World App (Mini App & Pagos)
 
-Hemos configurado **Star ✦** para cobrar **1 WLD** por cada lectura, enviando los fondos directamente a tu billetera.
+Hemos configurado **Star ✦** para cobrar en WLD por cada lectura y la síntesis numerológica, enviando los fondos directamente a tu billetera.
 
 ## 1. Configuración Actual
 - **Wallet de Destino**: `0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6`
-- **Monto**: 1.0 WLD
+- **Precios**:
+  - **Revelación de Carta**: 1.11 WLD
+  - **Síntesis Numerológica IA**: 2.22 WLD
 - **Flujo**:
     1.  Usuario toca la carta.
-    2.  Se solicita el pago en World App.
+    2.  Se solicita el pago de 1.11 WLD en World App.
     3.  Si paga -> Se revela la carta.
     4.  Si cancela -> La carta permanece oculta.
-    5.  Al reiniciar (voltear de nuevo), se requiere un nuevo pago para la siguiente carta.
+    5.  Usuario puede solicitar síntesis IA (botón ✦).
+    6.  Se solicita el pago de 2.22 WLD.
+    7.  Si paga -> Se genera la lectura personalizada.
+    8.  Al reiniciar (voltear de nuevo), se requiere un nuevo pago para la siguiente carta.
 
 ## 2. Modo "Amigos" (Gratis)
 Para crear la versión gratuita para tus amigos, **no necesitas desplegar otra app**. Simplemente comparte el link con un código especial al final.

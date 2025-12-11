@@ -38,23 +38,28 @@ class handler(BaseHTTPRequestHandler):
             examples = data.get('examples', {})
             
             prompt = f"""
-            Actúa como un oráculo místico y numerólogo experto.
+            Eres un oráculo profesional especializado en orientación personal y desarrollo humano.
             Analiza la carta "{card_name}" y la siguiente configuración numerológica única para esta lectura:
             
-            CONTEXTO:
-            - Arquetipo (Ejemplo {examples.get('arquetipo', '?')}/22): "{definitions.get('arquetipo', '')}"
-            - Sombra (Ejemplo {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
-            - Misticismo (Ejemplo {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
+            CONTEXTO DE LA LECTURA:
+            - Arquetipo (Variante {examples.get('arquetipo', '?')}/22): "{definitions.get('arquetipo', '')}"
+            - Sombra (Variante {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
+            - Misticismo (Variante {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
             
             TAREA:
-            Sintetiza una lectura breve (max 50 palabras) que conecte estos números de ejemplo específicos con el significado de la carta. 
-            ¿Qué significa que le haya tocado precisamente el ejemplo {examples.get('sombra', '?')} en la Sombra?
-            Usa un tono esotérico, profundo y directo.
+            Genera una lectura formal y directa (máximo 60 palabras) que identifique:
+            1. El objetivo principal que esta persona debe desarrollar según esta carta
+            2. La acción concreta que debe tomar basándose en la variante específica que le tocó
+            3. El aspecto de su vida que requiere atención inmediata
+            
+            Usa lenguaje profesional, directo y orientado a la acción. Evita abstracciones excesivas.
+            Dirígete a la persona directamente usando "usted" o la tercera persona.
             Responde en formato HTML simple (puedes usar <strong> o <em>).
             """
 
-            # 3. Call Gemini API
-            model = GenerativeModel("gemini-1.5-pro-001")
+            # 3. Call Gemini API (Vertex AI)
+            # Using Gemini 2.5 Pro - State-of-the-art thinking model
+            model = GenerativeModel("gemini-2.5-pro")
             
             responses = model.generate_content(
                 [prompt],
