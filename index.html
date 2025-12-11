@@ -786,8 +786,9 @@
         }
 
         .keyword-highlight {
-            /* Rainbow gradient with transparency */
+            /* Rainbow gradient with transparency - Duplicated for seamless loop */
             background: linear-gradient(90deg,
+                    /* First sequence */
                     rgba(255, 0, 0, 0.6),
                     /* Red */
                     rgba(255, 154, 0, 0.6),
@@ -808,17 +809,36 @@
                     /* Violet */
                     rgba(251, 7, 217, 0.6),
                     /* Magenta */
-                    rgba(255, 0, 0, 0.6)
-                    /* Red (loop) */
+                    /* Second sequence (duplicate for seamless loop) */
+                    rgba(255, 0, 0, 0.6),
+                    /* Red */
+                    rgba(255, 154, 0, 0.6),
+                    /* Orange */
+                    rgba(208, 222, 33, 0.6),
+                    /* Yellow */
+                    rgba(79, 220, 74, 0.6),
+                    /* Green */
+                    rgba(63, 218, 216, 0.6),
+                    /* Cyan */
+                    rgba(47, 201, 226, 0.6),
+                    /* Light Blue */
+                    rgba(28, 127, 238, 0.6),
+                    /* Blue */
+                    rgba(95, 21, 242, 0.6),
+                    /* Indigo */
+                    rgba(186, 12, 248, 0.6),
+                    /* Violet */
+                    rgba(251, 7, 217, 0.6)
+                    /* Magenta */
                 );
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rainbowFlow 4s linear infinite;
+            animation: rainbowFlow 8s linear infinite;
 
             /* Subtle rainbow glow */
-            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            filter: drop_shadow(0 0 2px rgba(255, 255, 255, 0.3));
 
             /* Slightly bolder for emphasis */
             font-weight: 600;
