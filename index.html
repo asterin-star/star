@@ -797,81 +797,21 @@
             }
         }
 
-        /* ==================== KEYWORD HIGHLIGHTING ==================== */
-        @keyframes rainbowFlow {
-            0% {
-                background-position: 0% 50%;
-            }
+        /* ==================== KEYWORD HIGHLIGHTING - Simple Transparency ==================== */
 
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
+        /* Simple transparent highlight - lets background colors show through */
         .keyword-highlight {
-            /* Rainbow gradient with MORE transparency - Duplicated for seamless loop */
-            background: linear-gradient(90deg,
-                    /* First sequence - More transparent (0.35) */
-                    rgba(255, 0, 0, 0.35),
-                    /* Red */
-                    rgba(255, 154, 0, 0.35),
-                    /* Orange */
-                    rgba(208, 222, 33, 0.35),
-                    /* Yellow */
-                    rgba(79, 220, 74, 0.35),
-                    /* Green */
-                    rgba(63, 218, 216, 0.35),
-                    /* Cyan */
-                    rgba(47, 201, 226, 0.35),
-                    /* Light Blue */
-                    rgba(28, 127, 238, 0.35),
-                    /* Blue */
-                    rgba(95, 21, 242, 0.35),
-                    /* Indigo */
-                    rgba(186, 12, 248, 0.35),
-                    /* Violet */
-                    rgba(251, 7, 217, 0.35),
-                    /* Magenta */
-                    /* Second sequence (duplicate for seamless loop) */
-                    rgba(255, 0, 0, 0.35),
-                    /* Red */
-                    rgba(255, 154, 0, 0.35),
-                    /* Orange */
-                    rgba(208, 222, 33, 0.35),
-                    /* Yellow */
-                    rgba(79, 220, 74, 0.35),
-                    /* Green */
-                    rgba(63, 218, 216, 0.35),
-                    /* Cyan */
-                    rgba(47, 201, 226, 0.35),
-                    /* Light Blue */
-                    rgba(28, 127, 238, 0.35),
-                    /* Blue */
-                    rgba(95, 21, 242, 0.35),
-                    /* Indigo */
-                    rgba(186, 12, 248, 0.35),
-                    /* Violet */
-                    rgba(251, 7, 217, 0.35)
-                    /* Magenta */
-                );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbowFlow 8s linear infinite;
-
-            /* Subtle rainbow glow - reduced for more transparency */
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.15));
-
-            /* Slightly bolder for emphasis */
+            /* Simple transparency - background colors show through */
+            color: inherit;
+            opacity: 0.4;
             font-weight: 600;
-
-            /* Smooth transitions */
-            transition: all 0.3s ease;
-
-            /* Prevent text selection issues */
+            transition: opacity 0.3s ease;
             position: relative;
             display: inline;
+        }
+
+        .keyword-highlight:hover {
+            opacity: 0.7;
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
@@ -1310,30 +1250,92 @@
         }
 
         // Highlight keywords in text (pre-render)
-        function highlightKeywords(text, lang = 'es') {
-            if (!text || typeof text !== 'string' || !keywordData || !keywordData[lang]) {
-                return text;
-            }
+        // Psychologically resonant keywords per language
+        const resonantKeywords = {
+            'es': [
+                // Emociones y estados internos
+                'amor', 'miedo', 'dolor', 'alegría', 'tristeza', 'ansiedad', 'paz', 'libertad', 'soledad',
+                // Conceptos de poder y acción
+                'poder', 'fuerza', 'energía', 'voluntad', 'decisión', 'control', 'dominio',
+                // Transformación y cambio
+                'transformación', 'cambio', 'muerte', 'renacimiento', 'despertar', 'iluminación',
+                // Relaciones y conexiones  
+                'conexión', 'unión', 'separación', 'conflicto', 'armonía', 'equilibrio',
+                // Valores y principios
+                'verdad', 'justicia', 'sabiduría', 'fe', 'esperanza', 'destino', 'propósito'
+            ],
+            'en': [
+                'love', 'fear', 'pain', 'joy', 'sadness', 'anxiety', 'peace', 'freedom', 'loneliness',
+                'power', 'strength', 'energy', 'will', 'decision', 'control', 'mastery',
+                'transformation', 'change', 'death', 'rebirth', 'awakening', 'enlightenment',
+                'connection', 'union', 'separation', 'conflict', 'harmony', 'balance',
+                'truth', 'justice', 'wisdom', 'faith', 'hope', 'destiny', 'purpose'
+            ],
+            'pt': [
+                'amor', 'medo', 'dor', 'alegria', 'tristeza', 'ansiedade', 'paz', 'liberdade', 'solidão',
+                'poder', 'força', 'energia', 'vontade', 'decisão', 'controle', 'domínio',
+                'transformação', 'mudança', 'morte', 'renascimento', 'despertar', 'iluminação',
+                'conexão', 'união', 'separação', 'conflito', 'harmonia', 'equilíbrio',
+                'verdade', 'justiça', 'sabedoria', 'fé', 'esperança', 'destino', 'propósito'
+            ],
+            'fr': [
+                'amour', 'peur', 'douleur', 'joie', 'tristesse', 'anxiété', 'paix', 'liberté', 'solitude',
+                'pouvoir', 'force', 'énergie', 'volonté', 'décision', 'contrôle', 'maîtrise',
+                'transformation', 'changement', 'mort', 'renaissance', 'éveil', 'illumination',
+                'connexion', 'union', 'séparation', 'conflit', 'harmonie', 'équilibre',
+                'vérité', 'justice', 'sagesse', 'foi', 'espoir', 'destin', 'but'
+            ],
+            'de': [
+                'liebe', 'angst', 'schmerz', 'freude', 'traurigkeit', 'furcht', 'frieden', 'freiheit', 'einsamkeit',
+                'macht', 'kraft', 'energie', 'wille', 'entscheidung', 'kontrolle', 'herrschaft',
+                'transformation', 'veränderung', 'tod', 'wiedergeburt', 'erwachen', 'erleuchtung',
+                'verbindung', 'vereinigung', 'trennung', 'konflikt', 'harmonie', 'gleichgewicht',
+                'wahrheit', 'gerechtigkeit', 'weisheit', 'glaube', 'hoffnung', 'schicksal', 'zweck'
+            ],
+            'ja': [
+                '愛', '恐れ', '痛み', '喜び', '悲しみ', '不安', '平和', '自由', '孤独',
+                '力', 'エネルギー', '意志', '決断', '支配', '変容', '変化',
+                '死', '再生', '目覚め', '悟り', 'つながり', '調和', 'バランス',
+                '真実', '正義', '知恵', '信仰', '希望', '運命', '目的'
+            ],
+            'ko': [
+                '사랑', '두려움', '고통', '기쁨', '슬픔', '불안', '평화', '자유', '고독',
+                '힘', '에너지', '의지', '결정', '지배', '변화', '죽음',
+                '재생', '각성', '깨달음', '연결', '조화', '균형', '진실',
+                '정의', '지혜', '믿음', '희망', '운명', '목적'
+            ],
+            'zh': [
+                '爱', '恐惧', '痛苦', '喜悦', '悲伤', '焦虑', '和平', '自由', '孤独',
+                '力量', '能量', '意志', '决定', '控制', '转化', '变化',
+                '死亡', '重生', '觉醒', '启迪', '连接', '和谐', '平衡',
+                '真理', '正义', '智慧', '信念', '希望', '命运', '目的'
+            ]
+        };
 
-            // Flatten all keywords for this language
-            const allKeywords = [];
-            for (const category in keywordData[lang]) {
-                allKeywords.push(...keywordData[lang][category]);
-            }
+        function highlightKeywords(text, lang = 'es') {
+            if (!text) return '';
+
+            const keywords = resonantKeywords[lang] || resonantKeywords['es'];
 
             // Sort by length (longest first) to avoid partial matches
-            allKeywords.sort((a, b) => b.length - a.length);
+            keywords.sort((a, b) => b.length - a.length);
 
-            // Create regex pattern with word boundaries
             // Escape special regex characters
-            const escapedKeywords = allKeywords.map(kw =>
+            const escapedKeywords = keywords.map(kw =>
                 kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
             );
 
             const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
 
-            // Replace keywords with highlighted spans
-            return text.replace(pattern, '<span class="keyword-highlight">$1</span>');
+            return text.replace(pattern, (match) => {
+                // Wrap each letter with animation class
+                const letters = match.split('').map((letter, index) => {
+                    if (letter === ' ') return ' ';
+                    return `<span class="letter-animate" style="--letter-index: ${index}">${letter}</span>`;
+                }).join('');
+
+                return `<span class="keyword-highlight">${letters}</span>`;
+            });
         }
 
         // Load keywords on page load
@@ -2055,8 +2057,37 @@
             prepareOracle();
         });
 
+        // Intersection Observer for scroll-triggered letter animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Trigger animation by adding a class
+                        const letters = entry.target.querySelectorAll('letter-animate');
+                        letters.forEach((letter, index) => {
+                            letter.style.animationDelay = `calc(${index} * 0.02s)`;
+                            letter.style.opacity = '1';
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all paragraphs and sections with content
+            const elementsToObserve = document.querySelectorAll('.card-insight p, .ai-result p');
+            elementsToObserve.forEach(el => observer.observe(el));
+        }
+
         // Agregar event listeners para los títulos con ">"
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize scroll animations
+            initScrollAnimations();
+
             // Event listeners para los títulos
             document.getElementById('titleArquetipo').addEventListener('click', () => openModal('arquetipo'));
             document.getElementById('titleMisticismo').addEventListener('click', () => openModal('misticismo'));

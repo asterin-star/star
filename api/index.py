@@ -48,13 +48,17 @@ class handler(BaseHTTPRequestHandler):
             
             TAREA:
             Genera una lectura formal y directa (máximo 60 palabras) que identifique:
-            1. El objetivo principal que esta persona debe desarrollar según esta carta
-            2. La acción concreta que debe tomar basándose en la variante específica que le tocó
-            3. El aspecto de su vida que requiere atención inmediata
+            1. **Objetivo**: El principal que esta persona debe desarrollar
+            2. **Acción**: La acción concreta basada en la variante específica
+            3. **Atención**: El aspecto de vida que requiere atención inmediata
             
-            Usa lenguaje profesional, directo y orientado a la acción. Evita abstracciones excesivas.
-            Dirígete a la persona directamente usando "usted" o la tercera persona.
-            Responde en formato HTML simple (puedes usar <strong> o <em>).
+            Usa lenguaje profesional y directo. Evita abstracciones excesivas.
+            Dirígete a la persona usando "usted" o tercera persona.
+            
+            Formato de salida (texto plano):
+            **Objetivo**: [descripción]
+            **Acción**: [descripción]
+            **Atención**: [descripción]
             """
 
             # 3. Call Gemini API (Vertex AI)
