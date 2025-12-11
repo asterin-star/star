@@ -828,47 +828,53 @@
             }
         }
 
-        /* ==================== KEYWORD HIGHLIGHTING - Simple Transparency ==================== */
+        /* ==================== APPLE MUSIC READING EFFECT ==================== */
 
-        /* Keywords show animated background gradient through background-clip */
+        .reading-unit {
+            opacity: 0.35;
+            filter: blur(1.5px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: inline-block;
+            /* Or block depending on flow */
+        }
+
+        .reading-unit.active {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        /* ==================== KEYWORD HIGHLIGHTING - FIXED TRANSPARENCY ==================== */
+
+        /* Keywords: "Crystal" effect allowing background blobs to show through */
         .keyword-highlight {
-            /* Apply the EXACT same animated gradient as body background */
-            background:
-                radial-gradient(circle at 20% 50%, var(--color1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--color2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, var(--color1) 0%, transparent 50%),
-                linear-gradient(135deg, var(--color1) 0%, var(--color2) 100%);
-            background-size: 100% 100%;
-            background-position: 0% 0%;
-            background-attachment: fixed;
-
-            /* Clip the background to text shape */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-
+            color: rgba(255, 255, 255, 0.95);
+            /* Bright white text */
             font-weight: 700;
             position: relative;
             display: inline-block;
 
-            /* White outline for readability */
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.8);
+            /* The Magic: Overlay blend mode makes it interact with the blobs behind */
+            mix-blend-mode: overlay;
 
-            transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+            /* Text stroke to define edges if it gets too transparent */
+            -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
+
+            transition: all 0.5s ease;
         }
 
-        /* Filled state - brighter with glow */
+        /* Filled/Active state */
         .keyword-highlight.filled {
-            -webkit-text-stroke: 0.8px rgba(255, 255, 255, 1);
-            filter:
-                drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.3)) brightness(1.3);
+            mix-blend-mode: normal;
+            /* Pop out when filled/active */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            -webkit-text-stroke: 0px;
+            color: #ffffff;
         }
 
         .keyword-highlight:hover {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
-            filter:
-                drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)) brightness(1.5);
+            mix-blend-mode: normal;
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1);
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
@@ -1369,16 +1375,41 @@
             ]
         };
 
+        // Wrapper to split text into reading units (sentences)
         function highlightKeywords(text, lang = 'es') {
             if (!text) return '';
 
+            // Split by newlines first to preserve paragraph structure
+            const paragraphs = text.split(/\n+/);
+
+            return paragraphs.map(paragraph => {
+                if (!paragraph.trim()) return '';
+
+                // Split into sentences (Apple Music lyrics style segments)
+                // Split by period, question mark, exclamation, or closing quotes
+                const segments = paragraph.match(/[^.?!]+[.?!]+["']?(\s|$)|[^.?!]+$/g) || [paragraph];
+
+                const processedSegments = segments.map(segment => {
+                    const highlightedText = applyKeywordHighlights(segment, lang);
+                    return `<span class="reading-unit">${highlightedText}</span>`;
+                }).join('');
+
+                return `<p>${processedSegments}</p>`;
+            }).join('');
+        }
+
+        // The actual keyword highlighter (formerly highlightKeywords)
+        function applyKeywordHighlights(text, lang) {
             const keywords = resonantKeywords[lang] || resonantKeywords['es'];
 
             // Sort by length (longest first) to avoid partial matches
-            keywords.sort((a, b) => b.length - a.length);
+            // Optim: clone array to avoid repeated sorting of the global array if already sorted? 
+            // The global array is modified, so strictly we should just allow it or check. 
+            // For safety let's sort a copy or just assume it's okay (it modifies in place).
+            const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
 
             // Escape special regex characters
-            const escapedKeywords = keywords.map(kw =>
+            const escapedKeywords = sortedKeywords.map(kw =>
                 kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
             );
 
@@ -2042,8 +2073,9 @@
                 const data = await response.json();
 
                 if (data.reading) {
-                    // Mostrar Resultado
-                    aiText.innerHTML = data.reading; // El backend ya devuelve HTML o texto formateado
+                    // Mostrar Resultado PROCESADO
+                    // Usamos highlightKeywords para dividir en reading-units y aplicar efectos
+                    aiText.innerHTML = highlightKeywords(data.reading, currentLang);
                     aiResult.style.display = 'block';
 
                     // Scroll hacia el resultado
