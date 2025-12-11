@@ -659,18 +659,38 @@
             }
         }
 
-        /* Apple Music-style letter reveal animation */
+        /* Apple Music-style letter reveal with white fill */
         @keyframes letterReveal {
-            from {
+            0% {
                 opacity: 0;
                 transform: translateY(8px) scale(0.9);
                 filter: blur(3px);
             }
 
-            to {
-                opacity: inherit;
+            50% {
+                opacity: 1;
                 transform: translateY(0) scale(1);
                 filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* White fill animation */
+        @keyframes whiteFill {
+            from {
+                color: rgba(0, 0, 0, 0.3);
+            }
+
+            to {
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow:
+                    0 0 8px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(255, 255, 255, 0.3);
             }
         }
 
@@ -678,12 +698,19 @@
         .letter-animate {
             display: inline-block;
             opacity: 0;
-            animation: letterReveal 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            animation: letterReveal 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
             animation-play-state: paused;
         }
 
         .letter-animate.reveal {
             animation-play-state: running;
+        }
+
+        /* Apply white fill after reveal */
+        .letter-animate.reveal.fill {
+            animation:
+                letterReveal 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards,
+                whiteFill 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) 0.4s forwards;
         }
 
         /* TEXTO DE LECTURA */
@@ -803,19 +830,35 @@
 
         /* ==================== KEYWORD HIGHLIGHTING - Simple Transparency ==================== */
 
-        /* Simple transparent highlight - lets background colors show through */
+        /* Translucent keywords with white outline and fill effect */
         .keyword-highlight {
-            /* Higher transparency - background colors show through more */
-            color: inherit;
-            opacity: 0.25;
+            /* Translucent black with white outline */
+            color: rgba(0, 0, 0, 0.3);
             font-weight: 600;
-            transition: opacity 0.3s ease;
             position: relative;
             display: inline;
+
+            /* White outline (contorno blanco 0.1) */
+            text-shadow:
+                0.5px 0.5px 0 rgba(255, 255, 255, 0.3),
+                -0.5px -0.5px 0 rgba(255, 255, 255, 0.3),
+                0.5px -0.5px 0 rgba(255, 255, 255, 0.3),
+                -0.5px 0.5px 0 rgba(255, 255, 255, 0.3);
+
+            transition: all 0.6s ease;
+        }
+
+        /* White fill effect on reveal (el blanco que llena las letras) */
+        .keyword-highlight.filled {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow:
+                0 0 8px rgba(255, 255, 255, 0.6),
+                0 0 12px rgba(255, 255, 255, 0.3);
         }
 
         .keyword-highlight:hover {
-            opacity: 0.5;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
@@ -2089,8 +2132,12 @@
                     if (entry.isIntersecting) {
                         // Trigger animation by adding reveal class
                         const letters = entry.target.querySelectorAll('.letter-animate');
-                        letters.forEach((letter) => {
+                        letters.forEach((letter, index) => {
                             letter.classList.add('reveal');
+                            // Add fill class with delay for white fill effect
+                            setTimeout(() => {
+                                letter.classList.add('fill');
+                            }, index * 30 + 400); // Stagger the fill effect
                         });
                         observer.unobserve(entry.target);
                     }

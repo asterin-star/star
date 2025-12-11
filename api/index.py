@@ -49,18 +49,18 @@ CONTEXTO:
 - Sombra (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Misticismo (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TAREA (180 palabras):
-1. **Objetivo**: Principal meta a desarrollar según esta carta - explicación detallada
-2. **Acción**: Paso concreto basado en las variantes recibidas - con ejemplos específicos
-3. **Atención**: Aspecto vital que requiere enfoque inmediato - análisis profundo
+TAREA (250 palabras):
+Genera una lectura continua y fluida que integre naturalmente estos tres aspectos:
+1. El objetivo principal de desarrollo personal según esta carta
+2. Acciones concretas basadas en las variantes específicas recibidas
+3. Aspectos vitales que requieren atención inmediata
 
-Lenguaje formal, directo, orientado a la acción. Usa "usted" o tercera persona.
-Sé específico y detallado en cada sección.
+Lenguaje: Formal, directo, orientado a la acción. Usa "usted" o tercera persona.
+Formato: Escribe en PÁRRAFOS CONTINUOS, como una lectura narrativa fluida.
+NO uses listas numeradas ni estructuras rígidas.
+Sé específico, detallado y profundo en tu análisis.
 
-Formato:
-**Objetivo**: [descripción completa y detallada]
-**Acción**: [descripción completa con pasos específicos]
-**Atención**: [análisis profundo del aspecto vital]
+Escribe como si fueras un oráculo sabio narrando una guía personalizada.
 """,
                 'en': f"""
 You are a professional oracle specialized in personal guidance and human development.
@@ -71,12 +71,18 @@ CONTEXT:
 - Shadow (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Mysticism (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TASK (180 words):
-1. **Objective**: Main goal to develop according to this card - detailed explanation
-2. **Action**: Concrete step based on the specific variants received - with specific examples
-3. **Attention**: Vital aspect requiring immediate focus - deep analysis
+TASK (250 words):
+Generate a continuous, flowing reading that naturally integrates these three aspects:
+1. The main goal of personal development according to this card
+2. Concrete actions based on the specific variants received
+3. Vital aspects requiring immediate attention
 
-Use formal, direct, action-oriented language. Be specific and detailed in each section.
+Language: Formal, direct, action-oriented.
+Format: Write in CONTINUOUS PARAGRAPHS, like a fluid narrative reading.
+DO NOT use numbered lists or rigid structures.
+Be specific, detailed, and deep in your analysis.
+
+Write as if you were a wise oracle narrating personalized guidance.
 
 Format:
 **Objective**: [complete description]
@@ -92,17 +98,18 @@ CONTEXTO:
 - Sombra (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Misticismo (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TAREFA (120 palavras):
-1. **Objetivo**: Meta principal a desenvolver segundo esta carta
-2. **Ação**: Passo concreto baseado nas variantes recebidas
-3. **Atenção**: Aspecto vital que requer foco imediato
+TAREFA (250 palavras):
+Gere uma leitura contínua e fluida que integre naturalmente estes três aspectos:
+1. O objetivo principal de desenvolvimento pessoal segundo esta carta
+2. Ações concretas baseadas nas variantes específicas recebidas
+3. Aspectos vitais que requerem atenção imediata
 
-Linguagem formal, direta, orientada à ação. Use "você" ou terceira pessoa.
+Linguagem: Formal, direta, orientada à ação. Use "você" ou terceira pessoa.
+Formato: Escreva em PARÁGRAFOS CONTÍNUOS, como uma leitura narrativa fluida.
+NÃO use listas numeradas nem estruturas rígidas.
+Seja específico, detalhado e profundo em sua análise.
 
-Formato:
-**Objetivo**: [descrição completa]
-**Ação**: [descrição completa]
-**Atenção**: [descrição completa]
+Escreva como se fosse um oráculo sábio narrando uma orientação personalizada.
 """,
                 'fr': f"""
 Vous êtes un oracle professionnel spécialisé dans l'orientation personnelle et le développement humain.
@@ -113,17 +120,18 @@ CONTEXTE:
 - Ombre (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Mysticisme (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TÂCHE (120 mots):
-1. **Objectif**: But principal à développer selon cette carte
-2. **Action**: Étape concrète basée sur les variantes reçues
-3. **Attention**: Aspect vital nécessitant une attention immédiate
+TÂCHE (250 mots):
+Générez une lecture continue et fluide qui intègre naturellement ces trois aspects:
+1. L'objectif principal de développement personnel selon cette carte
+2. Des actions concrètes basées sur les variantes spécifiques reçues
+3. Les aspects vitaux nécessitant une attention immédiate
 
-Langage formel, direct, orienté vers l'action. Utilisez "vous" ou la troisième personne.
+Langue: Formelle, directe, orientée vers l'action. Utilisez "vous" ou la troisième personne.
+Format: Écrivez en PARAGRAPHES CONTINUS, comme une lecture narrative fluide.
+N'utilisez PAS de listes numérotées ni de structures rigides.
+Soyez spécifique, détaillé et profond dans votre analyse.
 
-Format:
-**Objectif**: [description complète]
-**Action**: [description complète]
-**Attention**: [description complète]
+Écrivez comme si vous étiez un oracle sage narrant des conseils personnalisés.
 """,
                 'de': f"""
 Sie sind ein professionelles Orakel, spezialisiert auf persönliche Orientierung und menschliche Entwicklung.
@@ -134,17 +142,18 @@ KONTEXT:
 - Schatten (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Mystik (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-AUFGABE (120 Wörter):
-1. **Ziel**: Hauptziel, das gemäß dieser Karte zu entwickeln ist
-2. **Aktion**: Konkreter Schritt basierend auf den erhaltenen Varianten
-3. **Aufmerksamkeit**: Lebenswichtiger Aspekt, der sofortige Aufmerksamkeit erfordert
+AUFGABE (250 Wörter):
+Erstellen Sie eine kontinuierliche, fließende Lesung, die diese drei Aspekte natürlich integriert:
+1. Das Hauptziel der persönlichen Entwicklung gemäß dieser Karte
+2. Konkrete Aktionen basierend auf den erhaltenen spezifischen Varianten
+3. Lebenswichtige Aspekte, die sofortige Aufmerksamkeit erfordern
 
-Formale, direkte, handlungsorientierte Sprache. Verwenden Sie "Sie" oder die dritte Person.
+Sprache: Formell, direkt, handlungsorientiert. Verwenden Sie "Sie" oder die dritte Person.
+Format: Schreiben Sie in KONTINUIERLICHEN ABSÄTZEN, wie eine fließende narrative Lesung.
+Verwenden Sie KEINE nummerierten Listen oder starre Strukturen.
+Seien Sie spezifisch, detailliert und tiefgründig in Ihrer Analyse.
 
-Format:
-**Ziel**: [vollständige Beschreibung]
-**Aktion**: [vollständige Beschreibung]
-**Aufmerksamkeit**: [vollständige Beschreibung]
+Schreiben Sie, als wären Sie ein weises Orakel, das personalisierte Führung erzählt.
 """,
                 'ja': f"""
 あなたは個人的な指導と人間開発を専門とする プロのオラクルです。
@@ -220,7 +229,7 @@ Format:
             responses = model.generate_content(
                 [prompt],
                 generation_config={
-                    "max_output_tokens": 600,  # Increased for 180 words (~450 tokens in Spanish)
+                    "max_output_tokens": 1000,  # Increased for 250 words (~750 tokens)
                     "temperature": 0.7,
                     "top_p": 0.95,
                 },
