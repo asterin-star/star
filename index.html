@@ -830,35 +830,45 @@
 
         /* ==================== KEYWORD HIGHLIGHTING - Simple Transparency ==================== */
 
-        /* Translucent keywords with white outline and fill effect */
+        /* Keywords show the actual animated background scene gradient */
         .keyword-highlight {
-            /* Translucent black with white outline */
-            color: rgba(0, 0, 0, 0.3);
+            /* Use the SAME gradient as the background scene */
+            background: linear-gradient(135deg, var(--color1, #ffeaa7), var(--color2, #a29bfe));
+            background-size: 200% 200%;
+            background-attachment: fixed;
+            /* Key: makes background stay with viewport */
+
+            /* Clip background to text shape */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+
             font-weight: 600;
             position: relative;
             display: inline;
 
-            /* White outline (contorno blanco 0.1) */
-            text-shadow:
-                0.5px 0.5px 0 rgba(255, 255, 255, 0.3),
-                -0.5px -0.5px 0 rgba(255, 255, 255, 0.3),
-                0.5px -0.5px 0 rgba(255, 255, 255, 0.3),
-                -0.5px 0.5px 0 rgba(255, 255, 255, 0.3);
+            /* White outline for definition against backgrounds */
+            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.6);
 
-            transition: all 0.6s ease;
+            /* Smooth transitions */
+            transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+            /* Subtle glow */
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
         }
 
-        /* White fill effect on reveal (el blanco que llena las letras) */
+        /* White fill effect - brightens and glows */
         .keyword-highlight.filled {
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow:
-                0 0 8px rgba(255, 255, 255, 0.6),
-                0 0 12px rgba(255, 255, 255, 0.3);
+            filter:
+                drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.3)) brightness(1.4);
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.9);
         }
 
         .keyword-highlight:hover {
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            filter:
+                drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)) brightness(1.6);
+            -webkit-text-stroke: 0.6px rgba(255, 255, 255, 1);
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
