@@ -1953,8 +1953,10 @@
             aiBtn.classList.add('thinking');
 
             // 3. Recopilar Contexto
+            const currentLang = window.i18n ? window.i18n.currentLanguage : 'es';
             const contextData = {
                 cardName: currentCardData ? currentCardData.name : "Arcano",
+                language: currentLang, // Enviar idioma detectado
                 definitions: {
                     arquetipo: document.getElementById('textoNegativo').textContent,
                     sombra: document.getElementById('textoSignificado').textContent,
