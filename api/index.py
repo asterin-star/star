@@ -49,17 +49,18 @@ CONTEXTO:
 - Sombra (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Misticismo (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TAREA (120 palabras):
-1. **Objetivo**: Principal meta a desarrollar según esta carta
-2. **Acción**: Paso concreto basado en las variantes recibidas
-3. **Atención**: Aspecto vital que requiere enfoque inmediato
+TAREA (180 palabras):
+1. **Objetivo**: Principal meta a desarrollar según esta carta - explicación detallada
+2. **Acción**: Paso concreto basado en las variantes recibidas - con ejemplos específicos
+3. **Atención**: Aspecto vital que requiere enfoque inmediato - análisis profundo
 
 Lenguaje formal, directo, orientado a la acción. Usa "usted" o tercera persona.
+Sé específico y detallado en cada sección.
 
 Formato:
-**Objetivo**: [descripción completa]
-**Acción**: [descripción completa]
-**Atención**: [descripción completa]
+**Objetivo**: [descripción completa y detallada]
+**Acción**: [descripción completa con pasos específicos]
+**Atención**: [análisis profundo del aspecto vital]
 """,
                 'en': f"""
 You are a professional oracle specialized in personal guidance and human development.
@@ -70,12 +71,12 @@ CONTEXT:
 - Shadow (Var. {examples.get('sombra', '?')}/22): "{definitions.get('sombra', '')}"
 - Mysticism (Var. {examples.get('misticismo', '?')}/22): "{definitions.get('misticismo', '')}"
 
-TASK (120 words):
-1. **Objective**: Main goal to develop according to this card
-2. **Action**: Concrete step based on the specific variants received
-3. **Attention**: Vital aspect requiring immediate focus
+TASK (180 words):
+1. **Objective**: Main goal to develop according to this card - detailed explanation
+2. **Action**: Concrete step based on the specific variants received - with specific examples
+3. **Attention**: Vital aspect requiring immediate focus - deep analysis
 
-Use formal, direct, action-oriented language.
+Use formal, direct, action-oriented language. Be specific and detailed in each section.
 
 Format:
 **Objective**: [complete description]
@@ -219,7 +220,7 @@ Format:
             responses = model.generate_content(
                 [prompt],
                 generation_config={
-                    "max_output_tokens": 256,
+                    "max_output_tokens": 600,  # Increased for 180 words (~450 tokens in Spanish)
                     "temperature": 0.7,
                     "top_p": 0.95,
                 },

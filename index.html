@@ -663,12 +663,12 @@
         @keyframes letterReveal {
             from {
                 opacity: 0;
-                transform: translateY(10px) scale(0.8);
-                filter: blur(4px);
+                transform: translateY(8px) scale(0.9);
+                filter: blur(3px);
             }
 
             to {
-                opacity: 1;
+                opacity: inherit;
                 transform: translateY(0) scale(1);
                 filter: blur(0);
             }
@@ -678,8 +678,12 @@
         .letter-animate {
             display: inline-block;
             opacity: 0;
-            animation: letterReveal 0.4s ease-out forwards;
-            animation-delay: calc(var(--letter-index) * 0.02s);
+            animation: letterReveal 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            animation-play-state: paused;
+        }
+
+        .letter-animate.reveal {
+            animation-play-state: running;
         }
 
         /* TEXTO DE LECTURA */
@@ -801,9 +805,9 @@
 
         /* Simple transparent highlight - lets background colors show through */
         .keyword-highlight {
-            /* Simple transparency - background colors show through */
+            /* Higher transparency - background colors show through more */
             color: inherit;
-            opacity: 0.4;
+            opacity: 0.25;
             font-weight: 600;
             transition: opacity 0.3s ease;
             position: relative;
@@ -811,7 +815,7 @@
         }
 
         .keyword-highlight:hover {
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
@@ -1328,10 +1332,10 @@
             const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
 
             return text.replace(pattern, (match) => {
-                // Wrap each letter with animation class
+                // Wrap each letter with animation class and delay
                 const letters = match.split('').map((letter, index) => {
                     if (letter === ' ') return ' ';
-                    return `<span class="letter-animate" style="--letter-index: ${index}">${letter}</span>`;
+                    return `<span class="letter-animate" style="animation-delay: ${index * 0.03}s">${letter}</span>`;
                 }).join('');
 
                 return `<span class="keyword-highlight">${letters}</span>`;
@@ -1706,9 +1710,16 @@
                 cardStage.setAttribute('aria-label', window.i18n.t('revealCard'));
 
                 // Esperar a que se prepare la nueva carta antes de liberar el proceso
-                await prepareOracle();
-                isProcessing = false;
-            }, 900);
+                // Animation complete
+                setTimeout(() => {
+                    isProcessing = false;
+
+                    // Re-observe elements for letter animations
+                    if (typeof observeElements === 'function') {
+                        observeElements();
+                    }
+                }, 1500);
+            }, 900); // This is the original 900ms timeout for the resetOracle function
         }
 
         /* ==================== LÓGICA DE VERIFICACIÓN Y PAGO ==================== */
@@ -1984,6 +1995,11 @@
 
                     // Scroll hacia el resultado
                     aiResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Re-observe elements for letter animations
+                    if (typeof observeElements === 'function') {
+                        setTimeout(() => observeElements(), 100);
+                    }
                 } else {
                     throw new Error(data.error || 'Error desconocido');
                 }
@@ -2060,6 +2076,8 @@
         });
 
         // Intersection Observer for scroll-triggered letter animations
+        let observeElements; // Global reference to re-observe function
+
         function initScrollAnimations() {
             const observerOptions = {
                 threshold: 0.1,
@@ -2069,20 +2087,31 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Trigger animation by adding a class
+                        // Trigger animation by adding reveal class
                         const letters = entry.target.querySelectorAll('.letter-animate');
-                        letters.forEach((letter, index) => {
-                            letter.style.animationDelay = `calc(${index} * 0.02s)`;
-                            letter.style.opacity = '1';
+                        letters.forEach((letter) => {
+                            letter.classList.add('reveal');
                         });
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Observe all paragraphs and sections with content
-            const elementsToObserve = document.querySelectorAll('.card-insight p, .ai-result p');
-            elementsToObserve.forEach(el => observer.observe(el));
+            // Re observe elements when content changes
+            const observeElements = () => {
+                const elementsToObserve = document.querySelectorAll('.card-insight p, .ai-result p, .card-insight li');
+                elementsToObserve.forEach(el => {
+                    // Reset any letters that were already revealed
+                    const letters = el.querySelectorAll('.letter-animate');
+                    letters.forEach(letter => letter.classList.remove('reveal'));
+                    observer.observe(el);
+                });
+            };
+
+            observeElements();
+
+            // Re-observe when new content is added
+            return observeElements;
         }
 
         // Agregar event listeners para los títulos con ">"
