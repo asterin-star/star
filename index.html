@@ -2132,6 +2132,8 @@
                     if (entry.isIntersecting) {
                         // Trigger animation by adding reveal class
                         const letters = entry.target.querySelectorAll('.letter-animate');
+                        const keywords = entry.target.querySelectorAll('.keyword-highlight');
+
                         letters.forEach((letter, index) => {
                             letter.classList.add('reveal');
                             // Add fill class with delay for white fill effect
@@ -2139,6 +2141,12 @@
                                 letter.classList.add('fill');
                             }, index * 30 + 400); // Stagger the fill effect
                         });
+
+                        // Add filled class to keywords after all letters animated
+                        setTimeout(() => {
+                            keywords.forEach(kw => kw.classList.add('filled'));
+                        }, letters.length * 30 + 800);
+
                         observer.unobserve(entry.target);
                     }
                 });
