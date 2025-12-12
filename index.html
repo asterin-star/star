@@ -847,33 +847,38 @@
 
         /* Keywords: "Crystal" effect allowing background blobs to show through */
         .keyword-highlight {
-            color: rgba(0, 0, 0, 0.95);
-            /* Color oscuro y legible */
-            font-weight: 600;
-            /* Peso moderado */
+            color: rgba(255, 255, 255, 0.5);
+            /* Reducido de 0.7 a 0.5 para menos brillo */
+            font-weight: 700;
             position: relative;
             display: inline-block;
-            mix-blend-mode: normal;
-            /* Sin blend mode para mejor legibilidad */
-            -webkit-text-stroke: 0px;
-            /* Sin stroke */
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 100%);
-            /* Sutil fondo degradado */
-            padding: 0 2px;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+
+            /* Overlay blend mode para interactuar con los blobs */
+            mix-blend-mode: overlay;
+
+            /* Text stroke suave para definir bordes */
+            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+            /* Reducido también */
+
+            transition: all 0.5s ease;
         }
 
         /* Filled/Active state */
         .keyword-highlight.filled {
-            color: rgba(0, 0, 0, 1);
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.25) 100%);
-            text-shadow: none;
+            mix-blend-mode: normal;
+            /* Pop out when filled/active */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            /* Reducido de 0.5 a 0.4 */
+            -webkit-text-stroke: 0px;
+            color: rgba(255, 255, 255, 0.9);
+            /* Ligeramente menos opaco */
         }
 
         .keyword-highlight:hover {
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.35) 100%);
-            transform: none;
+            mix-blend-mode: normal;
+            transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            /* Reducido de 1 a 0.8 */
         }
 
         /* Reducir brillo excesivo en la sección de introducción */
@@ -2038,7 +2043,12 @@
 
             // Aplicar traducciones de títulos INMEDIATAMENTE
             if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                console.log('🌐 Applying translations, current language:', window.i18n.currentLanguage);
                 window.i18n.applyTranslations();
+                // Verificar que se aplicó
+                console.log('✅ Translation applied. Sample title:', document.getElementById('titleArquetipo')?.textContent);
+            } else {
+                console.error('❌ i18n not available or applyTranslations not a function');
             }
 
             // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
