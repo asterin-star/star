@@ -1976,23 +1976,40 @@
                 return highlightKeywords(item, lang);
             };
 
-            // Actualizar introducción (Cotidiano)
+            // Actualizar introducción (Cotidiano) y asegurar que sea visible
+            const introSection = document.getElementById('introSection');
             const introExample = document.getElementById('introExample');
-            if (introExample) {
-                introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : '';
+            if (introExample && datos.cotidiano) {
+                introExample.innerHTML = highlightKeywords(datos.cotidiano, lang);
+                if (introSection) introSection.style.display = 'block';
             }
 
-            // Actualizar secciones
-            // Nota: Usamos los mismos mapeos que en revealDestiny
+            // Actualizar secciones y asegurar que sean visibles si tienen contenido
             textoSignificado.innerHTML = getRandomItem('sombra');
+
             textoAmpliado.innerHTML = getRandomItem('misticismo');
+            if (seccionAmpliado && textoAmpliado.innerHTML) seccionAmpliado.style.display = 'block';
+
             textoNegativo.innerHTML = getRandomItem('arquetipo');
+            if (seccionNegativo && textoNegativo.innerHTML) seccionNegativo.style.display = 'block';
+
             textoBotanica.innerHTML = getRandomItem('botanica');
+            if (seccionBotanica && textoBotanica.innerHTML) seccionBotanica.style.display = 'block';
+
             textoCotidiano.innerHTML = getRandomItem('cotidiano');
+            if (seccionCotidiano && textoCotidiano.innerHTML) seccionCotidiano.style.display = 'block';
+
             textoMistico.innerHTML = getRandomItem('gnosis');
+            if (seccionMistico && textoMistico.innerHTML) seccionMistico.style.display = 'block';
 
             // Actualizar versículo bíblico
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
+            if (seccionBiblico) seccionBiblico.style.display = 'block';
+
+            // Asegurar que los títulos de las secciones se traduzcan
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations();
+            }
 
             // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
             // Cuando cambia el idioma en una carta ya revelada, los nuevos elementos necesitan activarse
