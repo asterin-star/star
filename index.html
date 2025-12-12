@@ -2036,6 +2036,11 @@
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
             if (seccionBiblico) seccionBiblico.style.display = 'block';
 
+            // Aplicar traducciones de títulos INMEDIATAMENTE
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                window.i18n.applyTranslations();
+            }
+
             // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
             // Cuando cambia el idioma en una carta ya revelada, los nuevos elementos necesitan activarse
             setTimeout(() => {
@@ -2061,11 +2066,6 @@
                         }, letters.length * 30 + 800);
                     }
                 });
-
-                // Aplicar traducciones de títulos después de actualizar contenido
-                if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
-                    window.i18n.applyTranslations();
-                }
             }, 50); // Pequeño delay para asegurar que el DOM se actualice
         }
 
