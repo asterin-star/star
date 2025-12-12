@@ -847,8 +847,8 @@
 
         /* Keywords: "Crystal" effect allowing background blobs to show through */
         .keyword-highlight {
-            color: rgba(255, 255, 255, 0.5);
-            /* Reducido de 0.7 a 0.5 para menos brillo */
+            color: rgba(255, 255, 255, 0.7);
+            /* Brillo reducido pero visible */
             font-weight: 700;
             position: relative;
             display: inline-block;
@@ -857,8 +857,7 @@
             mix-blend-mode: overlay;
 
             /* Text stroke suave para definir bordes */
-            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
-            /* Reducido también */
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
 
             transition: all 0.5s ease;
         }
@@ -867,49 +866,20 @@
         .keyword-highlight.filled {
             mix-blend-mode: normal;
             /* Pop out when filled/active */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-            /* Reducido de 0.5 a 0.4 */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            /* REDUCIDO: era 15px 0.5, ahora 10px 0.3 */
             -webkit-text-stroke: 0px;
-            color: rgba(255, 255, 255, 0.9);
-            /* Ligeramente menos opaco */
+            color: #ffffff;
         }
 
         .keyword-highlight:hover {
             mix-blend-mode: normal;
             transform: scale(1.05);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-            /* Reducido de 1 a 0.8 */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            /* REDUCIDO: era 20px 1.0, ahora 15px 0.6 */
         }
 
-        /* Reducir brillo excesivo en la sección de introducción */
-        .intro-section .keyword-highlight {
-            color: rgba(0, 0, 0, 0.85);
-            /* Texto más oscuro y legible */
-            font-weight: 600;
-            /* Menos peso para más sutileza */
-            mix-blend-mode: normal;
-            /* Sin blend mode para mejor legibilidad */
-            -webkit-text-stroke: 0px;
-            /* Sin stroke */
-            text-shadow: none;
-            /* Sin brillo */
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
-            /* Sutil resaltado de fondo */
-            padding: 0 3px;
-            border-radius: 3px;
-        }
 
-        .intro-section .keyword-highlight.filled {
-            color: rgba(0, 0, 0, 0.9);
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
-            text-shadow: none;
-        }
-
-        .intro-section .keyword-highlight:hover {
-            transform: none;
-            /* Sin transformación */
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
-        }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
         .ai-synthesis-container {
