@@ -500,12 +500,14 @@ function getBrowserLanguage() {
     const browserLang = navigator.language || navigator.userLanguage;
     const langCode = browserLang.split('-')[0]; // Get primary language code
 
-    // Check if we support this language
-    if (translations[langCode]) {
+    // Only support languages with complete translations
+    const supportedLanguages = ['es', 'en', 'pt'];
+
+    if (supportedLanguages.includes(langCode)) {
         return langCode;
     }
 
-    // Default to Spanish (current default)
+    // Default to Spanish
     return 'es';
 }
 
