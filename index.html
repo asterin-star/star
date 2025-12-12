@@ -1993,6 +1993,33 @@
 
             // Actualizar versículo bíblico
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
+
+            // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
+            // Cuando cambia el idioma en una carta ya revelada, los nuevos elementos necesitan activarse
+            setTimeout(() => {
+                const readingUnits = document.querySelectorAll('.reading-unit');
+                readingUnits.forEach(unit => {
+                    // Activar inmediatamente (sin blur)
+                    unit.classList.add('active');
+
+                    // Activar animaciones de letras si existen
+                    const letters = unit.querySelectorAll('.letter-animate');
+                    const keywords = unit.querySelectorAll('.keyword-highlight');
+
+                    letters.forEach((letter, index) => {
+                        letter.classList.add('reveal');
+                        setTimeout(() => {
+                            letter.classList.add('fill');
+                        }, index * 30 + 400);
+                    });
+
+                    if (letters.length > 0) {
+                        setTimeout(() => {
+                            keywords.forEach(kw => kw.classList.add('filled'));
+                        }, letters.length * 30 + 800);
+                    }
+                });
+            }, 50); // Pequeño delay para asegurar que el DOM se actualice
         }
 
         /* ==================== BOTÓN IA - SÍNTESIS NUMEROLÓGICA ==================== */
