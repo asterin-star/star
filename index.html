@@ -847,34 +847,33 @@
 
         /* Keywords: "Crystal" effect allowing background blobs to show through */
         .keyword-highlight {
-            color: rgba(255, 255, 255, 0.7);
-            /* Brillo reducido pero visible */
-            font-weight: 700;
+            color: rgba(0, 0, 0, 0.95);
+            /* Color oscuro y legible */
+            font-weight: 600;
+            /* Peso moderado */
             position: relative;
             display: inline-block;
-
-            /* Overlay blend mode para interactuar con los blobs */
-            mix-blend-mode: overlay;
-
-            /* Text stroke suave para definir bordes */
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
-
-            transition: all 0.5s ease;
+            mix-blend-mode: normal;
+            /* Sin blend mode para mejor legibilidad */
+            -webkit-text-stroke: 0px;
+            /* Sin stroke */
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 100%);
+            /* Sutil fondo degradado */
+            padding: 0 2px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
         /* Filled/Active state */
         .keyword-highlight.filled {
-            mix-blend-mode: normal;
-            /* Pop out when filled/active */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            -webkit-text-stroke: 0px;
-            color: #ffffff;
+            color: rgba(0, 0, 0, 1);
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.25) 100%);
+            text-shadow: none;
         }
 
         .keyword-highlight:hover {
-            mix-blend-mode: normal;
-            transform: scale(1.05);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.35) 100%);
+            transform: none;
         }
 
         /* Reducir brillo excesivo en la sección de introducción */
