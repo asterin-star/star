@@ -849,17 +849,19 @@
         .keyword-highlight {
             color: rgba(255, 255, 255, 0.95);
             /* Bright white text */
-            font-weight: 700;
             position: relative;
-            display: inline-block;
-
-            /* The Magic: Overlay blend mode makes it interact with the blobs behind */
-            mix-blend-mode: overlay;
-
-            /* Text stroke to define edges if it gets too transparent */
-            -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
-
-            transition: all 0.5s ease;
+            display: inline;
+            mix-blend-mode: screen;
+            transition: all 0.3s ease;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-image: linear-gradient(135deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            -webkit-text-fill-color: transparent;
+            opacity: 0.5;
+            font-weight: 500;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            /* Añadir outline oscuro para contraste en fondos claros */
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.3);
         }
 
         /* Filled/Active state */
@@ -867,7 +869,7 @@
             mix-blend-mode: normal;
             /* Pop out when filled/active */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            -webkit-text-stroke: 0px;
+            -webkit-text-stroke: 0.7px rgba(0, 0, 0, 0.4);
             color: #ffffff;
         }
 
@@ -875,6 +877,7 @@
             mix-blend-mode: normal;
             transform: scale(1.05);
             text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.5);
         }
 
         /* ==================== ESTILOS BOTÓN IA ==================== */
