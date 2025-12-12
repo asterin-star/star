@@ -877,6 +877,36 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 1);
         }
 
+        /* Reducir brillo excesivo en la sección de introducción */
+        .intro-section .keyword-highlight {
+            color: rgba(0, 0, 0, 0.85);
+            /* Texto más oscuro y legible */
+            font-weight: 600;
+            /* Menos peso para más sutileza */
+            mix-blend-mode: normal;
+            /* Sin blend mode para mejor legibilidad */
+            -webkit-text-stroke: 0px;
+            /* Sin stroke */
+            text-shadow: none;
+            /* Sin brillo */
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+            /* Sutil resaltado de fondo */
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+
+        .intro-section .keyword-highlight.filled {
+            color: rgba(0, 0, 0, 0.9);
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+            text-shadow: none;
+        }
+
+        .intro-section .keyword-highlight:hover {
+            transform: none;
+            /* Sin transformación */
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+        }
+
         /* ==================== ESTILOS BOTÓN IA ==================== */
         .ai-synthesis-container {
             margin-top: 40px;
@@ -2005,11 +2035,6 @@
             // Actualizar versículo bíblico
             textoBiblico.innerHTML = getTemporalBiblicalVerse();
             if (seccionBiblico) seccionBiblico.style.display = 'block';
-
-            // Asegurar que los títulos de las secciones se traduzcan
-            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
-                window.i18n.applyTranslations();
-            }
 
             // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
             // Cuando cambia el idioma en una carta ya revelada, los nuevos elementos necesitan activarse
