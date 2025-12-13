@@ -1954,6 +1954,11 @@
             // Actualizar textos de la interfaz
             window.i18n.applyTranslations();
 
+            // Actualizar títulos de secciones
+            if (typeof updateSectionTitles === 'function') {
+                updateSectionTitles();
+            }
+
             // CRÍTICO: Recargar la MISMA carta (por ID) en el nuevo idioma
             // No generar una carta aleatoria nueva
             if (currentCardData && currentCardData.id !== undefined) {
@@ -2015,6 +2020,12 @@
             if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
                 console.log('🌐 Applying translations, current language:', window.i18n.currentLanguage);
                 window.i18n.applyTranslations();
+
+                // Actualizar títulos de secciones
+                if (typeof updateSectionTitles === 'function') {
+                    updateSectionTitles();
+                }
+
                 // Verificar que se aplicó
                 console.log('✅ Translation applied. Sample title:', document.getElementById('titleArquetipo')?.textContent);
             } else {
