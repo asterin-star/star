@@ -501,7 +501,7 @@ function getBrowserLanguage() {
     const langCode = browserLang.split('-')[0]; // Get primary language code
 
     // Only support languages with complete translations
-    const supportedLanguages = ['es', 'en', 'pt'];
+    const supportedLanguages = ['es', 'en', 'pt', 'fr', 'de', 'ja', 'ko', 'zh'];
 
     if (supportedLanguages.includes(langCode)) {
         return langCode;
@@ -597,7 +597,13 @@ let currentLanguage = getBrowserLanguage();
 if (typeof window !== 'undefined') {
     window.i18n = {
         t,
-        currentLanguage,
+        // Use getter/setter to sync with internal currentLanguage variable
+        get currentLanguage() {
+            return currentLanguage;
+        },
+        set currentLanguage(lang) {
+            currentLanguage = lang;
+        },
         applyTranslations,
         getBrowserLanguage
     };
