@@ -1134,37 +1134,37 @@
             </div>
 
             <div class="section" id="seccionSignificado">
-                <div class="section-title" id="titleArquetipo">✧ Sombras y Peligros</div>
+                <div class="section-title" id="titleArquetipo"></div>
                 <p class="section-content" id="textoSignificado"></p>
             </div>
 
             <div class="section" id="seccionAmpliado" style="display:none;">
-                <div class="section-title" id="titleMisticismo">✦ Misticismo</div>
+                <div class="section-title" id="titleMisticismo"></div>
                 <p class="section-content" id="textoAmpliado"></p>
             </div>
 
             <div class="section" id="seccionNegativo" style="display:none;">
-                <div class="section-title" id="titleSombra">✧ Sombra</div>
+                <div class="section-title" id="titleSombra"></div>
                 <p class="section-content" id="textoNegativo"></p>
             </div>
 
             <div class="section" id="seccionBotanica" style="display:none;">
-                <div class="section-title" id="titleBotanica">✦ Botanica</div>
+                <div class="section-title" id="titleBotanica"></div>
                 <p class="section-content" id="textoBotanica"></p>
             </div>
 
             <div class="section" id="seccionCotidiano" style="display:none;">
-                <div class="section-title" id="titleCotidiano">✧ Cotidiano</div>
+                <div class="section-title" id="titleCotidiano"></div>
                 <p class="section-content" id="textoCotidiano"></p>
             </div>
 
             <div class="section" id="seccionMistico" style="display:none;">
-                <div class="section-title" id="titleGnosis">✦ Gnosis</div>
+                <div class="section-title" id="titleGnosis"></div>
                 <p class="section-content" id="textoMistico"></p>
             </div>
 
             <div class="section" id="seccionBiblico" style="display:none;">
-                <div class="section-title" id="titleResonanciaBiblica">✧ Resonancia Biblica</div>
+                <div class="section-title" id="titleResonanciaBiblica"></div>
                 <div class="section-content">
                     <div class="biblical-verse" id="textoBiblico"></div>
                 </div>
@@ -2216,6 +2216,9 @@
 
                 // Aplicar traducciones a la interfaz
                 window.i18n.applyTranslations();
+
+                // Actualizar títulos de secciones
+                updateSectionTitles();
             }
 
             prepareOracle();
@@ -2278,8 +2281,24 @@
             return observeElements;
         }
 
+        // Función para actualizar títulos de secciones con i18n
+        function updateSectionTitles() {
+            if (window.i18n) {
+                document.getElementById('titleArquetipo').textContent = window.i18n.t('shadowsTitle');
+                document.getElementById('titleMisticismo').textContent = window.i18n.t('mysticismTitle');
+                document.getElementById('titleSombra').textContent = window.i18n.t('shadowTitle');
+                document.getElementById('titleBotanica').textContent = window.i18n.t('botanicTitle');
+                document.getElementById('titleCotidiano').textContent = window.i18n.t('dailyTitle');
+                document.getElementById('titleGnosis').textContent = window.i18n.t('gnosisTitle');
+                document.getElementById('titleResonanciaBiblica').textContent = window.i18n.t('biblicalTitle');
+            }
+        }
+
         // Agregar event listeners para los títulos con ">"
         document.addEventListener('DOMContentLoaded', () => {
+            // Actualizar títulos de secciones con traducciones
+            updateSectionTitles();
+
             // Initialize scroll animations
             initScrollAnimations();
 
