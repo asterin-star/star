@@ -75,7 +75,7 @@
             }
         });
 
-        function testConnection() {
+        async function testConnection() {
             const statusLabel = document.getElementById("status");
             
             // Verificación mejorada con tolerancia para el simulador
@@ -95,10 +95,13 @@
                 log("⚠️ MiniKit existe pero commands está ausente (inyección parcial del simulador)");
                 log("Intentando reinstalar...");
                 
-                // Intentar reinstalar
+                // Intentar reinstalar (await for proper completion)
                 try {
-                    MiniKit.install();
-                    log("Reinstalación ejecutada. Verifica si commands apareció.");
+                    await MiniKit.install();
+                    log("Reinstalación ejecutada. Verificando si commands apareció...");
+                    
+                    // Pequeño delay para asegurar que la instalación se complete
+                    await new Promise(resolve => setTimeout(resolve, 100));
                     
                     // Verificar de nuevo
                     if (MiniKit.commands) {
