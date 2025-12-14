@@ -6,7 +6,7 @@ This document summarizes the improvements made to the MiniKit SDK integration to
 
 ## Changes Implemented
 
-### 1. Updated SDK Source (Official v2 CDN)
+### 1. Updated SDK Source (unpkg CDN)
 
 **Before:**
 ```html
@@ -15,10 +15,10 @@ This document summarizes the improvements made to the MiniKit SDK integration to
 
 **After:**
 ```html
-<script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+<script src="https://unpkg.com/@worldcoin/minikit-js@latest"></script>
 ```
 
-**Reason:** Using the official Worldcoin CDN endpoint ensures we're using the recommended v2 SDK version and reduces potential CDN reliability issues.
+**Reason:** Using unpkg with @latest ensures reliable CDN access and gets the most recent stable version with bug fixes.
 
 ### 2. Defensive Installation with Ready Check
 

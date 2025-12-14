@@ -73,8 +73,9 @@ Cuando alguien entra con `?mode=friends`, el sistema omite el cobro automáticam
 ## 6. Cambios Técnicos Implementados (v2.8)
 
 ### 6.1 SDK Actualizado
-- Cambio de `unpkg.com/@worldcoin/minikit-js@stable` a `https://mini-app-sdk.worldcoin.org/minikit.js` (CDN oficial v2)
+- Cambio a `https://unpkg.com/@worldcoin/minikit-js@latest` (verified working CDN)
 - Instalación defensiva con `async/await` y manejo de errores
+- Retry logic con múltiples intentos (hasta 10 intentos con 100ms de intervalo)
 
 ### 6.2 Instalación Mejorada
 ```javascript

@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star ✦</title>
     <meta name="description" content="Oráculo de Tarot y Numerología del presente.">
-    <!-- World App MiniKit (Official v2 CDN) -->
-    <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+    <!-- World App MiniKit (unpkg CDN - verified working) -->
+    <script src="https://unpkg.com/@worldcoin/minikit-js@latest"></script>
     <!-- MiniKit Defensive Installation -->
     <script>
         // Wait for SDK to be available before initializing
         (function() {
             async function initMiniKit() {
                 if (!window.MiniKit) {
-                    console.warn('MiniKit no presente en window');
+                    console.warn('MiniKit no presente en window - SDK may not have loaded');
                     return;
                 }
                 try {
@@ -29,10 +29,18 @@
             if (window.MiniKit) {
                 initMiniKit();
             } else {
-                // Fallback: wait a bit and try again
-                setTimeout(() => {
+                // Fallback: wait for SDK to load, try multiple times
+                let attempts = 0;
+                const maxAttempts = 10;
+                const checkInterval = setInterval(() => {
+                    attempts++;
                     if (window.MiniKit) {
+                        clearInterval(checkInterval);
                         initMiniKit();
+                        console.log(`MiniKit detected after ${attempts} attempts`);
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        console.error('MiniKit SDK failed to load after multiple attempts');
                     }
                 }, 100);
             }

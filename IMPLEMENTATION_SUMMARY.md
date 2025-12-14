@@ -53,7 +53,7 @@ The original problem statement (in Spanish) requested the following improvements
 
 ## Technical Implementation Details
 
-### 1. SDK Loading (Official v2 CDN)
+### 1. SDK Loading (unpkg CDN with Retry Logic)
 
 **Before:**
 ```html
@@ -62,19 +62,19 @@ The original problem statement (in Spanish) requested the following improvements
 
 **After:**
 ```html
-<script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+<script src="https://unpkg.com/@worldcoin/minikit-js@latest"></script>
 ```
 
-**Benefit:** Using the official Worldcoin CDN ensures reliability and correct v2 version.
+**Benefit:** Using unpkg with @latest ensures reliable CDN access and gets the most recent stable version.
 
-### 2. Defensive Installation
+### 2. Defensive Installation with Retry Logic
 
 **Implementation:**
 ```javascript
 (function() {
     async function initMiniKit() {
         if (!window.MiniKit) {
-            console.warn('MiniKit no presente en window');
+            console.warn('MiniKit no presente en window - SDK may not have loaded');
             return;
         }
         try {
@@ -89,17 +89,25 @@ The original problem statement (in Spanish) requested the following improvements
     if (window.MiniKit) {
         initMiniKit();
     } else {
-        // Fallback: wait a bit and try again
-        setTimeout(() => {
+        // Fallback: wait for SDK to load, try multiple times
+        let attempts = 0;
+        const maxAttempts = 10;
+        const checkInterval = setInterval(() => {
+            attempts++;
             if (window.MiniKit) {
+                clearInterval(checkInterval);
                 initMiniKit();
+                console.log(`MiniKit detected after ${attempts} attempts`);
+            } else if (attempts >= maxAttempts) {
+                clearInterval(checkInterval);
+                console.error('MiniKit SDK failed to load after multiple attempts');
             }
         }, 100);
     }
 })();
 ```
 
-**Benefit:** IIFE with fallback mechanism ensures SDK is available before installation attempt.
+**Benefit:** IIFE with retry mechanism (up to 10 attempts) ensures SDK is available even if loading is delayed.
 
 ### 3. Commands Validation Helper
 

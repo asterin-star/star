@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antigravity Test - Worldcoin MiniKit</title>
-    <!-- 1. Inyección del SDK desde CDN oficial v2 -->
-    <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+    <!-- 1. SDK desde unpkg (verified working CDN) -->
+    <script src="https://unpkg.com/@worldcoin/minikit-js@latest"></script>
     <!-- 2. Instalación defensiva y espera del ready -->
     <script>
         // Wait for SDK to be available before initializing
         (function() {
             async function initMiniKit() {
                 if (!window.MiniKit) {
-                    console.warn('MiniKit no presente en window');
+                    console.warn('MiniKit no presente en window - SDK may not have loaded');
                     return;
                 }
                 try {
@@ -27,10 +27,18 @@
             if (window.MiniKit) {
                 initMiniKit();
             } else {
-                // Fallback: wait a bit and try again
-                setTimeout(() => {
+                // Fallback: wait for SDK to load, try multiple times
+                let attempts = 0;
+                const maxAttempts = 10;
+                const checkInterval = setInterval(() => {
+                    attempts++;
                     if (window.MiniKit) {
+                        clearInterval(checkInterval);
                         initMiniKit();
+                        console.log(`MiniKit detected after ${attempts} attempts`);
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        console.error('MiniKit SDK failed to load after multiple attempts');
                     }
                 }, 100);
             }
