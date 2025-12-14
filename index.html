@@ -1991,8 +1991,8 @@
 
         /* ==================== CAMBIAR IDIOMA ==================== */
         function toggleLanguage() {
-            // Solo idiomas con traducciones completas
-            const langs = ['es', 'en', 'pt'];
+            // Todos los idiomas con traducciones completas
+            const langs = ['es', 'en', 'pt', 'fr', 'de', 'ja', 'ko', 'zh'];
             const current = window.i18n.currentLanguage;
             let nextIndex = langs.indexOf(current) + 1;
             if (nextIndex >= langs.length) nextIndex = 0;
