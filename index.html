@@ -1226,6 +1226,32 @@
         const urlParams = new URLSearchParams(window.location.search);
         const IS_FRIENDS_MODE = urlParams.get('mode') === 'friends';
 
+        /* ==================== HELPER: ENSURE MINIKIT COMMANDS ==================== */
+        async function ensureMiniKitCommands() {
+            if (!window.MiniKit) {
+                console.warn('⚠️ MiniKit no presente en window');
+                return false;
+            }
+
+            // Revalidar y reinstalar si falta commands
+            if (!window.MiniKit.commands) {
+                console.log('🔄 Commands missing. Forcing install()...');
+                try {
+                    await window.MiniKit.install();
+                } catch (e) {
+                    console.error('Reinstall failed', e);
+                }
+            }
+
+            // Verificar que commands esté disponible
+            if (!window.MiniKit.commands) {
+                console.error('❌ MiniKit commands no disponibles después de install');
+                return false;
+            }
+
+            return true;
+        }
+
         /* =====================================================
            LÓGICA DEL ORÁCULO
         ===================================================== */
@@ -1846,24 +1872,14 @@
                 return false;
             }
 
-            // 3. Revalidar y reinstalar si falta commands
-            if (!window.MiniKit.commands) {
-                console.log('🔄 Commands missing. Forcing install()...');
-                try {
-                    await window.MiniKit.install();
-                } catch (e) {
-                    console.error('Reinstall failed', e);
-                }
-            }
-
-            // 4. Verificar que commands esté disponible
-            if (!window.MiniKit.commands) {
-                console.error('❌ MiniKit commands no disponibles después de install');
+            // 3. Verificar que commands esté disponible (con reinstalación si es necesario)
+            const commandsReady = await ensureMiniKitCommands();
+            if (!commandsReady) {
                 alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
                 return false;
             }
 
-            // 5. Solicitar Pago Real (1.11 WLD)
+            // 4. Solicitar Pago Real (1.11 WLD)
             const paymentPayload = {
                 reference: "star_card_" + Date.now(),
                 to: WALLET_ADDRESS,
@@ -2121,24 +2137,14 @@
                 return false;
             }
 
-            // 3. Revalidar y reinstalar si falta commands
-            if (!window.MiniKit.commands) {
-                console.log('🔄 Commands missing. Forcing install()...');
-                try {
-                    await window.MiniKit.install();
-                } catch (e) {
-                    console.error('Reinstall failed', e);
-                }
-            }
-
-            // 4. Verificar que commands esté disponible
-            if (!window.MiniKit.commands) {
-                console.error('❌ MiniKit commands no disponibles después de install');
+            // 3. Verificar que commands esté disponible (con reinstalación si es necesario)
+            const commandsReady = await ensureMiniKitCommands();
+            if (!commandsReady) {
                 alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
                 return false;
             }
 
-            // 5. Solicitar Pago Real (2.22 WLD)
+            // 4. Solicitar Pago Real (2.22 WLD)
             const paymentPayload = {
                 reference: "star_ai_" + Date.now(),
                 to: WALLET_ADDRESS,
