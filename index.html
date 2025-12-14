@@ -7,8 +7,8 @@
     <title>Star ✦</title>
     <meta name="description" content="Oráculo de Tarot y Numerología del presente.">
     <!-- World App MiniKit -->
-    <!-- World App MiniKit (Updated to Stable v2 via Antigravity Protocol) -->
-    <script src="https://unpkg.com/@worldcoin/minikit-js@stable/dist/index.js"></script>
+    <!-- World App MiniKit (Reverted to compatible version) -->
+    <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
     <!-- i18n Translation Module -->
     <script src="./public/i18n.js"></script>
     <style>
@@ -1881,8 +1881,9 @@
                 }
             } catch (error) {
                 console.error('Payment failed', error);
-                // DEBUG: Mostrar error real para diagnóstico
-                alert("Error Técnico: " + (error.message || JSON.stringify(error)));
+                // DEBUG PROFUNDO: ¿Qué tiene MiniKit adentro?
+                const minikitDump = window.MiniKit ? Object.keys(window.MiniKit).join(', ') : 'MiniKit is NULL';
+                alert(`Error: ${error.message}\n\nMiniKit Keys: ${minikitDump}`);
                 return false;
             }
         }
