@@ -8,19 +8,33 @@
     <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
     <!-- 2. Instalación defensiva y espera del ready -->
     <script>
-        async function initMiniKit() {
-            if (!window.MiniKit) {
-                console.warn('MiniKit no presente en window');
-                return;
+        // Wait for SDK to be available before initializing
+        (function() {
+            async function initMiniKit() {
+                if (!window.MiniKit) {
+                    console.warn('MiniKit no presente en window');
+                    return;
+                }
+                try {
+                    const res = await window.MiniKit.install();
+                    console.log('MiniKit install ok', res);
+                } catch (e) {
+                    console.error('MiniKit install failed', e);
+                }
             }
-            try {
-                const res = await window.MiniKit.install();
-                console.log('MiniKit install ok', res);
-            } catch (e) {
-                console.error('MiniKit install failed', e);
+            
+            // Try immediately (SDK is loaded synchronously)
+            if (window.MiniKit) {
+                initMiniKit();
+            } else {
+                // Fallback: wait a bit and try again
+                setTimeout(() => {
+                    if (window.MiniKit) {
+                        initMiniKit();
+                    }
+                }, 100);
             }
-        }
-        initMiniKit();
+        })();
     </script>
 </head>
 <body style="background-color: #000; color: #fff; font-family: monospace; text-align: center; padding-top: 50px;">
