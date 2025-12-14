@@ -1235,12 +1235,25 @@
     <script>
         /* ==================== CONFIGURACIÓN WORLD APP ==================== */
         const WALLET_ADDRESS = '0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6';
+        const APP_VERSION = '2.8'; // MiniKit integration version
 
         // Detectar modo "Amigos" (Gratis) vía URL: ?mode=friends
         const urlParams = new URLSearchParams(window.location.search);
         const IS_FRIENDS_MODE = urlParams.get('mode') === 'friends';
 
         /* ==================== HELPER: ENSURE MINIKIT COMMANDS ==================== */
+        /**
+         * Ensures MiniKit commands are available for payment operations.
+         * Attempts to reinstall MiniKit if commands are missing.
+         * 
+         * @returns {Promise<boolean>} True if commands are available, false otherwise
+         * @example
+         * const ready = await ensureMiniKitCommands();
+         * if (!ready) {
+         *     alert('MiniKit not available');
+         *     return;
+         * }
+         */
         async function ensureMiniKitCommands() {
             if (!window.MiniKit) {
                 console.warn('⚠️ MiniKit no presente en window');
@@ -1927,7 +1940,7 @@
                     debugInfo = "Propiedades encontradas: " + keys.join(', ');
                 }
 
-                alert(`Error: ${error.message}\n\n${debugInfo}\n\nVersion 2.8 Debug`);
+                alert(`Error: ${error.message}\n\n${debugInfo}\n\nVersion ${APP_VERSION} Debug`);
                 return false;
             }
         }
