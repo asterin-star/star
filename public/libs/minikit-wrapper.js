@@ -12,25 +12,44 @@
 (function () {
     'use strict';
 
-    // Si MiniKit ya existe (inyectado por World App), no hacer nada
-    if (window.MiniKit && window.MiniKit.commands) {
-        console.log('✅ MiniKit real detectado (inyectado por World App)');
-        return;
+    // ESTRATEGIA DE DETECCIÓN AGRESIVA
+    // Esperar un momento para que World App inyecte su MiniKit
+    const checkForNativeMiniKit = () => {
+        // Si MiniKit ya existe con commands (inyectado por World App), usarlo
+        if (window.MiniKit && window.MiniKit.commands && typeof window.MiniKit.commands.pay === 'function') {
+            console.log('✅ MiniKit NATIVO detectado (World App)');
+            return true;
+        }
+        return false;
+    };
+
+    // Verificar inmediatamente
+    if (checkForNativeMiniKit()) {
+        return; // Usar el nativo
     }
 
-    console.log('⚠️ MiniKit no detectado. Inicializando wrapper local...');
+    console.log('⚠️ MiniKit nativo no detectado aún. Instalando wrapper...');
 
-    // Crear objeto MiniKit simulado
+    // Determinar si estamos en localhost (desarrollo) o producción
+    const isLocalhost = window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1';
+
+    // Crear objeto MiniKit wrapper
     const MiniKitWrapper = {
         isInstalled() {
-            // En el simulador, esto debería ser true si estamos dentro de World App
-            // Por ahora, asumimos que sí si este código se ejecuta
+            // Verificar de nuevo si el nativo apareció
+            if (checkForNativeMiniKit()) {
+                return window.MiniKit.isInstalled();
+            }
             return typeof window !== 'undefined';
         },
 
         install() {
             console.log('📦 MiniKit.install() llamado');
-            // En el wrapper, no hay nada que instalar
+            // Si el nativo existe, llamar su install
+            if (window.MiniKit && window.MiniKit !== MiniKitWrapper && typeof window.MiniKit.install === 'function') {
+                return window.MiniKit.install();
+            }
             return true;
         },
 
@@ -38,18 +57,31 @@
             async pay(payload) {
                 console.log('💳 MiniKit.commands.pay() llamado con:', payload);
 
-                // SIMULACIÓN: En un entorno real, esto abriría el modal de World App
-                // Aquí, mostramos un confirm para simular la aprobación del usuario
+                // CRÍTICO: Verificar si el MiniKit nativo apareció
+                if (window.MiniKit &&
+                    window.MiniKit !== MiniKitWrapper &&
+                    window.MiniKit.commands &&
+                    typeof window.MiniKit.commands.pay === 'function') {
+                    console.log('🔄 Delegando a MiniKit nativo...');
+                    return await window.MiniKit.commands.pay(payload);
+                }
+
+                // Si NO estamos en localhost, lanzar error (producción sin SDK)
+                if (!isLocalhost) {
+                    throw new Error('MiniKit no disponible. Por favor, abre esta app desde World App.');
+                }
+
+                // SOLO EN LOCALHOST: Simulación para desarrollo
+                console.warn('🧪 Modo Simulación (Solo Desarrollo)');
                 const userApproved = confirm(
-                    `🌍 Simulación de Pago Worldcoin\n\n` +
+                    `🧪 SIMULACIÓN DE PAGO (Solo Desarrollo)\n\n` +
                     `Monto: ${payload.tokens[0].token_amount} ${payload.tokens[0].symbol}\n` +
                     `Destinatario: ${payload.to}\n` +
                     `Descripción: ${payload.description}\n\n` +
-                    `¿Aprobar pago?`
+                    `¿Aprobar pago simulado?`
                 );
 
                 if (userApproved) {
-                    // Simular respuesta exitosa
                     return {
                         finalPayload: {
                             status: 'success',
@@ -58,19 +90,34 @@
                         }
                     };
                 } else {
-                    // Simular rechazo
                     throw new Error('User rejected payment');
                 }
             },
 
             async walletAuth(payload) {
                 console.log('🔐 MiniKit.commands.walletAuth() llamado');
-                throw new Error('walletAuth no implementado en wrapper');
+
+                // Intentar delegar al nativo
+                if (window.MiniKit &&
+                    window.MiniKit !== MiniKitWrapper &&
+                    window.MiniKit.commands &&
+                    typeof window.MiniKit.commands.walletAuth === 'function') {
+                    return await window.MiniKit.commands.walletAuth(payload);
+                }
+
+                throw new Error('walletAuth no disponible');
             }
         }
     };
 
     // Exponer en window
     window.MiniKit = MiniKitWrapper;
-    console.log('✅ MiniKit wrapper instalado');
+    console.log('✅ MiniKit wrapper instalado (detectará nativo si aparece)');
+
+    // Verificar de nuevo después de 500ms por si el nativo se inyecta tarde
+    setTimeout(() => {
+        if (checkForNativeMiniKit() && window.MiniKit === MiniKitWrapper) {
+            console.log('🔄 MiniKit nativo detectado tardíamente. Considerar recargar.');
+        }
+    }, 500);
 })();
