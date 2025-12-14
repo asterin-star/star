@@ -1874,8 +1874,9 @@
                     return false;
                 }
             } catch (error) {
-                console.error("Error en el pago:", error);
-                alert(window.i18n.t('paymentError'));
+                console.error('Payment failed', error);
+                // DEBUG: Mostrar error real para diagnóstico
+                alert("Error Técnico: " + (error.message || JSON.stringify(error)));
                 return false;
             }
         }
