@@ -1863,6 +1863,12 @@
             };
 
             try {
+                // FORCE INSTALL IF COMMANDS MISSING (Critical Fix)
+                if (!window.MiniKit.commands) {
+                    console.log('🔄 Commands missing. Forcing install()...');
+                    window.MiniKit.install();
+                }
+
                 // Llamada al comando de pago de MiniKit
                 const response = await window.MiniKit.commands.pay(paymentPayload);
 
