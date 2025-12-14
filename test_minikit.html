@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antigravity Test - Worldcoin MiniKit</title>
-    <!-- 1. Inyección del SDK -->
-    <script src="https://unpkg.com/@worldcoin/minikit-js@stable/dist/index.js"></script>
+    <!-- 1. Inyección del SDK desde CDN oficial v2 -->
+    <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+    <!-- 2. Instalación defensiva y espera del ready -->
+    <script>
+        async function initMiniKit() {
+            if (!window.MiniKit) {
+                console.warn('MiniKit no presente en window');
+                return;
+            }
+            try {
+                const res = await window.MiniKit.install();
+                console.log('MiniKit install ok', res);
+            } catch (e) {
+                console.error('MiniKit install failed', e);
+            }
+        }
+        initMiniKit();
+    </script>
 </head>
 <body style="background-color: #000; color: #fff; font-family: monospace; text-align: center; padding-top: 50px;">
 
@@ -25,47 +41,90 @@
             console.log(msg);
         }
 
-        // 2. Inicializar (Handshake)
-        try {
-            // Check if MiniKit object exists
+        // Log inicial del estado de MiniKit
+        window.addEventListener('load', () => {
+            log('=== VERIFICACIÓN DE INYECCIÓN DEL SDK ===');
+            log(`typeof MiniKit: ${typeof MiniKit}`);
+            
             if (typeof MiniKit !== 'undefined') {
-                MiniKit.install();
-                log("✅ MiniKit.installBy() ejecutado");
+                log(`MiniKit existe en window: ✅`);
+                
+                // Verificar isInstalled()
+                try {
+                    const installed = MiniKit.isInstalled();
+                    log(`MiniKit.isInstalled(): ${installed}`);
+                } catch (e) {
+                    log(`Error al llamar isInstalled(): ${e.message}`);
+                }
+                
+                // Mostrar propiedades disponibles
+                const keys = Object.keys(MiniKit);
+                log(`Object.keys(MiniKit): [${keys.join(', ')}]`);
+                
+                // Verificar commands específicamente
+                if (MiniKit.commands) {
+                    log(`MiniKit.commands existe: ✅`);
+                    const commandKeys = Object.keys(MiniKit.commands);
+                    log(`Object.keys(MiniKit.commands): [${commandKeys.join(', ')}]`);
+                } else {
+                    log(`MiniKit.commands NO existe: ❌ (problema de inyección parcial del simulador)`);
+                }
             } else {
-                log("⚠️ Objeto MiniKit no encontrado en window (¿Script cargado?)");
+                log(`MiniKit NO existe en window: ❌`);
+                log('El script no se cargó o no estamos en un entorno compatible');
             }
-        } catch (e) {
-            log(`❌ Error al instalar MiniKit: ${e.message}`);
-        }
+        });
 
         function testConnection() {
             const statusLabel = document.getElementById("status");
             
-            // 3. Chequear si está instalado
-            if (typeof MiniKit !== 'undefined' && MiniKit.isInstalled()) {
-                statusLabel.innerText = "✅ CONEXIÓN EXITOSA: MiniKit Activo";
-                statusLabel.style.color = "#0f0";
-                
-                log("✅ MiniKit.isInstalled() retornó true");
-                log("🔍 MiniKit Object disponible");
-                
-                // 4. Intenta leer wallet (si hay permisos) o mostrar info básica
-                try {
-                    // No podemos leer wallet sin comando async, pero confirmamos que el objeto responde
-                    log("App ID verificado (si aplica)");
-                } catch (e) {
-                    log("Error en lectura: " + e.message);
-                }
-            } else {
-                statusLabel.innerText = "❌ ERROR: No detectado (¿Estás en el Simulador?)";
+            // Verificación mejorada con tolerancia para el simulador
+            if (typeof MiniKit === 'undefined') {
+                statusLabel.innerText = "❌ ERROR CRÍTICO: MiniKit no cargó";
                 statusLabel.style.color = "#f00";
-                log("❌ MiniKit.isInstalled() retornó false o MiniKit undefined");
+                log("❌ CRÍTICO: El script de MiniKit no cargó.");
+                return;
+            }
+            
+            log("✅ MiniKit Object disponible");
+            
+            // Verificar commands antes de proceder
+            if (!MiniKit.commands) {
+                statusLabel.innerText = "⚠️ ADVERTENCIA: MiniKit cargó pero commands falta";
+                statusLabel.style.color = "#ff0";
+                log("⚠️ MiniKit existe pero commands está ausente (inyección parcial del simulador)");
+                log("Intentando reinstalar...");
                 
-                if (typeof MiniKit === 'undefined') {
-                    log("🔥 CRÍTICO: El script de MiniKit no cargó.");
-                } else {
-                    log("ℹ️ El script cargó, pero isInstalled() es false. Probablemente navegador normal fuera de World App.");
+                // Intentar reinstalar
+                try {
+                    MiniKit.install();
+                    log("Reinstalación ejecutada. Verifica si commands apareció.");
+                    
+                    // Verificar de nuevo
+                    if (MiniKit.commands) {
+                        log("✅ Commands ahora disponible después de reinstalar");
+                        statusLabel.innerText = "✅ CONEXIÓN EXITOSA: MiniKit Activo (tras reinstalar)";
+                        statusLabel.style.color = "#0f0";
+                    } else {
+                        log("❌ Commands sigue ausente después de reinstalar");
+                    }
+                } catch (e) {
+                    log(`Error al reinstalar: ${e.message}`);
                 }
+                return;
+            }
+            
+            // Si llegamos aquí, MiniKit y commands están disponibles
+            statusLabel.innerText = "✅ CONEXIÓN EXITOSA: MiniKit y Commands Activos";
+            statusLabel.style.color = "#0f0";
+            log("✅ MiniKit completamente funcional");
+            
+            // Información adicional
+            try {
+                const installed = MiniKit.isInstalled();
+                log(`isInstalled() retorna: ${installed}`);
+            } catch (e) {
+                log(`Error verificando isInstalled(): ${e.message}`);
             }
         }
     </script>

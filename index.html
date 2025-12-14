@@ -6,9 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star ✦</title>
     <meta name="description" content="Oráculo de Tarot y Numerología del presente.">
-    <!-- World App MiniKit -->
-    <!-- World App MiniKit (Stable v2) -->
-    <script src="https://unpkg.com/@worldcoin/minikit-js@stable/dist/index.js"></script>
+    <!-- World App MiniKit (Official v2 CDN) -->
+    <script src="https://mini-app-sdk.worldcoin.org/minikit.js"></script>
+    <!-- MiniKit Defensive Installation -->
+    <script>
+        async function initMiniKit() {
+            if (!window.MiniKit) {
+                console.warn('MiniKit no presente en window');
+                return;
+            }
+            try {
+                const res = await window.MiniKit.install();
+                console.log('MiniKit install ok', res);
+            } catch (e) {
+                console.error('MiniKit install failed', e);
+            }
+        }
+        initMiniKit();
+    </script>
     <!-- i18n Translation Module -->
     <script src="./public/i18n.js"></script>
     <style>
@@ -1211,15 +1226,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const IS_FRIENDS_MODE = urlParams.get('mode') === 'friends';
 
-        // Inicializar MiniKit
-        try {
-            if (window.MiniKit) {
-                window.MiniKit.install();
-            }
-        } catch (e) {
-            console.log('MiniKit not initialized (running outside World App?)');
-        }
-
         /* =====================================================
            LÓGICA DEL ORÁCULO
         ===================================================== */
@@ -1826,30 +1832,38 @@
                 return true;
             }
 
-            // 2. Si no está en World App (y no es modo amigos), mostrar advertencia o simulación local
-            // 2. Verificación de entorno (Relaxed for Simulator)
-            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
-                console.log('⚠️ MiniKit not detected via isInstalled(). Attempting lazy install...');
-                // Intento de último de recurso
-                try {
-                    if (window.MiniKit) window.MiniKit.install();
-                } catch (e) { console.error(e); }
-
+            // 2. Verificación de entorno con tolerancia para el simulador
+            if (!window.MiniKit) {
+                console.warn('⚠️ MiniKit no presente en window');
+                
                 // Fallback solo para localhost real
                 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
                 if (isLocalhost) {
                     return confirm(window.i18n.t('devMode').replace('1 WLD', '1.11 WLD'));
                 }
 
-                // EN LUGAR DE BLOQUEAR, LOGUEAMOS Y CONTINUAMOS
-                // Muchas veces el simulador tarda en inyectar el objeto, pero el comando funciona.
-                console.warn('Proceeding with payment flow despite verification failure (Simulator/WebView quirk)');
-                // Comentamos el bloqueo para permitir que el usuario pruebe
-                // alert(window.i18n.t('openInWorld'));
-                // return false; 
+                alert(window.i18n.t('openInWorld'));
+                return false;
             }
 
-            // 3. Solicitar Pago Real (1.11 WLD)
+            // 3. Revalidar y reinstalar si falta commands
+            if (!window.MiniKit.commands) {
+                console.log('🔄 Commands missing. Forcing install()...');
+                try {
+                    await window.MiniKit.install();
+                } catch (e) {
+                    console.error('Reinstall failed', e);
+                }
+            }
+
+            // 4. Verificar que commands esté disponible
+            if (!window.MiniKit.commands) {
+                console.error('❌ MiniKit commands no disponibles después de install');
+                alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
+                return false;
+            }
+
+            // 5. Solicitar Pago Real (1.11 WLD)
             const paymentPayload = {
                 reference: "star_card_" + Date.now(),
                 to: WALLET_ADDRESS,
@@ -1863,12 +1877,6 @@
             };
 
             try {
-                // FORCE INSTALL IF COMMANDS MISSING (Critical Fix)
-                if (!window.MiniKit.commands) {
-                    console.log('🔄 Commands missing. Forcing install()...');
-                    window.MiniKit.install();
-                }
-
                 // Llamada al comando de pago de MiniKit
                 const response = await window.MiniKit.commands.pay(paymentPayload);
 
@@ -1882,14 +1890,14 @@
             } catch (error) {
                 console.error('Payment failed', error);
 
-                // DIAGNÓSTICO FINAL: Escáner de API
+                // DIAGNÓSTICO: Escáner de API
                 let debugInfo = "MiniKit está NULL";
                 if (window.MiniKit) {
                     const keys = Object.getOwnPropertyNames(window.MiniKit);
                     debugInfo = "Propiedades encontradas: " + keys.join(', ');
                 }
 
-                alert(`Error: ${error.message}\n\n${debugInfo}\n\nVersion 2.7 Debug`);
+                alert(`Error: ${error.message}\n\n${debugInfo}\n\nVersion 2.8 Debug`);
                 return false;
             }
         }
@@ -2100,17 +2108,37 @@
                 return true;
             }
 
-            // 2. Si no está en World App, fallback
-            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
+            // 2. Verificación de entorno con tolerancia para el simulador
+            if (!window.MiniKit) {
+                console.warn('⚠️ MiniKit no presente en window');
+                
                 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
                 if (isLocalhost) {
                     return confirm('💎 [DEV MODE] Simular pago de 2.22 WLD para Síntesis IA?');
                 }
+                
                 alert(window.i18n.t('openInWorld'));
                 return false;
             }
 
-            // 3. Solicitar Pago Real (2.22 WLD)
+            // 3. Revalidar y reinstalar si falta commands
+            if (!window.MiniKit.commands) {
+                console.log('🔄 Commands missing. Forcing install()...');
+                try {
+                    await window.MiniKit.install();
+                } catch (e) {
+                    console.error('Reinstall failed', e);
+                }
+            }
+
+            // 4. Verificar que commands esté disponible
+            if (!window.MiniKit.commands) {
+                console.error('❌ MiniKit commands no disponibles después de install');
+                alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
+                return false;
+            }
+
+            // 5. Solicitar Pago Real (2.22 WLD)
             const paymentPayload = {
                 reference: "star_ai_" + Date.now(),
                 to: WALLET_ADDRESS,
