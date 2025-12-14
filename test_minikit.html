@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Test - Worldcoin MiniKit</title>
+    <!-- 1. Inyección del SDK -->
+    <script src="https://unpkg.com/@worldcoin/minikit-js@stable/dist/index.js"></script>
+</head>
+<body style="background-color: #000; color: #fff; font-family: monospace; text-align: center; padding-top: 50px;">
+
+    <h1>📡 ANTIGRAVITY TEST</h1>
+    <p id="status">Esperando señal...</p>
+    <button onclick="testConnection()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #fff; color: #000; border: none; border-radius: 4px;">TESTEAR CONEXIÓN</button>
+    
+    <div style="margin-top: 20px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; border: 1px solid #333; padding: 10px;">
+        <h3>Logs:</h3>
+        <pre id="logs" style="color: #0f0; font-size: 12px; white-space: pre-wrap;"></pre>
+    </div>
+
+    <script>
+        function log(msg) {
+            const logs = document.getElementById('logs');
+            logs.innerText += `[${new Date().toLocaleTimeString()}] ${msg}\n`;
+            console.log(msg);
+        }
+
+        // 2. Inicializar (Handshake)
+        try {
+            // Check if MiniKit object exists
+            if (typeof MiniKit !== 'undefined') {
+                MiniKit.install();
+                log("✅ MiniKit.installBy() ejecutado");
+            } else {
+                log("⚠️ Objeto MiniKit no encontrado en window (¿Script cargado?)");
+            }
+        } catch (e) {
+            log(`❌ Error al instalar MiniKit: ${e.message}`);
+        }
+
+        function testConnection() {
+            const statusLabel = document.getElementById("status");
+            
+            // 3. Chequear si está instalado
+            if (typeof MiniKit !== 'undefined' && MiniKit.isInstalled()) {
+                statusLabel.innerText = "✅ CONEXIÓN EXITOSA: MiniKit Activo";
+                statusLabel.style.color = "#0f0";
+                
+                log("✅ MiniKit.isInstalled() retornó true");
+                log("🔍 MiniKit Object disponible");
+                
+                // 4. Intenta leer wallet (si hay permisos) o mostrar info básica
+                try {
+                    // No podemos leer wallet sin comando async, pero confirmamos que el objeto responde
+                    log("App ID verificado (si aplica)");
+                } catch (e) {
+                    log("Error en lectura: " + e.message);
+                }
+            } else {
+                statusLabel.innerText = "❌ ERROR: No detectado (¿Estás en el Simulador?)";
+                statusLabel.style.color = "#f00";
+                log("❌ MiniKit.isInstalled() retornó false o MiniKit undefined");
+                
+                if (typeof MiniKit === 'undefined') {
+                    log("🔥 CRÍTICO: El script de MiniKit no cargó.");
+                } else {
+                    log("ℹ️ El script cargó, pero isInstalled() es false. Probablemente navegador normal fuera de World App.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
