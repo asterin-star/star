@@ -1875,7 +1875,7 @@
             // 3. Verificar que commands esté disponible (con reinstalación si es necesario)
             const commandsReady = await ensureMiniKitCommands();
             if (!commandsReady) {
-                alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
+                alert(window.i18n ? window.i18n.t('openInWorld') : 'Please open this app from World App.');
                 return false;
             }
 
@@ -2140,7 +2140,7 @@
             // 3. Verificar que commands esté disponible (con reinstalación si es necesario)
             const commandsReady = await ensureMiniKitCommands();
             if (!commandsReady) {
-                alert('MiniKit commands no disponibles. Por favor, abre esta app desde World App.');
+                alert(window.i18n ? window.i18n.t('openInWorld') : 'Please open this app from World App.');
                 return false;
             }
 
