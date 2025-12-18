@@ -132,8 +132,12 @@ rollback_installation() {
 }
 
 # Version comparison function
+# Usage: version_ge <current_version> <minimum_version>
+# Returns: 0 if current >= minimum, 1 otherwise
 version_ge() {
-    printf '%s\n%s' "$2" "$1" | sort -V -C
+    local current="$1"
+    local minimum="$2"
+    printf '%s\n%s' "$minimum" "$current" | sort -V -C
 }
 
 # Get version of a command
@@ -176,13 +180,8 @@ validate_project_name() {
 check_disk_space() {
     local required_mb=500
     if command_exists df; then
-        # Get available space in MB
-        local available_mb
-        if [ "$OS" = "macOS" ]; then
-            available_mb=$(df -m . | tail -1 | awk '{print $4}')
-        else
-            available_mb=$(df -m . | tail -1 | awk '{print $4}')
-        fi
+        # Get available space in MB (works on Linux, macOS, and Git Bash)
+        local available_mb=$(df -m . | tail -1 | awk '{print $4}')
         
         if [ "$available_mb" -lt "$required_mb" ]; then
             print_message "$RED" "✗ Insufficient disk space. Required: ${required_mb}MB, Available: ${available_mb}MB"
