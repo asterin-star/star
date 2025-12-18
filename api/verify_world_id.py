@@ -2,6 +2,16 @@ from http.server import BaseHTTPRequestHandler
 import json
 import urllib.request
 import urllib.error
+import os
+
+# Configuration - Use environment variable for API URL
+WORLDCOIN_API_URL = os.environ.get(
+    'WORLDCOIN_VERIFY_URL', 
+    'https://developer.worldcoin.org/api/v1/verify'
+)
+
+# API Key (if required) - should be set in environment
+WORLDCOIN_API_KEY = os.environ.get('WORLDCOIN_API_KEY', '')
 
 class handler(BaseHTTPRequestHandler):
     """
@@ -47,8 +57,6 @@ class handler(BaseHTTPRequestHandler):
                 return
             
             # Call Worldcoin verification API
-            verify_url = 'https://developer.worldcoin.org/api/v1/verify'
-            
             verify_payload = {
                 'proof': proof,
                 'merkle_root': merkle_root,
@@ -57,13 +65,18 @@ class handler(BaseHTTPRequestHandler):
                 'signal': signal
             }
             
+            # Prepare headers with authentication if API key is available
+            headers = {
+                'Content-Type': 'application/json',
+            }
+            if WORLDCOIN_API_KEY:
+                headers['Authorization'] = f'Bearer {WORLDCOIN_API_KEY}'
+            
             # Make request to Worldcoin API
             req = urllib.request.Request(
-                verify_url,
+                WORLDCOIN_API_URL,
                 data=json.dumps(verify_payload).encode('utf-8'),
-                headers={
-                    'Content-Type': 'application/json',
-                }
+                headers=headers
             )
             
             try:
@@ -93,8 +106,9 @@ class handler(BaseHTTPRequestHandler):
                         }).encode('utf-8'))
                         
             except urllib.error.HTTPError as e:
-                error_body = e.read().decode('utf-8')
-                print(f"Worldcoin API error: {e.code} - {error_body}")
+                # Sanitize error logging - don't expose full response body
+                error_code = e.code
+                print(f"Worldcoin API error: HTTP {error_code}")
                 
                 self.send_response(400)
                 self._set_cors_headers()
@@ -103,7 +117,7 @@ class handler(BaseHTTPRequestHandler):
                 self.wfile.write(json.dumps({
                     'success': False,
                     'verified': False,
-                    'error': f'Worldcoin API error: {e.code}'
+                    'error': f'Worldcoin API error: HTTP {error_code}'
                 }).encode('utf-8'))
                 
         except Exception as e:

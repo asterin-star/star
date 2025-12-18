@@ -1521,16 +1521,26 @@
                 // Con fallback a español para traducciones incompletas
                 const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
 
+                // Helper: Fetch with timeout to prevent hanging requests
+                const fetchWithTimeout = (url, timeout = 5000) => {
+                    return Promise.race([
+                        fetch(url),
+                        new Promise((_, reject) => 
+                            setTimeout(() => reject(new Error('Fetch timeout')), timeout)
+                        )
+                    ]);
+                };
+
                 // Parallel fetch with Promise.all for better performance
                 const fetchPromises = fileRanges.map(async (range) => {
                     try {
-                        // Intentar cargar archivo traducido
-                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+                        // Intentar cargar archivo traducido con timeout
+                        let response = await fetchWithTimeout(`./public/data/${range}${suffix}.json`);
 
                         // Si no existe, usar español como fallback
                         if (!response.ok && lang !== 'es') {
                             console.log(`⚠️ Traducción no disponible para ${range} en ${lang}, usando español`);
-                            response = await fetch(`./public/data/${range}.json`);
+                            response = await fetchWithTimeout(`./public/data/${range}.json`);
                         }
 
                         if (response.ok) {
@@ -1929,15 +1939,25 @@
 
                 console.log(`🔄 Recargando carta ID ${cardId} en idioma ${lang}`);
 
-                // OPTIMIZATION: Cargar archivos en paralelo
+                // OPTIMIZATION: Cargar archivos en paralelo con timeout
                 const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
+
+                // Helper: Fetch with timeout (reuse from prepareOracle)
+                const fetchWithTimeout = (url, timeout = 5000) => {
+                    return Promise.race([
+                        fetch(url),
+                        new Promise((_, reject) => 
+                            setTimeout(() => reject(new Error('Fetch timeout')), timeout)
+                        )
+                    ]);
+                };
 
                 const fetchPromises = fileRanges.map(async (range) => {
                     try {
-                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+                        let response = await fetchWithTimeout(`./public/data/${range}${suffix}.json`);
 
                         if (!response.ok && lang !== 'es') {
-                            response = await fetch(`./public/data/${range}.json`);
+                            response = await fetchWithTimeout(`./public/data/${range}.json`);
                         }
 
                         if (response.ok) {
