@@ -58,9 +58,10 @@
                 console.log('💳 MiniKit.commands.pay() llamado con:', payload);
 
                 // CRÍTICO: Verificar si el MiniKit nativo apareció
+                // Detectar si window.MiniKit fue sobrescrito O si commands fue sobrescrito
                 if (window.MiniKit &&
-                    window.MiniKit !== MiniKitWrapper &&
-                    window.MiniKit.commands &&
+                    (window.MiniKit !== MiniKitWrapper ||
+                        (window.MiniKit.commands && window.MiniKit.commands !== MiniKitWrapper.commands)) &&
                     typeof window.MiniKit.commands.pay === 'function') {
                     console.log('🔄 Delegando a MiniKit nativo...');
                     return await window.MiniKit.commands.pay(payload);
