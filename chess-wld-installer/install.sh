@@ -18,7 +18,6 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
@@ -85,16 +84,17 @@ print_step() {
     local message=$3
     local start_time=$4
     
-    printf "${CYAN}[$step/$total]${NC} $message"
+    printf "%s[%s/%s]%s %s" "$CYAN" "$step" "$total" "$NC" "$message"
     log "[$step/$total] $message"
 }
 
 # Complete step with timing
 complete_step() {
     local start_time=$1
-    local end_time=$(date +%s)
+    local end_time
+    end_time=$(date +%s)
     local duration=$((end_time - start_time))
-    printf " ${GREEN}✓ Done${NC} ${CYAN}(${duration}s)${NC}\n"
+    printf " %s✓ Done%s %s(%ss)%s\n" "$GREEN" "$NC" "$CYAN" "$duration" "$NC"
     log "Step completed in ${duration}s"
     STEPS_COMPLETED=$((STEPS_COMPLETED + 1))
 }
@@ -181,7 +181,8 @@ check_disk_space() {
     local required_mb=500
     if command_exists df; then
         # Get available space in MB (works on Linux, macOS, and Git Bash)
-        local available_mb=$(df -m . | tail -1 | awk '{print $4}')
+        local available_mb
+        available_mb=$(df -m . | tail -1 | awk '{print $4}')
         
         if [ "$available_mb" -lt "$required_mb" ]; then
             print_message "$RED" "✗ Insufficient disk space. Required: ${required_mb}MB, Available: ${available_mb}MB"
@@ -308,7 +309,8 @@ interactive_setup() {
 
 # Check prerequisites
 check_prerequisites() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_header "♟️  Chess WLD Project Installer v2.0"
     
     print_message "$CYAN" "System Information:"
@@ -327,7 +329,8 @@ check_prerequisites() {
         exit 1
     fi
     
-    local node_version=$(get_version node)
+    local node_version
+    node_version=$(get_version node)
     if version_ge "$node_version" "$MIN_NODE_VERSION"; then
         print_message "$GREEN" "✓ Node.js v${node_version} detected"
         log "Node.js version: $node_version"
@@ -345,13 +348,15 @@ check_prerequisites() {
         exit 1
     fi
     
-    local npm_version=$(get_version npm)
+    local npm_version
+    npm_version=$(get_version npm)
     print_message "$GREEN" "✓ npm v${npm_version} detected"
     log "npm version: $npm_version"
     
     # Check git (optional)
     if command_exists git; then
-        local git_version=$(get_version git)
+        local git_version
+        git_version=$(get_version git)
         print_message "$GREEN" "✓ Git v${git_version} detected"
         log "Git version: $git_version"
     else
@@ -368,7 +373,7 @@ check_prerequisites() {
         exit 1
     fi
     
-    complete_step $step_start
+    complete_step "$step_start"
 }
 
 # Validate configuration
@@ -409,7 +414,8 @@ validate_configuration() {
 
 # Create project structure
 create_structure() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "1" "$TOTAL_STEPS" "Creating project structure...        "
     
     mkdir -p ${PROJECT_NAME}/{src/{components,contracts,utils,styles,pages,pages/api},public,scripts,test}
@@ -420,7 +426,8 @@ create_structure() {
 
 # Create package.json
 create_package_json() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "2" "$TOTAL_STEPS" "Generating configuration files...    "
     
     cat > ${PROJECT_NAME}/package.json << EOF
@@ -473,7 +480,8 @@ EOF
 
 # Create smart contract
 create_smart_contract() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "3" "$TOTAL_STEPS" "Creating smart contracts...          "
     
     cat > ${PROJECT_NAME}/src/contracts/ChessRewards.sol << 'EOF'
@@ -635,7 +643,8 @@ EOF
 
 # Create React components
 create_components() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "4" "$TOTAL_STEPS" "Creating React components...         "
     
     # ChessBoard.js
@@ -866,7 +875,8 @@ EOF
 
 # Create main App component
 create_app() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "5" "$TOTAL_STEPS" "Setting up application pages...      "
     
     cat > ${PROJECT_NAME}/src/pages/_app.js << 'EOF'
@@ -996,7 +1006,8 @@ EOF
 
 # Create utility files
 create_utils() {
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "6" "$TOTAL_STEPS" "Creating utilities and styles...     "
     
     log "Creating utility files"
@@ -1737,7 +1748,8 @@ init_git() {
         return 0
     fi
     
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "7" "$TOTAL_STEPS" "Initializing Git repository...       "
     
     cd ${PROJECT_NAME}
@@ -1760,7 +1772,8 @@ install_dependencies() {
         return 0
     fi
     
-    local step_start=$(date +%s)
+    local step_start
+    step_start=$(date +%s)
     print_step "8" "$TOTAL_STEPS" "Running post-install checks...       "
     
     cd ${PROJECT_NAME}
