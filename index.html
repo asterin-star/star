@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star ✦</title>
-    <meta name="description" content="Oráculo de Tarot y Numerología del presente.">
+    <title>Star ✦ Oracle</title>
+    <meta name="description" content="Tarot Oracle and Numerology Tool - Personal guidance through the wisdom of the Major Arcana.">
     <!-- World App MiniKit -->
     <!-- World App MiniKit Wrapper (Local Fallback) -->
     <script src="./public/libs/minikit-wrapper.js"></script>
@@ -1510,20 +1510,19 @@
             return `${text}<span class="verse-reference">— ${ref}</span>`;
         }
 
-        /* ==================== PREPARACIÓN INICIAL ==================== */
+        /* ==================== PREPARACIÓN INICIAL (OPTIMIZED) ==================== */
         async function prepareOracle() {
             try {
                 // Determinar idioma actual
                 const lang = window.i18n ? window.i18n.currentLanguage : 'es';
                 const suffix = lang === 'es' ? '' : `_${lang}`;
 
-                // Cargar TODOS los 4 archivos JSON (22 Arcanos Mayores completos)
+                // OPTIMIZATION: Cargar TODOS los archivos en paralelo en lugar de secuencialmente
                 // Con fallback a español para traducciones incompletas
                 const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
 
-                const allCards = [];
-
-                for (const range of fileRanges) {
+                // Parallel fetch with Promise.all for better performance
+                const fetchPromises = fileRanges.map(async (range) => {
                     try {
                         // Intentar cargar archivo traducido
                         let response = await fetch(`./public/data/${range}${suffix}.json`);
@@ -1535,13 +1534,18 @@
                         }
 
                         if (response.ok) {
-                            const data = await response.json();
-                            allCards.push(...data);
+                            return await response.json();
                         }
+                        return [];
                     } catch (error) {
                         console.error(`Error cargando ${range}:`, error);
+                        return [];
                     }
-                }
+                });
+
+                // Wait for all fetches to complete in parallel
+                const allDataArrays = await Promise.all(fetchPromises);
+                const allCards = allDataArrays.flat();
 
                 // EXTRAER TODOS LOS CONCEPTOS POR CATEGORÍA (22 conceptos cada uno)
                 allArquetipos = allCards.map(card => card.contenido.arquetipo);
@@ -1581,7 +1585,7 @@
                 const cardSlug = currentCardData.name_short;
                 const imageUrl = `./public/cards/${cardSlug}.jpg`;
 
-                // Precarga de imagen
+                // Precarga de imagen (async, no bloquea)
                 const img = new Image();
                 img.onload = () => {
                     cardImg.src = imageUrl;
@@ -1916,7 +1920,7 @@
             }
         }
 
-        /* ==================== RECARGAR CARTA POR ID (PRESERVAR SELECCIÓN) ==================== */
+        /* ==================== RECARGAR CARTA POR ID (PRESERVAR SELECCIÓN - OPTIMIZED) ==================== */
         async function reloadCardById(cardId) {
             try {
                 // Determinar idioma actual
@@ -1925,12 +1929,10 @@
 
                 console.log(`🔄 Recargando carta ID ${cardId} en idioma ${lang}`);
 
-                // Cargar TODOS los 4 archivos JSON (igual que prepareOracle)
+                // OPTIMIZATION: Cargar archivos en paralelo
                 const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
 
-                const allCards = [];
-
-                for (const range of fileRanges) {
+                const fetchPromises = fileRanges.map(async (range) => {
                     try {
                         let response = await fetch(`./public/data/${range}${suffix}.json`);
 
@@ -1939,13 +1941,17 @@
                         }
 
                         if (response.ok) {
-                            const data = await response.json();
-                            allCards.push(...data);
+                            return await response.json();
                         }
+                        return [];
                     } catch (error) {
                         console.error(`Error cargando ${range}:`, error);
+                        return [];
                     }
-                }
+                });
+
+                const allDataArrays = await Promise.all(fetchPromises);
+                const allCards = allDataArrays.flat();
 
                 // BUSCAR LA CARTA ESPECÍFICA POR ID (no aleatoria)
                 const selectedCard = allCards.find(card => card.id === cardId);

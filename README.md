@@ -1,14 +1,14 @@
-# Star ✦ - Oráculo de Tarot & Numerología
+# Star ✦ - Tarot Oracle & Numerology Tool
 
-Una experiencia mística digital que fusiona el Tarot tradicional con la numerología del tiempo presente y la inteligencia artificial.
+A mystical digital experience that fuses traditional Tarot with present-time numerology and artificial intelligence guidance.
 
-## ✨ Características
+## ✨ Features
 
-- **Diseño "Microcosmos/Macrocosmos"**: El botón de IA refleja dinámicamente los colores del fondo (el universo).
-- **Oráculo Holístico**: La IA sintetiza la Sombra, la Botánica, la Gnosis y la Resonancia Bíblica para ofrecer una solución única.
-- **Numerología del Ahora**: Calcula una vibración única basada en la hora exacta de la consulta.
-- **22 Cartas del Arca Mayor**: Con interpretaciones profundas y multifacéticas.
-- **Diseño Glassmorphism**: Estética etérea y moderna.
+- **"Microcosm/Macrocosm" Design**: The AI button dynamically reflects the background colors (the universe).
+- **Holistic Oracle**: The AI synthesizes Shadow, Botanic, Gnosis and Biblical Resonance concepts to offer unique insights.
+- **Present-Time Numerology**: Calculates unique vibrational patterns based on the exact time of consultation.
+- **22 Major Arcana Cards**: With deep and multifaceted interpretations.
+- **Glassmorphism Design**: Ethereal and modern aesthetic.
 
 ## 🚀 Despliegue
 
