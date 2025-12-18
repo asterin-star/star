@@ -1,0 +1,43 @@
+{
+    "npcs": {
+        "villager1": {
+            "name": "Aldeano",
+            "dialogues": [
+                {
+                    "id": "greeting",
+                    "text": "¡Hola, viajero! Bienvenido a nuestro pueblo. ¿Es tu primera vez aquí?",
+                    "choices": [
+                        {
+                            "text": "Sí, es mi primera vez",
+                            "next": "first_time"
+                        },
+                        {
+                            "text": "No, solo estoy de paso",
+                            "next": "just_passing"
+                        }
+                    ]
+                },
+                {
+                    "id": "first_time",
+                    "text": "¡Qué emocionante! Este es un lugar especial. Dicen que en el bosque del norte hay criaturas mágicas.",
+                    "choices": []
+                },
+                {
+                    "id": "just_passing",
+                    "text": "Entiendo. Ten cuidado ahí afuera. Las cosas han estado... extrañas últimamente.",
+                    "choices": []
+                }
+            ]
+        },
+        "mysterious_figure": {
+            "name": "???",
+            "dialogues": [
+                {
+                    "id": "greeting",
+                    "text": "Las emociones son el poder más fuerte del mundo... ¿Puedes controlar las tuyas?",
+                    "choices": []
+                }
+            ]
+        }
+    }
+}
