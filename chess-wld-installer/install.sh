@@ -2,39 +2,101 @@
 
 ################################################################################
 # Chess WLD Project Installer
-# Version: 1.0.0
+# Version: 2.0.0
 # Date: 2025-12-18
 # Description: Complete setup script for Chess WLD blockchain gaming platform
+#              with enhanced features, validation, and cross-platform support
 ################################################################################
 
+# Exit on error, but we'll handle errors manually for better control
 set -e
+trap 'handle_error $? $LINENO' ERR
 
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+BOLD='\033[1m'
 NC='\033[0m' # No Color
 
-# Configuration
-WALLET_ADDRESS="0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6"
-PROJECT_NAME="chess-wld"
-NODE_VERSION="18.0.0"
+# Configuration defaults
+DEFAULT_WALLET_ADDRESS="0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6"
+DEFAULT_PROJECT_NAME="chess-wld"
+MIN_NODE_VERSION="18.0.0"
+
+# Runtime variables
+WALLET_ADDRESS="$DEFAULT_WALLET_ADDRESS"
+PROJECT_NAME="$DEFAULT_PROJECT_NAME"
+INTERACTIVE_MODE=false
+SKIP_GIT=false
+SKIP_INSTALL=false
+VERBOSE_MODE=false
+START_TIME=$(date +%s)
+LOG_FILE="install.log"
+STEPS_COMPLETED=0
+TOTAL_STEPS=8
+
+# Detect OS
+detect_os() {
+    case "$(uname -s)" in
+        Linux*)     OS="Linux";;
+        Darwin*)    OS="macOS";;
+        CYGWIN*|MINGW*|MSYS*) OS="Windows";;
+        *)          OS="Unknown";;
+    esac
+}
+
+detect_os
+
+# Logging functions
+log() {
+    local message="$1"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] $message" >> "$LOG_FILE"
+    if [ "$VERBOSE_MODE" = true ]; then
+        echo -e "${CYAN}[$timestamp]${NC} $message"
+    fi
+}
 
 # Print colored message
 print_message() {
     local color=$1
     local message=$2
     echo -e "${color}${message}${NC}"
+    log "$message"
 }
 
 # Print header
 print_header() {
     echo ""
-    print_message "$BLUE" "=================================="
-    print_message "$BLUE" "$1"
-    print_message "$BLUE" "=================================="
+    print_message "$BLUE" "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    print_message "$BOLD$BLUE" "$1"
+    print_message "$BLUE" "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
+}
+
+# Print step progress
+print_step() {
+    local step=$1
+    local total=$2
+    local message=$3
+    local start_time=$4
+    
+    printf "${CYAN}[$step/$total]${NC} $message"
+    log "[$step/$total] $message"
+}
+
+# Complete step with timing
+complete_step() {
+    local start_time=$1
+    local end_time=$(date +%s)
+    local duration=$((end_time - start_time))
+    printf " ${GREEN}✓ Done${NC} ${CYAN}(${duration}s)${NC}\n"
+    log "Step completed in ${duration}s"
+    STEPS_COMPLETED=$((STEPS_COMPLETED + 1))
 }
 
 # Check if command exists
@@ -42,38 +104,329 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Error handler
+handle_error() {
+    local exit_code=$1
+    local line_number=$2
+    print_message "$RED" "✗ Error occurred at line $line_number with exit code $exit_code"
+    log "ERROR: Exit code $exit_code at line $line_number"
+    
+    if [ "$STEPS_COMPLETED" -gt 0 ]; then
+        print_message "$YELLOW" "⚠ Partial installation completed. Rolling back..."
+        rollback_installation
+    fi
+    
+    print_message "$RED" "Installation failed. Check $LOG_FILE for details."
+    exit $exit_code
+}
+
+# Rollback function
+rollback_installation() {
+    log "Starting rollback procedure"
+    if [ -d "$PROJECT_NAME" ]; then
+        print_message "$YELLOW" "Removing $PROJECT_NAME directory..."
+        rm -rf "$PROJECT_NAME"
+        log "Removed project directory"
+    fi
+    print_message "$GREEN" "✓ Rollback completed"
+}
+
+# Version comparison function
+version_ge() {
+    printf '%s\n%s' "$2" "$1" | sort -V -C
+}
+
+# Get version of a command
+get_version() {
+    local cmd=$1
+    case $cmd in
+        node)
+            node --version 2>/dev/null | sed 's/v//'
+            ;;
+        npm)
+            npm --version 2>/dev/null
+            ;;
+        git)
+            git --version 2>/dev/null | awk '{print $3}'
+            ;;
+    esac
+}
+
+# Validate wallet address
+validate_wallet() {
+    local wallet=$1
+    if [[ ! "$wallet" =~ ^0x[a-fA-F0-9]{40}$ ]]; then
+        print_message "$RED" "✗ Invalid wallet address format. Must start with 0x followed by 40 hex characters."
+        return 1
+    fi
+    return 0
+}
+
+# Validate project name
+validate_project_name() {
+    local name=$1
+    if [[ ! "$name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        print_message "$RED" "✗ Invalid project name. Use only alphanumeric characters, hyphens, and underscores."
+        return 1
+    fi
+    return 0
+}
+
+# Check disk space (at least 500MB required)
+check_disk_space() {
+    local required_mb=500
+    if command_exists df; then
+        # Get available space in MB
+        local available_mb
+        if [ "$OS" = "macOS" ]; then
+            available_mb=$(df -m . | tail -1 | awk '{print $4}')
+        else
+            available_mb=$(df -m . | tail -1 | awk '{print $4}')
+        fi
+        
+        if [ "$available_mb" -lt "$required_mb" ]; then
+            print_message "$RED" "✗ Insufficient disk space. Required: ${required_mb}MB, Available: ${available_mb}MB"
+            return 1
+        fi
+        log "Disk space check passed: ${available_mb}MB available"
+    fi
+    return 0
+}
+
+# Show help
+show_help() {
+    cat << EOF
+${BOLD}Chess WLD Project Installer v2.0${NC}
+
+${BOLD}USAGE:${NC}
+    ./install.sh [OPTIONS]
+
+${BOLD}OPTIONS:${NC}
+    -h, --help              Show this help message
+    -w, --wallet ADDRESS    Specify wallet address (default: $DEFAULT_WALLET_ADDRESS)
+    -p, --project NAME      Specify project name (default: $DEFAULT_PROJECT_NAME)
+    -i, --interactive       Enable interactive mode for configuration
+    --no-git               Skip git repository initialization
+    --no-install           Skip npm dependencies installation
+    -v, --verbose          Enable verbose mode with detailed logging
+
+${BOLD}EXAMPLES:${NC}
+    # Basic installation
+    ./install.sh
+
+    # Custom wallet and project name
+    ./install.sh --wallet 0xABC... --project my-chess-game
+
+    # Interactive mode
+    ./install.sh --interactive
+
+    # Skip dependency installation (useful for CI/CD)
+    ./install.sh --no-install --verbose
+
+${BOLD}REQUIREMENTS:${NC}
+    - Node.js v${MIN_NODE_VERSION} or higher
+    - npm (comes with Node.js)
+    - git (optional, for version control)
+
+${BOLD}MORE INFO:${NC}
+    Documentation: https://github.com/asterin-star/star
+    Issues: https://github.com/asterin-star/star/issues
+
+EOF
+    exit 0
+}
+
+# Parse command line arguments
+parse_arguments() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                show_help
+                ;;
+            -w|--wallet)
+                WALLET_ADDRESS="$2"
+                shift 2
+                ;;
+            -p|--project)
+                PROJECT_NAME="$2"
+                shift 2
+                ;;
+            -i|--interactive)
+                INTERACTIVE_MODE=true
+                shift
+                ;;
+            --no-git)
+                SKIP_GIT=true
+                shift
+                ;;
+            --no-install)
+                SKIP_INSTALL=true
+                shift
+                ;;
+            -v|--verbose)
+                VERBOSE_MODE=true
+                shift
+                ;;
+            *)
+                print_message "$RED" "Unknown option: $1"
+                echo "Use --help for usage information"
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# Interactive configuration
+interactive_setup() {
+    print_header "Interactive Configuration"
+    
+    echo -n "Project name (default: $DEFAULT_PROJECT_NAME): "
+    read -r input_project
+    if [ -n "$input_project" ]; then
+        PROJECT_NAME="$input_project"
+    fi
+    
+    echo -n "Wallet address (default: $DEFAULT_WALLET_ADDRESS): "
+    read -r input_wallet
+    if [ -n "$input_wallet" ]; then
+        WALLET_ADDRESS="$input_wallet"
+    fi
+    
+    echo -n "Install dependencies automatically? (y/n, default: y): "
+    read -r input_install
+    if [ "$input_install" = "n" ] || [ "$input_install" = "N" ]; then
+        SKIP_INSTALL=true
+    fi
+    
+    echo -n "Initialize git repository? (y/n, default: y): "
+    read -r input_git
+    if [ "$input_git" = "n" ] || [ "$input_git" = "N" ]; then
+        SKIP_GIT=true
+    fi
+    
+    echo ""
+}
+
 # Check prerequisites
 check_prerequisites() {
-    print_header "Checking Prerequisites"
+    local step_start=$(date +%s)
+    print_header "♟️  Chess WLD Project Installer v2.0"
     
+    print_message "$CYAN" "System Information:"
+    print_message "$CYAN" "  OS: $OS"
+    log "Operating System: $OS"
+    echo ""
+    
+    print_message "$BOLD" "Checking Prerequisites..."
+    echo ""
+    
+    # Check Node.js
     if ! command_exists node; then
-        print_message "$RED" "Node.js is not installed. Please install Node.js v${NODE_VERSION} or higher."
+        print_message "$RED" "✗ Node.js is not installed"
+        print_message "$YELLOW" "  Please install Node.js v${MIN_NODE_VERSION} or higher from:"
+        print_message "$YELLOW" "  https://nodejs.org/"
         exit 1
     fi
     
+    local node_version=$(get_version node)
+    if version_ge "$node_version" "$MIN_NODE_VERSION"; then
+        print_message "$GREEN" "✓ Node.js v${node_version} detected"
+        log "Node.js version: $node_version"
+    else
+        print_message "$RED" "✗ Node.js v${node_version} is too old"
+        print_message "$YELLOW" "  Required: v${MIN_NODE_VERSION} or higher"
+        print_message "$YELLOW" "  Please update Node.js from: https://nodejs.org/"
+        exit 1
+    fi
+    
+    # Check npm
     if ! command_exists npm; then
-        print_message "$RED" "npm is not installed. Please install npm."
+        print_message "$RED" "✗ npm is not installed"
+        print_message "$YELLOW" "  npm should come with Node.js. Please reinstall Node.js."
         exit 1
     fi
     
-    print_message "$GREEN" "✓ Node.js and npm are installed"
+    local npm_version=$(get_version npm)
+    print_message "$GREEN" "✓ npm v${npm_version} detected"
+    log "npm version: $npm_version"
+    
+    # Check git (optional)
+    if command_exists git; then
+        local git_version=$(get_version git)
+        print_message "$GREEN" "✓ Git v${git_version} detected"
+        log "Git version: $git_version"
+    else
+        print_message "$YELLOW" "⚠ Git is not installed (optional)"
+        print_message "$YELLOW" "  Install git from: https://git-scm.com/"
+        SKIP_GIT=true
+        log "Git not found, will skip git initialization"
+    fi
+    
+    echo ""
+    
+    # Check disk space
+    if ! check_disk_space; then
+        exit 1
+    fi
+    
+    complete_step $step_start
+}
+
+# Validate configuration
+validate_configuration() {
+    print_header "📦 Project Configuration"
+    
+    # Validate project name
+    if ! validate_project_name "$PROJECT_NAME"; then
+        exit 1
+    fi
+    
+    # Validate wallet address
+    if ! validate_wallet "$WALLET_ADDRESS"; then
+        exit 1
+    fi
+    
+    # Check if directory already exists
+    if [ -d "$PROJECT_NAME" ]; then
+        print_message "$YELLOW" "⚠ Directory '$PROJECT_NAME' already exists!"
+        echo -n "Do you want to remove it and continue? (y/n): "
+        read -r response
+        if [ "$response" = "y" ] || [ "$response" = "Y" ]; then
+            rm -rf "$PROJECT_NAME"
+            print_message "$GREEN" "✓ Removed existing directory"
+        else
+            print_message "$RED" "Installation cancelled"
+            exit 1
+        fi
+    fi
+    
+    print_message "$CYAN" "   Name: $PROJECT_NAME"
+    print_message "$CYAN" "   Wallet: $WALLET_ADDRESS"
+    print_message "$CYAN" "   Location: ./$PROJECT_NAME"
+    echo ""
+    
+    log "Configuration validated: name=$PROJECT_NAME, wallet=$WALLET_ADDRESS"
 }
 
 # Create project structure
 create_structure() {
-    print_header "Creating Project Structure"
+    local step_start=$(date +%s)
+    print_step "1" "$TOTAL_STEPS" "Creating project structure...        "
     
-    mkdir -p ${PROJECT_NAME}/{src/{components,contracts,utils,styles},public,scripts,test}
-    print_message "$GREEN" "✓ Project directories created"
+    mkdir -p ${PROJECT_NAME}/{src/{components,contracts,utils,styles,pages,pages/api},public,scripts,test}
+    log "Created project directories"
+    
+    complete_step $step_start
 }
 
 # Create package.json
 create_package_json() {
-    print_message "$YELLOW" "Creating package.json..."
+    local step_start=$(date +%s)
+    print_step "2" "$TOTAL_STEPS" "Generating configuration files...    "
     
-    cat > ${PROJECT_NAME}/package.json << 'EOF'
+    cat > ${PROJECT_NAME}/package.json << EOF
 {
-  "name": "chess-wld",
+  "name": "${PROJECT_NAME}",
   "version": "1.0.0",
   "description": "Chess game with World ID verification and blockchain rewards",
   "main": "src/index.js",
@@ -115,12 +468,14 @@ create_package_json() {
 }
 EOF
     
-    print_message "$GREEN" "✓ package.json created"
+    log "Created package.json"
+    complete_step $step_start
 }
 
 # Create smart contract
 create_smart_contract() {
-    print_message "$YELLOW" "Creating ChessRewards.sol smart contract..."
+    local step_start=$(date +%s)
+    print_step "3" "$TOTAL_STEPS" "Creating smart contracts...          "
     
     cat > ${PROJECT_NAME}/src/contracts/ChessRewards.sol << 'EOF'
 // SPDX-License-Identifier: MIT
@@ -275,12 +630,14 @@ contract ChessRewards is Ownable, ReentrancyGuard {
 }
 EOF
     
-    print_message "$GREEN" "✓ Smart contract created"
+    log "Created ChessRewards.sol"
+    complete_step $step_start
 }
 
 # Create React components
 create_components() {
-    print_message "$YELLOW" "Creating React components..."
+    local step_start=$(date +%s)
+    print_step "4" "$TOTAL_STEPS" "Creating React components...         "
     
     # ChessBoard.js
     cat > ${PROJECT_NAME}/src/components/ChessBoard.js << 'EOF'
@@ -504,12 +861,14 @@ export default function WalletConnect() {
 }
 EOF
 
-    print_message "$GREEN" "✓ React components created"
+    log "Created React components"
+    complete_step $step_start
 }
 
 # Create main App component
 create_app() {
-    print_message "$YELLOW" "Creating main App component..."
+    local step_start=$(date +%s)
+    print_step "5" "$TOTAL_STEPS" "Setting up application pages...      "
     
     cat > ${PROJECT_NAME}/src/pages/_app.js << 'EOF'
 import '@/styles/globals.css';
@@ -556,7 +915,7 @@ import WorldIDVerification from '@/components/WorldIDVerification';
 import Leaderboard from '@/components/Leaderboard';
 import WalletConnect from '@/components/WalletConnect';
 
-const CONTRACT_ADDRESS = '0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6';
+const CONTRACT_ADDRESS = '${WALLET_ADDRESS}';
 
 export default function Home() {
   const { address, isConnected } = useAccount();
@@ -632,17 +991,21 @@ export default function Home() {
 }
 EOF
 
-    print_message "$GREEN" "✓ Main App component created"
+    log "Created main App component"
+    complete_step $step_start
 }
 
 # Create utility files
 create_utils() {
-    print_message "$YELLOW" "Creating utility files..."
+    local step_start=$(date +%s)
+    print_step "6" "$TOTAL_STEPS" "Creating utilities and styles...     "
     
-    cat > ${PROJECT_NAME}/src/utils/blockchain.js << 'EOF'
+    log "Creating utility files"
+    
+    cat > ${PROJECT_NAME}/src/utils/blockchain.js << EOF
 import { ethers } from 'ethers';
 
-export const CONTRACT_ADDRESS = '0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6';
+export const CONTRACT_ADDRESS = '${WALLET_ADDRESS}';
 
 export async function getContract(signer) {
   const abi = [
@@ -751,12 +1114,10 @@ export function getGameStatus(chess) {
 }
 EOF
 
-    print_message "$GREEN" "✓ Utility files created"
-}
-
-# Create styles
-create_styles() {
-    print_message "$YELLOW" "Creating stylesheets..."
+    log "Created utility files"
+    
+    # Now create styles
+    log "Creating stylesheets"
     
     cat > ${PROJECT_NAME}/src/styles/globals.css << 'EOF'
 * {
@@ -969,12 +1330,10 @@ a {
 }
 EOF
 
-    print_message "$GREEN" "✓ Stylesheets created"
-}
-
-# Create Hardhat config
-create_hardhat_config() {
-    print_message "$YELLOW" "Creating Hardhat configuration..."
+    log "Created stylesheets"
+    
+    # Create Hardhat config
+    log "Creating Hardhat configuration"
     
     cat > ${PROJECT_NAME}/hardhat.config.js << 'EOF'
 require("@nomicfoundation/hardhat-toolbox");
@@ -1017,12 +1376,10 @@ module.exports = {
 };
 EOF
 
-    print_message "$GREEN" "✓ Hardhat configuration created"
-}
-
-# Create deployment script
-create_deploy_script() {
-    print_message "$YELLOW" "Creating deployment script..."
+    log "Created Hardhat configuration"
+    
+    # Create deployment script
+    log "Creating deployment script"
     
     cat > ${PROJECT_NAME}/scripts/deploy.js << 'EOF'
 const hre = require("hardhat");
@@ -1062,16 +1419,14 @@ main()
   });
 EOF
 
-    print_message "$GREEN" "✓ Deployment script created"
-}
-
-# Create environment files
-create_env_files() {
-    print_message "$YELLOW" "Creating environment files..."
+    log "Created deployment script"
+    
+    # Create environment files
+    log "Creating environment files"
     
     cat > ${PROJECT_NAME}/.env.example << EOF
 # Blockchain Configuration
-NEXT_PUBLIC_CONTRACT_ADDRESS=0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6
+NEXT_PUBLIC_CONTRACT_ADDRESS=${WALLET_ADDRESS}
 NEXT_PUBLIC_WORLDCHAIN_RPC_URL=https://worldchain-mainnet.g.alchemy.com/public
 WORLDCHAIN_RPC_URL=https://worldchain-mainnet.g.alchemy.com/public
 
@@ -1089,7 +1444,7 @@ EOF
 
     cat > ${PROJECT_NAME}/.env.local << EOF
 # Blockchain Configuration
-NEXT_PUBLIC_CONTRACT_ADDRESS=0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6
+NEXT_PUBLIC_CONTRACT_ADDRESS=${WALLET_ADDRESS}
 NEXT_PUBLIC_WORLDCHAIN_RPC_URL=https://worldchain-mainnet.g.alchemy.com/public
 WORLDCHAIN_RPC_URL=https://worldchain-mainnet.g.alchemy.com/public
 
@@ -1105,12 +1460,10 @@ PRIVATE_KEY=
 WORLDSCAN_API_KEY=
 EOF
 
-    print_message "$GREEN" "✓ Environment files created"
-}
-
-# Create configuration files
-create_config_files() {
-    print_message "$YELLOW" "Creating configuration files..."
+    log "Created environment files"
+    
+    # Create configuration files
+    log "Creating configuration files"
     
     # next.config.js
     cat > ${PROJECT_NAME}/next.config.js << 'EOF'
@@ -1274,12 +1627,10 @@ For issues and questions, please open an issue on GitHub.
 Built with ❤️ for World Chain
 EOF
 
-    print_message "$GREEN" "✓ Configuration files created"
-}
-
-# Create API routes
-create_api_routes() {
-    print_message "$YELLOW" "Creating API routes..."
+    log "Created configuration files"
+    
+    # Create API routes
+    log "Creating API routes"
     
     mkdir -p ${PROJECT_NAME}/src/pages/api
     
@@ -1323,12 +1674,10 @@ export default async function handler(req, res) {
 }
 EOF
 
-    print_message "$GREEN" "✓ API routes created"
-}
-
-# Create test files
-create_tests() {
-    print_message "$YELLOW" "Creating test files..."
+    log "Created API routes"
+    
+    # Create test files
+    log "Creating test files"
     
     cat > ${PROJECT_NAME}/test/ChessRewards.test.js << 'EOF'
 const { expect } = require("chai");
@@ -1377,75 +1726,130 @@ describe("ChessRewards", function () {
 });
 EOF
 
-    print_message "$GREEN" "✓ Test files created"
+    log "Created test files"
+    
+    complete_step $step_start
+}
+
+# Initialize git repository
+init_git() {
+    if [ "$SKIP_GIT" = true ]; then
+        log "Skipping git initialization (--no-git flag)"
+        return 0
+    fi
+    
+    local step_start=$(date +%s)
+    print_step "7" "$TOTAL_STEPS" "Initializing Git repository...       "
+    
+    cd ${PROJECT_NAME}
+    git init > /dev/null 2>&1
+    git config user.email "installer@chess-wld.local" > /dev/null 2>&1 || true
+    git config user.name "Chess WLD Installer" > /dev/null 2>&1 || true
+    git add . > /dev/null 2>&1
+    git commit -m "Initial commit: Chess WLD project" > /dev/null 2>&1 || true
+    cd ..
+    
+    log "Initialized git repository"
+    complete_step $step_start
 }
 
 # Install dependencies
 install_dependencies() {
-    print_header "Installing Dependencies"
+    if [ "$SKIP_INSTALL" = true ]; then
+        log "Skipping dependency installation (--no-install flag)"
+        TOTAL_STEPS=7
+        return 0
+    fi
+    
+    local step_start=$(date +%s)
+    print_step "8" "$TOTAL_STEPS" "Running post-install checks...       "
     
     cd ${PROJECT_NAME}
     
-    print_message "$YELLOW" "Installing npm packages (this may take a few minutes)..."
-    npm install
+    log "Starting npm install"
+    if [ "$VERBOSE_MODE" = true ]; then
+        npm install
+    else
+        npm install > /dev/null 2>&1
+    fi
+    log "npm install completed"
     
-    print_message "$GREEN" "✓ Dependencies installed successfully"
     cd ..
+    
+    complete_step $step_start
 }
 
 # Display completion message
 show_completion() {
-    print_header "Installation Complete! 🎉"
+    local end_time=$(date +%s)
+    local total_duration=$((end_time - START_TIME))
     
-    print_message "$GREEN" "Chess WLD project has been successfully created!"
     echo ""
-    print_message "$BLUE" "Project location: ./${PROJECT_NAME}"
-    print_message "$BLUE" "Smart contract address: ${WALLET_ADDRESS}"
+    print_header "✅ Installation Complete!"
+    
+    print_message "$GREEN" "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    print_message "$YELLOW" "Next steps:"
+    print_message "$BOLD$CYAN" "📂 Project: ./$PROJECT_NAME"
+    print_message "$BOLD$CYAN" "💰 Wallet: $WALLET_ADDRESS"
+    print_message "$BOLD$CYAN" "⏱️  Total time: ${total_duration}s"
     echo ""
-    echo "  1. Navigate to project directory:"
-    print_message "$BLUE" "     cd ${PROJECT_NAME}"
+    print_message "$GREEN" "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    echo "  2. Update environment variables in .env.local:"
-    print_message "$BLUE" "     - Add your World App ID"
-    print_message "$BLUE" "     - Add your WalletConnect Project ID"
+    
+    print_message "$BOLD" "Next steps:"
     echo ""
-    echo "  3. Start development server:"
-    print_message "$BLUE" "     npm run dev"
+    echo "  1. ${CYAN}cd $PROJECT_NAME${NC}"
+    echo "  2. Update ${CYAN}.env.local${NC} with your World App ID"
+    echo "  3. ${CYAN}npm run dev${NC}"
+    echo "  4. Open ${CYAN}http://localhost:3000${NC}"
     echo ""
-    echo "  4. Open your browser:"
-    print_message "$BLUE" "     http://localhost:3000"
+    
+    print_message "$YELLOW" "📖 Documentation: ./$PROJECT_NAME/README.md"
+    print_message "$YELLOW" "🔧 Configuration: ./$PROJECT_NAME/.env.local"
+    print_message "$YELLOW" "📝 Full log: ./$LOG_FILE"
     echo ""
-    print_message "$GREEN" "Happy coding! 🚀"
-    echo ""
+    
+    log "Installation completed successfully in ${total_duration}s"
 }
 
 # Main installation flow
 main() {
-    print_header "Chess WLD Project Installer"
-    print_message "$BLUE" "Wallet Address: ${WALLET_ADDRESS}"
-    print_message "$BLUE" "Project Name: ${PROJECT_NAME}"
-    echo ""
+    # Clear log file
+    > "$LOG_FILE"
+    log "Chess WLD Installer v2.0 started"
+    log "Arguments: $@"
     
+    # Parse arguments
+    parse_arguments "$@"
+    
+    # Interactive mode if requested
+    if [ "$INTERACTIVE_MODE" = true ]; then
+        interactive_setup
+    fi
+    
+    # Check prerequisites
     check_prerequisites
+    
+    # Validate configuration
+    validate_configuration
+    
+    # Create project
     create_structure
     create_package_json
     create_smart_contract
     create_components
     create_app
     create_utils
-    create_styles
-    create_hardhat_config
-    create_deploy_script
-    create_env_files
-    create_config_files
-    create_api_routes
-    create_tests
+    
+    # Initialize git
+    init_git
+    
+    # Install dependencies
     install_dependencies
+    
+    # Show completion message
     show_completion
 }
 
 # Run the installer
-main
-EOF
+main "$@"
