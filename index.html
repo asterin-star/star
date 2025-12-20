@@ -415,6 +415,15 @@
             pointer-events: none;
         }
 
+        /* Dynamic Shine Effect Layer (responds to device motion) */
+        .insight-panel::after {
+            /* Removed - now using dynamic element */
+        }
+
+        .insight-panel.active.moving::after {
+            /* Removed - now using dynamic element */
+        }
+
         .insight-panel.active {
             opacity: 1;
             transform: translateY(0) scale(1);
@@ -625,6 +634,15 @@
             opacity: 0.35;
             border-radius: 20px;
             pointer-events: none;
+        }
+
+        /* Dynamic Shine Effect for modal */
+        .modal-content::after {
+            /* Removed - now using dynamic element */
+        }
+
+        .modal-content.moving::after {
+            /* Removed - now using dynamic element */
         }
 
         .modal-header {
@@ -3002,6 +3020,171 @@
             return observeElements;
         }
 
+        /* ==================== DYNAMIC SHINE EFFECT (DEVICE MOTION) ==================== */
+        function initDynamicShine() {
+            // Create shine overlay elements dynamically
+            const elementsToShine = document.querySelectorAll('.insight-panel, .modal-content');
+            
+            elementsToShine.forEach(element => {
+                // Create shine overlay
+                const shineOverlay = document.createElement('div');
+                shineOverlay.className = 'shine-overlay';
+                shineOverlay.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: inherit;
+                    background: linear-gradient(
+                        135deg,
+                        transparent 0%,
+                        rgba(255, 255, 255, 0) 35%,
+                        rgba(255, 255, 255, 0.7) 50%,
+                        rgba(255, 255, 255, 0) 65%,
+                        transparent 100%
+                    );
+                    opacity: 0;
+                    pointer-events: none;
+                    z-index: 100;
+                    mix-blend-mode: overlay;
+                    transition: opacity 0.3s ease;
+                    will-change: transform;
+                    transform: translateX(-100%) translateY(-100%);
+                `;
+                element.appendChild(shineOverlay);
+                element.style.position = 'relative';
+            });
+
+            // Check if DeviceOrientation API is available
+            const hasDeviceOrientation = 'DeviceOrientationEvent' in window;
+            
+            if (!hasDeviceOrientation) {
+                console.log('DeviceOrientation not supported, using auto-shimmer fallback');
+                // Apply gentle shimmer animation
+                document.querySelectorAll('.shine-overlay').forEach(overlay => {
+                    overlay.style.animation = 'gentleShimmer 6s ease-in-out infinite';
+                    overlay.style.opacity = '0.5';
+                });
+                return;
+            }
+
+            // Request permission for iOS 13+
+            async function requestMotionPermission() {
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    try {
+                        const permission = await DeviceOrientationEvent.requestPermission();
+                        if (permission === 'granted') {
+                            startDeviceOrientationTracking();
+                        } else {
+                            console.log('Motion permission denied, using auto-shimmer');
+                            applyAutoShimmer();
+                        }
+                    } catch (error) {
+                        console.error('Error requesting motion permission:', error);
+                        applyAutoShimmer();
+                    }
+                } else {
+                    // Not iOS 13+, start directly
+                    startDeviceOrientationTracking();
+                }
+            }
+
+            function applyAutoShimmer() {
+                document.querySelectorAll('.shine-overlay').forEach(overlay => {
+                    overlay.style.animation = 'gentleShimmer 6s ease-in-out infinite';
+                    overlay.style.opacity = '0.5';
+                });
+            }
+
+            function startDeviceOrientationTracking() {
+                let lastGamma = 0;
+                let lastBeta = 0;
+                let movementTimeout = null;
+
+                window.addEventListener('deviceorientation', (event) => {
+                    const gamma = event.gamma || 0; // Left to right tilt (-90 to 90)
+                    const beta = event.beta || 0;   // Front to back tilt (-180 to 180)
+
+                    // Detect movement
+                    const deltaGamma = Math.abs(gamma - lastGamma);
+                    const deltaBeta = Math.abs(beta - lastBeta);
+                    
+                    if (deltaGamma > 0.3 || deltaBeta > 0.3) {
+                        // Clear existing timeout
+                        if (movementTimeout) {
+                            clearTimeout(movementTimeout);
+                        }
+
+                        // Update shine position based on device tilt
+                        updateShineEffect(gamma, beta);
+
+                        // Hide shine after 400ms of no movement
+                        movementTimeout = setTimeout(() => {
+                            document.querySelectorAll('.shine-overlay').forEach(overlay => {
+                                overlay.style.opacity = '0';
+                            });
+                        }, 400);
+                    }
+
+                    lastGamma = gamma;
+                    lastBeta = beta;
+                }, { passive: true });
+
+                console.log('✨ Dynamic shine effect initialized with device motion');
+            }
+
+            function updateShineEffect(gamma, beta) {
+                // Convert tilt to position
+                // Gamma: -90 (left) to 90 (right)
+                // Beta: -90 (back) to 90 (front)
+                
+                // Normalize and map to percentage (-100% to 100%)
+                // Center at 0, scale to smooth movement
+                const xPercent = Math.max(-100, Math.min(100, (gamma / 45) * 50));
+                const yPercent = Math.max(-100, Math.min(100, (beta / 45) * 50));
+                
+                // Calculate angle for gradient rotation
+                const angle = Math.atan2(beta, gamma) * (180 / Math.PI);
+
+                // Apply to all shine overlays
+                document.querySelectorAll('.shine-overlay').forEach(overlay => {
+                    overlay.style.transform = `translateX(${xPercent}%) translateY(${yPercent}%) rotate(${angle}deg)`;
+                    overlay.style.background = `linear-gradient(
+                        ${135 + angle}deg,
+                        transparent 0%,
+                        rgba(255, 255, 255, 0) 35%,
+                        rgba(255, 255, 255, 0.7) 50%,
+                        rgba(255, 255, 255, 0) 65%,
+                        transparent 100%
+                    )`;
+                    overlay.style.opacity = '1';
+                });
+            }
+
+            // Start tracking after a brief delay to let page load
+            setTimeout(() => {
+                requestMotionPermission();
+            }, 1500);
+        }
+
+        // Add gentle shimmer keyframe
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes gentleShimmer {
+                0% {
+                    transform: translateX(-150%) translateY(-150%);
+                }
+                50% {
+                    transform: translateX(50%) translateY(50%);
+                }
+                100% {
+                    transform: translateX(-150%) translateY(-150%);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
         // Función para actualizar títulos de secciones con i18n
         function updateSectionTitles() {
             if (window.i18n) {
@@ -3022,6 +3205,9 @@
 
             // Initialize scroll animations
             initScrollAnimations();
+
+            // Initialize dynamic shine effect
+            initDynamicShine();
 
             // Event listeners para los títulos
             document.getElementById('titleArquetipo').addEventListener('click', () => openModal('arquetipo'));
