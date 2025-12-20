@@ -3022,95 +3022,210 @@
 
         /* ==================== DYNAMIC SHINE EFFECT (DEVICE MOTION) ==================== */
         function initDynamicShine() {
+            console.log('🔮 Initializing dynamic shine effect...');
+            
             // Create shine overlay elements dynamically
             const elementsToShine = document.querySelectorAll('.insight-panel, .modal-content');
             
             elementsToShine.forEach(element => {
-                // Create shine overlay
+                // Create shine overlay - MUCH MORE VISIBLE
                 const shineOverlay = document.createElement('div');
                 shineOverlay.className = 'shine-overlay';
                 shineOverlay.style.cssText = `
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
                     border-radius: inherit;
                     background: linear-gradient(
                         135deg,
                         transparent 0%,
-                        rgba(255, 255, 255, 0) 35%,
-                        rgba(255, 255, 255, 0.7) 50%,
-                        rgba(255, 255, 255, 0) 65%,
+                        rgba(255, 255, 255, 0) 25%,
+                        rgba(255, 255, 255, 0.95) 50%,
+                        rgba(255, 255, 255, 0) 75%,
                         transparent 100%
                     );
                     opacity: 0;
                     pointer-events: none;
                     z-index: 100;
                     mix-blend-mode: overlay;
-                    transition: opacity 0.3s ease;
-                    will-change: transform;
+                    transition: opacity 0.2s ease;
+                    will-change: transform, opacity;
                     transform: translateX(-100%) translateY(-100%);
                 `;
                 element.appendChild(shineOverlay);
                 element.style.position = 'relative';
+                
+                // Add a secondary glow layer for edges
+                const glowOverlay = document.createElement('div');
+                glowOverlay.className = 'glow-overlay';
+                glowOverlay.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: inherit;
+                    border: 2px solid rgba(255, 255, 255, 0);
+                    box-shadow: inset 0 0 0 rgba(255, 255, 255, 0);
+                    pointer-events: none;
+                    z-index: 101;
+                    transition: all 0.2s ease;
+                `;
+                element.appendChild(glowOverlay);
             });
 
             // Check if DeviceOrientation API is available
             const hasDeviceOrientation = 'DeviceOrientationEvent' in window;
             
             if (!hasDeviceOrientation) {
-                console.log('DeviceOrientation not supported, using auto-shimmer fallback');
-                // Apply gentle shimmer animation
-                document.querySelectorAll('.shine-overlay').forEach(overlay => {
-                    overlay.style.animation = 'gentleShimmer 6s ease-in-out infinite';
-                    overlay.style.opacity = '0.5';
-                });
+                console.log('⚠️ DeviceOrientation not supported, using auto-shimmer fallback');
+                applyAutoShimmer();
                 return;
             }
+
+            console.log('✅ DeviceOrientation API detected');
 
             // Request permission for iOS 13+
             async function requestMotionPermission() {
                 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                    try {
-                        const permission = await DeviceOrientationEvent.requestPermission();
-                        if (permission === 'granted') {
-                            startDeviceOrientationTracking();
-                        } else {
-                            console.log('Motion permission denied, using auto-shimmer');
+                    console.log('📱 iOS device detected - will request permission on user interaction');
+                    
+                    // Create activation button for iOS
+                    const activationBtn = document.createElement('button');
+                    activationBtn.id = 'motionActivationBtn';
+                    activationBtn.innerHTML = '✨ Activar Efecto de Movimiento';
+                    activationBtn.style.cssText = `
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        z-index: 1000;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(200, 200, 255, 0.9));
+                        border: 2px solid rgba(255, 255, 255, 0.8);
+                        border-radius: 30px;
+                        padding: 14px 24px;
+                        font-family: 'Poppins', sans-serif;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        color: #333;
+                        cursor: pointer;
+                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+                        backdrop-filter: blur(10px);
+                        transition: all 0.3s ease;
+                        animation: pulseGlow 2s ease-in-out infinite;
+                    `;
+                    
+                    // Add pulse animation
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes pulseGlow {
+                            0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+                            50% { transform: scale(1.05); box-shadow: 0 12px 32px rgba(100, 150, 255, 0.4); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    document.body.appendChild(activationBtn);
+                    
+                    activationBtn.addEventListener('click', async () => {
+                        try {
+                            const permission = await DeviceOrientationEvent.requestPermission();
+                            console.log('Permission result:', permission);
+                            if (permission === 'granted') {
+                                activationBtn.remove();
+                                startDeviceOrientationTracking();
+                                // Show success message
+                                showTempMessage('✨ Efecto activado! Mueve tu teléfono');
+                            } else {
+                                console.log('❌ Motion permission denied');
+                                showTempMessage('❌ Permiso denegado');
+                                setTimeout(() => activationBtn.remove(), 2000);
+                                applyAutoShimmer();
+                            }
+                        } catch (error) {
+                            console.error('Error requesting motion permission:', error);
+                            activationBtn.remove();
                             applyAutoShimmer();
                         }
-                    } catch (error) {
-                        console.error('Error requesting motion permission:', error);
-                        applyAutoShimmer();
-                    }
+                    });
                 } else {
                     // Not iOS 13+, start directly
+                    console.log('🤖 Android or older iOS - starting directly');
                     startDeviceOrientationTracking();
+                    showTempMessage('✨ Efecto de movimiento activado');
                 }
             }
 
+            function showTempMessage(text) {
+                const msg = document.createElement('div');
+                msg.textContent = text;
+                msg.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0, 0, 0, 0.8);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 20px;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 0.9rem;
+                    z-index: 10000;
+                    backdrop-filter: blur(10px);
+                    animation: fadeInOut 3s ease-in-out;
+                `;
+                
+                const fadeStyle = document.createElement('style');
+                fadeStyle.textContent = `
+                    @keyframes fadeInOut {
+                        0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+                        10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    }
+                `;
+                document.head.appendChild(fadeStyle);
+                
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 3000);
+            }
+
             function applyAutoShimmer() {
+                console.log('🌟 Applying auto-shimmer fallback');
                 document.querySelectorAll('.shine-overlay').forEach(overlay => {
-                    overlay.style.animation = 'gentleShimmer 6s ease-in-out infinite';
-                    overlay.style.opacity = '0.5';
+                    overlay.style.animation = 'gentleShimmer 5s ease-in-out infinite';
+                    overlay.style.opacity = '0.6';
                 });
             }
 
             function startDeviceOrientationTracking() {
-                let lastGamma = 0;
-                let lastBeta = 0;
+                let lastGamma = null;
+                let lastBeta = null;
                 let movementTimeout = null;
+                let isFirstReading = true;
 
                 window.addEventListener('deviceorientation', (event) => {
                     const gamma = event.gamma || 0; // Left to right tilt (-90 to 90)
                     const beta = event.beta || 0;   // Front to back tilt (-180 to 180)
 
-                    // Detect movement
+                    // Log first reading for debugging
+                    if (isFirstReading) {
+                        console.log('📊 First orientation reading:', { gamma, beta });
+                        isFirstReading = false;
+                    }
+
+                    // Initialize if first time
+                    if (lastGamma === null) {
+                        lastGamma = gamma;
+                        lastBeta = beta;
+                        return;
+                    }
+
+                    // Detect movement with lower threshold
                     const deltaGamma = Math.abs(gamma - lastGamma);
                     const deltaBeta = Math.abs(beta - lastBeta);
                     
-                    if (deltaGamma > 0.3 || deltaBeta > 0.3) {
+                    // MUCH MORE SENSITIVE - respond to even tiny movements
+                    if (deltaGamma > 0.1 || deltaBeta > 0.1) {
                         // Clear existing timeout
                         if (movementTimeout) {
                             clearTimeout(movementTimeout);
@@ -3119,53 +3234,65 @@
                         // Update shine position based on device tilt
                         updateShineEffect(gamma, beta);
 
-                        // Hide shine after 400ms of no movement
+                        // Keep shine visible for longer
                         movementTimeout = setTimeout(() => {
                             document.querySelectorAll('.shine-overlay').forEach(overlay => {
-                                overlay.style.opacity = '0';
+                                overlay.style.opacity = '0.3'; // Don't fully hide
                             });
-                        }, 400);
+                            document.querySelectorAll('.glow-overlay').forEach(overlay => {
+                                overlay.style.borderColor = 'rgba(255, 255, 255, 0)';
+                                overlay.style.boxShadow = 'inset 0 0 0 rgba(255, 255, 255, 0)';
+                            });
+                        }, 1000); // Longer timeout
                     }
 
                     lastGamma = gamma;
                     lastBeta = beta;
                 }, { passive: true });
 
-                console.log('✨ Dynamic shine effect initialized with device motion');
+                console.log('✨ Dynamic shine effect initialized with device motion tracking');
             }
 
             function updateShineEffect(gamma, beta) {
-                // Convert tilt to position
+                // Convert tilt to position with MUCH MORE SENSITIVITY
                 // Gamma: -90 (left) to 90 (right)
                 // Beta: -90 (back) to 90 (front)
                 
-                // Normalize and map to percentage (-100% to 100%)
-                // Center at 0, scale to smooth movement
-                const xPercent = Math.max(-100, Math.min(100, (gamma / 45) * 50));
-                const yPercent = Math.max(-100, Math.min(100, (beta / 45) * 50));
+                // AMPLIFIED movement - multiply by larger factor for visibility
+                const xPercent = Math.max(-150, Math.min(150, (gamma / 30) * 100));
+                const yPercent = Math.max(-150, Math.min(150, (beta / 30) * 100));
                 
                 // Calculate angle for gradient rotation
                 const angle = Math.atan2(beta, gamma) * (180 / Math.PI);
 
-                // Apply to all shine overlays
+                console.log('💫 Updating shine:', { gamma: gamma.toFixed(1), beta: beta.toFixed(1), xPercent: xPercent.toFixed(1), yPercent: yPercent.toFixed(1) });
+
+                // Apply to all shine overlays with MORE INTENSE effect
                 document.querySelectorAll('.shine-overlay').forEach(overlay => {
-                    overlay.style.transform = `translateX(${xPercent}%) translateY(${yPercent}%) rotate(${angle}deg)`;
+                    overlay.style.transform = `translateX(${xPercent}%) translateY(${yPercent}%) rotate(${angle}deg) scale(1.2)`;
                     overlay.style.background = `linear-gradient(
                         ${135 + angle}deg,
                         transparent 0%,
-                        rgba(255, 255, 255, 0) 35%,
-                        rgba(255, 255, 255, 0.7) 50%,
-                        rgba(255, 255, 255, 0) 65%,
+                        rgba(255, 255, 255, 0.1) 20%,
+                        rgba(255, 255, 255, 0.95) 50%,
+                        rgba(255, 255, 255, 0.1) 80%,
                         transparent 100%
                     )`;
-                    overlay.style.opacity = '1';
+                    overlay.style.opacity = '0.9'; // More visible
+                });
+
+                // Update glow overlays for edge effect
+                document.querySelectorAll('.glow-overlay').forEach(overlay => {
+                    const intensity = Math.min(1, (Math.abs(xPercent) + Math.abs(yPercent)) / 200);
+                    overlay.style.borderColor = `rgba(255, 255, 255, ${intensity * 0.6})`;
+                    overlay.style.boxShadow = `inset 0 0 30px rgba(255, 255, 255, ${intensity * 0.4})`;
                 });
             }
 
             // Start tracking after a brief delay to let page load
             setTimeout(() => {
                 requestMotionPermission();
-            }, 1500);
+            }, 1000);
         }
 
         // Add gentle shimmer keyframe
