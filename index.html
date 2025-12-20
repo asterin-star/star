@@ -371,7 +371,7 @@
 
 
         /* ==================== PANEL DE LECTURA ==================== */
-        /* Estilo Apple Music Lyrics */
+        /* Estilo Apple Music Lyrics con Liquid Glass Effect */
         .insight-panel {
             width: 92%;
             max-width: 720px;
@@ -383,7 +383,8 @@
             border: 1.5px solid var(--glass-border);
             box-shadow:
                 var(--shadow-soft),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 2px 2px 8px rgba(255, 255, 255, 0.35);
 
             /* Estado inicial: invisible */
             opacity: 0;
@@ -394,6 +395,24 @@
             z-index: 5;
             margin-bottom: 60px;
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Liquid Glass Effect Layer for insight panel */
+        .insight-panel::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            z-index: -1;
+            filter: url(#liquid-spectral-filter);
+            background: inherit;
+            opacity: 0.4;
+            border-radius: 22px;
+            pointer-events: none;
         }
 
         .insight-panel.active {
@@ -482,14 +501,35 @@
         }
 
         .intro-section {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
             padding: 16px 20px;
             margin: 0 0 24px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             animation: fadeSlideIn 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 12px rgba(255, 255, 255, 0.2),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Liquid Glass layer for intro section */
+        .intro-section::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: -1;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.35;
+            border-radius: 14px;
+            pointer-events: none;
         }
 
         .intro-text {
@@ -531,7 +571,7 @@
             text-align: right;
         }
 
-        /* ==================== MODAL GLASSMORPHISM BLANCO ==================== */
+        /* ==================== MODAL GLASSMORPHISM BLANCO CON LIQUID GLASS ==================== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -550,14 +590,16 @@
         }
 
         .modal-content {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(25px) brightness(1.1);
+            -webkit-backdrop-filter: blur(25px) brightness(1.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
             box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.15),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
+                0 30px 60px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.15),
+                inset 0 0 20px rgba(255, 255, 255, 0.3),
+                inset 3px 3px 8px rgba(255, 255, 255, 0.35);
             max-width: 700px;
             width: 100%;
             /* FIX SCROLL: Limitar altura y usar flex column */
@@ -565,6 +607,24 @@
             display: flex;
             flex-direction: column;
             animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Liquid Glass layer for modal */
+        .modal-content::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            z-index: -1;
+            filter: url(#liquid-spectral-filter);
+            background: inherit;
+            opacity: 0.35;
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .modal-header {
@@ -921,17 +981,20 @@
         .ai-btn {
             /* El botón es el MICROCOSMOS: Refleja los colores del MACROCOSMOS (Fondo) */
             /* Fondo base translúcido para las mini-blobs */
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: none;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px) brightness(1.15);
+            -webkit-backdrop-filter: blur(12px) brightness(1.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             width: 60px;
             height: 60px;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            overflow: visible;
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.18),
+                inset 0 0 15px rgba(255, 255, 255, 0.25),
+                inset 2px 2px 6px rgba(255, 255, 255, 0.35);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
@@ -939,24 +1002,23 @@
             z-index: 10;
         }
 
-        /* Mini-blob 1 - Movimiento lento */
+        /* Liquid Glass refraction layer */
         .ai-btn::before {
             content: '';
             position: absolute;
-            width: 80px;
-            height: 80px;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
             border-radius: 50%;
-            background: var(--color1, #ffd1dc);
-            filter: blur(25px);
-            mix-blend-mode: multiply;
-            opacity: 0.6;
-            top: -20px;
-            left: -10px;
-            animation: microMove1 12s ease-in-out infinite alternate;
-            z-index: 1;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.5;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* Mini-blob 2 - Movimiento diferente */
+        /* Mini-blob 1 - Movimiento lento (now after the liquid layer) */
         .ai-btn::after {
             content: '';
             position: absolute;
@@ -966,16 +1028,20 @@
             background: var(--color2, #b8e0ff);
             filter: blur(20px);
             mix-blend-mode: multiply;
-            opacity: 0.5;
+            opacity: 0.45;
             bottom: -15px;
             right: -10px;
             animation: microMove2 14s ease-in-out infinite alternate;
-            z-index: 1;
+            z-index: -2;
         }
 
         .ai-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(1.12);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.25),
+                inset 0 0 18px rgba(255, 255, 255, 0.3),
+                inset 3px 3px 8px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.65);
         }
 
         .ai-btn:active {
@@ -1056,12 +1122,34 @@
         }
 
         .ai-result {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 18px;
             padding: 20px;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1.5px solid rgba(255, 255, 255, 0.55);
             animation: fadeSlideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 6px 18px rgba(0, 0, 0, 0.1),
+                inset 0 0 12px rgba(255, 255, 255, 0.2),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Liquid Glass layer for AI result */
+        .ai-result::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            z-index: -1;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.4;
+            border-radius: 18px;
+            pointer-events: none;
         }
 
         .ai-header {
@@ -1124,11 +1212,11 @@
 
         .qa-input {
             width: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 255, 255, 0.55);
+            border-radius: 14px;
             padding: 14px 18px;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 0.95rem;
@@ -1137,14 +1225,21 @@
             resize: vertical;
             min-height: 80px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 
+                0 4px 14px rgba(0, 0, 0, 0.08),
+                inset 0 0 10px rgba(255, 255, 255, 0.15),
+                inset 2px 2px 4px rgba(255, 255, 255, 0.25);
+            position: relative;
         }
 
         .qa-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(255, 255, 255, 0.75);
+            box-shadow: 
+                0 6px 18px rgba(0, 0, 0, 0.12),
+                inset 0 0 15px rgba(255, 255, 255, 0.2),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.3);
         }
 
         .qa-input::placeholder {
@@ -1155,10 +1250,10 @@
         .qa-submit-btn {
             align-self: center;
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
-            border-radius: 24px;
+            backdrop-filter: blur(12px) brightness(1.15);
+            -webkit-backdrop-filter: blur(12px) brightness(1.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.55);
+            border-radius: 999px;
             padding: 12px 32px;
             font-family: 'Poppins', sans-serif;
             font-size: 0.9rem;
@@ -1168,17 +1263,41 @@
             color: var(--text-primary);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 8px 22px rgba(0, 0, 0, 0.12),
+                inset 0 0 12px rgba(255, 255, 255, 0.25),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.35);
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Liquid Glass layer for submit button */
+        .qa-submit-btn::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 999px;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.45;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .qa-submit-btn:hover {
-            background: rgba(255, 255, 255, 0.6);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.55);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 
+                0 12px 28px rgba(0, 0, 0, 0.18),
+                inset 0 0 15px rgba(255, 255, 255, 0.3),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.7);
         }
 
         .qa-submit-btn:active {
@@ -1203,12 +1322,33 @@
 
         .qa-answer {
             margin-top: 24px;
-            background: rgba(255, 255, 255, 0.35);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 18px;
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1.5px solid rgba(255, 255, 255, 0.55);
             animation: fadeSlideIn 0.5s ease-out;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 
+                0 6px 18px rgba(0, 0, 0, 0.1),
+                inset 0 0 12px rgba(255, 255, 255, 0.2),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Liquid Glass layer for Q&A answer */
+        .qa-answer::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            z-index: -1;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.4;
+            border-radius: 18px;
+            pointer-events: none;
         }
 
         .qa-answer-header {
@@ -1267,16 +1407,16 @@
             }
         }
 
-        /* BOTÓN DE IDIOMA */
+        /* BOTÓN DE IDIOMA CON LIQUID GLASS */
         .lang-btn {
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px) brightness(1.1);
+            -webkit-backdrop-filter: blur(12px) brightness(1.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.65);
             border-radius: 50%;
             width: 44px;
             height: 44px;
@@ -1285,17 +1425,42 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 6px 16px rgba(0, 0, 0, 0.12),
+                inset 0 0 12px rgba(255, 255, 255, 0.25),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.3);
             color: #888;
-            /* Gris neutral */
             filter: grayscale(100%);
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Liquid Glass layer for language button */
+        .lang-btn::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            filter: url(#liquid-spectral-subtle);
+            background: inherit;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.75);
+            transform: scale(1.08);
             color: #555;
-            filter: grayscale(80%);
+            filter: grayscale(70%);
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.15),
+                inset 0 0 15px rgba(255, 255, 255, 0.3),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.75);
         }
 
         .lang-btn svg {
@@ -1349,6 +1514,64 @@
         <div class="blob blob4"></div>
     </div>
     <div class="noise-overlay"></div>
+
+    <!-- SVG Filters for Liquid Glass Effect -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+        <defs>
+            <!-- Liquid Spectral Filter for premium glass effect -->
+            <filter id="liquid-spectral-filter" x="-20%" y="-20%" width="140%" height="140%">
+                <!-- Generate organic noise for distortion -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" result="noise" />
+                
+                <!-- Separate RGB channels for chromatic aberration -->
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="redLayer"/>
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="greenLayer"/>
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blueLayer"/>
+
+                <!-- Displace each channel differently to create rainbow effect -->
+                <feDisplacementMap in="redLayer" in2="noise" scale="25" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedRed"/>
+                <feDisplacementMap in="greenLayer" in2="noise" scale="15" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedGreen"/>
+                <feDisplacementMap in="blueLayer" in2="noise" scale="8" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedBlue"/>
+
+                <!-- Blend the displaced channels -->
+                <feBlend in="distortedRed" in2="distortedGreen" mode="screen" result="blendRG"/>
+                <feBlend in="blendRG" in2="distortedBlue" mode="screen" result="finalBlend"/>
+                
+                <!-- Composite with original -->
+                <feComposite in="finalBlend" in2="SourceGraphic" operator="in" />
+            </filter>
+
+            <!-- Subtle version for smaller elements -->
+            <filter id="liquid-spectral-subtle" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="2" result="noise" />
+                
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="redLayer"/>
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="greenLayer"/>
+                <feColorMatrix in="SourceGraphic" type="matrix" 
+                    values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blueLayer"/>
+
+                <feDisplacementMap in="redLayer" in2="noise" scale="12" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedRed"/>
+                <feDisplacementMap in="greenLayer" in2="noise" scale="8" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedGreen"/>
+                <feDisplacementMap in="blueLayer" in2="noise" scale="4" 
+                    xChannelSelector="R" yChannelSelector="G" result="distortedBlue"/>
+
+                <feBlend in="distortedRed" in2="distortedGreen" mode="screen" result="blendRG"/>
+                <feBlend in="blendRG" in2="distortedBlue" mode="screen" result="finalBlend"/>
+                
+                <feComposite in="finalBlend" in2="SourceGraphic" operator="in" />
+            </filter>
+        </defs>
+    </svg>
 
     <!-- Botón de Idioma -->
     <button class="lang-btn" id="langBtn" onclick="toggleLanguage()" aria-label="Change Language">
