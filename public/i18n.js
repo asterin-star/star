@@ -62,7 +62,16 @@ const translations = {
         silenceCard: "The Silence",
         silenceMessage: "The ether is turbid at this moment. Breathe, center your intention and consult again.",
         silenceReference: "1 Kings 19:12",
-        silenceConnection: "The whisper of a gentle breeze signals the divine presence in silence."
+        silenceConnection: "The whisper of a gentle breeze signals the divine presence in silence.",
+
+        // Q&A Section
+        qaTitle: "✧ Ask the Oracle",
+        qaPlaceholder: "Write your question here...",
+        qaSubmitButton: "Consult",
+        qaAnswerHeader: "Oracle's Response",
+        qaProcessing: "Consulting the oracle...",
+        qaError: "There was an error consulting the oracle. Please try again.",
+        qaPaymentDescription: "Oracle Question ✦"
     },
 
     es: {
@@ -123,7 +132,16 @@ const translations = {
         silenceCard: "El Silencio",
         silenceMessage: "El éter está turbio en este momento. Respira, centra tu intención y consulta nuevamente.",
         silenceReference: "1 Reyes 19:12",
-        silenceConnection: "El murmullo de una brisa suave señala la presencia divina en el silencio."
+        silenceConnection: "El murmullo de una brisa suave señala la presencia divina en el silencio.",
+
+        // Q&A Section
+        qaTitle: "✧ Pregunta al Oráculo",
+        qaPlaceholder: "Escribe tu pregunta aquí...",
+        qaSubmitButton: "Consultar",
+        qaAnswerHeader: "Respuesta del Oráculo",
+        qaProcessing: "Consultando al oráculo...",
+        qaError: "Hubo un error al consultar al oráculo. Por favor intenta nuevamente.",
+        qaPaymentDescription: "Pregunta al Oráculo ✦"
     },
 
     pt: {
@@ -184,7 +202,16 @@ const translations = {
         silenceCard: "O Silêncio",
         silenceMessage: "O éter está turvo neste momento. Respire, centralize sua intenção e consulte novamente.",
         silenceReference: "1 Reis 19:12",
-        silenceConnection: "O sussurro de uma brisa suave sinaliza a presença divina no silêncio."
+        silenceConnection: "O sussurro de uma brisa suave sinaliza a presença divina no silêncio.",
+
+        // Q&A Section
+        qaTitle: "✧ Pergunte ao Oráculo",
+        qaPlaceholder: "Escreva sua pergunta aqui...",
+        qaSubmitButton: "Consultar",
+        qaAnswerHeader: "Resposta do Oráculo",
+        qaProcessing: "Consultando o oráculo...",
+        qaError: "Houve um erro ao consultar o oráculo. Por favor, tente novamente.",
+        qaPaymentDescription: "Pergunta ao Oráculo ✦"
     },
 
     fr: {
@@ -245,7 +272,16 @@ const translations = {
         silenceCard: "Le Silence",
         silenceMessage: "L'éther est trouble en ce moment. Respirez, centrez votre intention et consultez à nouveau.",
         silenceReference: "1 Rois 19:12",
-        silenceConnection: "Le murmure d'une brise douce signale la présence divine dans le silence."
+        silenceConnection: "Le murmure d'une brise douce signale la présence divine dans le silence.",
+
+        // Q&A Section
+        qaTitle: "✧ Interroger l'Oracle",
+        qaPlaceholder: "Écrivez votre question ici...",
+        qaSubmitButton: "Consulter",
+        qaAnswerHeader: "Réponse de l'Oracle",
+        qaProcessing: "Consultation de l'oracle...",
+        qaError: "Une erreur s'est produite lors de la consultation de l'oracle. Veuillez réessayer.",
+        qaPaymentDescription: "Question à l'Oracle ✦"
     },
 
     de: {
@@ -306,7 +342,16 @@ const translations = {
         silenceCard: "Die Stille",
         silenceMessage: "Der Äther ist in diesem Moment trüb. Atmen Sie, zentrieren Sie Ihre Absicht und konsultieren Sie erneut.",
         silenceReference: "1 Könige 19:12",
-        silenceConnection: "Das Flüstern einer sanften Brise signalisiert die göttliche Gegenwart in der Stille."
+        silenceConnection: "Das Flüstern einer sanften Brise signalisiert die göttliche Gegenwart in der Stille.",
+
+        // Q&A Section
+        qaTitle: "✧ Das Orakel befragen",
+        qaPlaceholder: "Schreiben Sie Ihre Frage hier...",
+        qaSubmitButton: "Konsultieren",
+        qaAnswerHeader: "Antwort des Orakels",
+        qaProcessing: "Befrage das Orakel...",
+        qaError: "Bei der Konsultation des Orakels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+        qaPaymentDescription: "Frage an das Orakel ✦"
     },
 
     ja: {
@@ -367,7 +412,16 @@ const translations = {
         silenceCard: "沈黙",
         silenceMessage: "エーテルは今この瞬間濁っています。呼吸し、意図を集中させ、再び相談してください。",
         silenceReference: "列王記上 19:12",
-        silenceConnection: "そよ風のささやきが沈黙の中で神の存在を示します。"
+        silenceConnection: "そよ風のささやきが沈黙の中で神の存在を示します。",
+
+        // Q&A Section
+        qaTitle: "✧ オラクルに質問する",
+        qaPlaceholder: "ここに質問を書いてください...",
+        qaSubmitButton: "相談する",
+        qaAnswerHeader: "オラクルの応答",
+        qaProcessing: "オラクルに相談中...",
+        qaError: "オラクルの相談中にエラーが発生しました。もう一度お試しください。",
+        qaPaymentDescription: "オラクルへの質問 ✦"
     },
 
     ko: {
@@ -428,7 +482,16 @@ const translations = {
         silenceCard: "침묵",
         silenceMessage: "에테르가 지금 이 순간 흐립니다. 숨을 쉬고, 의도를 집중하고, 다시 상담하세요.",
         silenceReference: "열왕기상 19:12",
-        silenceConnection: "부드러운 미풍의 속삭임이 침묵 속에서 신성한 존재를 나타냅니다."
+        silenceConnection: "부드러운 미풍의 속삭임이 침묵 속에서 신성한 존재를 나타냅니다.",
+
+        // Q&A Section
+        qaTitle: "✧ 오라클에 물어보기",
+        qaPlaceholder: "여기에 질문을 작성하세요...",
+        qaSubmitButton: "상담하기",
+        qaAnswerHeader: "오라클의 응답",
+        qaProcessing: "오라클에 상담 중...",
+        qaError: "오라클 상담 중 오류가 발생했습니다. 다시 시도하세요.",
+        qaPaymentDescription: "오라클에 대한 질문 ✦"
     },
 
     zh: {
@@ -489,7 +552,16 @@ const translations = {
         silenceCard: "寂静",
         silenceMessage: "以太此刻浑浊。呼吸，集中你的意图，再次咨询。",
         silenceReference: "列王纪上 19:12",
-        silenceConnection: "微风的低语在寂静中标志着神圣的存在。"
+        silenceConnection: "微风的低语在寂静中标志着神圣的存在.",
+
+        // Q&A Section
+        qaTitle: "✧ 询问神谕",
+        qaPlaceholder: "在此写下您的问题...",
+        qaSubmitButton: "咨询",
+        qaAnswerHeader: "神谕的回应",
+        qaProcessing: "正在咨询神谕...",
+        qaError: "咨询神谕时出错。请重试。",
+        qaPaymentDescription: "向神谕提问 ✦"
     }
 };
 
@@ -588,6 +660,19 @@ function applyTranslations() {
             el.innerHTML = `<span class="ai-icon-small">✦</span> ${t('numerologyHeader')}`;
         }
     });
+
+    // Update Q&A section elements
+    const qaTitleElements = document.querySelectorAll('[data-i18n="qaTitle"]');
+    qaTitleElements.forEach(el => el.textContent = t('qaTitle'));
+
+    const qaPlaceholderElements = document.querySelectorAll('[data-i18n-placeholder="qaPlaceholder"]');
+    qaPlaceholderElements.forEach(el => el.placeholder = t('qaPlaceholder'));
+
+    const qaSubmitElements = document.querySelectorAll('[data-i18n="qaSubmitButton"]');
+    qaSubmitElements.forEach(el => el.textContent = t('qaSubmitButton'));
+
+    const qaAnswerHeaderElements = document.querySelectorAll('[data-i18n="qaAnswerHeader"]');
+    qaAnswerHeaderElements.forEach(el => el.textContent = t('qaAnswerHeader'));
 }
 
 // Initialize current language

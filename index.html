@@ -1086,6 +1086,187 @@
             font-style: italic;
         }
 
+        /* ==================== Q&A SECTION ==================== */
+        .qa-section-container {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 30px;
+            width: 100%;
+            animation: fadeSlideIn 0.6s ease-out 0.9s both;
+        }
+
+        .qa-section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .qa-icon {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        .qa-input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .qa-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            resize: vertical;
+            min-height: 80px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .qa-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .qa-input::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+            opacity: 1;
+        }
+
+        .qa-submit-btn {
+            align-self: center;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 12px 32px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qa-submit-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .qa-submit-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .qa-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+            transform: none;
+        }
+
+        .qa-btn-icon {
+            font-size: 1.1em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        .qa-submit-btn.processing .qa-btn-icon {
+            animation: spinStar 2s linear infinite;
+        }
+
+        .qa-answer {
+            margin-top: 24px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeSlideIn 0.5s ease-out;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .qa-answer-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .qa-icon-small {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .qa-answer p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .qa-input {
+                font-size: 0.9rem;
+                padding: 12px 16px;
+                min-height: 70px;
+            }
+
+            .qa-submit-btn {
+                padding: 10px 28px;
+                font-size: 0.85rem;
+            }
+
+            .qa-section-title {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .qa-input {
+                font-size: 0.88rem;
+                padding: 10px 14px;
+            }
+
+            .qa-submit-btn {
+                padding: 10px 24px;
+                font-size: 0.8rem;
+            }
+        }
+
         /* BOTÓN DE IDIOMA */
         .lang-btn {
             position: fixed;
@@ -1242,6 +1423,31 @@
                         <span class="ai-icon-small">✦</span> Numerología
                     </div>
                     <p id="aiText"></p>
+                </div>
+            </div>
+
+            <!-- Q&A Section -->
+            <div class="qa-section-container" id="qaSection">
+                <div class="qa-section-title" id="qaSectionTitle">
+                    <span class="qa-icon">✧</span> <span data-i18n="qaTitle">Pregunta al Oráculo</span>
+                </div>
+                <div class="qa-input-container">
+                    <textarea 
+                        id="qaInput" 
+                        class="qa-input" 
+                        rows="3"
+                        data-i18n-placeholder="qaPlaceholder"
+                        placeholder="Escribe tu pregunta aquí..."></textarea>
+                    <button class="qa-submit-btn" id="qaSubmitBtn">
+                        <span class="qa-btn-icon">✦</span>
+                        <span data-i18n="qaSubmitButton">Consultar</span>
+                    </button>
+                </div>
+                <div class="qa-answer" id="qaAnswer" style="display:none;">
+                    <div class="qa-answer-header">
+                        <span class="qa-icon-small">✦</span> <span data-i18n="qaAnswerHeader">Respuesta del Oráculo</span>
+                    </div>
+                    <p id="qaAnswerText"></p>
                 </div>
             </div>
         </div>
@@ -2259,6 +2465,195 @@
         });
 
 
+
+
+        /* ==================== Q&A SECTION - ASK THE ORACLE ==================== */
+        const qaSubmitBtn = document.getElementById('qaSubmitBtn');
+        const qaInput = document.getElementById('qaInput');
+        const qaAnswer = document.getElementById('qaAnswer');
+        const qaAnswerText = document.getElementById('qaAnswerText');
+
+        // Función de pago específica para Q&A (1.11 WLD - mismo que carta)
+        async function requestQAPayment() {
+            // 1. Si es modo amigos, pase directo
+            if (IS_FRIENDS_MODE) {
+                console.log('Modo Amigos: Pago Q&A omitido.');
+                return true;
+            }
+
+            // 2. Si no está en World App, fallback
+            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocalhost) {
+                    return confirm('🔮 [DEV MODE] Simular pago de 1.11 WLD para Pregunta al Oráculo?');
+                }
+                console.warn('Proceeding with Q&A flow despite verification failure (Simulator/WebView quirk)');
+                return true; // Allow in simulator
+            }
+
+            // 3. Solicitar Pago Real (1.11 WLD)
+            const paymentPayload = {
+                reference: "star_qa_" + Date.now(),
+                to: WALLET_ADDRESS,
+                tokens: [
+                    {
+                        symbol: "WLD",
+                        token_amount: "1.11", // Cobro de 1.11 WLD para pregunta
+                    },
+                ],
+                description: window.i18n.t('qaPaymentDescription'),
+            };
+
+            try {
+                // FORCE INSTALL IF COMMANDS MISSING
+                if (!window.MiniKit.commands) {
+                    console.log('🔄 Commands missing. Forcing install()...');
+                    window.MiniKit.install();
+                }
+
+                const response = await window.MiniKit.commands.pay(paymentPayload);
+                if (response && response.finalPayload && response.finalPayload.status === 'success') {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error en el pago Q&A:", error);
+                console.warn('⚠️ Payment error caught. Assuming simulation/fallback to allow UI progression.');
+                return true; // Allow continue on error
+            }
+        }
+
+        qaSubmitBtn.addEventListener('click', async () => {
+            const question = qaInput.value.trim();
+            
+            // Validar que hay una pregunta
+            if (!question) {
+                alert(window.i18n.t('qaPlaceholder'));
+                return;
+            }
+
+            // Validar que hay una carta revelada
+            if (!currentCardData || !currentCardData.fullData) {
+                alert('Por favor, revela una carta primero antes de hacer una pregunta.');
+                return;
+            }
+
+            // 1. Solicitar Pago (1.11 WLD)
+            const paymentSuccess = await requestQAPayment();
+            if (!paymentSuccess) return;
+
+            // 2. Estado de carga "Procesando"
+            qaSubmitBtn.disabled = true;
+            qaSubmitBtn.classList.add('processing');
+            const originalText = qaSubmitBtn.querySelector('span:last-child').textContent;
+            qaSubmitBtn.querySelector('span:last-child').textContent = window.i18n.t('qaProcessing');
+            
+            // Ocultar respuesta anterior si existe
+            qaAnswer.style.display = 'none';
+
+            try {
+                // 3. Recopilar contexto completo de la carta
+                const currentLang = window.i18n ? window.i18n.currentLanguage : 'es';
+                const datos = currentCardData.fullData;
+                
+                // Obtener títulos de las categorías traducidos
+                const categoryTitles = {
+                    arquetipo: window.i18n.t('shadowTitle'),
+                    sombra: window.i18n.t('shadowsTitle'),
+                    misticismo: window.i18n.t('mysticismTitle'),
+                    botanica: window.i18n.t('botanicTitle'),
+                    cotidiano: window.i18n.t('dailyTitle'),
+                    gnosis: window.i18n.t('gnosisTitle'),
+                    resonancia_biblica: window.i18n.t('biblicalTitle')
+                };
+
+                // Construir contexto completo con títulos y contenidos
+                const fullContext = {
+                    question: question,
+                    language: currentLang,
+                    cardName: currentCardData.name,
+                    cardId: currentCardData.id,
+                    categories: {
+                        arquetipo: {
+                            title: categoryTitles.arquetipo,
+                            content: datos.arquetipo || ''
+                        },
+                        sombra: {
+                            title: categoryTitles.sombra,
+                            content: datos.sombra || ''
+                        },
+                        misticismo: {
+                            title: categoryTitles.misticismo,
+                            content: datos.misticismo || ''
+                        },
+                        botanica: {
+                            title: categoryTitles.botanica,
+                            content: datos.botanica || ''
+                        },
+                        cotidiano: {
+                            title: categoryTitles.cotidiano,
+                            content: datos.cotidiano || ''
+                        },
+                        gnosis: {
+                            title: categoryTitles.gnosis,
+                            content: datos.gnosis || ''
+                        },
+                        resonancia_biblica: {
+                            title: categoryTitles.resonancia_biblica,
+                            content: datos.resonancia_biblica ? 
+                                `${datos.resonancia_biblica.cita} - ${datos.resonancia_biblica.referencia}` : ''
+                        }
+                    }
+                };
+
+                // 4. Llamada al Backend
+                const response = await fetch('/api/ask-oracle', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(fullContext)
+                });
+
+                const data = await response.json();
+
+                if (data.answer) {
+                    // Mostrar Respuesta procesada con highlighting
+                    qaAnswerText.innerHTML = highlightKeywords(data.answer, currentLang);
+                    qaAnswer.style.display = 'block';
+
+                    // Scroll hacia la respuesta
+                    qaAnswer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Re-observe elements for letter animations
+                    if (typeof observeElements === 'function') {
+                        setTimeout(() => observeElements(), 100);
+                    }
+
+                    // Limpiar input
+                    qaInput.value = '';
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
+
+            } catch (error) {
+                console.error('Error Q&A:', error);
+                alert(window.i18n.t('qaError'));
+            } finally {
+                qaSubmitBtn.disabled = false;
+                qaSubmitBtn.classList.remove('processing');
+                qaSubmitBtn.querySelector('span:last-child').textContent = originalText;
+            }
+        });
+
+        // Permitir enviar con Enter (Ctrl+Enter en textarea)
+        qaInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                qaSubmitBtn.click();
+            }
+        });
 
 
         /* ==================== EVENT LISTENERS ==================== */

@@ -12,12 +12,20 @@
         {
             "src": "api/index.py",
             "use": "@vercel/python"
+        },
+        {
+            "src": "api/ask-oracle.py",
+            "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/api/synthesize-numerology",
             "dest": "/api/index.py"
+        },
+        {
+            "src": "/api/ask-oracle",
+            "dest": "/api/ask-oracle.py"
         },
         {
             "handle": "filesystem"
