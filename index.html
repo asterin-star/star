@@ -2490,7 +2490,12 @@
             aiBtn.disabled = false;
             aiBtn.innerHTML = '<span class="ai-btn-icon">✦</span>';
 
-            // 2.5. Ocultar introducción
+            // 2.5 Stop video only if actually playing (prevent interrupting startup)
+            if (isVideoPlaying) {
+                stopCardVideo();
+            }
+
+            // 2.6. Ocultar introducción
             const introSection = document.getElementById('introSection');
             introSection.style.display = 'none';
 
