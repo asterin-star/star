@@ -2323,9 +2323,13 @@
             const introExample = document.getElementById('introExample');
             const datos = currentCardData.fullData;
 
+
             // Usar el campo cotidiano como introducción (experiencia práctica, sin prefijo)
             const lang = window.i18n ? window.i18n.currentLanguage : 'es';
-            introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : 'La experiencia de vida práctica.';
+            // Performance: Defer keyword highlighting to reduce blocking
+            setTimeout(() => {
+                introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : 'La experiencia de vida práctica.';
+            }, 100);
             introSection.style.display = 'block';
 
             // 4. LLENAR LAS SECCIONES CON DATOS ALEATORIOS
