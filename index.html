@@ -465,39 +465,27 @@
             padding: 2px 1px;
             font-weight: 800;
 
-            /* COLOR DINÁMICO basado en la paleta de la carta */
-            color: var(--keyword-color);
+            /* TRANSPARENT TEXT - wallpaper colors show through */
+            color: transparent;
+            background: inherit;
+            /* Inherit wallpaper background */
+            -webkit-background-clip: text;
+            background-clip: text;
 
-            /* Contorno luminoso tipo "borde de gota" con el color de la carta */
-            text-shadow:
-                /* Brillo interno del color principal */
-                0 0 3px var(--keyword-color),
-                0 0 6px var(--keyword-color),
-                0 0 12px var(--keyword-color),
-                /* Destello blanco en el borde superior (refracción) */
-                0 -1px 1px rgba(255, 255, 255, 0.9),
-                1px -1px 2px rgba(255, 255, 255, 0.6),
-                /* Sombra oscura para profundidad */
-                0 2px 4px rgba(0, 0, 0, 0.3);
+            /* Subtle outline to define letter edges */
+            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+            text-stroke: 0.3px rgba(255, 255, 255, 0.3);
 
-            /* Sin fondos */
-            background: none;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            /* Allow blend with wallpaper */
+            mix-blend-mode: normal;
 
             transition: all 0.3s ease;
         }
 
-        /* Hover: Refuerza el brillo */
+        /* Hover: Slightly stronger outline */
         .keyword-highlight:hover {
-            text-shadow:
-                0 0 5px var(--keyword-color),
-                0 0 10px var(--keyword-color),
-                0 0 20px var(--keyword-color),
-                0 0 30px var(--keyword-color),
-                0 -1px 1px rgba(255, 255, 255, 1),
-                1px -1px 2px rgba(255, 255, 255, 0.8),
-                0 2px 4px rgba(0, 0, 0, 0.4);
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+            text-stroke: 0.5px rgba(255, 255, 255, 0.5);
             transform: scale(1.03);
         }
 
@@ -1349,36 +1337,31 @@
 
         /* Keywords: "Crystal" effect allowing background blobs to show through */
         .keyword-highlight {
-            color: rgba(255, 255, 255, 0.7);
-            /* Brillo reducido pero visible */
+            /* TRANSPARENT TEXT - wallpaper shows through */
+            color: transparent;
+            background: inherit;
+            -webkit-background-clip: text;
+            background-clip: text;
+
             font-weight: 700;
             position: relative;
             display: inline-block;
 
-            /* Overlay blend mode para interactuar con los blobs */
-            mix-blend-mode: overlay;
+            /* Subtle outline */
+            -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
 
-            /* Text stroke suave para definir bordes */
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
-
+            mix-blend-mode: normal;
             transition: all 0.5s ease;
         }
 
-        /* Filled/Active state */
+        /* Filled/Active state - same transparent */
         .keyword-highlight.filled {
-            mix-blend-mode: normal;
-            /* Pop out when filled/active */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            /* REDUCIDO: era 15px 0.5, ahora 10px 0.3 */
-            -webkit-text-stroke: 0px;
-            color: #ffffff;
+            -webkit-text-stroke: 0.4px rgba(255, 255, 255, 0.4);
         }
 
         .keyword-highlight:hover {
-            mix-blend-mode: normal;
             transform: scale(1.05);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            /* REDUCIDO: era 20px 1.0, ahora 15px 0.6 */
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
         }
 
 
