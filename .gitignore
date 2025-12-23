@@ -1,0 +1,12 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+service_account.json
+.DS_Store
+.vercel
+chess-wld/.next/cache/
+public/videos/*.mp4
+chess-wld/.next/cache/
+chess-wld/.next/
+chess-wld/

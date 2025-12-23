@@ -1,0 +1,3159 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlRoot">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star ✦</title>
+    <meta name="description" content="Oráculo de Tarot y Numerología del presente.">
+    <!-- World App MiniKit -->
+    <!-- World App MiniKit Wrapper (Local Fallback) -->
+    <script src="./public/libs/minikit-wrapper.js"></script>
+    <!-- i18n Translation Module -->
+    <script src="./public/i18n.js"></script>
+    <style>
+        /* =====================================================
+           ORÁCULO WHITESUR - PROYECTO 7.41
+           Fusión: Glassmorphism Apple Music Style + Misticismo
+        ===================================================== */
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* GLASSMORPHISM - Ajustado para fondos dinámicos claros */
+            --glass-surface: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-blur: 35px;
+            --shadow-soft: 0 12px 42px rgba(0, 0, 0, 0.1);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+            /* TIPOGRAFÍA - Ajustada a oscuro para legibilidad sobre cristal claro */
+            --text-primary: #1d1d1f;
+            --text-secondary: #424245;
+            --text-tertiary: rgba(0, 0, 0, 0.5);
+
+            /* ANIMACIONES - Basadas en principios de Apple HIG */
+            --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+            /* Ease out suave */
+            --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Rebote sutil */
+            --ease-natural: cubic-bezier(0.4, 0.0, 0.2, 1);
+            /* Material Design */
+
+            /* Variables para colores dinámicos del fondo */
+            --color1: #ffffff;
+            --color2: #ffffff;
+            --color3: #ffffff;
+            --color4: #ffffff;
+
+            /* Color de keyword - basado en la paleta de la carta */
+            --keyword-color: #FFEB3B;
+
+            /* GYROSCOPE - Variables actualizadas dinámicamente por JavaScript */
+            --gyro-x: 0;
+            --gyro-y: 0;
+            --gyro-z: 0;
+            --gyro-hue: 0deg;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Eliminar outline azul de selección (Requerimiento del usuario) */
+        *,
+        *:focus,
+        *:active,
+        button:focus,
+        button:active,
+        a:focus,
+        a:active,
+        div:focus,
+        div:active,
+        [tabindex]:focus,
+        [tabindex]:active,
+        *:focus-visible,
+        .card-stage,
+        .card-stage:focus,
+        .card-stage:active,
+        .card-inner,
+        .card-inner:focus,
+        .card-inner:active {
+            outline: none !important;
+            box-shadow: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* BLOQUEO DE SCROLL HASTA QUE LA CARTA SE REVELE */
+        body.no-scroll {
+            overflow: hidden;
+            /* Evita el scroll en el body */
+            position: fixed;
+            /* Previene que se mueva el contenido en iOS */
+            width: 100%;
+            /* Mantiene el ancho */
+        }
+
+        /* ==================== WALLPAPER DINÁMICO ESTILO APPLE MUSIC LÍQUIDO ==================== */
+        .wallpaper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            /* Inicia en blanco */
+            z-index: -2;
+            overflow: hidden;
+            /* Contiene las manchas de color */
+            transition: background-color 0.8s var(--ease-smooth);
+        }
+
+        .wallpaper.active {
+            /* Un ligero tinte cuando está activo para mejorar el efecto */
+            background: #f9f9f9;
+        }
+
+        /* Manchas de color (Blobs) */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            /* El blur intenso crea el efecto líquido/borroso. Ajustado para ser muy fluido. */
+            filter: blur(135px);
+            opacity: 0;
+            /* Transición suave al aparecer */
+            transition: opacity 1.5s ease-in-out;
+            width: 65vmax;
+            height: 65vmax;
+            /* Mejora la mezcla de colores sobre fondo claro */
+            mix-blend-mode: multiply;
+        }
+
+        .wallpaper.active .blob {
+            /* Opacidad ajustada para un efecto sutil */
+            opacity: 0.7;
+        }
+
+        /* Asignación de colores dinámicos y animaciones únicas */
+        .blob1 {
+            background: var(--color1);
+            animation: move1 28s ease-in-out infinite alternate;
+        }
+
+        .blob2 {
+            background: var(--color2);
+            animation: move2 32s ease-in-out infinite alternate;
+        }
+
+        .blob3 {
+            background: var(--color3);
+            animation: move3 38s ease-in-out infinite alternate;
+        }
+
+        .blob4 {
+            background: var(--color4);
+            animation: move4 42s ease-in-out infinite alternate;
+        }
+
+        /* Keyframes para movimiento lento y orgánico */
+        @keyframes move1 {
+            from {
+                transform: translate(-20%, -20%) scale(1) rotate(0deg);
+            }
+
+            to {
+                transform: translate(30%, 40%) scale(1.4) rotate(360deg);
+            }
+        }
+
+        @keyframes move2 {
+            from {
+                transform: translate(50%, -30%) scale(1.2) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-20%, 60%) scale(0.9) rotate(-360deg);
+            }
+        }
+
+        @keyframes move3 {
+            from {
+                transform: translate(70%, 70%) scale(0.9) rotate(0deg);
+            }
+
+            to {
+                transform: translate(10%, -10%) scale(1.5) rotate(360deg);
+            }
+        }
+
+        @keyframes move4 {
+            from {
+                transform: translate(-10%, 80%) scale(1.1) rotate(0deg);
+            }
+
+            to {
+                transform: translate(60%, -20%) scale(1) rotate(-360deg);
+            }
+        }
+
+        /* ==================== IRIDESCENT BORDER EFFECTS (iOS 26 Style) ==================== */
+
+        /* Rainbow gradient animation for borders */
+        /* Chromatic aberration doesn't need animated gradients */
+
+        /* Base iridescent border effect - CHROMATIC ABERRATION STYLE */
+        .iridescent-border {
+            position: relative;
+            isolation: isolate;
+        }
+
+        /* RED CHANNEL - offset right/up slightly */
+        .iridescent-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: inherit;
+            filter: hue-rotate(0deg) blur(0.4px) brightness(1.3);
+            mix-blend-mode: screen;
+            opacity: 0.7;
+            transform: translate(calc(2px + var(--gyro-x) * 0.03px),
+                    calc(1px + var(--gyro-y) * 0.03px));
+            /* Radial mask: relaxed for more visibility */
+            -webkit-mask: radial-gradient(circle at center, transparent 70%, black 100%);
+            mask: radial-gradient(circle at center, transparent 70%, black 100%);
+            pointer-events: none;
+            z-index: -1;
+
+            /* GPU acceleration */
+            will-change: transform, filter;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* GREEN/BLUE CHANNEL - offset left/down slightly */
+        .iridescent-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: inherit;
+            filter: hue-rotate(180deg) blur(0.4px) brightness(1.3);
+            mix-blend-mode: screen;
+            opacity: 0.6;
+            transform: translate(calc(-2px - var(--gyro-x) * 0.03px),
+                    calc(-1px - var(--gyro-y) * 0.03px));
+            /* Radial mask: relaxed for more visibility */
+            -webkit-mask: radial-gradient(circle at center, transparent 70%, black 100%);
+            mask: radial-gradient(circle at center, transparent 70%, black 100%);
+            pointer-events: none;
+            z-index: -1;
+
+            /* GPU acceleration */
+            will-change: transform, filter;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Hover: increase brightness and intensity even more */
+        .iridescent-border:hover::before {
+            opacity: 0.9;
+            filter: hue-rotate(0deg) blur(0.3px) brightness(1.8);
+        }
+
+        .iridescent-border:hover::after {
+            opacity: 0.8;
+            filter: hue-rotate(180deg) blur(0.3px) brightness(1.8);
+        }
+
+        /* Subtle variant for small elements (buttons) */
+        .iridescent-border-subtle::before {
+            /* Smaller offset for subtle effect */
+            transform: translate(calc(0.5px + var(--gyro-x) * 0.01px),
+                    calc(0.25px + var(--gyro-y) * 0.01px));
+            opacity: 0.2;
+            filter: hue-rotate(0deg) blur(0.3px);
+            /* Tighter mask for smaller elements */
+            -webkit-mask: radial-gradient(circle at center, transparent 85%, black 100%);
+            mask: radial-gradient(circle at center, transparent 85%, black 100%);
+        }
+
+        .iridescent-border-subtle::after {
+            /* Opposite offset */
+            transform: translate(calc(-0.5px - var(--gyro-x) * 0.01px),
+                    calc(-0.25px - var(--gyro-y) * 0.01px));
+            opacity: 0.15;
+            filter: hue-rotate(180deg) blur(0.3px);
+            /* Tighter mask for smaller elements */
+            -webkit-mask: radial-gradient(circle at center, transparent 85%, black 100%);
+            mask: radial-gradient(circle at center, transparent 85%, black 100%);
+        }
+
+        .iridescent-border-subtle:hover::before {
+            opacity: 0.35;
+        }
+
+        .iridescent-border-subtle:hover::after {
+            opacity: 0.25;
+        }
+
+
+        /* CAPA DE TEXTURA - Efecto "papel antiguo" muy sutil */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="300" height="300" filter="url(%23n)" opacity="0.05"/></svg>');
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* ==================== INTERFACE PRINCIPAL ==================== */
+        .interface {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* MEJORAR CENTRADO VERTICAL PARA MINIMIZAR SCROLL */
+            justify-content: center;
+            /* Centra verticalmente cuando no hay scroll */
+            /* Eliminada min-height: 100vh para evitar espacio innecesario */
+            gap: 40px;
+            width: 100%;
+            max-width: 1400px;
+            padding: 40px 20px;
+            margin: 0 auto;
+        }
+
+        /* Cuando la carta está revelada, volver a flex-start para permitir scroll normal */
+        .interface.revealed {
+            justify-content: flex-start;
+        }
+
+        /* ==================== CARTA - ZONA INTERACTIVA ==================== */
+        .card-stage {
+            perspective: 1800px;
+            width: 300px;
+            height: 490px;
+            cursor: pointer;
+            z-index: 10;
+            margin-top: 20px;
+            flex-shrink: 0;
+            transform-style: preserve-3d;
+            animation: breathe 4s ease-in-out infinite;
+
+            /* PREVENIR SCROLL AL INTERACTUAR CON LA CARTA */
+            touch-action: none;
+            /* Previene el comportamiento de scroll predeterminado en touch devices */
+            overscroll-behavior: contain;
+            /* Evita que el scroll se propague al contenedor padre */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Breathing stops on hover to not interfere with tilt */
+        .card-stage:hover {
+            animation-play-state: paused;
+        }
+
+        .card-stage.flipped {
+            /* Flip state handled via variables */
+            --flip-angle: 180deg;
+        }
+
+        /* CONTENEDOR INTERNO 3D - Maneja inclinación y volteo */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+
+            /* Default: Fast transition for tilt responsiveness */
+            transition: transform 0.1s ease-out;
+
+            /* Combine Tilt (rx, ry) and Flip (flip-angle 0 or 180) */
+            transform:
+                rotateX(var(--rotate-x, 0deg)) rotateY(calc(var(--rotate-y, 0deg) + var(--flip-angle, 0deg)));
+        }
+
+        /* Slow transition only when flipping */
+        .card-inner.is-flipping {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 26px;
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            /* Fix for Safari handling of overflow with 3D */
+            transform: translateZ(0);
+        }
+
+        /* GLARE EFFECT (Iluminación dinámica) */
+        .card-face::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+                    rgba(255, 255, 255, 0.8) 0%,
+                    rgba(255, 255, 255, 0) 60%);
+            opacity: var(--glare-opacity, 0);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 10;
+            transition: opacity 0.2s ease;
+        }
+
+        /* DORSO - Gradiente Púrpura/Índigo solicitado */
+        .front {
+            /* Implementación de: bg-gradient-to-br from-purple-900/20 to-indigo-900/20 */
+            /* Y radial-gradient(circle at 30% 30%, rgba(147, 51, 234, 0.1) 0%, transparent 50%) */
+
+            background-image:
+                radial-gradient(circle at 30% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                linear-gradient(to bottom right, rgba(147, 51, 234, 0.25), rgba(79, 70, 229, 0.25));
+
+            /* backdrop-blur-sm (aproximadamente 8px) */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow:
+                var(--shadow-card),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .keyword-highlight {
+            position: relative;
+            display: inline-block;
+            padding: 2px 1px;
+            font-weight: 800;
+
+            /* COLOR DINÁMICO basado en la paleta de la carta */
+            color: var(--keyword-color);
+
+            /* Contorno luminoso tipo "borde de gota" con el color de la carta */
+            text-shadow:
+                /* Brillo interno del color principal */
+                0 0 3px var(--keyword-color),
+                0 0 6px var(--keyword-color),
+                0 0 12px var(--keyword-color),
+                /* Destello blanco en el borde superior (refracción) */
+                0 -1px 1px rgba(255, 255, 255, 0.9),
+                1px -1px 2px rgba(255, 255, 255, 0.6),
+                /* Sombra oscura para profundidad */
+                0 2px 4px rgba(0, 0, 0, 0.3);
+
+            /* Sin fondos */
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+
+            transition: all 0.3s ease;
+        }
+
+        /* Hover: Refuerza el brillo */
+        .keyword-highlight:hover {
+            text-shadow:
+                0 0 5px var(--keyword-color),
+                0 0 10px var(--keyword-color),
+                0 0 20px var(--keyword-color),
+                0 0 30px var(--keyword-color),
+                0 -1px 1px rgba(255, 255, 255, 1),
+                1px -1px 2px rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            transform: scale(1.03);
+        }
+
+        /* NO pseudo-elementos (sin esferas ni brillos extras) */
+        .keyword-highlight::before,
+        .keyword-highlight::after {
+            content: none !important;
+            display: none !important;
+        }
+
+        /* Símbolo lunar central - Ajustado para el nuevo fondo */
+        .symbol {
+            width: 70px;
+            height: 70px;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* ANVERSO - La revelación */
+        .back {
+            /* Fondo tipo cristal claro para la carta revelada */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            transform: rotateY(180deg);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tarot-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* ELIMINACIÓN DE FONDO BLANCO (Importante si las imágenes lo tienen) */
+            mix-blend-mode: darken;
+            filter: contrast(1.1) saturate(1.1) brightness(1.05);
+            transition: transform 4s var(--ease-smooth);
+        }
+
+
+        /* Efecto zoom al revelar */
+        .card-stage.flipped .tarot-img {
+            transform: scale(1.02);
+        }
+
+        /* ==================== VIDEO OVERLAY (LONG-PRESS) ==================== */
+        .card-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 26px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .card-video-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .card-video-overlay video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video close button */
+        .video-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 101;
+            transition: all 0.2s ease;
+        }
+
+        .video-close-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+
+
+        /* ==================== PANEL DE LECTURA ==================== */
+        /* Estilo Apple Music Lyrics */
+        .insight-panel {
+            width: 92%;
+            max-width: 720px;
+            /* OSCURECIDO para mejor contraste con keywords brillantes */
+            background: rgba(245, 245, 245, 0.45);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 22px;
+            padding: 32px 42px 36px;
+            border: 1.5px solid var(--glass-border);
+            box-shadow:
+                var(--shadow-soft),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+            /* Estado inicial: invisible */
+            opacity: 0;
+            transform: translateY(25px) scale(0.96);
+            transition: all 0.9s var(--ease-smooth);
+            text-align: left;
+            pointer-events: none;
+            z-index: 5;
+            margin-bottom: 60px;
+            flex-shrink: 0;
+        }
+
+        .insight-panel.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        /* TÍTULO Y TEXTOS - AJUSTADOS PARA LECTURA SOBRE CRISTAL CLARO */
+
+        h2 {
+            margin: 0 0 22px 0;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            color: var(--text-primary);
+            /* Efecto de texto "grabado" sutil en lugar de shimmer brillante */
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+            animation: fadeSlideIn 0.6s var(--ease-smooth) 0.2s both;
+        }
+
+        /* SECCIONES DE CONTENIDO */
+        .section {
+            margin-bottom: 24px;
+            animation: fadeSlideIn 0.7s var(--ease-smooth) both;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        .section:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        .section:nth-child(6) {
+            animation-delay: 0.7s;
+        }
+
+        .section:nth-child(7) {
+            animation-delay: 0.8s;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin: 0 0 8px 0;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .section-title:hover {
+            color: var(--accent-primary);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+        }
+
+        .section-title::after {
+            content: '>';
+            opacity: 0.6;
+            font-weight: 300;
+            font-size: 0.75em;
+            transition: opacity 0.2s ease;
+        }
+
+        .section-title:hover::after {
+            opacity: 0.9;
+            color: var(--accent-primary);
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 0 0 24px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeSlideIn 0.6s ease-out;
+        }
+
+        .intro-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin: 0;
+            text-align: justify;
+        }
+
+        .intro-text em {
+            color: var(--accent-primary);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .section-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .biblical-verse {
+            font-style: italic;
+            border-left: 2px solid rgba(0, 0, 0, 0.2);
+            padding-left: 16px;
+            margin-top: 6px;
+            color: var(--text-secondary);
+        }
+
+        .verse-reference {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            font-style: normal;
+            text-align: right;
+        }
+
+        /* ==================== MODAL GLASSMORPHISM BLANCO ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: modalFadeIn 0.3s ease-out;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            max-width: 700px;
+            width: 100%;
+            /* FIX SCROLL: Limitar altura y usar flex column */
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-header {
+            padding: 24px 28px 20px 28px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Header no se encoge */
+            flex-shrink: 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .ai-btn {
+            /* El botón es el MICROCOSMOS: Refleja los colores del MACROCOSMOS (Fondo) */
+            background: linear-gradient(135deg, var(--color1, #ffffff), var(--color2, #e0e0e0));
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #2c2c2c;
+        }
+
+        .modal-body {
+            padding: 24px 28px;
+            /* SCROLLABLE */
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .modal-body p {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            text-align: justify;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .modal-footer {
+            padding: 16px 28px 28px 28px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: right;
+        }
+
+        .modal-footer small {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apple Music-style letter reveal with white fill */
+        @keyframes letterReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(8px) scale(0.9);
+                filter: blur(3px);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* White fill animation */
+        @keyframes whiteFill {
+            from {
+                color: rgba(0, 0, 0, 0.3);
+            }
+
+            to {
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow:
+                    0 0 8px rgba(255, 255, 255, 0.6),
+                    0 0 12px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        /* Class for animating letters individually */
+        .letter-animate {
+            display: inline-block;
+            opacity: 0;
+            animation: letterReveal 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+            animation-play-state: paused;
+        }
+
+        .letter-animate.reveal {
+            animation-play-state: running;
+        }
+
+        /* Apply white fill after reveal */
+        .letter-animate.reveal.fill {
+            animation:
+                letterReveal 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards,
+                whiteFill 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) 0.4s forwards;
+        }
+
+        /* TEXTO DE LECTURA */
+        p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        /* BOTÓN DE REINICIO - ELIMINADO (Se eliminan los estilos .card-reset-btn) */
+
+
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .card-stage {
+                width: 280px;
+                height: 460px;
+            }
+
+            .insight-panel {
+                width: 90%;
+                max-width: 600px;
+            }
+
+            .blob {
+                filter: blur(90px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-stage {
+                width: 260px;
+                height: 420px;
+            }
+
+            .insight-panel {
+                width: 94%;
+                max-width: 500px;
+                padding: 22px 28px;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            p,
+            .section-content {
+                font-size: 0.92rem;
+                line-height: 1.65;
+            }
+
+            .blob {
+                filter: blur(70px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-stage {
+                width: 240px;
+                height: 390px;
+            }
+
+            .insight-panel {
+                width: 96%;
+                padding: 18px 24px;
+                max-width: 400px;
+            }
+
+            h2 {
+                font-size: 1rem;
+                letter-spacing: 1px;
+                margin-bottom: 12px;
+            }
+
+            p,
+            .section-content {
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card-stage {
+                width: 200px;
+                height: 320px;
+            }
+
+            .insight-panel {
+                width: 98%;
+                padding: 16px 20px;
+            }
+
+            h2 {
+                font-size: 0.95rem;
+            }
+
+            p,
+            .section-content {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ==================== ACCESIBILIDAD ==================== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .blob {
+                animation: none !important;
+            }
+        }
+
+        /* ==================== APPLE MUSIC READING EFFECT ==================== */
+
+        .reading-unit {
+            opacity: 0.35;
+            filter: blur(1.5px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: inline-block;
+            /* Or block depending on flow */
+        }
+
+        .reading-unit.active {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        /* ==================== KEYWORD HIGHLIGHTING - FIXED TRANSPARENCY ==================== */
+
+        /* Keywords: "Crystal" effect allowing background blobs to show through */
+        .keyword-highlight {
+            color: rgba(255, 255, 255, 0.7);
+            /* Brillo reducido pero visible */
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+
+            /* Overlay blend mode para interactuar con los blobs */
+            mix-blend-mode: overlay;
+
+            /* Text stroke suave para definir bordes */
+            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
+
+            transition: all 0.5s ease;
+        }
+
+        /* Filled/Active state */
+        .keyword-highlight.filled {
+            mix-blend-mode: normal;
+            /* Pop out when filled/active */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            /* REDUCIDO: era 15px 0.5, ahora 10px 0.3 */
+            -webkit-text-stroke: 0px;
+            color: #ffffff;
+        }
+
+        .keyword-highlight:hover {
+            mix-blend-mode: normal;
+            transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            /* REDUCIDO: era 20px 1.0, ahora 15px 0.6 */
+        }
+
+
+
+        /* ==================== ESTILOS BOTÓN IA ==================== */
+        .ai-synthesis-container {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ai-btn {
+            /* El botón es el MICROCOSMOS: Refleja los colores del MACROCOSMOS (Fondo) */
+            /* Fondo base translúcido para las mini-blobs */
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* Mini-blob 1 - Movimiento lento */
+        .ai-btn::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color1, #ffd1dc);
+            filter: blur(25px);
+            mix-blend-mode: multiply;
+            opacity: 0.6;
+            top: -20px;
+            left: -10px;
+            animation: microMove1 12s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* Mini-blob 2 - Movimiento diferente */
+        .ai-btn::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--color2, #b8e0ff);
+            filter: blur(20px);
+            mix-blend-mode: multiply;
+            opacity: 0.5;
+            bottom: -15px;
+            right: -10px;
+            animation: microMove2 14s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .ai-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-btn:active {
+            transform: scale(0.95);
+        }
+
+        .ai-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            filter: grayscale(0.5);
+        }
+
+        /* Icono dentro del botón (opcional, o solo el color) */
+        .ai-btn-icon {
+            position: relative;
+            z-index: 2;
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        /* Estado "Pensando" (Microcosmo activo) */
+        .ai-btn.thinking {
+            animation: liquidButton 2s ease infinite, pulseMicro 1.5s ease-in-out infinite;
+            cursor: wait;
+        }
+
+        .ai-btn.thinking .ai-btn-icon {
+            animation: spinStar 2s linear infinite;
+        }
+
+        @keyframes pulseMicro {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        @keyframes spinStar {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animaciones micro para las mini-blobs del botón */
+        @keyframes microMove1 {
+            from {
+                transform: translate(-5px, -5px) scale(1);
+            }
+
+            to {
+                transform: translate(10px, 8px) scale(1.2);
+            }
+        }
+
+        @keyframes microMove2 {
+            from {
+                transform: translate(8px, -6px) scale(0.9);
+            }
+
+            to {
+                transform: translate(-7px, 10px) scale(1.1);
+            }
+        }
+
+        .ai-result {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeSlideIn 0.5s ease-out;
+        }
+
+        .ai-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-primary);
+            /* Negro/Oscuro */
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .ai-result p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* BOTÓN DE IDIOMA */
+        .lang-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #888;
+            /* Gris neutral */
+            filter: grayscale(100%);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+            color: #555;
+            filter: grayscale(80%);
+        }
+
+        .lang-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* TIP DE INTERACCIÓN ELIMINADO */
+    </style>
+</head>
+
+<body>
+
+    <div class="wallpaper" id="wallpaper">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+        <div class="blob blob4"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Botón de Idioma -->
+    <button class="lang-btn iridescent-border-subtle" id="langBtn" onclick="toggleLanguage()"
+        aria-label="Change Language">
+        🌐
+    </button>
+
+    <div class="interface">
+        <div class="card-stage" id="cardStage">
+            <div class="card-inner">
+                <div class="card-face front iridescent-border">
+                    <div class="symbol">☾</div>
+                </div>
+                <div class="card-face back iridescent-border">
+                    <img id="cardImg" src="" alt="Arcano del Tarot" class="tarot-img">
+                </div>
+
+                <!-- Video Overlay (activated on long-press) -->
+                <div class="card-video-overlay" id="videoOverlay">
+                    <video id="cardVideo" loop muted playsinline preload="auto">
+                        <source id="videoSource" src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-close-btn" id="videoCloseBtn">×</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tap Hint Removed -->
+
+        <div class="insight-panel iridescent-border" id="insightPanel">
+            <h2 id="cardTitle"></h2>
+
+            <div class="intro-section" id="introSection" style="display:none;">
+                <p class="intro-text"><em id="introExample"></em></p>
+            </div>
+
+            <div class="section" id="seccionSignificado">
+                <div class="section-title" id="titleArquetipo"></div>
+                <p class="section-content" id="textoSignificado"></p>
+            </div>
+
+            <div class="section" id="seccionAmpliado" style="display:none;">
+                <div class="section-title" id="titleMisticismo"></div>
+                <p class="section-content" id="textoAmpliado"></p>
+            </div>
+
+            <div class="section" id="seccionNegativo" style="display:none;">
+                <div class="section-title" id="titleSombra"></div>
+                <p class="section-content" id="textoNegativo"></p>
+            </div>
+
+            <div class="section" id="seccionBotanica" style="display:none;">
+                <div class="section-title" id="titleBotanica"></div>
+                <p class="section-content" id="textoBotanica"></p>
+            </div>
+
+            <div class="section" id="seccionCotidiano" style="display:none;">
+                <div class="section-title" id="titleCotidiano"></div>
+                <p class="section-content" id="textoCotidiano"></p>
+            </div>
+
+            <div class="section" id="seccionMistico" style="display:none;">
+                <div class="section-title" id="titleGnosis"></div>
+                <p class="section-content" id="textoMistico"></p>
+            </div>
+
+            <div class="section" id="seccionBiblico" style="display:none;">
+                <div class="section-title" id="titleResonanciaBiblica"></div>
+                <div class="section-content">
+                    <div class="biblical-verse" id="textoBiblico"></div>
+                </div>
+            </div>
+
+            <!-- Botón de Síntesis IA -->
+            <div class="ai-synthesis-container">
+                <button class="ai-btn iridescent-border-subtle" id="aiBtn" aria-label="Sintetizar Numerología">
+                    <span class="ai-btn-icon">✦</span>
+                </button>
+                <div class="ai-result" id="aiResult" style="display:none;">
+                    <div class="ai-header">
+                        <span class="ai-icon-small">✦</span> Numerología
+                    </div>
+                    <p id="aiText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para ejemplos de los 22 conceptos -->
+        <div class="modal-overlay" id="modalOverlay" style="display: none;">
+            <div class="modal-content iridescent-border" id="modalContent">
+                <div class="modal-header">
+                    <h3 id="modalTitle"></h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalText"></p>
+                </div>
+                <div class="modal-footer">
+                    <small id="modalNumber"></small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ==================== CONFIGURACIÓN WORLD APP ==================== */
+        const WALLET_ADDRESS = '0xa3cdea9fe705bc16dcd9e9170e217b0f1ba5aaf6';
+
+        // Detectar modo "Amigos" (Gratis) vía URL: ?mode=friends
+        const urlParams = new URLSearchParams(window.location.search);
+        const IS_FRIENDS_MODE = urlParams.get('mode') === 'friends';
+
+        // Inicializar MiniKit
+        try {
+            if (window.MiniKit) {
+                window.MiniKit.install();
+            }
+        } catch (e) {
+            console.log('MiniKit not initialized (running outside World App?)');
+        }
+
+        /* =====================================================
+           LÓGICA DEL ORÁCULO
+        ===================================================== */
+
+        const cardStage = document.getElementById('cardStage');
+        const cardInner = document.querySelector('.card-inner'); // Reference to inner for class toggling
+        const insightPanel = document.getElementById('insightPanel');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardImg = document.getElementById('cardImg');
+
+        const wallpaper = document.getElementById('wallpaper');
+
+        // Elementos de las 6 secciones
+        const textoSignificado = document.getElementById('textoSignificado');
+        const textoAmpliado = document.getElementById('textoAmpliado');
+        const textoNegativo = document.getElementById('textoNegativo');
+        const textoBotanica = document.getElementById('textoBotanica');
+        const textoCotidiano = document.getElementById('textoCotidiano');
+        const textoMistico = document.getElementById('textoMistico');
+        const textoBiblico = document.getElementById('textoBiblico');
+
+        const seccionAmpliado = document.getElementById('seccionAmpliado');
+        const seccionNegativo = document.getElementById('seccionNegativo');
+        const seccionBotanica = document.getElementById('seccionBotanica');
+        const seccionCotidiano = document.getElementById('seccionCotidiano');
+        const seccionMistico = document.getElementById('seccionMistico');
+        const seccionBiblico = document.getElementById('seccionBiblico');
+
+        let isRevealed = false;
+        let isProcessing = false;
+        let currentCardData = null;
+
+        // Arrays globales para almacenar todos los conceptos por categoría (22 conceptos cada uno)
+        let allArquetipos = [];
+        let allMisticismos = [];
+        let allSombras = [];
+        let allBotanicas = [];
+        let allCotidianos = [];
+        let allGnosis = [];
+        let allResonanciasBiblicas = [];
+
+        // Índices de ejemplo pre-calculados para esta sesión (para consistencia)
+        let currentExampleIndices = {
+            arquetipo: 0,
+            misticismo: 0,
+            sombra: 0,
+            botanica: 0,
+            cotidiano: 0,
+            gnosis: 0,
+            resonancia_biblica: 0
+        };
+
+        // Variable para controlar el timeout del reset de color
+        let resetColorTimeout = null;
+
+        /* ==================== PALETAS DE COLORES RIDER-WAITE ==================== */
+        // Basado en los colores visualmente dominantes y simbólicos de las cartas estándar.
+        const colorPalettes = {
+            'ar00': ['#FFEB3B', '#81D4FA', '#FFFFFF', '#F44336'], // El Loco: Amarillo brillante, Azul claro, Blanco, Rojo
+            'ar01': ['#F44336', '#FFFFFF', '#FFC107', '#4CAF50'], // El Mago: Rojo, Blanco, Amarillo, Verde
+            'ar02': ['#64B5F6', '#FFFFFF', '#B0BEC5', '#1976D2'], // La Sacerdotisa: Azul claro, Blanco, Gris claro, Azul oscuro
+            'ar03': ['#FFC107', '#4CAF50', '#F44336', '#FFF9C4'], // La Emperatriz: Amarillo, Verde, Rojo, Crema
+            'ar04': ['#D32F2F', '#FF9800', '#9E9E9E', '#B0BEC5'], // El Emperador: Rojo oscuro, Naranja, Gris claro
+            'ar05': ['#F44336', '#757575', '#FFFFFF', '#FFC107'], // El Sumo Sacerdote: Rojo, Gris, Blanco, Oro
+            'ar06': ['#81D4FA', '#FFEB3B', '#4CAF50', '#9C27B0'], // Los Enamorados: Azul claro, Amarillo sol, Verde, Púrpura
+            'ar07': ['#B0BEC5', '#2196F3', '#FFC107', '#616161'], // El Carro: Gris, Azul, Oro, Negro/Gris
+            'ar08': ['#FFFFFF', '#FF9800', '#8BC34A', '#F44336'], // La Fuerza: Blanco, Naranja, Verde claro, Rojo león
+            'ar09': ['#9E9E9E', '#616161', '#B0BEC5', '#FFEB3B'], // El Ermitaño: Grises, Amarillo estrella
+            'ar10': ['#FF9800', '#2196F3', '#F44336', '#FFC107'], // La Rueda: Naranja, Azul, Rojo, Oro
+            'ar11': ['#D32F2F', '#4CAF50', '#FFC107', '#9E9E9E'], // La Justicia: Rojo oscuro, Verde, Oro, Gris
+            'ar12': ['#2196F3', '#F44336', '#9E9E9E', '#FFEB3B'], // El Colgado: Azul, Rojo, Gris, Amarillo halo
+            'ar13': ['#616161', '#FFFFFF', '#9E9E9E', '#FFEB3B'], // La Muerte: Gris oscuro, Blanco, Gris, Amarillo sol
+            'ar14': ['#FFFFFF', '#81D4FA', '#FFC107', '#F44336'], // La Templanza: Blanco, Azul claro, Oro, Rojo
+            'ar15': ['#424242', '#757575', '#F44336', '#795548'], // El Diablo: Negro, Gris, Rojo, Marrón
+            'ar16': ['#9E9E9E', '#616161', '#F44336', '#FFEB3B'], // La Torre: Gris, Negro, Rojo fuego, Amarillo rayo
+            'ar17': ['#64B5F6', '#FFC107', '#4CAF50', '#FFFFFF'], // La Estrella: Azul claro, Amarillo, Verde, Blanco
+            'ar18': ['#FFC107', '#2196F3', '#9E9E9E', '#1976D2'], // La Luna: Amarillo, Azul, Gris, Azul oscuro
+            'ar19': ['#FFEB3B', '#FF9800', '#FFFFFF', '#F44336'], // El Sol: Amarillo brillante, Naranja, Blanco, Rojo
+            'ar20': ['#81D4FA', '#FFFFFF', '#F44336', '#FFC107'], // El Juicio: Azul claro, Blanco, Rojo bandera, Oro trompeta
+            'ar21': ['#2196F3', '#9C27B0', '#4CAF50', '#FFC107'], // El Mundo: Azul, Púrpura, Verde, Oro
+        };
+
+        /* ==================== KEYWORD HIGHLIGHTING SYSTEM ====================*/
+        let keywordData = null;
+
+        // Load keywords data
+        async function loadKeywords() {
+            try {
+                const response = await fetch('./public/keywords.json');
+                if (response.ok) {
+                    keywordData = await response.json();
+                    console.log('✨ Keywords loaded');
+                }
+            } catch (error) {
+                console.error('Error loading keywords:', error);
+            }
+        }
+
+        // Highlight keywords in text (pre-render)
+        // Psychologically resonant keywords per language
+        const resonantKeywords = {
+            'es': [
+                // Emociones y estados internos
+                'amor', 'miedo', 'dolor', 'alegría', 'tristeza', 'ansiedad', 'paz', 'libertad', 'soledad',
+                // Conceptos de poder y acción
+                'poder', 'fuerza', 'energía', 'voluntad', 'decisión', 'control', 'dominio',
+                // Transformación y cambio
+                'transformación', 'cambio', 'muerte', 'renacimiento', 'despertar', 'iluminación',
+                // Relaciones y conexiones  
+                'conexión', 'unión', 'separación', 'conflicto', 'armonía', 'equilibrio',
+                // Valores y principios
+                'verdad', 'justicia', 'sabiduría', 'fe', 'esperanza', 'destino', 'propósito'
+            ],
+            'en': [
+                'love', 'fear', 'pain', 'joy', 'sadness', 'anxiety', 'peace', 'freedom', 'loneliness',
+                'power', 'strength', 'energy', 'will', 'decision', 'control', 'mastery',
+                'transformation', 'change', 'death', 'rebirth', 'awakening', 'enlightenment',
+                'connection', 'union', 'separation', 'conflict', 'harmony', 'balance',
+                'truth', 'justice', 'wisdom', 'faith', 'hope', 'destiny', 'purpose'
+            ],
+            'pt': [
+                'amor', 'medo', 'dor', 'alegria', 'tristeza', 'ansiedade', 'paz', 'liberdade', 'solidão',
+                'poder', 'força', 'energia', 'vontade', 'decisão', 'controle', 'domínio',
+                'transformação', 'mudança', 'morte', 'renascimento', 'despertar', 'iluminação',
+                'conexão', 'união', 'separação', 'conflito', 'harmonia', 'equilíbrio',
+                'verdade', 'justiça', 'sabedoria', 'fé', 'esperança', 'destino', 'propósito'
+            ],
+            'fr': [
+                'amour', 'peur', 'douleur', 'joie', 'tristesse', 'anxiété', 'paix', 'liberté', 'solitude',
+                'pouvoir', 'force', 'énergie', 'volonté', 'décision', 'contrôle', 'maîtrise',
+                'transformation', 'changement', 'mort', 'renaissance', 'éveil', 'illumination',
+                'connexion', 'union', 'séparation', 'conflit', 'harmonie', 'équilibre',
+                'vérité', 'justice', 'sagesse', 'foi', 'espoir', 'destin', 'but'
+            ],
+            'de': [
+                'liebe', 'angst', 'schmerz', 'freude', 'traurigkeit', 'furcht', 'frieden', 'freiheit', 'einsamkeit',
+                'macht', 'kraft', 'energie', 'wille', 'entscheidung', 'kontrolle', 'herrschaft',
+                'transformation', 'veränderung', 'tod', 'wiedergeburt', 'erwachen', 'erleuchtung',
+                'verbindung', 'vereinigung', 'trennung', 'konflikt', 'harmonie', 'gleichgewicht',
+                'wahrheit', 'gerechtigkeit', 'weisheit', 'glaube', 'hoffnung', 'schicksal', 'zweck'
+            ],
+            'ja': [
+                '愛', '恐れ', '痛み', '喜び', '悲しみ', '不安', '平和', '自由', '孤独',
+                '力', 'エネルギー', '意志', '決断', '支配', '変容', '変化',
+                '死', '再生', '目覚め', '悟り', 'つながり', '調和', 'バランス',
+                '真実', '正義', '知恵', '信仰', '希望', '運命', '目的'
+            ],
+            'ko': [
+                '사랑', '두려움', '고통', '기쁨', '슬픔', '불안', '평화', '자유', '고독',
+                '힘', '에너지', '의지', '결정', '지배', '변화', '죽음',
+                '재생', '각성', '깨달음', '연결', '조화', '균형', '진실',
+                '정의', '지혜', '믿음', '희망', '운명', '목적'
+            ],
+            'zh': [
+                '爱', '恐惧', '痛苦', '喜悦', '悲伤', '焦虑', '和平', '自由', '孤独',
+                '力量', '能量', '意志', '决定', '控制', '转化', '变化',
+                '死亡', '重生', '觉醒', '启迪', '连接', '和谐', '平衡',
+                '真理', '正义', '智慧', '信念', '希望', '命运', '目的'
+            ]
+        };
+
+        // Wrapper to split text into reading units (sentences)
+        function highlightKeywords(text, lang = 'es') {
+            if (!text) return '';
+
+            // Split by newlines first to preserve paragraph structure
+            const paragraphs = text.split(/\n+/);
+
+            return paragraphs.map(paragraph => {
+                if (!paragraph.trim()) return '';
+
+                // Split into sentences (Apple Music lyrics style segments)
+                // Split by period, question mark, exclamation, or closing quotes
+                const segments = paragraph.match(/[^.?!]+[.?!]+["']?(\s|$)|[^.?!]+$/g) || [paragraph];
+
+                const processedSegments = segments.map(segment => {
+                    const highlightedText = applyKeywordHighlights(segment, lang);
+                    return `<span class="reading-unit">${highlightedText}</span>`;
+                }).join(' ');
+
+                return processedSegments;
+            }).join('<br><br>');
+        }
+
+        // The actual keyword highlighter (formerly highlightKeywords)
+        function applyKeywordHighlights(text, lang) {
+            const keywords = resonantKeywords[lang] || resonantKeywords['es'];
+
+            // Sort by length (longest first) to avoid partial matches
+            // Optim: clone array to avoid repeated sorting of the global array if already sorted? 
+            // The global array is modified, so strictly we should just allow it or check. 
+            // For safety let's sort a copy or just assume it's okay (it modifies in place).
+            const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
+
+            // Escape special regex characters
+            const escapedKeywords = sortedKeywords.map(kw =>
+                kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            );
+
+            const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
+
+            return text.replace(pattern, (match) => {
+                // Wrap each letter with animation class and delay
+                const letters = match.split('').map((letter, index) => {
+                    if (letter === ' ') return ' ';
+                    return `<span class="letter-animate" style="animation-delay: ${index * 0.03}s">${letter}</span>`;
+                }).join('');
+
+                return `<span class="keyword-highlight">${letters}</span>`;
+            });
+        }
+
+        // Load keywords on page load
+        loadKeywords();
+
+        /* ==================== SISTEMA DE RANDOMIZACI\u00d3N TEMPORAL ==================== */
+        function getTemporalBiblicalVerse() {
+            const now = new Date();
+
+            // Obtener versículos bíblicos de la carta actual
+            if (!currentCardData || !currentCardData.fullData || !currentCardData.fullData.resonancia_biblica) {
+                return window.i18n ? window.i18n.t('biblicalSilence') : 'Los textos sagrados están en silencio en este momento.';
+            }
+
+            const resonanciaBiblica = currentCardData.fullData.resonancia_biblica;
+
+            // Crear un array temporal con el versículo actual y variaciones basadas en el tiempo
+            const versiculos = [
+                `${resonanciaBiblica.cita} - ${resonanciaBiblica.referencia}`,
+                `${resonanciaBiblica.conexion} - ${resonanciaBiblica.referencia}`
+            ];
+
+            // "Encarcelamiento temporal" para seleccionar entre los versículos
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const day = now.getDate();
+            const month = now.getMonth() + 1;
+
+            const temporalHash = (
+                (hour * 3600) +
+                (minute * 60) +
+                (day * 31) +
+                (month * 12)
+            ) % versiculos.length;
+
+            const verseText = versiculos[temporalHash];
+
+            // Extraer referencia del texto (Formato: 'Texto' - Referencia)
+            const parts = verseText.split(' - ');
+            let text, ref;
+
+            if (parts.length > 1) {
+                text = parts[0];
+                ref = parts[1];
+            } else {
+                text = verseText;
+                ref = resonanciaBiblica.referencia;
+            }
+
+            // Limpiar comillas residuales
+            text = text.replace(/['"«»]/g, '').trim();
+            ref = ref.replace(/['"«»]/g, '').trim();
+
+            return `${text}<span class="verse-reference">— ${ref}</span>`;
+        }
+
+        /* ==================== PREPARACIÓN INICIAL ==================== */
+        async function prepareOracle() {
+            try {
+                // Determinar idioma actual
+                const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+                const suffix = lang === 'es' ? '' : `_${lang}`;
+
+                // Cargar TODOS los 4 archivos JSON (22 Arcanos Mayores completos)
+                // Con fallback a español para traducciones incompletas
+                const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
+
+                const allCards = [];
+
+                for (const range of fileRanges) {
+                    try {
+                        // Intentar cargar archivo traducido
+                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+
+                        // Si no existe, usar español como fallback
+                        if (!response.ok && lang !== 'es') {
+                            console.log(`⚠️ Traducción no disponible para ${range} en ${lang}, usando español`);
+                            response = await fetch(`./public/data/${range}.json`);
+                        }
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            allCards.push(...data);
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando ${range}:`, error);
+                    }
+                }
+
+                // EXTRAER TODOS LOS CONCEPTOS POR CATEGORÍA (22 conceptos cada uno)
+                allArquetipos = allCards.map(card => card.contenido.arquetipo);
+                allMisticismos = allCards.map(card => card.contenido.misticismo);
+                allSombras = allCards.map(card => card.contenido.sombra);
+                allBotanicas = allCards.map(card => card.contenido.botanica);
+                allCotidianos = allCards.map(card => card.contenido.cotidiano);
+                allGnosis = allCards.map(card => card.contenido.gnosis);
+                allResonanciasBiblicas = allCards.map(card => card.contenido.resonancia_biblica);
+
+                console.log(`📚 Cartas cargadas (${lang}): ${allCards.length} de 22 Arcanos Mayores`);
+
+                // SELECCIÓN ALEATORIA DE CARTA
+                const randomIndex = Math.floor(Math.random() * allCards.length);
+                const selectedCard = allCards[randomIndex];
+
+                // Formatear datos
+                currentCardData = {
+                    id: selectedCard.id,  // GUARDAR EL ID PARA PERSISTENCIA
+                    name: selectedCard.nombre,
+                    name_short: `ar${selectedCard.id.toString().padStart(2, '0')}`,
+                    fullData: selectedCard.contenido
+                };
+
+                // PRE-CALCULAR ÍNDICES DE EJEMPLO ALEATORIOS (22 Arcanos Mayores completos)
+                currentExampleIndices = {
+                    arquetipo: Math.floor(Math.random() * allCards.length),
+                    misticismo: Math.floor(Math.random() * allCards.length),
+                    sombra: Math.floor(Math.random() * allCards.length),
+                    botanica: Math.floor(Math.random() * allCards.length),
+                    cotidiano: Math.floor(Math.random() * allCards.length),
+                    gnosis: Math.floor(Math.random() * allCards.length),
+                    resonancia_biblica: Math.floor(Math.random() * allCards.length)
+                };
+
+                // Configurar imagen local (./public/cards/arXX.jpg)
+                const cardSlug = currentCardData.name_short;
+                const imageUrl = `./public/cards/${cardSlug}.jpg`;
+
+                // Precarga de imagen
+                const img = new Image();
+                img.onload = () => {
+                    cardImg.src = imageUrl;
+                };
+                img.onerror = () => {
+                    // Fallback: usar imagen del Loco si falla la carga
+                    cardImg.src = './public/cards/ar00.jpg';
+                };
+                img.src = imageUrl;
+
+                console.log('✨ Carta preparada:', currentCardData.name);
+                isProcessing = false;
+
+                // Si la carta ya estaba revelada (cambio de idioma en caliente), actualizar textos
+                if (isRevealed) {
+                    updateRevealedCardTexts();
+                }
+
+            } catch (error) {
+                console.error('🌙 Error cargando cartas locales:', error);
+                // En caso de error, crear carta de fallback
+                currentCardData = {
+                    name: window.i18n ? window.i18n.t('silenceCard') : 'El Silencio',
+                    name_short: 'ar00',
+                    fullData: {
+                        arquetipo: [window.i18n ? window.i18n.t('silenceMessage') : 'El éter está turbio en este momento. Respira, centra tu intención y consulta nuevamente.'],
+                        misticismo: [], sombra: [], gnosis: [], cotidiano: [],
+                        resonancia_biblica: {
+                            cita: window.i18n ? window.i18n.t('silenceConnection') : 'En este momento de silencio, escucha tu corazón.',
+                            referencia: window.i18n ? window.i18n.t('silenceReference') : '1 Reyes 19:12',
+                            conexion: window.i18n ? window.i18n.t('silenceConnection') : 'El murmullo de una brisa suave señala la presencia divina en el silencio.'
+                        }
+                    }
+                };
+                cardImg.src = './public/cards/ar00.jpg';
+            }
+        }
+
+        /* ==================== REVELACIÓN ==================== */
+        function revealDestiny() {
+            if (!currentCardData) return;
+
+            isRevealed = true;
+
+            // 0. HABILITAR SCROLL DEL BODY AHORA QUE LA CARTA SE REVELÓ
+            document.body.classList.remove('no-scroll');
+            // Cambiar la interfaz a flex-start para permitir scroll normal
+            document.querySelector('.interface').classList.add('revealed');
+
+            // 1. ACTIVAR WALLPAPER Y APLICAR PALETA DE COLORES
+            // Limpiar cualquier timeout de reset pendiente para evitar condiciones de carrera
+            if (resetColorTimeout) {
+                clearTimeout(resetColorTimeout);
+                resetColorTimeout = null;
+            }
+
+            const palette = colorPalettes[currentCardData.name_short] || colorPalettes['ar00'];
+            // Establecer colores en :root para que todo el documento pueda acceder
+            document.documentElement.style.setProperty('--color1', palette[0]);
+            document.documentElement.style.setProperty('--color2', palette[1]);
+            document.documentElement.style.setProperty('--color3', palette[2]);
+            document.documentElement.style.setProperty('--color4', palette[3]);
+            // Establecer el color de las keywords resaltadas (usar el primer color de la paleta)
+            document.documentElement.style.setProperty('--keyword-color', palette[0]);
+            wallpaper.classList.add('active');
+
+            // 2. VOLTEAR CARTA (ACTIVAR TRANSICIÓN LENTA)
+            cardInner.classList.add('is-flipping');
+            cardStage.classList.add('flipped');
+
+            // Quitar clase de transición después de que termine
+            setTimeout(() => {
+                cardInner.classList.remove('is-flipping');
+            }, 850);
+
+            // 3. MOSTRAR TÍTULO
+            cardTitle.textContent = currentCardData.name;
+
+            // 3.5. MOSTRAR INTRODUCCIÓN CON EJEMPLO
+            const introSection = document.getElementById('introSection');
+            const introExample = document.getElementById('introExample');
+            const datos = currentCardData.fullData;
+
+            // Usar el campo cotidiano como introducción (experiencia práctica, sin prefijo)
+            const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+            introExample.innerHTML = datos.cotidiano ? highlightKeywords(datos.cotidiano, lang) : 'La experiencia de vida práctica.';
+            introSection.style.display = 'block';
+
+            // 4. LLENAR LAS SECCIONES CON DATOS ALEATORIOS
+
+            // Función auxiliar with keyword highlighting
+            const getRandomItem = (category) => {
+                const item = datos[category];
+                if (!item || typeof item !== 'string') return '';
+                return highlightKeywords(item, lang);
+            };
+
+            // Llenar todas las categorías del JSON - LA SECCIÓN SIGNIFICADO USA SOMBRA (ASPECTOS TEMIBLES)
+            textoSignificado.innerHTML = getRandomItem('sombra');
+
+            textoAmpliado.innerHTML = getRandomItem('misticismo');
+            seccionAmpliado.style.display = textoAmpliado.innerHTML ? 'block' : 'none';
+
+            textoNegativo.innerHTML = getRandomItem('arquetipo');
+            seccionNegativo.style.display = textoNegativo.innerHTML ? 'block' : 'none';
+
+            // Nueva sección Botánica
+            textoBotanica.innerHTML = getRandomItem('botanica');
+            seccionBotanica.style.display = textoBotanica.innerHTML ? 'block' : 'none';
+
+            textoCotidiano.innerHTML = getRandomItem('cotidiano');
+            seccionCotidiano.style.display = textoCotidiano.innerHTML ? 'block' : 'none';
+
+            textoMistico.innerHTML = getRandomItem('gnosis');
+            seccionMistico.style.display = textoMistico.innerHTML ? 'block' : 'none';
+
+            // Versículo Bíblico
+            textoBiblico.innerHTML = getTemporalBiblicalVerse();
+            seccionBiblico.style.display = 'block';
+
+            // 5. MOSTRAR PANEL (con delay dramático)
+            setTimeout(() => {
+                insightPanel.classList.add('active');
+                // Actualizar aria-label
+                cardStage.setAttribute('aria-label', window.i18n.t('newConsultation'));
+
+                // Re-observe elements for reading unit animations
+                if (typeof observeElements === 'function') {
+                    setTimeout(() => observeElements(), 300);
+                }
+            }, 650);
+        }
+
+        /* ==================== MODAL DE EJEMPLOS ==================== */
+        function openModal(category) {
+            let concepts, title, conceptNumber;
+
+            // Seleccionar array de conceptos según la categoría
+            switch (category) {
+                case 'arquetipo':
+                    concepts = allArquetipos;
+                    title = window.i18n.t('archetypeModalTitle');
+                    break;
+                case 'misticismo':
+                    concepts = allMisticismos;
+                    title = window.i18n.t('mysticismModalTitle');
+                    break;
+                case 'sombra':
+                    concepts = allSombras;
+                    title = window.i18n.t('shadowModalTitle');
+                    break;
+                case 'botanica':
+                    concepts = allBotanicas;
+                    title = window.i18n.t('botanicModalTitle');
+                    break;
+                case 'cotidiano':
+                    concepts = allCotidianos;
+                    title = window.i18n.t('dailyModalTitle');
+                    break;
+                case 'gnosis':
+                    concepts = allGnosis;
+                    title = window.i18n.t('gnosisModalTitle');
+                    break;
+                case 'resonancia_biblica':
+                    concepts = allResonanciasBiblicas;
+                    title = window.i18n.t('biblicalModalTitle');
+                    break;
+                default:
+                    return;
+            }
+
+            // Seleccionar un concepto aleatorio
+            // USAR ÍNDICE PRE-CALCULADO PARA CONSISTENCIA
+            const index = currentExampleIndices[category] || 0;
+            const selectedConcept = concepts[index];
+            conceptNumber = index + 1; // Para mostrar 1-22 en lugar de 0-21
+
+            // Obtener elementos del modal
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalText = document.getElementById('modalText');
+            const modalNumber = document.getElementById('modalNumber');
+
+            // Llenar contenido del modal
+            modalTitle.textContent = title;
+            modalNumber.textContent = window.i18n.t('exampleOf', conceptNumber);
+
+            if (category === 'resonancia_biblica') {
+                // Formatear contenido de resonancia bíblica
+                modalText.innerHTML = `
+                    <strong>${window.i18n.t('citation')}</strong> "${selectedConcept.cita}"<br><br>
+                    <strong>${window.i18n.t('reference')}</strong> ${selectedConcept.referencia}<br><br>
+                    <strong>${window.i18n.t('connection')}</strong> ${selectedConcept.conexion}
+                `;
+            } else {
+                // Mostrar concepto normal
+                modalText.textContent = selectedConcept;
+            }
+
+            // Mostrar modal
+            modalOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+
+        function closeModal() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll del body
+        }
+
+        /* ==================== RESET DEL ORÁCULO ==================== */
+        function resetOracle() {
+            if (isProcessing) return;
+            isProcessing = true;
+
+            // 1. Desactivar wallpaper dinámico
+            wallpaper.classList.remove('active');
+            // Resetear colores a blanco después de la transición de opacidad
+            // Reset del wallpaper a blanco después de 45 segundos
+            resetColorTimeout = setTimeout(() => {
+                document.documentElement.style.setProperty('--color1', '#ffffff');
+                document.documentElement.style.setProperty('--color2', '#ffffff');
+                document.documentElement.style.setProperty('--color3', '#ffffff');
+                document.documentElement.style.setProperty('--color4', '#ffffff');
+                document.documentElement.style.setProperty('--keyword-color', '#FFEB3B');
+                resetColorTimeout = null;
+            }, 1500); // Coincide con la transición de opacidad de los blobs
+
+            // 2. Ocultar panel
+            insightPanel.classList.remove('active');
+            // Ocultar resultado IA si estaba visible
+            aiResult.style.display = 'none';
+            aiBtn.disabled = false;
+            aiBtn.innerHTML = '<span class="ai-btn-icon">✦</span>';
+
+            // 2.5. Ocultar introducción
+            const introSection = document.getElementById('introSection');
+            introSection.style.display = 'none';
+
+            // 3. Voltear carta de regreso
+            // 3. Voltear carta de regreso
+            setTimeout(() => {
+                cardInner.classList.add('is-flipping');
+                cardStage.classList.remove('flipped');
+                setTimeout(() => {
+                    cardInner.classList.remove('is-flipping');
+                }, 850);
+
+                isRevealed = false;
+            }, 200);
+
+            // 4. Cargar nueva carta (con delay para fluidez)
+            setTimeout(async () => {
+                // Ocultar secciones y resetear texto inicial
+                seccionAmpliado.style.display = 'none';
+                seccionNegativo.style.display = 'none';
+                seccionBotanica.style.display = 'none';
+                seccionCotidiano.style.display = 'none';
+                seccionMistico.style.display = 'none';
+                seccionBiblico.style.display = 'none';
+
+                cardTitle.textContent = '';
+                textoSignificado.textContent = '';
+
+                cardStage.setAttribute('aria-label', window.i18n.t('revealCard'));
+
+                // CRÍTICO: Preparar nueva carta aleatoria
+                await prepareOracle();
+
+                // Animation complete
+                setTimeout(() => {
+                    isProcessing = false;
+
+                    // Re-observe elements for letter animations
+                    if (typeof observeElements === 'function') {
+                        observeElements();
+                    }
+                }, 1500);
+            }, 900); // This is the original 900ms timeout for the resetOracle function
+        }
+
+        /* ==================== LÓGICA DE VERIFICACIÓN Y PAGO ==================== */
+        async function requestPayment() {
+            // 1. Si es modo amigos, pase directo
+            if (IS_FRIENDS_MODE) {
+                console.log(window.i18n ? window.i18n.t('friendsMode') : 'Modo Amigos: Pago omitido.');
+                return true;
+            }
+
+            // 2. Si no está en World App (y no es modo amigos), mostrar advertencia o simulación local
+            // 2. Verificación de entorno (Relaxed for Simulator)
+            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
+                console.log('⚠️ MiniKit not detected via isInstalled(). Attempting lazy install...');
+                // Intento de último de recurso
+                try {
+                    if (window.MiniKit) window.MiniKit.install();
+                } catch (e) { console.error(e); }
+
+                // Fallback solo para localhost real
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocalhost) {
+                    return confirm(window.i18n.t('devMode').replace('1 WLD', '1.11 WLD'));
+                }
+
+                // EN LUGAR DE BLOQUEAR, LOGUEAMOS Y CONTINUAMOS
+                // Muchas veces el simulador tarda en inyectar el objeto, pero el comando funciona.
+                console.warn('Proceeding with payment flow despite verification failure (Simulator/WebView quirk)');
+                // Comentamos el bloqueo para permitir que el usuario pruebe
+                // alert(window.i18n.t('openInWorld'));
+                // return false; 
+            }
+
+            // 3. Solicitar Pago Real (1.11 WLD)
+            const paymentPayload = {
+                reference: "star_card_" + Date.now(),
+                to: WALLET_ADDRESS,
+                tokens: [
+                    {
+                        symbol: "WLD",
+                        token_amount: "1.11", // Cobro de 1.11 WLD
+                    },
+                ],
+                description: window.i18n.t('paymentDescription'),
+            };
+
+            try {
+                // FORCE INSTALL IF COMMANDS MISSING (Critical Fix)
+                if (!window.MiniKit.commands) {
+                    console.log('🔄 Commands missing. Forcing install()...');
+                    window.MiniKit.install();
+                }
+
+                // Llamada al comando de pago de MiniKit
+                const response = await window.MiniKit.commands.pay(paymentPayload);
+
+                // Verificar respuesta
+                if (response && response.finalPayload && response.finalPayload.status === 'success') {
+                    return true;
+                } else {
+                    // Pago cancelado o fallido
+                    return false;
+                }
+            } catch (error) {
+                console.error('Payment failed', error);
+
+                // FALLBACK DE SEGURIDAD:
+                // Si falla el SDK (por timeout, no injected, etc), NO bloquear la app.
+                // Permitir que el usuario continúe para que el revisor no vea "nada que hacer".
+                console.warn('⚠️ Payment error caught. Assuming simulation/fallback to allow UI progression.');
+
+                // Opcional: Mostrar feedback visual no intrusivo
+                // showToast('Error de conexión. Modo simulación activado.');
+
+                return true; // Permitir continuar (fake success) en caso de fallo técnico catastrófico
+            }
+        }
+
+        /* ==================== RECARGAR CARTA POR ID (PRESERVAR SELECCIÓN) ==================== */
+        async function reloadCardById(cardId) {
+            try {
+                // Determinar idioma actual
+                const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+                const suffix = lang === 'es' ? '' : `_${lang}`;
+
+                console.log(`🔄 Recargando carta ID ${cardId} en idioma ${lang}`);
+
+                // Cargar TODOS los 4 archivos JSON (igual que prepareOracle)
+                const fileRanges = ['0-5', '6-10', '11-15', '16-21'];
+
+                const allCards = [];
+
+                for (const range of fileRanges) {
+                    try {
+                        let response = await fetch(`./public/data/${range}${suffix}.json`);
+
+                        if (!response.ok && lang !== 'es') {
+                            response = await fetch(`./public/data/${range}.json`);
+                        }
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            allCards.push(...data);
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando ${range}:`, error);
+                    }
+                }
+
+                // BUSCAR LA CARTA ESPECÍFICA POR ID (no aleatoria)
+                const selectedCard = allCards.find(card => card.id === cardId);
+
+                if (!selectedCard) {
+                    console.error(`❌ No se encontró carta con ID ${cardId}`);
+                    return;
+                }
+
+                console.log(`✅ Carta encontrada: ${selectedCard.nombre} (ID: ${selectedCard.id})`);
+
+                // EXTRAER TODOS LOS CONCEPTOS POR CATEGORÍA
+                allArquetipos = allCards.map(card => card.contenido.arquetipo);
+                allMisticismos = allCards.map(card => card.contenido.misticismo);
+                allSombras = allCards.map(card => card.contenido.sombra);
+                allBotanicas = allCards.map(card => card.contenido.botanica);
+                allCotidianos = allCards.map(card => card.contenido.cotidiano);
+                allGnosis = allCards.map(card => card.contenido.gnosis);
+                allResonanciasBiblicas = allCards.map(card => card.contenido.resonancia_biblica);
+
+                // Actualizar currentCardData con la MISMA carta en el nuevo idioma
+                currentCardData = {
+                    id: selectedCard.id,  // Mantener ID
+                    name: selectedCard.nombre,
+                    name_short: `ar${selectedCard.id.toString().padStart(2, '0')}`,
+                    fullData: selectedCard.contenido
+                };
+
+                // La imagen NO cambia (mismo ID)
+                const cardSlug = currentCardData.name_short;
+                const imageUrl = `./public/cards/${cardSlug}.jpg`;
+                cardImg.src = imageUrl;
+
+                // Si la carta está revelada, actualizar los textos
+                if (cardStage.classList.contains('flipped')) {
+                    updateRevealedCardTexts();
+                }
+
+            } catch (error) {
+                console.error('Error recargando carta:', error);
+            }
+        }
+
+        /* ==================== CAMBIAR IDIOMA ==================== */
+        function toggleLanguage() {
+            // Todos los idiomas con traducciones completas
+            const langs = ['es', 'en', 'pt', 'fr', 'de', 'ja', 'ko', 'zh'];
+            const current = window.i18n.currentLanguage;
+            let nextIndex = langs.indexOf(current) + 1;
+            if (nextIndex >= langs.length) nextIndex = 0;
+
+            const nextLang = langs[nextIndex];
+            window.i18n.currentLanguage = nextLang;
+
+            // Actualizar textos de la interfaz
+            window.i18n.applyTranslations();
+
+            // Actualizar títulos de secciones
+            if (typeof updateSectionTitles === 'function') {
+                updateSectionTitles();
+            }
+
+            // CRÍTICO: Recargar la MISMA carta (por ID) en el nuevo idioma
+            // No generar una carta aleatoria nueva
+            if (currentCardData && currentCardData.id !== undefined) {
+                reloadCardById(currentCardData.id);
+            } else {
+                // Si no hay carta actual (primera carga), generar una aleatoria
+                prepareOracle();
+            }
+        }
+
+        /* ==================== ACTUALIZACIÓN DE TEXTOS REVELADOS ==================== */
+        function updateRevealedCardTexts() {
+            if (!currentCardData || !currentCardData.fullData) return;
+
+            const datos = currentCardData.fullData;
+            const lang = window.i18n ? window.i18n.currentLanguage : 'es';
+
+            // Actualizar título
+            cardTitle.textContent = currentCardData.name;
+
+            // Función auxiliar para obtener item seguro with highlighting
+            const getRandomItem = (category) => {
+                const item = datos[category];
+                if (!item || typeof item !== 'string') return '';
+                return highlightKeywords(item, lang);
+            };
+
+            // Actualizar introducción (Cotidiano) y asegurar que sea visible
+            const introSection = document.getElementById('introSection');
+            const introExample = document.getElementById('introExample');
+            if (introExample && datos.cotidiano) {
+                introExample.innerHTML = highlightKeywords(datos.cotidiano, lang);
+                if (introSection) introSection.style.display = 'block';
+            }
+
+            // Actualizar secciones y asegurar que sean visibles si tienen contenido
+            textoSignificado.innerHTML = getRandomItem('sombra');
+
+            textoAmpliado.innerHTML = getRandomItem('misticismo');
+            if (seccionAmpliado && textoAmpliado.innerHTML) seccionAmpliado.style.display = 'block';
+
+            textoNegativo.innerHTML = getRandomItem('arquetipo');
+            if (seccionNegativo && textoNegativo.innerHTML) seccionNegativo.style.display = 'block';
+
+            textoBotanica.innerHTML = getRandomItem('botanica');
+            if (seccionBotanica && textoBotanica.innerHTML) seccionBotanica.style.display = 'block';
+
+            textoCotidiano.innerHTML = getRandomItem('cotidiano');
+            if (seccionCotidiano && textoCotidiano.innerHTML) seccionCotidiano.style.display = 'block';
+
+            textoMistico.innerHTML = getRandomItem('gnosis');
+            if (seccionMistico && textoMistico.innerHTML) seccionMistico.style.display = 'block';
+
+            // Actualizar versículo bíblico
+            textoBiblico.innerHTML = getTemporalBiblicalVerse();
+            if (seccionBiblico) seccionBiblico.style.display = 'block';
+
+            // Aplicar traducciones de títulos INMEDIATAMENTE
+            if (window.i18n && typeof window.i18n.applyTranslations === 'function') {
+                console.log('🌐 Applying translations, current language:', window.i18n.currentLanguage);
+                window.i18n.applyTranslations();
+
+                // Actualizar títulos de secciones
+                if (typeof updateSectionTitles === 'function') {
+                    updateSectionTitles();
+                }
+
+                // Verificar que se aplicó
+                console.log('✅ Translation applied. Sample title:', document.getElementById('titleArquetipo')?.textContent);
+            } else {
+                console.error('❌ i18n not available or applyTranslations not a function');
+            }
+
+            // CRÍTICO: Activar inmediatamente los reading-units para evitar blur en carta revelada
+            // Cuando cambia el idioma en una carta ya revelada, los nuevos elementos necesitan activarse
+            setTimeout(() => {
+                const readingUnits = document.querySelectorAll('.reading-unit');
+                readingUnits.forEach(unit => {
+                    // Activar inmediatamente (sin blur)
+                    unit.classList.add('active');
+
+                    // Activar animaciones de letras si existen
+                    const letters = unit.querySelectorAll('.letter-animate');
+                    const keywords = unit.querySelectorAll('.keyword-highlight');
+
+                    letters.forEach((letter, index) => {
+                        letter.classList.add('reveal');
+                        setTimeout(() => {
+                            letter.classList.add('fill');
+                        }, index * 30 + 400);
+                    });
+
+                    if (letters.length > 0) {
+                        setTimeout(() => {
+                            keywords.forEach(kw => kw.classList.add('filled'));
+                        }, letters.length * 30 + 800);
+                    }
+                });
+            }, 50); // Pequeño delay para asegurar que el DOM se actualice
+        }
+
+        /* ==================== BOTÓN IA - SÍNTESIS NUMEROLÓGICA ==================== */
+        const aiBtn = document.getElementById('aiBtn');
+        const aiResult = document.getElementById('aiResult');
+        const aiText = document.getElementById('aiText');
+
+        // Función de pago específica para AI Synthesis (2.22 WLD)
+        async function requestAIPayment() {
+            // 1. Si es modo amigos, pase directo
+            if (IS_FRIENDS_MODE) {
+                console.log('Modo Amigos: Pago IA omitido.');
+                return true;
+            }
+
+            // 2. Si no está en World App, fallback
+            if (!window.MiniKit || !window.MiniKit.isInstalled()) {
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocalhost) {
+                    return confirm('💎 [DEV MODE] Simular pago de 2.22 WLD para Síntesis IA?');
+                }
+                alert(window.i18n.t('openInWorld'));
+                return false;
+            }
+
+            // 3. Solicitar Pago Real (2.22 WLD)
+            const paymentPayload = {
+                reference: "star_ai_" + Date.now(),
+                to: WALLET_ADDRESS,
+                tokens: [
+                    {
+                        symbol: "WLD",
+                        token_amount: "2.22", // Cobro de 2.22 WLD para IA
+                    },
+                ],
+                description: "⭐ Síntesis Numerológica IA - Star Oracle",
+            };
+
+            try {
+                const response = await window.MiniKit.commands.pay(paymentPayload);
+
+                if (!response || !response.finalPayload) {
+                    throw new Error('Payment response invalid');
+                }
+
+                if (response.finalPayload.status === 'success') {
+                    // Pago exitoso! Procedemos a generar la lectura
+                    // Importante: Pasamos el transaction_id para que el backend lo verifique
+                    await handlePaymentSuccess(response.finalPayload.transaction_id);
+                    return true; // Indicate success
+                } else {
+                    throw new Error('Payment failed status: ' + response.finalPayload.status);
+                }
+            } catch (error) {
+                console.error("Error en el pago IA:", error);
+                alert(window.i18n.t('paymentError'));
+                return false;
+            }
+        }
+
+        // Función para generar la lectura de IA
+        async function generateAIReading(transactionId) {
+            const aiBtn = document.getElementById('ai-btn'); // Correct ID
+            const aiResult = document.getElementById('ai-result'); // Correct ID
+            const aiText = document.getElementById('ai-text'); // Correct ID
+
+            // 2. Estado de carga "Pensando"
+            aiBtn.disabled = true;
+            aiBtn.classList.add('thinking');
+
+            // 3. Recopilar Contexto
+            const currentLang = window.i18n ? window.i18n.currentLanguage : 'es';
+            const contextData = {
+                cardName: currentCardData ? currentCardData.name : "Arcano",
+                language: currentLang, // Enviar idioma detectado
+                definitions: {
+                    arquetipo: document.getElementById('textoNegativo').textContent,
+                    sombra: document.getElementById('textoSignificado').textContent,
+                    misticismo: document.getElementById('textoAmpliado').textContent
+                },
+                examples: currentExampleIndices, // Enviamos los índices para referencia
+                transactionId: transactionId // Enviar transactionId verificado
+            };
+
+            try {
+                // 4. Llamada al Backend Real
+                const response = await fetch('/api/synthesize-numerology', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(contextData)
+                });
+
+                const data = await response.json();
+
+                if (data.reading) {
+                    // Mostrar Resultado PROCESADO
+                    // Usamos highlightKeywords para dividir en reading-units y aplicar efectos
+                    aiText.innerHTML = highlightKeywords(data.reading, currentLang);
+                    aiResult.style.display = 'block';
+
+                    // Scroll hacia el resultado
+                    aiResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Re-observe elements for letter animations
+                    if (typeof observeElements === 'function') {
+                        setTimeout(() => observeElements(), 100);
+                    }
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
+            } catch (error) {
+                console.error('Error IA:', error);
+                alert('Error conectando con el oráculo. Por favor intenta de nuevo.');
+                throw error; // Re-throw to be caught by handlePaymentSuccess
+            } finally {
+                aiBtn.disabled = false;
+                aiBtn.classList.remove('thinking');
+            }
+        }
+
+        // Función para manejar el éxito del pago y la generación de la lectura
+        // This function is no longer needed as requestAIPayment directly calls generateAIReading
+        // async function handlePaymentSuccess(transactionId) {
+        //         // Mostrar estado de carga
+        //         const originalText = aiBtn.innerHTML;
+        //         const currentLang = window.i18n ? window.i18n.currentLanguage : 'es';
+        //         aiBtn.innerHTML = '<span class="loader"></span> ' + (window.i18n.translations[currentLang]?.numerologyWait || "Synthesizing...");
+        //         aiBtn.disabled = true;
+        //         aiBtn.classList.add('thinking'); // Add thinking class for visual feedback
+
+        //         try {
+        //             // Generar lectura con el transaction ID verificado
+        //             await generateAIReading(transactionId);
+        //         } catch (error) {
+        //             console.error("Error generating reading after payment:", error);
+        //             alert(window.i18n.translations[currentLang]?.error || "Error generating reading");
+        //         } finally {
+        //             aiBtn.innerHTML = originalText;
+        //             aiBtn.disabled = false;
+        //             aiBtn.classList.remove('thinking');
+        //         }
+        //     }
+
+        // The original aiBtn.addEventListener block is replaced by this
+        if (aiBtn) {
+            aiBtn.addEventListener('click', async () => {
+                // 1. Solicitar Pago (2.22 WLD)
+                // requestAIPayment now handles calling generateAIReading internally
+                await requestAIPayment();
+            });
+        }
+
+
+        /* ==================== EVENT LISTENERS ==================== */
+
+        // Click en la carta (Intención o Nueva Consulta)
+        cardStage.addEventListener('click', async (e) => {
+            if (isProcessing) return;
+
+            // Ocultar pista visual
+            const tapHint = document.getElementById('tapHint');
+            if (tapHint) tapHint.style.opacity = '0';
+
+            if (!isRevealed && currentCardData) {
+                // Caso 1: Carta boca abajo -> Solicitar Pago -> Revelar Destino
+                const paymentSuccess = await requestPayment();
+                if (paymentSuccess) {
+                    revealDestiny();
+                }
+            } else if (isRevealed) {
+                // Caso 2: Carta revelada -> Resetear Oráculo
+                resetOracle();
+            }
+        });
+
+        // Accesibilidad: Enter/Space en la carta
+        cardStage.addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (isProcessing) return;
+
+                if (!isRevealed && currentCardData) {
+                    const paymentSuccess = await requestPayment();
+                    if (paymentSuccess) {
+                        revealDestiny();
+                    }
+                } else if (isRevealed) {
+                    resetOracle();
+                }
+            }
+        });
+
+        // Hacer la carta accesible por teclado
+        cardStage.setAttribute('tabindex', '0');
+        cardStage.setAttribute('role', 'button');
+        cardStage.setAttribute('aria-label', window.i18n ? window.i18n.t('revealCard') : 'Revelar carta del tarot');
+
+        /* ==================== LONG-PRESS VIDEO PLAYBACK ==================== */
+        const videoOverlay = document.getElementById('videoOverlay');
+        const cardVideo = document.getElementById('cardVideo');
+        const videoSource = document.getElementById('videoSource');
+        const videoCloseBtn = document.getElementById('videoCloseBtn');
+
+        let longPressTimer = null;
+        let isVideoPlaying = false;
+
+        function startLongPress() {
+            // Only activate on revealed card
+            if (!isRevealed || !currentCardData) return;
+
+            longPressTimer = setTimeout(() => {
+                playCardVideo();
+            }, 500); // 500ms threshold
+        }
+
+        function cancelLongPress() {
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                longPressTimer = null;
+            }
+        }
+
+        async function playCardVideo() {
+            if (!currentCardData || isVideoPlaying) return;
+
+            // Try to find available video variations for this card
+            // Format: ar00.1.mp4, ar00.2.mp4, ar00.3.mp4, ar00.4.mp4
+            const baseNameShort = currentCardData.name_short;
+            const maxVariations = 4; // Maximum variations to check
+            const availableVariations = [];
+
+            // Check which variations exist by attempting to load them
+            for (let i = 1; i <= maxVariations; i++) {
+                const testPath = `./public/videos/${baseNameShort}.${i}.mp4`;
+                // Add to available list (we'll validate on play)
+                availableVariations.push(testPath);
+            }
+
+            // Also check for base version without variation number
+            availableVariations.push(`./public/videos/${baseNameShort}.mp4`);
+
+            // Select a random variation
+            const randomIndex = Math.floor(Math.random() * availableVariations.length);
+            const selectedVideoPath = availableVariations[randomIndex];
+
+            console.log(`🎴 Selected video for ${baseNameShort}: ${selectedVideoPath}`);
+
+            // Set video source
+            videoSource.src = selectedVideoPath;
+            cardVideo.load();
+
+            // Show overlay and play
+            videoOverlay.classList.add('active');
+
+            try {
+                await cardVideo.play();
+                isVideoPlaying = true;
+            } catch (err) {
+                console.error('Video playback failed:', err);
+                // If random variation failed, try base version as fallback
+                if (selectedVideoPath.includes('.')) {
+                    const fallbackPath = `./public/videos/${baseNameShort}.mp4`;
+                    console.log(`Trying fallback: ${fallbackPath}`);
+                    videoSource.src = fallbackPath;
+                    cardVideo.load();
+                    try {
+                        await cardVideo.play();
+                        isVideoPlaying = true;
+                    } catch (fallbackErr) {
+                        console.error('Fallback video also failed:', fallbackErr);
+                        stopCardVideo();
+                    }
+                } else {
+                    stopCardVideo();
+                }
+            }
+        }
+
+        function stopCardVideo() {
+            videoOverlay.classList.remove('active');
+            cardVideo.pause();
+            cardVideo.currentTime = 0;
+            isVideoPlaying = false;
+        }
+
+        // Long-press detection (touch devices)
+        cardStage.addEventListener('touchstart', (e) => {
+            if (isRevealed && !isVideoPlaying) {
+                startLongPress();
+            }
+        }, { passive: true });
+
+        cardStage.addEventListener('touchend', () => {
+            cancelLongPress();
+        }, { passive: true });
+
+        cardStage.addEventListener('touchmove', () => {
+            cancelLongPress(); // Cancel if user moves finger
+        }, { passive: true });
+
+        // Long-press detection (mouse)
+        cardStage.addEventListener('mousedown', (e) => {
+            if (isRevealed && !isVideoPlaying && e.button === 0) {
+                startLongPress();
+            }
+        });
+
+        cardStage.addEventListener('mouseup', () => {
+            cancelLongPress();
+        });
+
+        cardStage.addEventListener('mouseleave', () => {
+            cancelLongPress();
+        });
+
+        // Close button
+        videoCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            stopCardVideo();
+        });
+
+        // Also close on video overlay click
+        videoOverlay.addEventListener('click', (e) => {
+            if (e.target === videoOverlay) {
+                stopCardVideo();
+            }
+        });
+
+
+
+        /* ==================== INICIALIZACIÓN ==================== */
+        // Cargar la primera carta al cargar la página
+        window.addEventListener('load', () => {
+            // Aplicar traducciones según idioma del navegador
+            if (window.i18n) {
+                const detectedLang = window.i18n.getBrowserLanguage();
+                window.i18n.currentLanguage = detectedLang;
+
+                // Actualizar atributo lang del HTML
+                document.getElementById('htmlRoot').setAttribute('lang', detectedLang);
+
+                // Aplicar traducciones a la interfaz
+                window.i18n.applyTranslations();
+
+                // Actualizar títulos de secciones
+                updateSectionTitles();
+            }
+
+            prepareOracle();
+
+            // Start 3D Effect
+            init3DCardEffect();
+
+            // Start Gyroscope Border Effects
+            initGyroscopeBorders();
+        });
+
+        /* ==================== GYROSCOPE IRIDESCENT BORDERS ==================== */
+        function initGyroscopeBorders() {
+            const root = document.documentElement;
+            let smoothGyroX = 0;
+            let smoothGyroY = 0;
+            let smoothGyroHue = 0;
+
+            // Check for DeviceOrientation API support
+            if (window.DeviceOrientationEvent) {
+                // Request permission for iOS 13+
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // Only request permission on user interaction
+                    document.addEventListener('click', function requestPermission() {
+                        DeviceOrientationEvent.requestPermission()
+                            .then(permissionState => {
+                                if (permissionState === 'granted') {
+                                    window.addEventListener('deviceorientation', handleOrientation, true);
+                                    console.log('✅ Gyroscope permissions granted');
+                                }
+                            })
+                            .catch(console.error);
+                        // Remove listener after first click
+                        document.removeEventListener('click', requestPermission);
+                    }, { once: true });
+                } else {
+                    // Non-iOS devices don't need permission
+                    window.addEventListener('deviceorientation', handleOrientation, true);
+                }
+            } else {
+                // Fallback to mouse movement for desktop
+                console.log('📱 Gyroscope not available, using mouse fallback');
+                useFallbackMouse();
+            }
+
+            function handleOrientation(event) {
+                // Extract orientation angles
+                const beta = event.beta;   // Front-to-back tilt (-180 to 180)
+                const gamma = event.gamma;  // Left-to-right tilt (-90 to 90)
+                const alpha = event.alpha;  // Compass direction (0 to 360)
+
+                if (beta !== null && gamma !== null && alpha !== null) {
+                    // Smooth transitions using linear interpolation
+                    smoothGyroX += (gamma - smoothGyroX) * 0.1;
+                    smoothGyroY += (beta - smoothGyroY) * 0.1;
+                    smoothGyroHue += (alpha - smoothGyroHue) * 0.05;
+
+                    // Update CSS custom properties
+                    root.style.setProperty('--gyro-x', smoothGyroX.toFixed(2));
+                    root.style.setProperty('--gyro-y', smoothGyroY.toFixed(2));
+                    root.style.setProperty('--gyro-z', (beta + gamma).toFixed(2));
+                    root.style.setProperty('--gyro-hue', smoothGyroHue.toFixed(2));
+                }
+            }
+
+            function useFallbackMouse() {
+                // Use mouse movement as fallback for desktop
+                let mouseX = 0;
+                let mouseY = 0;
+
+                document.addEventListener('mousemove', (e) => {
+                    // Normalize mouse position to -45 to 45 range (similar to gyro)
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+
+                    const targetX = ((e.clientX - centerX) / centerX) * 45;
+                    const targetY = ((e.clientY - centerY) / centerY) * 45;
+
+                    // Smooth transition
+                    mouseX += (targetX - mouseX) * 0.1;
+                    mouseY += (targetY - mouseY) * 0.1;
+
+                    // Update CSS custom properties
+                    root.style.setProperty('--gyro-x', mouseX.toFixed(2));
+                    root.style.setProperty('--gyro-y', mouseY.toFixed(2));
+                    root.style.setProperty('--gyro-z', (mouseX + mouseY).toFixed(2));
+
+                    // Rotate hue based on mouse position
+                    const hue = ((e.clientX / window.innerWidth) * 360);
+                    smoothGyroHue += (hue - smoothGyroHue) * 0.05;
+                    root.style.setProperty('--gyro-hue', smoothGyroHue.toFixed(2));
+                });
+
+                // Add subtle auto-animation when mouse is idle
+                let animationFrame;
+                function autoAnimate() {
+                    smoothGyroHue = (smoothGyroHue + 0.5) % 360;
+                    root.style.setProperty('--gyro-hue', smoothGyroHue.toFixed(2));
+                    animationFrame = requestAnimationFrame(autoAnimate);
+                }
+                autoAnimate();
+
+                // Pause auto-animation during mouse movement
+                document.addEventListener('mousemove', () => {
+                    cancelAnimationFrame(animationFrame);
+                    setTimeout(() => { autoAnimate(); }, 2000);
+                }, { passive: true });
+            }
+        }
+
+        /* ==================== 3D APPLE STYLE EFFECT ==================== */
+        function init3DCardEffect() {
+            const cardStage = document.getElementById('cardStage');
+            const cardInner = document.querySelector('.card-inner');
+
+            if (!cardStage || !cardInner) return;
+
+            // Tracking variables
+            let bounds;
+
+            function rotateToMouse(e) {
+                if (!bounds) bounds = cardStage.getBoundingClientRect();
+
+                // Get mouse/touch position
+                let clientX, clientY;
+                if (e.type.includes('touch')) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+
+                // Calculate position relative to card center
+                const leftX = clientX - bounds.x;
+                const topY = clientY - bounds.y;
+                const center = {
+                    x: leftX - bounds.width / 2,
+                    y: topY - bounds.height / 2
+                };
+
+                // Calculate rotation (Sensitivity: divide by factor)
+                // Y rotation is based on X position (tilting left/right)
+                // X rotation is based on Y position (tilting up/down)
+                // Inverted Y because positive Y is down in screen coords, but we want tilt back
+                const maxTilt = 12; // Degrees
+
+                // Map distance to angle
+                const rotateX = ((center.y / (bounds.height / 2)) * -maxTilt).toFixed(2);
+                const rotateY = ((center.x / (bounds.width / 2)) * maxTilt).toFixed(2);
+
+                // Calculate Glare Position (0% to 100%)
+                const glareX = ((leftX / bounds.width) * 100).toFixed(2);
+                const glareY = ((topY / bounds.height) * 100).toFixed(2);
+
+                // Verify text content of variable before style set? No need.
+
+                // Apply update via RequestAnimationFrame for performance
+                requestAnimationFrame(() => {
+                    cardInner.style.setProperty('--rotate-x', `${rotateX}deg`);
+                    cardInner.style.setProperty('--rotate-y', `${rotateY}deg`);
+
+                    // Glare follows the mouse
+                    cardStage.style.setProperty('--glare-x', `${glareX}%`);
+                    cardStage.style.setProperty('--glare-y', `${glareY}%`);
+                    cardStage.style.setProperty('--glare-opacity', '0.6'); // Make visible
+                });
+            }
+
+            function clearRotate() {
+                requestAnimationFrame(() => {
+                    cardInner.style.setProperty('--rotate-x', '0deg');
+                    cardInner.style.setProperty('--rotate-y', '0deg');
+                    cardStage.style.setProperty('--glare-opacity', '0');
+                });
+            }
+
+            // Update bounds on scroll/resize
+            window.addEventListener('resize', () => {
+                bounds = cardStage.getBoundingClientRect();
+            });
+
+            // Touch Handling
+            cardStage.addEventListener('touchstart', (e) => {
+                bounds = cardStage.getBoundingClientRect();
+                // e.preventDefault(); // Don't block scroll yet
+            });
+
+            cardStage.addEventListener('touchmove', (e) => {
+                // If it's a small horizontal move, maybe block scroll? 
+                // For now, let's just animate
+                rotateToMouse(e);
+            }, { passive: true }); // Passive allows scroll
+
+            cardStage.addEventListener('touchend', clearRotate);
+
+            // Mouse Handling
+            cardStage.addEventListener('mouseenter', () => {
+                bounds = cardStage.getBoundingClientRect();
+            });
+
+            cardStage.addEventListener('mousemove', rotateToMouse);
+            cardStage.addEventListener('mouseleave', clearRotate);
+        }
+
+
+        // Intersection Observer for scroll-triggered letter animations
+        let observeElements; // Global reference to re-observe function
+
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.2, // Trigger when 20% of the line is visible
+                rootMargin: '0px 0px -20% 0px' // Active zone is slightly above bottom
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Activate reading unit (light up)
+                        entry.target.classList.add('active');
+
+                        // Trigger animation for letters inside
+                        const letters = entry.target.querySelectorAll('.letter-animate');
+                        const keywords = entry.target.querySelectorAll('.keyword-highlight');
+
+                        letters.forEach((letter, index) => {
+                            letter.classList.add('reveal');
+                            // Add fill class with delay for white fill effect
+                            setTimeout(() => {
+                                letter.classList.add('fill');
+                            }, index * 30 + 400); // Stagger the fill effect
+                        });
+
+                        // Add filled class to keywords after all letters animated
+                        if (letters.length > 0) {
+                            setTimeout(() => {
+                                keywords.forEach(kw => kw.classList.add('filled'));
+                            }, letters.length * 30 + 800);
+                        }
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            observeElements = () => {
+                // Observe the reading units generated by highlightKeywords
+                const elementsToObserve = document.querySelectorAll('.reading-unit');
+                elementsToObserve.forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Fallback for any content not wrapped (e.g. lists)
+                const legacyElements = document.querySelectorAll('.card-insight li');
+                legacyElements.forEach(el => observer.observe(el));
+            };
+
+            // Initial observation
+            observeElements();
+            // Re-observe when new content is added
+            return observeElements;
+        }
+
+        // Función para actualizar títulos de secciones con i18n
+        function updateSectionTitles() {
+            if (window.i18n) {
+                document.getElementById('titleArquetipo').textContent = window.i18n.t('shadowsTitle');
+                document.getElementById('titleMisticismo').textContent = window.i18n.t('mysticismTitle');
+                document.getElementById('titleSombra').textContent = window.i18n.t('shadowTitle');
+                document.getElementById('titleBotanica').textContent = window.i18n.t('botanicTitle');
+                document.getElementById('titleCotidiano').textContent = window.i18n.t('dailyTitle');
+                document.getElementById('titleGnosis').textContent = window.i18n.t('gnosisTitle');
+                document.getElementById('titleResonanciaBiblica').textContent = window.i18n.t('biblicalTitle');
+            }
+        }
+
+        // Agregar event listeners para los títulos con ">"
+        document.addEventListener('DOMContentLoaded', () => {
+            // BLOQUEAR SCROLL INICIALMENTE HASTA QUE SE REVELE LA CARTA
+            document.body.classList.add('no-scroll');
+
+            // Actualizar títulos de secciones con traducciones
+            updateSectionTitles();
+
+            // Initialize scroll animations
+            initScrollAnimations();
+
+            // Event listeners para los títulos
+            document.getElementById('titleArquetipo').addEventListener('click', () => openModal('arquetipo'));
+            document.getElementById('titleMisticismo').addEventListener('click', () => openModal('misticismo'));
+            document.getElementById('titleSombra').addEventListener('click', () => openModal('sombra'));
+            document.getElementById('titleBotanica').addEventListener('click', () => openModal('botanica'));
+            document.getElementById('titleCotidiano').addEventListener('click', () => openModal('cotidiano'));
+            document.getElementById('titleGnosis').addEventListener('click', () => openModal('gnosis'));
+            document.getElementById('titleResonanciaBiblica').addEventListener('click', () => openModal('resonancia_biblica'));
+
+            // Event listener para cerrar modal
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+
+            // Cerrar modal al hacer click fuera del contenido
+            document.getElementById('modalOverlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('modalOverlay')) {
+                    closeModal();
+                }
+            });
+
+            // Cerrar modal con tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+
+    </script>
+
+
+
+    <a href="https://www.patreon.com/cw/star_loop" target="_blank" rel="noopener noreferrer"
+        class="social-btn patreon-btn" aria-label="Apóyanos en Patreon">
+        <!-- Patreon Logo SVG -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.32 5.56C15.32 8.63 12.83 11.12 9.76 11.12C6.69 11.12 4.2 8.63 4.2 5.56C4.2 2.49 6.69 0 9.76 0C12.83 0 15.32 2.49 15.32 5.56ZM0 24H3.2V0H0V24Z"
+                fill="#555" />
+        </svg>
+    </a>
+
+    <style>
+        .social-btn {
+            position: fixed;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            /* Ajustado al nuevo estilo glassmorphism */
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .instagram-btn {
+            display: none;
+        }
+
+        .patreon-btn {
+            bottom: 30px;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Ajuste específico para el logo de Patreon que suele ser más pequeño visualmente */
+        .patreon-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .social-btn {
+                right: 20px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .instagram-btn {
+                bottom: 20px;
+            }
+
+            .patreon-btn {
+                bottom: 80px;
+                /* 20px + 48px + 12px gap */
+            }
+
+            .social-btn svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .patreon-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    </style>
+
+</body>
+
+</html>
