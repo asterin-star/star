@@ -3501,15 +3501,48 @@
             });
         });
 
-        // Email button handler for composite reading (outside DOMContentLoaded to ensure it's always available)
+        // Discord webhook integration for composite reading requests
         setTimeout(() => {
             const compositeEmailBtn = document.getElementById('compositeEmailBtn');
             if (compositeEmailBtn) {
-                compositeEmailBtn.addEventListener('click', () => {
-                    const cards = collectedCards.map((c, idx) => `${idx + 1}. ${c.name}`).join('%0A');
-                    const subject = 'Solicitud de Lectura Profunda - Star Oracle';
-                    const body = `Hola,%0A%0AHe completado una lectura de 3 cartas y me gustaría solicitar una lectura más profunda.%0A%0AMis cartas son:%0A${cards}%0A%0AGracias!`;
-                    window.location.href = `mailto:asterin.star@gmail.com?subject=${subject}&body=${body}`;
+                compositeEmailBtn.addEventListener('click', async () => {
+                    // Disable button during request
+                    compositeEmailBtn.disabled = true;
+                    compositeEmailBtn.textContent = '📤 Enviando...';
+
+                    try {
+                        // Attempt to send via Discord webhook
+                        const response = await fetch('/api/composite-reading', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                cards: collectedCards.map(c => ({ name: c.name }))
+                            })
+                        });
+
+                        if (response.ok) {
+                            // Success
+                            compositeEmailBtn.textContent = '✅ Enviado!';
+                            setTimeout(() => {
+                                compositeEmailBtn.textContent = '📧 Solicitar Lectura Profunda';
+                                compositeEmailBtn.disabled = false;
+                            }, 3000);
+                        } else {
+                            throw new Error('API request failed');
+                        }
+                    } catch (error) {
+                        console.warn('Discord webhook failed, falling back to mailto:', error);
+
+                        // Fallback to mailto
+                        const cards = collectedCards.map((c, idx) => `${idx + 1}. ${c.name}`).join('%0A');
+                        const subject = 'Solicitud de Lectura Profunda - Star Oracle';
+                        const body = `Hola,%0A%0AHe completado una lectura de 3 cartas y me gustaría solicitar una lectura más profunda.%0A%0AMis cartas son:%0A${cards}%0A%0AGracias!`;
+                        window.location.href = `mailto:asterin.star@gmail.com?subject=${subject}&body=${body}`;
+
+                        // Reset button
+                        compositeEmailBtn.textContent = '📧 Solicitar Lectura Profunda';
+                        compositeEmailBtn.disabled = false;
+                    }
                 });
             }
         }, 500);
