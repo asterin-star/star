@@ -2097,6 +2097,10 @@
             ]
         };
 
+        // Keyword highlighting disabled - returns plain text with formatted line breaks
+        function highlightKeywords(text, lang = 'es') {
+            if (!text) return '';
+            return text.replace(/\n+/g, '<br><br>');
         }
 
         // Load keywords on page load
