@@ -798,6 +798,32 @@
             color: #555;
         }
 
+        .composite-email-btn {
+            width: 100%;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1.5px solid rgba(150, 150, 150, 0.3);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .composite-email-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: var(--color1, #FFEB3B);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .composite-email-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+
         @media (max-width: 600px) {
             .card-collection-notification {
                 width: 95%;
@@ -1606,8 +1632,13 @@
             </div>
 
             <div class="composite-message" id="compositeMessage" style="display:none;">
-                <span class="composite-icon">✨</span>
-                <span class="composite-text">Lectura Compuesta Completa</span>
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:8px;">
+                    <span class="composite-icon">✨</span>
+                    <span class="composite-text">Lectura Compuesta Completa</span>
+                </div>
+                <button class="composite-email-btn" id="compositeEmailBtn">
+                    📧 Solicitar Lectura Profunda
+                </button>
             </div>
         </div>
     </div>
