@@ -586,8 +586,6 @@
             object-position: center bottom;
             /* Align to bottom, crops top black bars */
             background: transparent;
-            transform: scaleX(-1);
-            /* Flip horizontally to fix reversed video */
         }
 
 
@@ -2099,55 +2097,6 @@
             ]
         };
 
-        // Wrapper to split text into reading units (sentences)
-        function highlightKeywords(text, lang = 'es') {
-            if (!text) return '';
-
-            // Split by newlines first to preserve paragraph structure
-            const paragraphs = text.split(/\n+/);
-
-            return paragraphs.map(paragraph => {
-                if (!paragraph.trim()) return '';
-
-                // Split into sentences (Apple Music lyrics style segments)
-                // Split by period, question mark, exclamation, or closing quotes
-                const segments = paragraph.match(/[^.?!]+[.?!]+["']?(\s|$)|[^.?!]+$/g) || [paragraph];
-
-                const processedSegments = segments.map(segment => {
-                    const highlightedText = applyKeywordHighlights(segment, lang);
-                    return `<span class="reading-unit">${highlightedText}</span>`;
-                }).join(' ');
-
-                return processedSegments;
-            }).join('<br><br>');
-        }
-
-        // The actual keyword highlighter (formerly highlightKeywords)
-        function applyKeywordHighlights(text, lang) {
-            const keywords = resonantKeywords[lang] || resonantKeywords['es'];
-
-            // Sort by length (longest first) to avoid partial matches
-            // Optim: clone array to avoid repeated sorting of the global array if already sorted? 
-            // The global array is modified, so strictly we should just allow it or check. 
-            // For safety let's sort a copy or just assume it's okay (it modifies in place).
-            const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
-
-            // Escape special regex characters
-            const escapedKeywords = sortedKeywords.map(kw =>
-                kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-            );
-
-            const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
-
-            return text.replace(pattern, (match) => {
-                // Wrap each letter with animation class and delay
-                const letters = match.split('').map((letter, index) => {
-                    if (letter === ' ') return ' ';
-                    return `<span class="letter-animate" style="animation-delay: ${index * 0.03}s">${letter}</span>`;
-                }).join('');
-
-                return `<span class="keyword-highlight">${letters}</span>`;
-            });
         }
 
         // Load keywords on page load
@@ -3235,7 +3184,7 @@
 
         /* ==================== FLOATING STARS (MAGNETIC SCROLL EFFECT) ==================== */
         function initFloatingStars() {
-            const starCount = 8;
+            const starCount = 35; // iPhone-style particles
             const stars = [];
 
             // Create stars
