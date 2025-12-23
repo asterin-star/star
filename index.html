@@ -2155,6 +2155,9 @@
             return `${text}<span class="verse-reference">— ${ref}</span>`;
         }
 
+        // Performance: JSON Cache to avoid re-fetching card data
+        const jsonCache = new Map();
+
         /* ==================== PREPARACIÓN INICIAL ==================== */
         async function prepareOracle() {
             try {
@@ -2170,7 +2173,16 @@
 
                 for (const range of fileRanges) {
                     try {
-                        // Intentar cargar archivo traducido
+                        const cacheKey = `${range}${suffix}`;
+
+                        // Check cache first
+                        if (jsonCache.has(cacheKey)) {
+                            console.log(`✅ Using cached data for ${cacheKey}`);
+                            allCards.push(...jsonCache.get(cacheKey));
+                            continue;
+                        }
+
+                        // Not in cache, fetch from network
                         let response = await fetch(`./public/data/${range}${suffix}.json`);
 
                         // Si no existe, usar español como fallback
@@ -2181,6 +2193,7 @@
 
                         if (response.ok) {
                             const data = await response.json();
+                            jsonCache.set(cacheKey, data); // Store in cache
                             allCards.push(...data);
                         }
                     } catch (error) {
@@ -2943,8 +2956,16 @@
 
         /* ==================== EVENT LISTENERS ==================== */
 
+        // Performance: Click debouncing
+        let clickDebounce = false;
+
         // Click en la carta (Intención o Nueva Consulta)
         cardStage.addEventListener('click', async (e) => {
+            // Debounce check
+            if (clickDebounce) return;
+            clickDebounce = true;
+            setTimeout(() => clickDebounce = false, 300);
+
             if (isProcessing) return;
 
             // If video is playing, don't reset (video click handler will close it)
