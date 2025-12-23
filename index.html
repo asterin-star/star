@@ -593,10 +593,10 @@
         .card-video-overlay video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* Cover - fills card, crops top */
-            object-position: bottom;
-            /* Align to bottom */
+            object-fit: contain;
+            /* Show complete video frame */
+            object-position: center;
+            /* Center the video */
             background: transparent;
             transform: scaleX(-1);
             /* Flip horizontally to fix reversed video */
