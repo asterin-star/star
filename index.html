@@ -995,6 +995,55 @@
             text-align: right;
         }
 
+        /* ==================== FLOATING STARS (APPLE-STYLE MAGNETIC SCROLL) ==================== */
+        .floating-star {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .floating-star::before,
+        .floating-star::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 1.5px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.9) 50%,
+                    transparent 100%);
+            transform: translate(-50%, -50%);
+            filter: blur(0.3px);
+        }
+
+        .floating-star::after {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .floating-star {
+            filter: drop-shadow(0 0 2px rgba(255, 235, 59, 0.6)) drop-shadow(0 0 4px rgba(255, 235, 59, 0.3));
+            animation: starTwinkle 2s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes starTwinkle {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
         /* ==================== MODAL GLASSMORPHISM BLANCO ==================== */
         .modal-overlay {
             position: fixed;
@@ -3183,6 +3232,48 @@
         });
 
 
+
+        /* ==================== FLOATING STARS (MAGNETIC SCROLL EFFECT) ==================== */
+        function initFloatingStars() {
+            const starCount = 8;
+            const stars = [];
+
+            // Create stars
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'floating-star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--delay', `${Math.random() * 2}s`);
+
+                document.body.appendChild(star);
+
+                stars.push({
+                    el: star,
+                    baseX: parseFloat(star.style.left),
+                    baseY: parseFloat(star.style.top),
+                    speedX: (Math.random() - 0.5) * 0.5, // Magnetic parallax factor
+                    speedY: (Math.random() - 0.5) * 0.8
+                });
+            }
+
+            // Magnetic scroll effect
+            let scrollY = 0;
+            window.addEventListener('scroll', () => {
+                scrollY = window.scrollY;
+            });
+
+            function updateStars() {
+                stars.forEach(star => {
+                    const offsetX = scrollY * star.speedX;
+                    const offsetY = scrollY * star.speedY;
+                    star.el.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                });
+                requestAnimationFrame(updateStars);
+            }
+
+            requestAnimationFrame(updateStars);
+        }
 
         /* ==================== INICIALIZACIÓN ==================== */
         // Cargar la primera carta al cargar la página
