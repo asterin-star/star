@@ -593,34 +593,14 @@
         .card-video-overlay video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            /* Changed from cover to contain - preserves aspect ratio */
+            background: transparent;
+            transform: scaleX(-1);
+            /* Flip horizontally to fix reversed video */
         }
 
-        /* Video close button */
-        .video-close-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 101;
-            transition: all 0.2s ease;
-        }
 
-        .video-close-btn:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.1);
-        }
 
 
 
@@ -1414,7 +1394,6 @@
                         <source id="videoSource" src="" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="video-close-btn" id="videoCloseBtn">×</div>
                 </div>
             </div>
         </div>
@@ -2561,6 +2540,9 @@
         cardStage.addEventListener('click', async (e) => {
             if (isProcessing) return;
 
+            // If video is playing, don't reset (video click handler will close it)
+            if (isVideoPlaying) return;
+
             // Ocultar pista visual
             const tapHint = document.getElementById('tapHint');
             if (tapHint) tapHint.style.opacity = '0';
@@ -2603,7 +2585,6 @@
         const videoOverlay = document.getElementById('videoOverlay');
         const cardVideo = document.getElementById('cardVideo');
         const videoSource = document.getElementById('videoSource');
-        const videoCloseBtn = document.getElementById('videoCloseBtn');
 
         let longPressTimer = null;
         let isVideoPlaying = false;
@@ -2717,17 +2698,10 @@
             cancelLongPress();
         });
 
-        // Close button
-        videoCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            stopCardVideo();
-        });
-
-        // Also close on video overlay click
+        // Click on video overlay to close
         videoOverlay.addEventListener('click', (e) => {
-            if (e.target === videoOverlay) {
-                stopCardVideo();
-            }
+            e.stopPropagation(); // Prevent triggering card reset
+            stopCardVideo();
         });
 
 
