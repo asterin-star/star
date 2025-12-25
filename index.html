@@ -2697,14 +2697,14 @@
         // Click Pattern State Machine: 1/2/3 clicks
         let clickCount = 0;
         let clickTimer = null;
-        const CLICK_WINDOW = 1000; // 1 second window
-        const FINAL_WAIT = 1500; // 1.5 second wait for triple click
+        const CLICK_WINDOW = 800; // 800ms window (faster response)
+        const FINAL_WAIT = 1200; // 1.2s wait for triple click (faster)
 
-        cardStage.addEventListener('click', async (e) => {
-            // Debounce check
+        cardStage.addEventListener('click', (e) => {
+            // Reduced debounce to avoid interfering with multi-clicks
             if (clickDebounce) return;
             clickDebounce = true;
-            setTimeout(() => clickDebounce = false, 300);
+            setTimeout(() => clickDebounce = false, 150); // Reduced from 300ms
 
             if (isProcessing) return;
 
@@ -2714,6 +2714,7 @@
 
             // INCREMENT CLICK COUNT
             clickCount++;
+            console.log(`🖱️ Click count: ${clickCount}`);
 
             // Clear existing timer
             if (clickTimer) {
@@ -2723,42 +2724,55 @@
 
             // STATE 1: First click (wait for more clicks or timeout)
             if (clickCount === 1) {
-                clickTimer = setTimeout(async () => {
+                clickTimer = setTimeout(() => {
+                    console.log('✅ Single click confirmed - revealing card');
                     // Single click confirmed: REVEAL CARD
-                    if (!isRevealed && currentCardData) {
-                        const paymentSuccess = await requestPayment();
-                        if (paymentSuccess) {
-                            revealDestiny();
+                    // Defer async work to avoid blocking UI (fixes INP issue)
+                    requestAnimationFrame(async () => {
+                        if (!isRevealed && currentCardData) {
+                            const paymentSuccess = await requestPayment();
+                            if (paymentSuccess) {
+                                revealDestiny();
+                            }
                         }
-                    }
+                    });
                     clickCount = 0;
                 }, CLICK_WINDOW);
             }
 
             // STATE 2: Double click (wait for 3rd click or timeout)
             else if (clickCount === 2) {
-                clickTimer = setTimeout(async () => {
+                clickTimer = setTimeout(() => {
+                    console.log('✅ Double click confirmed - playing video');
                     // Double click confirmed: PLAY VIDEO
-                    if (isRevealed && !isVideoPlaying) {
-                        await playCardVideo();
-                    }
+                    // Defer async work to avoid blocking UI (fixes INP issue)
+                    requestAnimationFrame(async () => {
+                        if (isRevealed && !isVideoPlaying) {
+                            await playCardVideo();
+                        }
+                    });
                     clickCount = 0;
                 }, CLICK_WINDOW);
             }
 
-            // STATE 3: Triple click (final action with longer wait)
+            // STATE 3: Triple click (final action with shorter wait)
             else if (clickCount === 3) {
                 clickTimer = setTimeout(() => {
+                    console.log('✅ Triple click confirmed - resetting oracle');
                     // Triple click confirmed: FLIP BACK
-                    if (isRevealed) {
-                        resetOracle();
-                    }
+                    // Defer work to avoid blocking UI (fixes INP issue)
+                    requestAnimationFrame(() => {
+                        if (isRevealed) {
+                            resetOracle();
+                        }
+                    });
                     clickCount = 0;
                 }, FINAL_WAIT);
             }
 
             // Ignore additional clicks beyond 3
             else if (clickCount > 3) {
+                console.log('⚠️ Too many clicks, resetting count');
                 clickCount = 0;
             }
         });
