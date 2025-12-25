@@ -2020,6 +2020,106 @@
         // Variable para controlar el timeout del reset de color
         let resetColorTimeout = null;
 
+        /* =====================================================
+           FULL 78-CARD TAROT DECK WITH REVERSALS
+        ===================================================== */
+
+        // Major Arcana (22 cards)
+        const MAJOR_ARCANA = [
+            'ar00', 'ar01', 'ar02', 'ar03', 'ar04', 'ar05', 'ar06', 'ar07',
+            'ar08', 'ar09', 'ar10', 'ar11', 'ar12', 'ar13', 'ar14', 'ar15',
+            'ar16', 'ar17', 'ar18', 'ar19', 'ar20', 'ar21'
+        ];
+
+        // Minor Arcana - Wands (Bastos/Fuego) - 14 cards
+        const WANDS = [
+            'wands_ace', 'wands_02', 'wands_03', 'wands_04', 'wands_05', 'wands_06', 'wands_07',
+            'wands_08', 'wands_09', 'wands_10', 'wands_page', 'wands_knight', 'wands_queen', 'wands_king'
+        ];
+
+        // Minor Arcana - Cups (Copas/Agua) - 14 cards  
+        const CUPS = [
+            'cups_ace', 'cups_02', 'cups_03', 'cups_04', 'cups_05', 'cups_06', 'cups_07',
+            'cups_08', 'cups_09', 'cups_10', 'cups_page', 'cups_knight', 'cups_queen', 'cups_king'
+        ];
+
+        // Minor Arcana - Swords (Espadas/Aire) - 14 cards
+        const SWORDS = [
+            'swords_ace', 'swords_02', 'swords_03', 'swords_04', 'swords_05', 'swords_06', 'swords_07',
+            'swords_08', 'swords_09', 'swords_10', 'swords_page', 'swords_knight', 'swords_queen', 'swords_king'
+        ];
+
+        // Minor Arcana - Pentacles (Oros/Tierra) - 14 cards
+        const PENTACLES = [
+            'pentacles_ace', 'pentacles_02', 'pentacles_03', 'pentacles_04', 'pentacles_05', 'pentacles_06', 'pentacles_07',
+            'pentacles_08', 'pentacles_09', 'pentacles_10', 'pentacles_page', 'pentacles_knight', 'pentacles_queen', 'pentacles_king'
+        ];
+
+        // FULL 78-CARD DECK
+        const FULL_DECK = [
+            ...MAJOR_ARCANA,  // 22
+            ...WANDS,          // 14
+            ...CUPS,           // 14
+            ...SWORDS,         // 14
+            ...PENTACLES       // 14
+        ]; // Total: 78 cards
+
+        /**
+         * Draw N cards from full deck with reversals (for deep analysis)
+         * @param {number} count - Number of cards to draw (default 10)
+         * @returns {Array} Array of card objects with {card, reversed, position, positionName}
+         */
+        function drawCardSpread(count = 10) {
+            const drawn = [];
+            const available = [...FULL_DECK]; // Copy deck
+
+            for (let i = 0; i < count && available.length > 0; i++) {
+                const index = Math.floor(Math.random() * available.length);
+                const cardId = available.splice(index, 1)[0]; // Remove from deck (no duplicates)
+                const reversed = Math.random() < 0.5; // 50% chance of reversal
+
+                drawn.push({
+                    card: cardId,
+                    reversed: reversed,
+                    position: i + 1,
+                    positionName: getPositionName(i + 1),
+                    element: getCardElement(cardId)
+                });
+            }
+
+            return drawn;
+        }
+
+        /**
+         * Get position meaning in 10-card Celtic Cross spread
+         */
+        function getPositionName(position) {
+            const positions = {
+                1: 'Situación Actual',
+                2: 'Desafío Inmediato',
+                3: 'Causa Raíz',
+                4: 'Pasado Reciente',
+                5: 'Mejor Resultado Posible',
+                6: 'Futuro Inmediato',
+                7: 'Tu Actitud',
+                8: 'Influencias Externas',
+                9: 'Esperanzas y Miedos',
+                10: 'Resultado Final'
+            };
+            return positions[position] || `Posición ${position}`;
+        }
+
+        /**
+         * Get suit element (for esoteric analysis)
+         */
+        function getCardElement(cardId) {
+            if (cardId.startsWith('wands_')) return 'Fuego';
+            if (cardId.startsWith('cups_')) return 'Agua';
+            if (cardId.startsWith('swords_')) return 'Aire';
+            if (cardId.startsWith('pentacles_')) return 'Tierra';
+            return 'Espíritu'; // Major Arcana
+        }
+
         /* ==================== PALETAS DE COLORES RIDER-WAITE ==================== */
         // Basado en los colores visualmente dominantes y simbólicos de las cartas estándar.
         const colorPalettes = {
