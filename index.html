@@ -551,13 +551,11 @@
             mix-blend-mode: darken;
             filter: contrast(1.1) saturate(1.1) brightness(1.05);
             transition: transform 4s var(--ease-smooth);
-            transform: scaleX(-1);
-            /* FIX: Un-mirror the inverted back face */
         }
 
-        /* Efecto zoom al revelar (Mantenemos scaleX(-1)) */
+        /* Efecto zoom al revelar */
         .card-stage.flipped .tarot-img {
-            transform: scale(1.02) scaleX(-1);
+            transform: scale(1.02);
         }
 
         /* ==================== VIDEO OVERLAY (LONG-PRESS) ==================== */
@@ -588,8 +586,6 @@
             /* Center alignment prevents uneven cropping */
             object-position: center center;
             background: transparent;
-            transform: scaleX(-1);
-            /* FIX: Match card image orientation */
         }
 
 
@@ -622,10 +618,9 @@
         .insight-panel {
             width: 92%;
             max-width: 720px;
-            /* OSCURECIDO para mejor contraste con keywords brillantes */
             background: rgba(245, 245, 245, 0.45);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
+            backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
             border-radius: 22px;
             padding: 32px 42px 36px;
             border: 1.5px solid var(--glass-border);
@@ -848,8 +843,8 @@
 
         .modal-content {
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 16px;
             box-shadow:
@@ -2958,7 +2953,7 @@
 
         /* ==================== FLOATING STARS (MAGNETIC SCROLL EFFECT) ==================== */
         function initFloatingStars() {
-            const starCount = 35; // iPhone-style particles
+            const starCount = 80; // More particles for richer effect
             const stars = [];
 
             // Create stars
@@ -3385,25 +3380,45 @@
 
         if (collectionBtn) {
             collectionBtn.addEventListener('click', () => {
+                const requestDeepReadingBtn = document.getElementById('requestDeepReading');
+
                 // Render list
                 if (collectedCards.length === 0) {
                     collectionList.innerHTML = '<p style="text-align:center; opacity:0.7; padding: 20px;">' + (window.i18n ? window.i18n.t('noCards') || "No hay cartas aún" : "No hay cartas aún") + '</p>';
+                    if (requestDeepReadingBtn) requestDeepReadingBtn.style.display = 'none';
                 } else {
                     let html = '<div style="display:flex; flex-direction:column; gap:10px;">';
                     collectedCards.forEach(card => {
+                        // Format timestamp for display
+                        const date = new Date(card.timestamp);
+                        const timeStr = date.toLocaleString('es-AR', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
                         html += `
-                            <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); padding:10px; border-radius:10px;">
-                                <img src="${card.image}" style="width:40px; height:60px; object-fit:cover; border-radius:5px;">
-                                <span>${card.name}</span>
+                            <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.1); padding:12px; border-radius:10px;">
+                                <img src="${card.image}" style="width:40px; height:60px; object-fit:cover; border-radius:5px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+                                <div style="flex: 1;">
+                                    <div style="font-weight:600; margin-bottom:4px;">${card.name}</div>
+                                    <div style="font-size:0.85rem; opacity:0.7;">${timeStr}</div>
+                                </div>
                             </div>
                         `;
                     });
                     html += '</div>';
                     collectionList.innerHTML = html;
+
+                    // Show deep reading button when cards exist
+                    if (requestDeepReadingBtn) requestDeepReadingBtn.style.display = 'block';
                 }
                 collectionModal.style.display = 'flex';
             });
         }
+
 
         if (collectionClose) {
             collectionClose.addEventListener('click', () => {
