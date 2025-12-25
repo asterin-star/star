@@ -3806,7 +3806,48 @@
             });
         });
 
+        /* ==================== DEEP ANALYSIS API HELPER ==================== */
+
+        async function callDeepAnalysisAPI(type, additionalData = {}) {
+            try {
+                // Note: In production, endpoint would be /api/deep-analysis
+                const endpoint = window.location.hostname === 'localhost'
+                    ? 'http://localhost:3000/api/deep-analysis'
+                    : '/api/deep-analysis';
+
+                const payload = {
+                    type: type,
+                    collectedCards: collectedCards.map(card => ({
+                        name: card.name,
+                        name_short: card.name_short,
+                        timestamp: card.timestamp
+                    })),
+                    ...additionalData
+                };
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data;
+
+            } catch (error) {
+                console.error('Deep Analysis API Error:', error);
+                throw error;
+            }
+        }
+
         /* ==================== ANALYSIS BUTTON HANDLERS ==================== */
+
 
         // Brain Analysis Button
         const brainAnalysisBtn = document.getElementById('requestBrainAnalysis');
@@ -3823,24 +3864,16 @@
                 // Show loading state
                 brainAnalysisBtn.disabled = true;
                 brainAnalysisBtn.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
-                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">🧠 Realizando análisis cerebral profundo...</p>';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">🧠 Conectando con Google AI para análisis cerebral profundo...</p>';
                 resultDiv.style.display = 'block';
 
                 try {
-                    // TODO: Call Google AI API for brain analysis
-                    // const analysis = await callDeepAnalysisAPI('brain', collectedCards);
-
-                    // Placeholder response for now
-                    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+                    // Call real Google AI API
+                    const response = await callDeepAnalysisAPI('brain');
 
                     resultDiv.innerHTML = `
                         <h5 style="margin: 0 0 15px 0; font-weight: 700;">🧠 Análisis Cerebral Completo</h5>
-                        <p><strong>Estado Cerebral Actual:</strong> Tu patrón de cartas indica una actividad predominante del hemisferio derecho, sugiriendo un enfoque altamente intuitivo y creativo en este momento.</p>
-                        <p><strong>Desarrollo Neuronal:</strong> Se observa una fuerte conexión con los arquetipos simbólicos, lo que indica plasticidad neuronal activa en áreas asociadas con el pensamiento abstracto.</p>
-                        <p><strong>Glándula Pineal:</strong> Las cartas colectadas sugieren una apertura espiritual en desarrollo. Recomendaciones: meditación antes del amanecer, exposición a luz solar directa.</p>
-                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
-                            <em>Nota: Esta es una versión beta. La integración completa con Google AI estará disponible próximamente.</em>
-                        </p>
+                        <div style="white-space: pre-line; line-height: 1.7;">${response.analysis}</div>
                     `;
                 } catch (error) {
                     resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al realizar el análisis. Por favor intenta nuevamente.</p>';
@@ -3865,20 +3898,15 @@
 
                 bodyAnalysisBtn.disabled = true;
                 bodyAnalysisBtn.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
-                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚖️ Analizando equilibrio corporal...</p>';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚖️ Conectando con Google AI para análisis corporal...</p>';
                 resultDiv.style.display = 'block';
 
                 try {
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    const response = await callDeepAnalysisAPI('body');
 
                     resultDiv.innerHTML = `
                         <h5 style="margin: 0 0 15px 0; font-weight: 700;">⚖️ Análisis de Equilibrio Corporal</h5>
-                        <p><strong>Hemisferio Izquierdo (Cuerpo Derecho - Lógica):</strong> 45% de activación. Se detecta necesidad de mayor estructura y planificación en tus actividades.</p>
-                        <p><strong>Hemisferio Derecho (Cuerpo Izquierdo - Intuición):</strong> 55% de activación. Fuerte conexión con la intuición y creatividad, aprovecha esta fortaleza.</p>
-                        <p><strong>Recomendaciones de Armonización:</strong> Practica actividades que integren ambos hemisferios: yoga, tai chi, o tocar un instrumento musical.</p>
-                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
-                            <em>Nota: Esta es una versión beta. La integración completa con Google AI estará disponible próximamente.</em>
-                        </p>
+                        <div style="white-space: pre-line; line-height: 1.7;">${response.analysis}</div>
                     `;
                 } catch (error) {
                     resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al realizar el análisis.</p>';
@@ -3903,48 +3931,35 @@
 
                 personalityProfileBtn.disabled = true;
                 personalityProfileBtn.innerHTML = '<span class="btn-icon">⏳</span> Generando...';
-                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">📊 Generando perfil de personalidad...</p>';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">📊 Conectando con Google AI para generar perfil...</p>';
                 resultDiv.style.display = 'block';
 
                 try {
-                    await new Promise(resolve => setTimeout(resolve, 2500));
-
-                    // Simple stat calculation based on collected cards
-                    const stats = {
-                        fuerza: Math.min(20, 8 + collectedCards.length * 2),
-                        inteligencia: Math.min(20, 10 + collectedCards.length),
-                        sabiduria: Math.min(20, 12 + collectedCards.length),
-                        carisma: Math.min(20, 9 + collectedCards.length * 1.5),
-                        constitucion: Math.min(20, 11 + collectedCards.length),
-                        destreza: Math.min(20, 7 + collectedCards.length * 2)
-                    };
+                    const response = await callDeepAnalysisAPI('personality');
 
                     resultDiv.innerHTML = `
                         <h5 style="margin: 0 0 15px 0; font-weight: 700;">🎴 Perfil de Personalidad (Stats)</h5>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>💪 Fuerza:</strong> ${stats.fuerza}/20
+                                <strong>💪 Fuerza:</strong> ${response.stats.fuerza}/20
                             </div>
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>🧠 Inteligencia:</strong> ${stats.inteligencia}/20
+                                <strong>🧠 Inteligencia:</strong> ${response.stats.inteligencia}/20
                             </div>
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>🦉 Sabiduría:</strong> ${stats.sabiduria}/20
+                                <strong>🦉 Sabiduría:</strong> ${response.stats.sabiduria}/20
                             </div>
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>✨ Carisma:</strong> ${stats.carisma}/20
+                                <strong>✨ Carisma:</strong> ${response.stats.carisma}/20
                             </div>
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>❤️ Constitución:</strong> ${stats.constitucion}/20
+                                <strong>❤️ Constitución:</strong> ${response.stats.constitucion}/20
                             </div>
                             <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                                <strong>🎯 Destreza:</strong> ${stats.destreza}/20
+                                <strong>🎯 Destreza:</strong> ${response.stats.destreza}/20
                             </div>
                         </div>
-                        <p><strong>Conclusión:</strong> Tu perfil indica un buscador espiritual con alta sabiduría y capacidad intuitiva. Tu fortaleza principal está en la comprensión profunda de simbolismos y arquetipos.</p>
-                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
-                            <em>Nota: Esta es una versión beta. Los stats se calculan en base a tus cartas colectadas.</em>
-                        </p>
+                        <div style="white-space: pre-line; line-height: 1.7;">${response.analysis}</div>
                     `;
                 } catch (error) {
                     resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al generar el perfil.</p>';
@@ -3969,28 +3984,50 @@
                     return;
                 }
 
+                // Get location data based on selected type
+                const locationType = document.querySelector('input[name="locationType"]:checked')?.value || 'hospital';
+                let location = '';
+                let latitude = 0;
+                let longitude = 0;
+
+                if (locationType === 'hospital') {
+                    const hospital = document.getElementById('hospitalName')?.value || '';
+                    const city = document.getElementById('birthCity')?.value || '';
+                    const country = document.getElementById('birthCountry')?.value || '';
+                    location = `${hospital}, ${city}, ${country}`;
+                } else {
+                    location = document.getElementById('mapLocation')?.value || 'Ubicación no especificada';
+                    latitude = parseFloat(document.getElementById('selectedLat')?.textContent) || 0;
+                    longitude = parseFloat(document.getElementById('selectedLng')?.textContent) || 0;
+                }
+
                 natalChartBtn.disabled = true;
                 natalChartBtn.innerHTML = '<span class="btn-icon">⏳</span> Calculando...';
-                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⭐ Calculando carta natal...</p>';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⭐ Conectando con Google AI para síntesis completa...</p>';
                 resultDiv.style.display = 'block';
 
                 try {
-                    await new Promise(resolve => setTimeout(resolve, 2500));
+                    // Call complete analysis API (Prompt 4) - integrates everything
+                    const response = await callDeepAnalysisAPI('complete', {
+                        birthData: {
+                            date: birthDate,
+                            time: birthTime,
+                            location: location,
+                            latitude: latitude,
+                            longitude: longitude
+                        }
+                    });
 
                     resultDiv.innerHTML = `
-                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">⭐ Carta Natal Calculada</h5>
-                        <p><strong>Fecha y Hora:</strong> ${new Date(birthDate + 'T' + birthTime).toLocaleString('es-AR', {
+                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">⭐ Análisis Holístico Completo</h5>
+                        <p style="margin-bottom: 15px;"><strong>Fecha y Hora:</strong> ${new Date(birthDate + 'T' + birthTime).toLocaleString('es-AR', {
                         year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
                     })}</p>
-                        <p><strong>Sol:</strong> Tu carta indica una fuerte influencia solar, sugiriendo liderazgo natural y vitalidad.</p>
-                        <p><strong>Luna:</strong> Posición lunar favorable para la intuición y conexión emocional profunda.</p>
-                        <p><strong>Ascendente:</strong> Proyectas una imagen de sabiduría y misticismo hacia el mundo.</p>
-                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
-                            <em>Nota: Calculadora de carta natal completa con Google AI y cálculos astronómicos precisos próximamente.</em>
-                        </p>
+                        <p style="margin-bottom: 15px;"><strong>Ubicación:</strong> ${location}</p>
+                        <div style="white-space: pre-line; line-height: 1.7;">${response.analysis}</div>
                     `;
                 } catch (error) {
-                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al calcular la carta natal.</p>';
+                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al calcular el análisis completo.</p>';
                 } finally {
                     natalChartBtn.disabled = false;
                     natalChartBtn.innerHTML = '<span class="btn-icon">⭐</span> Calcular Carta Natal';
