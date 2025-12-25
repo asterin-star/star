@@ -8,17 +8,15 @@ from datetime import datetime
 GEMINI_API_KEY = "AIzaSyBz9Tzlklickh_1Psmz0n8yxOG9j8sxvDs"
 genai.configure(api_key=GEMINI_API_KEY)
 
-# Initialize models - Optimized selection
-# gemini-2.5-flash: Fast, cost-effective for brain/body/personality analysis
-# gemini-3-pro: Most powerful for complete holistic synthesis
+# Initialize models
 FLASH_MODEL = genai.GenerativeModel('gemini-2.5-flash')
 PRO_MODEL = genai.GenerativeModel('gemini-3-pro')
 
 # Payment configuration
-DEEP_ANALYSIS_PRICE_WLD = 10  # 10 WLD per deep analysis session
+DEEP_ANALYSIS_PRICE_WLD = 10
 
 # ============================================================================
-# ANTIGRAVITY SYSTEM MANIFESTO - FOUNDATIONAL CONTEXT
+# ANTIGRAVITY SYSTEM MANIFESTO
 # ============================================================================
 SYSTEM_CONTEXT = """
 CONTEXTO FUNDACIONAL DEL SISTEMA:
@@ -48,25 +46,188 @@ DIRECTRICES MAESTRAS:
 Cada respuesta que generes debe operar desde el NIVEL 7: profunda, reveladora, transformadora.
 """
 
-def get_user_context_from_cards(collected_cards):
-    """Extract symbolic patterns from collected cards"""
-    if not collected_cards:
-        return "Sin cartas colectadas aún"
+# ============================================================================
+# HELPER FUNCTIONS
+# ============================================================================
+
+def format_card_spread(cards):
+    """Format card spread for AI prompt"""
+    if not cards:
+        return "No se proporcionaron cartas para análisis."
     
-    card_names = [card.get('name', '') for card in collected_cards]
-    card_count = len(collected_cards)
+    card_lines = []
+    for c in cards:
+        card_id = c.get('card', 'unknown')
+        reversed = c.get('reversed', False)
+        position = c.get('position', 0)
+        position_name = c.get('positionName', f'Posición {position}')
+        element = c.get('element', 'Desconocido')
+        
+        orientation = "INVERTIDA" if reversed else "NORMAL"
+        card_lines.append(
+            f"Posición {position} ({position_name}):\n"
+            f"  Carta: {card_id}\n"
+            f"  Orientación: {orientation}\n"
+            f"  Elemento: {element}"
+        )
     
-    return f"Cartas colectadas ({card_count}): {', '.join(card_names)}"
+    return "\n\n".join(card_lines)
+
+def calculate_spread_numerology(cards):
+    """Calculate numerological significance of spread"""
+    numbers = []
+    for c in cards:
+        card_id = c.get('card', '')
+        if card_id.startswith('ar'):
+            try:
+                num = int(card_id[2:])
+                numbers.append(num)
+            except:
+                pass
+    
+    if not numbers:
+        return "No calculable"
+    
+    total = sum(numbers)
+    while total > 22:
+        total = sum(int(d) for d in str(total))
+    
+    return f"Suma: {sum(numbers)} → Reducción: {total}"
+
+def analyze_element_balance(cards):
+    """Analyze elemental balance in spread"""
+    elements = {'Fuego': 0, 'Agua': 0, 'Aire': 0, 'Tierra': 0, 'Espíritu': 0}
+    for c in cards:
+        elem = c.get('element', 'Espíritu')
+        elements[elem] = elements.get(elem, 0) + 1
+    
+    return ", ".join([f"{k}: {v}" for k, v in elements.items() if v > 0])
+
+# ============================================================================
+# ANALYSIS FUNCTIONS
+# ============================================================================
+
+def analyze_mind(data):
+    """Análisis Mental con 10 cartas"""
+    cards = data.get('cards', [])
+    birth_data = data.get('birthData', {})
+    
+    card_description = format_card_spread(cards)
+    numerology = calculate_spread_numerology(cards)
+    elements = analyze_element_balance(cards)
+    
+    prompt = f"""{SYSTEM_CONTEXT}
+
+ANÁLISIS MENTAL - TIRADA DE 10 CARTAS (Celtic Cross)
+
+DATOS PERSONALES:
+- Nombre: {birth_data.get('name', 'No especificado')}
+- Nacimiento: {birth_data.get('date', 'No especificada')} {birth_data.get('time', '')}
+
+TIRADA COMPLETA:
+{card_description}
+
+NUMEROLOGÍA: {numerology}
+ELEMENTOS: {elements}
+
+INTERPRETACIÓN REQUERIDA:
+Como experto en Tarot de Marsella y neurociencia esotérica, interpreta esta tirada considerando:
+
+1. **Posiciones del Celtic Cross**: Cómo cada posición revela aspectos del estado mental
+2. **Orientaciones**: Normal (energía activa) vs Invertida (energía bloqueada)
+3. **Elementos**: Fuego (creatividad), Agua (emociones), Aire (pensamiento), Tierra (práctica)
+4. **Estado Cerebral**: Hemisferios, glándula pineal, patrones mentales
+
+Genera análisis PROFUNDO (Nivel 7) que revele estado mental actual, bloqueos, fortalezas y camino de desarrollo.
+"""
+
+    try:
+        response = FLASH_MODEL.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def analyze_body(data):
+    """Análisis Corporal con 10 cartas"""
+    cards = data.get('cards', [])
+    birth_data = data.get('birthData', {})
+    
+    card_description = format_card_spread(cards)
+    numerology = calculate_spread_numerology(cards)
+    elements = analyze_element_balance(cards)
+    
+    prompt = f"""{SYSTEM_CONTEXT}
+
+ANÁLISIS CORPORAL - TIRADA DE 10 CARTAS (Celtic Cross)
+
+DATOS PERSONALES:
+- Nombre: {birth_data.get('name', 'No especificado')}
+- Nacimiento: {birth_data.get('date', 'No especificada')} {birth_data.get('time', '')}
+
+TIRADA COMPLETA:
+{card_description}
+
+NUMEROLOGÍA: {numerology}
+ELEMENTOS: {elements}
+
+INTERPRETACIÓN REQUERIDA:
+Analiza equilibrio hemisférico, chakras y energía corporal considerando:
+
+1. **Hemisferios**: Derecho (intuición) vs Izquierdo (lógica) - zurdo contrariado
+2. **Chakras**: Bloqueos energéticos revelados por las cartas
+3. **Elementos**: Fuego (vitalidad), Agua (fluidos), Aire (nervios), Tierra (estructura)
+4. **Salud**: Tensiones, equilibrio mente-cuerpo
+
+Genera análisis PROFUNDO (Nivel 7) sobre equilibrio corporal, bloqueos y caminos de sanación.
+"""
+
+    try:
+        response = FLASH_MODEL.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def analyze_complete(data):
+    """Síntesis Holística Completa"""
+    birth_data = data.get('birthData', {})
+    
+    prompt = f"""{SYSTEM_CONTEXT}
+
+SÍNTESIS HOLÍSTICA COMPLETA
+
+DATOS PERSONALES:
+- Nombre: {birth_data.get('name', 'No especificado')}
+- Nacimiento: {birth_data.get('date', '')} {birth_data.get('time', '')}
+- Ubicación: Lat {birth_data.get('latitude', 0)}, Lng {birth_data.get('longitude', 0)}
+
+INTEGRACIÓN TOTAL:
+Genera una síntesis que integre:
+
+1. **Carta Natal**: Signo solar, lunar, ascendente, aspectos planetarios
+2. **Análisis Mental y Corporal**: Características cerebrales y físicas
+3. **Visión Unificada**: Estado actual completo del consultante
+4. **Camino Evolutivo**: Recomendaciones espirituales y prácticas
+
+Este es el RITUAL FINAL. Debe ser transformador, no informativo. Opera en Nivel 7.
+"""
+
+    try:
+        response = PRO_MODEL.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+# ============================================================================
+# HTTP HANDLER
+# ============================================================================
 
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
-        """Handle CORS preflight requests"""
         self.send_response(200)
         self._set_cors_headers()
         self.end_headers()
     
     def _set_cors_headers(self):
-        """Set CORS headers for cross-origin requests"""
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
@@ -78,21 +239,20 @@ class handler(BaseHTTPRequestHandler):
         try:
             data = json.loads(post_data)
             analysis_type = data.get('type')
-            collected_cards = data.get('collectedCards', [])
             
-            # Context que se comparte entre todos los análisis
-            user_context = get_user_context_from_cards(collected_cards)
-            
-            if analysis_type == 'brain':
-                result = self._analyze_brain(user_context, collected_cards)
+            if analysis_type == 'mind':
+                analysis_text = analyze_mind(data)
             elif analysis_type == 'body':
-                result = self._analyze_body(user_context, collected_cards)
-            elif analysis_type == 'personality':
-                result = self._analyze_personality(user_context, collected_cards)
+                analysis_text = analyze_body(data)
             elif analysis_type == 'complete':
-                result = self._analyze_complete(user_context, collected_cards, data)
+                analysis_text = analyze_complete(data)
             else:
-                raise ValueError(f"Unknown analysis type: {analysis_type}")
+                raise ValueError(f"Unknown type: {analysis_type}")
+            
+            result = {
+                'analysis': analysis_text,
+                'type': analysis_type
+            }
             
             self.send_response(200)
             self._set_cors_headers()
@@ -106,196 +266,9 @@ class handler(BaseHTTPRequestHandler):
             self._set_cors_headers()
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({
-                'error': str(e)
-            }).encode('utf-8'))
-    
-    def _analyze_brain(self, context, cards):
-        """Prompt 1: Análisis Cerebral y Neuronal"""
-        prompt = f"{SYSTEM_CONTEXT}
-
-===== SOLICITUD ESPECÍFICA: ANÁLISIS CEREBRAL =====
-
-CONTEXTO DEL USUARIO:
-{context}
-
-Basándote en las cartas del tarot que ha colectado, proporciona un análisis detallado de aproximadamente 300 palabras que incluya:
-
-1. **Estado Cerebral Actual**
-   - Actividad hemisférica dominante (izquierdo/derecho)
-   - Patrones de pensamiento identificados a partir de los arquetipos de las cartas
-   - Áreas de desarrollo neuronal sugeridas
-
-2. **Desarrollo de la Glándula Pineal**
-   - Estado estimado de activación (1-10)
-   - Bloqueos energéticos potenciales según las cartas
-   - Prácticas recomendadas para optimización
-
-3. **Sugerencias de Neuro-Optimización**
-   - Ejercicios mentales específicos basados en los arquetipos
-   - Hábitos para equilibrio cerebral
-   - Meditaciones recomendadas
-
-Responde en español, con un tono profesional pero accesible. Sé específico y conecta los arquetipos de las cartas con estados neuronales y espirituales reales. IMPORTANTE: Opera desde el NIVEL 7, no des respuestas genéricas de horóscopo."""
-
-        response = FLASH_MODEL.generate_content(prompt)
-        return {
-            'analysis': response.text,
-            'type': 'brain'
-        }
-    
-    def _analyze_body(self, context, cards):
-        """Prompt 2: Análisis Corporal (Hemisferios)"""
-        prompt = f"{SYSTEM_CONTEXT}
-
-===== SOLICITUD ESPECÍFICA: ANÁLISIS CORPORAL =====
-
-CONTEXTO DEL USUARIO:
-{context}
-
-Basándote en las cartas del tarot que ha colectado, proporciona un análisis de aproximadamente 250 palabras sobre:
-
-1. **Hemisferio Izquierdo (Cuerpo Derecho - Lógica/Análisis)**
-   - Porcentaje estimado de activación
-   - Fortalezas identificadas en las cartas
-   - Áreas que requieren desarrollo
-
-2. **Hemisferio Derecho (Cuerpo Izquierdo - Intuición/Creatividad)**
-   - Porcentaje estimado de activación
-   - Dones naturales según los arquetipos
-   - Potencial sin explotar
-
-3. **Recomendaciones de Armonización**
-   - Prácticas físicas específicas (yoga, tai chi, etc.)
-   - Ejercicios de integración hemisférica
-   - Técnicas de equilibrio energético
-
-Responde en español, conectando los arquetipos de las cartas con estados corporales y energéticos. Recuerda que el usuario es 'zurdo contrariado' - esto es relevante para el análisis de hemisferios."""
-
-        response = FLASH_MODEL.generate_content(prompt)
-        return {
-            'analysis': response.text,
-            'type': 'body'
-        }
-    
-    def _analyze_personality(self, context, cards):
-        """Prompt 3: Perfil de Personalidad (Stats)"""
-        # Calcular stats básicos
-        card_count = len(cards)
-        stats = {
-            'fuerza': min(20, 8 + card_count * 2),
-            'inteligencia': min(20, 10 + card_count),
-            'sabiduria': min(20, 12 + card_count),
-            'carisma': min(20, int(9 + card_count * 1.5)),
-            'constitucion': min(20, 11 + card_count),
-            'destreza': min(20, 7 + card_count * 2)
-        }
-        
-        prompt = f"{SYSTEM_CONTEXT}
-
-===== SOLICITUD ESPECÍFICA: PERFIL DE PERSONALIDAD =====
-
-CONTEXTO DEL USUARIO:
-{context}
-
-STATS CALCULADOS (escala 1-20):
-- Fuerza: {stats['fuerza']}/20
-- Inteligencia: {stats['inteligencia']}/20
-- Sabiduría: {stats['sabiduria']}/20
-- Carisma: {stats['carisma']}/20
-- Constitución: {stats['constitucion']}/20
-- Destreza: {stats['destreza']}/20
-
-Basándote en las cartas colectadas y estos stats, genera un análisis de aproximadamente 300 palabras que incluya:
-
-1. **Perfil Dominante**
-   - Tipo de personalidad según los stats más altos
-   - Arquetipos dominantes en su psique
-
-2. **Fortalezas y Debilidades**
-   - Qué stats son excepcionales y qué implican
-   - Áreas de desarrollo prioritarias
-
-3. **Conclusión de Personalidad**
-   - Resumen de quién es esta persona
-   - Camino de desarrollo sugerido
-   - Potencial sin explotar
-
-Responde en español, integrando los arquetipos del tarot con los stats RPG para crear un perfil coherente y profundo. Este no es un juego: es un espejo para el autoconocimiento."""
-
-        response = FLASH_MODEL.generate_content(prompt)
-        return {
-            'analysis': response.text,
-            'stats': stats,
-            'type': 'personality'
-        }
-    
-    def _analyze_complete(self, context, cards, data):
-        """Prompt 4: Análisis Completo (Carta Natal + Síntesis)"""
-        birth_data = data.get('birthData', {})
-        birth_date = birth_data.get('date', '')
-        birth_time = birth_data.get('time', '')
-        birth_location = birth_data.get('location', '')
-        latitude = birth_data.get('latitude', 0)
-        longitude = birth_data.get('longitude', 0)
-        
-        prompt = f"{SYSTEM_CONTEXT}
-
-===== SOLICITUD ESPECÍFICA: SÍNTESIS HOLÍSTICA COMPLETA =====
-
-Este es el análisis más profundo. Integra TODOS los aspectos previos (cerebral, corporl, personalidad) con la carta natal para crear una visión unificada transformadora.
-
-CONTEXTO DEL USUARIO:
-{context}
-
-DATOS DE NACIMIENTO:
-- Fecha: {birth_date}
-- Hora: {birth_time}
-- Ubicación: {birth_location}
-- Coordenadas: {latitude}, {longitude}
-
-Genera un análisis completo de aproximadamente 400 palabras que integre:
-
-1. **Carta Natal Interpretada**
-   - Signo solar probable
-   - Influencias lunares
-   - Ascendente estimado basado en hora y ubicación
-   - Aspectos planetarios relevantes
-
-2. **Integración con las Cartas del Tarot**
-   - Cómo los arquetipos colectados resuenan con la carta natal
-   - Patrones que se refuerzan mutuamente
-   - Sincronicidades identificadas
-
-3. **Síntesis Holística**
-   - Unificación de análisis cerebral, corporal y de personalidad
-   - Visión completa del estado actual del usuario
-   - Camino de evolución personalizado
-
-4. **Recomendaciones Finales**
-   - Prácticas espirituales específicas
-   - Momentos astrológicos propicios próximos
-   - Intenciones recomendadas
-
-Responde en español, creando una narrativa cohesiva que una astrología, tarot y análisis personal. Este es el RITUAL FINAL - debe ser transformador, no informativo."""
-
-        response = PRO_MODEL.generate_content(prompt)
-        return {
-            'analysis': response.text,
-            'natal_chart': {
-                'birth_date': birth_date,
-                'birth_time': birth_time,
-                'location': birth_location,
-                'coordinates': {
-                    'lat': latitude,
-                    'lng': longitude
-                }
-            },
-            'type': 'complete'
-        }
+            self.wfile.write(json.dumps({'error': str(e)}).encode('utf-8'))
     
     def do_GET(self):
-        """Health check endpoint"""
         self.send_response(200)
         self._set_cors_headers()
         self.send_header('Content-type', 'application/json')
@@ -304,9 +277,7 @@ Responde en español, creando una narrativa cohesiva que una astrología, tarot 
         self.wfile.write(json.dumps({
             'status': 'active',
             'service': 'Star Oracle Deep Analysis API',
-            'version': '1.0',
-            'models': {
-                'flash': 'gemini-2.5-flash',
-                'pro': 'gemini-2.5-pro'
-            }
+            'version': '2.0',
+            'features': ['mind_analysis', 'body_analysis', 'complete_synthesis'],
+            'card_system': '78_cards_with_reversals'
         }).encode('utf-8'))
