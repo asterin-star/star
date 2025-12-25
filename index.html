@@ -1581,150 +1581,138 @@
 
         <!-- Portal de Análisis Personal - Modal Expandido -->
         <div class="modal-overlay" id="collectionModal" style="display: none;">
-            <div class="modal-content iridescent-border" style="max-width: 700px;">
+            <div class="modal-content iridescent-border" style="max-width: 800px;">
                 <div class="modal-header">
                     <h3>✨ Portal de Análisis Personal</h3>
                     <button class="modal-close" id="collectionClose">&times;</button>
                 </div>
 
-                <!-- Tab Navigation -->
+                <!-- Main Tab Navigation -->
                 <div class="portal-tabs">
                     <button class="portal-tab active" data-tab="collection">
-                        🃏 Colección
+                        📚 Colección
                     </button>
                     <button class="portal-tab" data-tab="deep-analysis">
-                        🧠 Análisis Profundo
-                    </button>
-                    <button class="portal-tab" data-tab="natal-chart">
-                        ⭐ Carta Natal
+                        🔮 Análisis Profundo <span style="font-size:0.8em; opacity:0.7;">(10 WLD)</span>
                     </button>
                 </div>
 
-                <!-- Tab Content: Collection -->
+                <!-- TAB 1: Collection History -->
                 <div class="portal-tab-content active" id="tab-collection">
-                    <div class="modal-body" id="collectionList" style="max-height: 500px; overflow-y: auto;">
-                        <!-- Las cartas se inyectarán aquí -->
+                    <div class="modal-body" id="collectionList"
+                        style="max-height: 500px; overflow-y: auto; padding: 20px;">
+                        <!-- Cards will be injected here -->
                         <p style="text-align:center; opacity:0.7; padding: 20px;">Aún no has descubierto cartas en esta
                             sesión.</p>
                     </div>
-                    <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
-                        <button id="requestDeepReading" class="ai-btn" style="width: 100%; display: none;">
-                            <span class="ai-btn-icon">✨</span>
-                            Solicitar Lectura Profunda Profesional
-                        </button>
-                    </div>
                 </div>
 
-                <!-- Tab Content: Deep Analysis -->
+                <!-- TAB 2: Deep Analysis -->
                 <div class="portal-tab-content" id="tab-deep-analysis">
                     <div class="modal-body" style="padding: 30px;">
-                        <div class="analysis-section">
-                            <h4>🧠 Análisis Cerebral y Neuronal</h4>
-                            <p class="section-description">Descubre el estado de tu cerebro, desarrollo neuronal, y
-                                activación de la glándula pineal basado en tus cartas colectadas.</p>
-                            <button class="analysis-btn" id="requestBrainAnalysis">
+
+                        <!-- Personal Data Form (Always visible at top) -->
+                        <div class="personal-data-form" id="personalDataForm">
+                            <h4 style="margin-bottom: 20px;">📋 Datos Personales</h4>
+
+                            <div class="form-group">
+                                <label class="form-label">Nombre Completo:</label>
+                                <input type="text" id="fullName" class="form-input" placeholder="Tu nombre completo">
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de Nacimiento:</label>
+                                    <input type="date" id="birthDate" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Hora de Nacimiento:</label>
+                                    <input type="time" id="birthTime" class="form-input">
+                                </div>
+                            </div>
+
+                            <!-- Unified Location Input with Google Maps -->
+                            <div class="form-group">
+                                <label class="form-label">📍 Ubicación de Nacimiento:</label>
+                                <input type="text" id="locationSearch" class="form-input"
+                                    placeholder="Buscar dirección o lugar (ej: Hospital Italiano, Buenos Aires)">
+                                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 5px;">Escribe para buscar o
+                                    selecciona manualmente en el mapa</p>
+                            </div>
+
+                            <!-- Google Maps -->
+                            <div id="googleMap"
+                                style="height: 250px; border-radius: 12px; background: rgba(255,255,255,0.05); margin: 15px 0; border: 1px solid rgba(255,255,255,0.1);">
+                            </div>
+
+                            <!-- Coordinates Display -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div
+                                    style="padding: 10px; background: rgba(255,255,255,0.08); border-radius: 8px; font-size: 0.9rem;">
+                                    <strong>Lat:</strong> <span id="selectedLat">-</span>
+                                </div>
+                                <div
+                                    style="padding: 10px; background: rgba(255,255,255,0.08); border-radius: 8px; font-size: 0.9rem;">
+                                    <strong>Lng:</strong> <span id="selectedLng">-</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="selectedAddress" value="">
+                        </div>
+
+                        <div style="border-top: 2px solid rgba(255,255,255,0.2); margin: 30px 0;"></div>
+
+                        <!-- Sub-Tabs for Analysis Types -->
+                        <div class="analysis-sub-tabs" style="display: flex; gap: 10px; margin-bottom: 25px;">
+                            <button class="analysis-sub-tab active" data-subtab="mind">🧠 Mente</button>
+                            <button class="analysis-sub-tab" data-subtab="body">⚖️ Cuerpo</button>
+                            <button class="analysis-sub-tab" data-subtab="natal">⭐ Natal</button>
+                        </div>
+
+                        <!-- Sub-Tab Content: Mind Analysis -->
+                        <div class="analysis-sub-content active" id="subtab-mind">
+                            <h4>🧠 Análisis de Mente (10 Cartas)</h4>
+                            <p class="section-description" style="opacity: 0.8; margin-bottom: 20px;">
+                                Evalúa tu estado cerebral, desarrollo neuronal y activación pineal mediante una tirada
+                                de 10 cartas del deck completo (78 cartas).
+                            </p>
+                            <button class="analysis-btn" id="requestMindAnalysis" style="width: 100%;">
                                 <span class="btn-icon">🧬</span>
-                                Analizar Estado Cerebral
+                                Realizar Tirada de Mente
                             </button>
-                            <div id="brainAnalysisResult" class="analysis-result" style="display:none;"></div>
+                            <div id="mindAnalysisResult" class="analysis-result"
+                                style="display:none; margin-top: 20px;"></div>
                         </div>
 
-                        <div class="analysis-section" style="margin-top: 30px;">
-                            <h4>⚖️ Análisis Corporal</h4>
-                            <p class="section-description">Equilibrio entre hemisferios, análisis de lado izquierdo
-                                (creatividad/intuición) y derecho (lógica/análisis).</p>
-                            <button class="analysis-btn" id="requestBodyAnalysis">
+                        <!-- Sub-Tab Content: Body Analysis -->
+                        <div class="analysis-sub-content" id="subtab-body" style="display:none;">
+                            <h4>⚖️ Análisis de Cuerpo (10 Cartas)</h4>
+                            <p class="section-description" style="opacity: 0.8; margin-bottom: 20px;">
+                                Analiza el equilibrio hemisférico (lógica vs intuición) y armonización corporal con 10
+                                cartas.
+                            </p>
+                            <button class="analysis-btn" id="requestBodyAnalysis" style="width: 100%;">
                                 <span class="btn-icon">🌓</span>
-                                Analizar Equilibrio Corporal
+                                Realizar Tirada de Cuerpo
                             </button>
-                            <div id="bodyAnalysisResult" class="analysis-result" style="display:none;"></div>
+                            <div id="bodyAnalysisResult" class="analysis-result"
+                                style="display:none; margin-top: 20px;"></div>
                         </div>
 
-                        <div class="analysis-section" style="margin-top: 30px;">
-                            <h4>🎴 Perfil de Personalidad (Stats)</h4>
-                            <p class="section-description">Una tirada de stats basada en tus cartas para revelar tu
-                                perfil completo.</p>
-                            <button class="analysis-btn" id="requestPersonalityProfile">
-                                <span class="btn-icon">📊</span>
-                                Generar Perfil Completo
+                        <!-- Sub-Tab Content: Natal Chart -->
+                        <div class="analysis-sub-content" id="subtab-natal" style="display:none;">
+                            <h4>⭐ Carta Natal Completa</h4>
+                            <p class="section-description" style="opacity: 0.8; margin-bottom: 20px;">
+                                Síntesis holística que integra tu carta natal astrológica con los análisis de Mente y
+                                Cuerpo.
+                            </p>
+                            <button class="analysis-btn" id="calculateNatalChart" style="width: 100%;">
+                                <span class="btn-icon">✨</span>
+                                Generar Análisis Completo
                             </button>
-                            <div id="personalityProfileResult" class="analysis-result" style="display:none;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab Content: Natal Chart -->
-                <div class="portal-tab-content" id="tab-natal-chart">
-                    <div class="modal-body" style="padding: 30px;">
-                        <h4>⭐ Calculadora de Carta Natal</h4>
-                        <p class="section-description">Ingresa tus datos de nacimiento para generar tu carta natal
-                            completa.</p>
-
-                        <!-- Birth Location Type -->
-                        <div class="form-group">
-                            <label class="form-label">Lugar de Nacimiento:</label>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="locationType" value="hospital" checked>
-                                    <span>🏥 Hospital</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="locationType" value="custom">
-                                    <span>🏡 Casa/Campo (Mapa)</span>
-                                </label>
+                            <div id="natalChartResult" class="analysis-result" style="display:none; margin-top: 20px;">
                             </div>
                         </div>
 
-                        <!-- Hospital Input -->
-                        <div id="hospitalInput" class="location-input">
-                            <div class="form-group">
-                                <label class="form-label">Nombre del Hospital:</label>
-                                <input type="text" id="hospitalName" class="form-input" placeholder="Hospital de Niños">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Ciudad:</label>
-                                <input type="text" id="birthCity" class="form-input" placeholder="Buenos Aires">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">País:</label>
-                                <input type="text" id="birthCountry" class="form-input" placeholder="Argentina">
-                            </div>
-                        </div>
-
-                        <!-- Custom Location (Map) Input -->
-                        <div id="mapInput" class="location-input" style="display:none;">
-                            <div class="map-placeholder">
-                                <p>🗺️ Google Maps se cargará aquí</p>
-                                <p class="map-notice">Haz click en el mapa para seleccionar la ubicación exacta</p>
-                                <!-- Google Maps will be injected here -->
-                                <div id="googleMap"
-                                    style="height: 300px; border-radius: 8px; background: rgba(255,255,255,0.1);"></div>
-                            </div>
-                            <div class="coordinates-display">
-                                <p><strong>Latitud:</strong> <span id="selectedLat">-</span></p>
-                                <p><strong>Longitud:</strong> <span id="selectedLng">-</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Date and Time -->
-                        <div class="form-group">
-                            <label class="form-label">Fecha de Nacimiento:</label>
-                            <input type="date" id="birthDate" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Hora de Nacimiento:</label>
-                            <input type="time" id="birthTime" class="form-input">
-                        </div>
-
-                        <!-- Calculate Button -->
-                        <button class="analysis-btn" id="calculateNatalChart" style="width: 100%; margin-top: 20px;">
-                            <span class="btn-icon">⭐</span>
-                            Calcular Carta Natal
-                        </button>
-
-                        <!-- Natal Chart Result -->
-                        <div id="natalChartResult" class="analysis-result" style="display:none; margin-top: 20px;">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1771,6 +1759,48 @@
             }
 
             .portal-tab-content.active {
+                display: block;
+            }
+
+            /* Analysis Sub-Tabs (for Mind/Body/Natal) */
+            .analysis-sub-tabs {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 25px;
+            }
+
+            .analysis-sub-tab {
+                flex: 1;
+                padding: 10px 14px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.7);
+                transition: all 0.3s ease;
+            }
+
+            .analysis-sub-tab:hover {
+                background: rgba(255, 255, 255, 0.12);
+                color: rgba(255, 255, 255, 0.9);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .analysis-sub-tab.active {
+                background: rgba(255, 255, 255, 0.2);
+                color: #fff;
+                border-color: rgba(255, 255, 255, 0.5);
+                font-weight: 600;
+            }
+
+            /* Sub-Tab Content */
+            .analysis-sub-content {
+                display: none;
+            }
+
+            .analysis-sub-content.active {
                 display: block;
             }
 
