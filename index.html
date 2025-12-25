@@ -1425,13 +1425,13 @@
 
             <div class="card-slots">
                 <div class="card-slot empty" id="slot1">
-                    <span class="slot-placeholder">?</span>
+                    <span class="slot-placeholder"></span>
                 </div>
                 <div class="card-slot empty" id="slot2">
-                    <span class="slot-placeholder">?</span>
+                    <span class="slot-placeholder"></span>
                 </div>
                 <div class="card-slot empty" id="slot3">
-                    <span class="slot-placeholder">?</span>
+                    <span class="slot-placeholder"></span>
                 </div>
             </div>
 
@@ -1589,26 +1589,346 @@
             </div>
         </div>
 
-        <!-- Modal Colección -->
+        <!-- Portal de Análisis Personal - Modal Expandido -->
         <div class="modal-overlay" id="collectionModal" style="display: none;">
-            <div class="modal-content iridescent-border" style="max-width: 500px;">
+            <div class="modal-content iridescent-border" style="max-width: 700px;">
                 <div class="modal-header">
-                    <h3>Mi Colección</h3>
+                    <h3>✨ Portal de Análisis Personal</h3>
                     <button class="modal-close" id="collectionClose">&times;</button>
                 </div>
-                <div class="modal-body" id="collectionList" style="max-height: 500px; overflow-y: auto;">
-                    <!-- Cards will be injected here -->
-                    <p style="text-align:center; opacity:0.7; padding: 20px;">Aún no has descubierto cartas en esta
-                        sesión.</p>
-                </div>
-                <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
-                    <button id="requestDeepReading" class="ai-btn" style="width: 100%; display: none;">
-                        <span class="ai-btn-icon">✨</span>
-                        Request Professional Deep Reading
+
+                <!-- Tab Navigation -->
+                <div class="portal-tabs">
+                    <button class="portal-tab active" data-tab="collection">
+                        🃏 Colección
                     </button>
+                    <button class="portal-tab" data-tab="deep-analysis">
+                        🧠 Análisis Profundo
+                    </button>
+                    <button class="portal-tab" data-tab="natal-chart">
+                        ⭐ Carta Natal
+                    </button>
+                </div>
+
+                <!-- Tab Content: Collection -->
+                <div class="portal-tab-content active" id="tab-collection">
+                    <div class="modal-body" id="collectionList" style="max-height: 500px; overflow-y: auto;">
+                        <!-- Las cartas se inyectarán aquí -->
+                        <p style="text-align:center; opacity:0.7; padding: 20px;">Aún no has descubierto cartas en esta
+                            sesión.</p>
+                    </div>
+                    <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                        <button id="requestDeepReading" class="ai-btn" style="width: 100%; display: none;">
+                            <span class="ai-btn-icon">✨</span>
+                            Solicitar Lectura Profunda Profesional
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Deep Analysis -->
+                <div class="portal-tab-content" id="tab-deep-analysis">
+                    <div class="modal-body" style="padding: 30px;">
+                        <div class="analysis-section">
+                            <h4>🧠 Análisis Cerebral y Neuronal</h4>
+                            <p class="section-description">Descubre el estado de tu cerebro, desarrollo neuronal, y
+                                activación de la glándula pineal basado en tus cartas colectadas.</p>
+                            <button class="analysis-btn" id="requestBrainAnalysis">
+                                <span class="btn-icon">🧬</span>
+                                Analizar Estado Cerebral
+                            </button>
+                            <div id="brainAnalysisResult" class="analysis-result" style="display:none;"></div>
+                        </div>
+
+                        <div class="analysis-section" style="margin-top: 30px;">
+                            <h4>⚖️ Análisis Corporal</h4>
+                            <p class="section-description">Equilibrio entre hemisferios, análisis de lado izquierdo
+                                (creatividad/intuición) y derecho (lógica/análisis).</p>
+                            <button class="analysis-btn" id="requestBodyAnalysis">
+                                <span class="btn-icon">🌓</span>
+                                Analizar Equilibrio Corporal
+                            </button>
+                            <div id="bodyAnalysisResult" class="analysis-result" style="display:none;"></div>
+                        </div>
+
+                        <div class="analysis-section" style="margin-top: 30px;">
+                            <h4>🎴 Perfil de Personalidad (Stats)</h4>
+                            <p class="section-description">Una tirada de stats basada en tus cartas para revelar tu
+                                perfil completo.</p>
+                            <button class="analysis-btn" id="requestPersonalityProfile">
+                                <span class="btn-icon">📊</span>
+                                Generar Perfil Completo
+                            </button>
+                            <div id="personalityProfileResult" class="analysis-result" style="display:none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Natal Chart -->
+                <div class="portal-tab-content" id="tab-natal-chart">
+                    <div class="modal-body" style="padding: 30px;">
+                        <h4>⭐ Calculadora de Carta Natal</h4>
+                        <p class="section-description">Ingresa tus datos de nacimiento para generar tu carta natal
+                            completa.</p>
+
+                        <!-- Birth Location Type -->
+                        <div class="form-group">
+                            <label class="form-label">Lugar de Nacimiento:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="locationType" value="hospital" checked>
+                                    <span>🏥 Hospital</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="locationType" value="custom">
+                                    <span>🏡 Casa/Campo (Mapa)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Hospital Input -->
+                        <div id="hospitalInput" class="location-input">
+                            <div class="form-group">
+                                <label class="form-label">Nombre del Hospital:</label>
+                                <input type="text" id="hospitalName" class="form-input" placeholder="Hospital de Niños">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ciudad:</label>
+                                <input type="text" id="birthCity" class="form-input" placeholder="Buenos Aires">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">País:</label>
+                                <input type="text" id="birthCountry" class="form-input" placeholder="Argentina">
+                            </div>
+                        </div>
+
+                        <!-- Custom Location (Map) Input -->
+                        <div id="mapInput" class="location-input" style="display:none;">
+                            <div class="map-placeholder">
+                                <p>🗺️ Google Maps se cargará aquí</p>
+                                <p class="map-notice">Haz click en el mapa para seleccionar la ubicación exacta</p>
+                                <!-- Google Maps will be injected here -->
+                                <div id="googleMap"
+                                    style="height: 300px; border-radius: 8px; background: rgba(255,255,255,0.1);"></div>
+                            </div>
+                            <div class="coordinates-display">
+                                <p><strong>Latitud:</strong> <span id="selectedLat">-</span></p>
+                                <p><strong>Longitud:</strong> <span id="selectedLng">-</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Date and Time -->
+                        <div class="form-group">
+                            <label class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" id="birthDate" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hora de Nacimiento:</label>
+                            <input type="time" id="birthTime" class="form-input">
+                        </div>
+
+                        <!-- Calculate Button -->
+                        <button class="analysis-btn" id="calculateNatalChart" style="width: 100%; margin-top: 20px;">
+                            <span class="btn-icon">⭐</span>
+                            Calcular Carta Natal
+                        </button>
+
+                        <!-- Natal Chart Result -->
+                        <div id="natalChartResult" class="analysis-result" style="display:none; margin-top: 20px;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Estilos para el Portal Expandido -->
+        <style>
+            /* Tab Navigation */
+            .portal-tabs {
+                display: flex;
+                gap: 8px;
+                padding: 15px 20px 0 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .portal-tab {
+                flex: 1;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                border-radius: 8px 8px 0 0;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: rgba(255, 255, 255, 0.7);
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .portal-tab:hover {
+                background: rgba(255, 255, 255, 0.15);
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .portal-tab.active {
+                background: rgba(255, 255, 255, 0.25);
+                color: #fff;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+            }
+
+            /* Tab Content */
+            .portal-tab-content {
+                display: none;
+            }
+
+            .portal-tab-content.active {
+                display: block;
+            }
+
+            /* Analysis Sections */
+            .analysis-section {
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .analysis-section h4 {
+                margin: 0 0 10px 0;
+                font-size: 1.1rem;
+                font-weight: 700;
+            }
+
+            .section-description {
+                margin: 0 0 15px 0;
+                opacity: 0.8;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .analysis-btn {
+                width: 100%;
+                padding: 14px 20px;
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                transition: all 0.3s ease;
+            }
+
+            .analysis-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .analysis-btn .btn-icon {
+                font-size: 1.3rem;
+            }
+
+            .analysis-result {
+                margin-top: 20px;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                line-height: 1.7;
+            }
+
+            /* Form Styles */
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .form-input {
+                width: 100%;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 8px;
+                color: #fff;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .form-input:focus {
+                outline: none;
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-input::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .radio-group {
+                display: flex;
+                gap: 15px;
+            }
+
+            .radio-label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .radio-label:has(input:checked) {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .radio-label input {
+                margin: 0;
+            }
+
+            .location-input {
+                margin-top: 20px;
+            }
+
+            .map-placeholder {
+                text-align: center;
+                padding: 20px;
+            }
+
+            .map-notice {
+                font-size: 0.85rem;
+                opacity: 0.7;
+                margin-top: 5px;
+            }
+
+            .coordinates-display {
+                margin-top: 15px;
+                padding: 15px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+
+            .coordinates-display p {
+                margin: 5px 0;
+            }
+        </style>
 
     </div>
 
@@ -3446,6 +3766,238 @@
                 if (e.target === collectionModal) collectionModal.style.display = 'none';
             });
         }
+
+        /* ==================== PORTAL TABS FUNCTIONALITY ==================== */
+        const portalTabs = document.querySelectorAll('.portal-tab');
+        const portalTabContents = document.querySelectorAll('.portal-tab-content');
+
+        portalTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                portalTabs.forEach(t => t.classList.remove('active'));
+                portalTabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const tabName = tab.getAttribute('data-tab');
+                const content = document.getElementById(`tab-${tabName}`);
+                if (content) content.classList.add('active');
+            });
+        });
+
+        /* ==================== NATAL CHART: LOCATION TYPE TOGGLE ==================== */
+        const locationTypeRadios = document.querySelectorAll('input[name="locationType"]');
+        const hospitalInput = document.getElementById('hospitalInput');
+        const mapInput = document.getElementById('mapInput');
+
+        locationTypeRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'hospital') {
+                    hospitalInput.style.display = 'block';
+                    mapInput.style.display = 'none';
+                } else {
+                    hospitalInput.style.display = 'none';
+                    mapInput.style.display = 'block';
+                    // TODO: Initialize Google Maps here when API key is available
+                    // initializeGoogleMaps();
+                }
+            });
+        });
+
+        /* ==================== ANALYSIS BUTTON HANDLERS ==================== */
+
+        // Brain Analysis Button
+        const brainAnalysisBtn = document.getElementById('requestBrainAnalysis');
+        if (brainAnalysisBtn) {
+            brainAnalysisBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('brainAnalysisResult');
+
+                if (collectedCards.length === 0) {
+                    resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚠️ Primero debes colectar cartas para realizar el análisis.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                // Show loading state
+                brainAnalysisBtn.disabled = true;
+                brainAnalysisBtn.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">🧠 Realizando análisis cerebral profundo...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    // TODO: Call Google AI API for brain analysis
+                    // const analysis = await callDeepAnalysisAPI('brain', collectedCards);
+
+                    // Placeholder response for now
+                    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">🧠 Análisis Cerebral Completo</h5>
+                        <p><strong>Estado Cerebral Actual:</strong> Tu patrón de cartas indica una actividad predominante del hemisferio derecho, sugiriendo un enfoque altamente intuitivo y creativo en este momento.</p>
+                        <p><strong>Desarrollo Neuronal:</strong> Se observa una fuerte conexión con los arquetipos simbólicos, lo que indica plasticidad neuronal activa en áreas asociadas con el pensamiento abstracto.</p>
+                        <p><strong>Glándula Pineal:</strong> Las cartas colectadas sugieren una apertura espiritual en desarrollo. Recomendaciones: meditación antes del amanecer, exposición a luz solar directa.</p>
+                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
+                            <em>Nota: Esta es una versión beta. La integración completa con Google AI estará disponible próximamente.</em>
+                        </p>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al realizar el análisis. Por favor intenta nuevamente.</p>';
+                } finally {
+                    brainAnalysisBtn.disabled = false;
+                    brainAnalysisBtn.innerHTML = '<span class="btn-icon">🧬</span> Analizar Estado Cerebral';
+                }
+            });
+        }
+
+        // Body Analysis Button
+        const bodyAnalysisBtn = document.getElementById('requestBodyAnalysis');
+        if (bodyAnalysisBtn) {
+            bodyAnalysisBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('bodyAnalysisResult');
+
+                if (collectedCards.length === 0) {
+                    resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚠️ Primero debes colectar cartas para realizar el análisis.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                bodyAnalysisBtn.disabled = true;
+                bodyAnalysisBtn.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚖️ Analizando equilibrio corporal...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">⚖️ Análisis de Equilibrio Corporal</h5>
+                        <p><strong>Hemisferio Izquierdo (Cuerpo Derecho - Lógica):</strong> 45% de activación. Se detecta necesidad de mayor estructura y planificación en tus actividades.</p>
+                        <p><strong>Hemisferio Derecho (Cuerpo Izquierdo - Intuición):</strong> 55% de activación. Fuerte conexión con la intuición y creatividad, aprovecha esta fortaleza.</p>
+                        <p><strong>Recomendaciones de Armonización:</strong> Practica actividades que integren ambos hemisferios: yoga, tai chi, o tocar un instrumento musical.</p>
+                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
+                            <em>Nota: Esta es una versión beta. La integración completa con Google AI estará disponible próximamente.</em>
+                        </p>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al realizar el análisis.</p>';
+                } finally {
+                    bodyAnalysisBtn.disabled = false;
+                    bodyAnalysisBtn.innerHTML = '<span class="btn-icon">🌓</span> Analizar Equilibrio Corporal';
+                }
+            });
+        }
+
+        // Personality Profile Button
+        const personalityProfileBtn = document.getElementById('requestPersonalityProfile');
+        if (personalityProfileBtn) {
+            personalityProfileBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('personalityProfileResult');
+
+                if (collectedCards.length === 0) {
+                    resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⚠️ Primero debes colectar cartas para generar tu perfil.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                personalityProfileBtn.disabled = true;
+                personalityProfileBtn.innerHTML = '<span class="btn-icon">⏳</span> Generando...';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">📊 Generando perfil de personalidad...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2500));
+
+                    // Simple stat calculation based on collected cards
+                    const stats = {
+                        fuerza: Math.min(20, 8 + collectedCards.length * 2),
+                        inteligencia: Math.min(20, 10 + collectedCards.length),
+                        sabiduria: Math.min(20, 12 + collectedCards.length),
+                        carisma: Math.min(20, 9 + collectedCards.length * 1.5),
+                        constitucion: Math.min(20, 11 + collectedCards.length),
+                        destreza: Math.min(20, 7 + collectedCards.length * 2)
+                    };
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">🎴 Perfil de Personalidad (Stats)</h5>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>💪 Fuerza:</strong> ${stats.fuerza}/20
+                            </div>
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>🧠 Inteligencia:</strong> ${stats.inteligencia}/20
+                            </div>
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>🦉 Sabiduría:</strong> ${stats.sabiduria}/20
+                            </div>
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>✨ Carisma:</strong> ${stats.carisma}/20
+                            </div>
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>❤️ Constitución:</strong> ${stats.constitucion}/20
+                            </div>
+                            <div style="padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                                <strong>🎯 Destreza:</strong> ${stats.destreza}/20
+                            </div>
+                        </div>
+                        <p><strong>Conclusión:</strong> Tu perfil indica un buscador espiritual con alta sabiduría y capacidad intuitiva. Tu fortaleza principal está en la comprensión profunda de simbolismos y arquetipos.</p>
+                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
+                            <em>Nota: Esta es una versión beta. Los stats se calculan en base a tus cartas colectadas.</em>
+                        </p>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al generar el perfil.</p>';
+                } finally {
+                    personalityProfileBtn.disabled = false;
+                    personalityProfileBtn.innerHTML = '<span class="btn-icon">📊</span> Generar Perfil Completo';
+                }
+            });
+        }
+
+        // Natal Chart Calculation Button
+        const natalChartBtn = document.getElementById('calculateNatalChart');
+        if (natalChartBtn) {
+            natalChartBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('natalChartResult');
+                const birthDate = document.getElementById('birthDate').value;
+                const birthTime = document.getElementById('birthTime').value;
+
+                if (!birthDate || !birthTime) {
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Por favor completa la fecha y hora de nacimiento.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                natalChartBtn.disabled = true;
+                natalChartBtn.innerHTML = '<span class="btn-icon">⏳</span> Calculando...';
+                resultDiv.innerHTML = '<p style="text-align:center; opacity:0.7;">⭐ Calculando carta natal...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2500));
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin: 0 0 15px 0; font-weight: 700;">⭐ Carta Natal Calculada</h5>
+                        <p><strong>Fecha y Hora:</strong> ${new Date(birthDate + 'T' + birthTime).toLocaleString('es-AR', {
+                        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                    })}</p>
+                        <p><strong>Sol:</strong> Tu carta indica una fuerte influencia solar, sugiriendo liderazgo natural y vitalidad.</p>
+                        <p><strong>Luna:</strong> Posición lunar favorable para la intuición y conexión emocional profunda.</p>
+                        <p><strong>Ascendente:</strong> Proyectas una imagen de sabiduría y misticismo hacia el mundo.</p>
+                        <p style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.8;">
+                            <em>Nota: Calculadora de carta natal completa con Google AI y cálculos astronómicos precisos próximamente.</em>
+                        </p>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color: #ff6b6b;">❌ Error al calcular la carta natal.</p>';
+                } finally {
+                    natalChartBtn.disabled = false;
+                    natalChartBtn.innerHTML = '<span class="btn-icon">⭐</span> Calcular Carta Natal';
+                }
+            });
+        }
+
 
     </script>
 
