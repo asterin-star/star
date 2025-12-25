@@ -586,6 +586,13 @@
             /* Center alignment prevents uneven cropping */
             object-position: center center;
             background: transparent;
+            /* Enhanced visibility and seamless integration */
+            filter: brightness(1.05) contrast(1.03);
+            border-radius: 26px;
+            /* Match parent for perfect edge alignment */
+            /* Prevent lag/jitter */
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
         }
 
 
@@ -3102,6 +3109,82 @@
         cardStage.setAttribute('role', 'button');
         cardStage.setAttribute('aria-label', window.i18n ? window.i18n.t('revealCard') : 'Revelar carta del tarot');
 
+        /* ==================== MOBILE TOUCH DRAG WITH 3D LIGHT REFLECTION ==================== */
+        let touchStartX = 0, touchStartY = 0;
+        let isDragging = false;
+        let currentTiltX = 0, currentTiltY = 0;
+
+        cardStage.addEventListener('touchstart', (e) => {
+            // Only work on revealed card for premium interaction
+            if (!isRevealed || isProcessing) return;
+
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isDragging = true;
+
+            // Disable transition for immediate response
+            cardInner.style.transition = 'none';
+        }, { passive: true });
+
+        cardStage.addEventListener('touchmove', (e) => {
+            if (!isDragging || !isRevealed) return;
+
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+
+            const deltaX = touchX - touchStartX;
+            const deltaY = touchY - touchStartY;
+
+            // Convert drag distance to tilt angle
+            const maxTilt = 15;  // degrees
+            currentTiltX = Math.max(-maxTilt, Math.min(maxTilt, (deltaY / window.innerHeight) * maxTilt * -2));
+            currentTiltY = Math.max(-maxTilt, Math.min(maxTilt, (deltaX / window.innerWidth) * maxTilt * 2));
+
+            // Apply 3D tilt
+            cardInner.style.setProperty('--rotate-x', `${currentTiltX}deg`);
+            cardInner.style.setProperty('--rotate-y', `${currentTiltY}deg`);
+
+            // Dynamic light reflection effect
+            const lightX = 50 + (deltaX / window.innerWidth) * 50;
+            const lightY = 50 + (deltaY / window.innerHeight) * 50;
+
+            // Apply light gradient to card image
+            const cardImg = document.getElementById('cardImg');
+            if (cardImg) {
+                cardImg.style.background = `
+                    radial-gradient(circle at ${lightX}% ${lightY}%, 
+                        rgba(255,255,255,0.4) 0%, 
+                        rgba(255,255,255,0.1) 40%,
+                        transparent 70%),
+                    url(${cardImg.src})
+                `;
+                cardImg.style.backgroundSize = 'cover';
+                cardImg.style.backgroundPosition = 'center';
+            }
+        }, { passive: true });
+
+        cardStage.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            // Smooth return to neutral position
+            cardInner.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            cardInner.style.setProperty('--rotate-x', '0deg');
+            cardInner.style.setProperty('--rotate-y', '0deg');
+
+            // Reset light effect
+            const cardImg = document.getElementById('cardImg');
+            if (cardImg) {
+                cardImg.style.background = `url(${cardImg.src})`;
+                cardImg.style.backgroundSize = 'cover';
+            }
+
+            // Reset to normal card movement after short delay
+            setTimeout(() => {
+                cardInner.style.transition = '';
+            }, 600);
+        }, { passive: true });
+
         /* ==================== LONG-PRESS VIDEO PLAYBACK ==================== */
         const videoOverlay = document.getElementById('videoOverlay');
         const cardVideo = document.getElementById('cardVideo');
@@ -4110,6 +4193,64 @@
             }
         }
     </style>
+
+    <!-- Google Maps API with Places Library -->
+    <script>
+        // Google Maps initialization (called by API callback)
+        let map, marker, autocomplete;
+
+        function initGoogleMaps() {
+            const mapElement = document.getElementById('googleMap');
+            if (!mapElement) return;
+
+            // Dark mode map styles
+            const darkStyles = [
+                { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#17263c' }] }
+            ];
+
+            map = new google.maps.Map(mapElement, {
+                center: { lat: -34.6037, lng: -58.3816 },
+                zoom: 12,
+                styles: darkStyles
+            });
+
+            const searchInput = document.getElementById('locationSearch');
+            if (searchInput) {
+                autocomplete = new google.maps.places.Autocomplete(searchInput);
+                autocomplete.bindTo('bounds', map);
+
+                autocomplete.addListener('place_changed', () => {
+                    const place = autocomplete.getPlace();
+                    if (place.geometry) {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(15);
+                        placeMarker(place.geometry.location);
+                        updateCoords(place.geometry.location.lat(), place.geometry.location.lng());
+                    }
+                });
+            }
+
+            map.addListener('click', (e) => {
+                placeMarker(e.latLng);
+                updateCoords(e.latLng.lat(), e.latLng.lng());
+            });
+        }
+
+        function placeMarker(loc) {
+            if (marker) marker.setMap(null);
+            marker = new google.maps.Marker({ position: loc, map: map });
+        }
+
+        function updateCoords(lat, lng) {
+            document.getElementById('selectedLat').textContent = lat.toFixed(6);
+            document.getElementById('selectedLng').textContent = lng.toFixed(6);
+        }
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz9Tzlklickh_1Psmz0n8yxOG9j8sxvDs&libraries=places&callback=initGoogleMaps"
+        async defer></script>
 
 </body>
 
