@@ -358,8 +358,9 @@
         /* ==================== CARTA - ZONA INTERACTIVA ==================== */
         .card-stage {
             perspective: 1800px;
-            width: 300px;
-            height: 490px;
+            width: 282px;
+            /* Adjusted for 9:16 Aspect Ratio (approx) */
+            height: 500px;
             cursor: pointer;
             z-index: 10;
             margin-top: 20px;
@@ -544,17 +545,19 @@
         .tarot-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center center;
             /* ELIMINACIÓN DE FONDO BLANCO (Importante si las imágenes lo tienen) */
             mix-blend-mode: darken;
             filter: contrast(1.1) saturate(1.1) brightness(1.05);
             transition: transform 4s var(--ease-smooth);
+            transform: scaleX(-1);
+            /* FIX: Un-mirror the inverted back face */
         }
 
-
-        /* Efecto zoom al revelar */
+        /* Efecto zoom al revelar (Mantenemos scaleX(-1)) */
         .card-stage.flipped .tarot-img {
-            transform: scale(1.02);
+            transform: scale(1.02) scaleX(-1);
         }
 
         /* ==================== VIDEO OVERLAY (LONG-PRESS) ==================== */
@@ -582,232 +585,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Cover crops to fill, removing black bars */
-            object-position: center bottom;
-            /* Align to bottom, crops top black bars */
+            /* Center alignment prevents uneven cropping */
+            object-position: center center;
             background: transparent;
+            transform: scaleX(-1);
+            /* FIX: Match card image orientation */
         }
 
 
-        /* ==================== 3-CARD COLLECTION NOTIFICATION ==================== */
-        .card-collection-notification {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%) translateY(-120%);
-            width: 90%;
-            max-width: 500px;
-            z-index: 200;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 16px 20px;
-            border: 1.5px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-            opacity: 0;
-        }
 
-        .card-collection-notification.show {
-            transform: translateX(-50%) translateY(20px);
-            opacity: 1;
-        }
-
-        .card-collection-notification.complete {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 255, 255, 0.6));
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            }
-
-            50% {
-                box-shadow: 0 8px 48px rgba(255, 215, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1);
-            }
-        }
-
-        .collection-content {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .collection-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .progress-dots {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(200, 200, 200, 0.5);
-            border: 2px solid rgba(150, 150, 150, 0.8);
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: var(--color1, #FFEB3B);
-            border-color: var(--color1, #FFEB3B);
-            box-shadow: 0 0 10px var(--color1, #FFEB3B);
-        }
-
-        .progress-line {
-            flex: 1;
-            height: 2px;
-            background: rgba(200, 200, 200, 0.4);
-            transition: background 0.3s ease;
-        }
-
-        .progress-line.active {
-            background: var(--color1, #FFEB3B);
-            box-shadow: 0 0 5px var(--color1, #FFEB3B);
-        }
-
-        .progress-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: #555;
-            opacity: 0.8;
-            margin-left: 12px;
-        }
-
-        .card-slots {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .card-slot {
-            width: 50px;
-            height: 80px;
-            border-radius: 8px;
-            position: relative;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .card-slot.empty {
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px dashed rgba(150, 150, 150, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slot-placeholder {
-            font-size: 24px;
-            color: rgba(150, 150, 150, 0.6);
-            font-weight: 600;
-        }
-
-        .card-slot.filled {
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            animation: cardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes cardPop {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .card-slot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-badge {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 10px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
-        .composite-message {
-            text-align: center;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .composite-icon {
-            font-size: 20px;
-        }
-
-        .composite-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .composite-email-btn {
-            width: 100%;
-            padding: 10px 16px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1.5px solid rgba(150, 150, 150, 0.3);
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #555;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
-
-        .composite-email-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: var(--color1, #FFEB3B);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .composite-email-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
 
 
         @media (max-width: 600px) {
@@ -1266,7 +1052,7 @@
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
             .card-stage {
-                width: 280px;
+                width: 260px;
                 height: 460px;
             }
 
@@ -1282,7 +1068,7 @@
 
         @media (max-width: 768px) {
             .card-stage {
-                width: 260px;
+                width: 236px;
                 height: 420px;
             }
 
@@ -1309,7 +1095,7 @@
 
         @media (max-width: 480px) {
             .card-stage {
-                width: 240px;
+                width: 220px;
                 height: 390px;
             }
 
@@ -1333,7 +1119,7 @@
 
         @media (max-width: 360px) {
             .card-stage {
-                width: 200px;
+                width: 180px;
                 height: 320px;
             }
 
@@ -1592,17 +1378,14 @@
             font-style: italic;
         }
 
-        /* BOTÓN DE IDIOMA */
+        /* BOTÓN DE IDIOMA (TOP-RIGHT, MINIMALIST) */
         .lang-btn {
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
+            background: transparent;
+            border: none;
             width: 44px;
             height: 44px;
             display: flex;
@@ -1610,17 +1393,13 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            color: #888;
-            /* Gris neutral */
-            filter: grayscale(100%);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.05);
-            color: #555;
-            filter: grayscale(80%);
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .lang-btn svg {
@@ -1687,6 +1466,37 @@
         aria-label="Change Language">
         🌐
     </button>
+
+    <!-- Collection Button (Top-Left, Transparent) -->
+    <button class="collection-btn" id="collectionBtn" aria-label="Ver Colección">
+        🃏
+    </button>
+    <style>
+        .collection-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: transparent;
+            border: none;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .collection-btn:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        }
+    </style>
 
     <div class="interface">
         <div class="card-stage" id="cardStage">
@@ -1784,6 +1594,27 @@
             </div>
         </div>
 
+        <!-- Modal Colección -->
+        <div class="modal-overlay" id="collectionModal" style="display: none;">
+            <div class="modal-content iridescent-border" style="max-width: 500px;">
+                <div class="modal-header">
+                    <h3>Mi Colección</h3>
+                    <button class="modal-close" id="collectionClose">&times;</button>
+                </div>
+                <div class="modal-body" id="collectionList" style="max-height: 500px; overflow-y: auto;">
+                    <!-- Cards will be injected here -->
+                    <p style="text-align:center; opacity:0.7; padding: 20px;">Aún no has descubierto cartas en esta
+                        sesión.</p>
+                </div>
+                <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <button id="requestDeepReading" class="ai-btn" style="width: 100%; display: none;">
+                        <span class="ai-btn-icon">✨</span>
+                        Request Professional Deep Reading
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -1835,137 +1666,30 @@
         let isProcessing = false;
         let currentCardData = null;
 
-        /* ==================== 3-CARD COLLECTION SYSTEM ==================== */
+        /* ==================== COLLECTION SYSTEM (NO LIMIT) ==================== */
         let collectedCards = JSON.parse(sessionStorage.getItem('collectedCards') || '[]');
-        const maxCards = 3;
-        let notificationTimeout = null;
 
-        // Function to add card to collection
+        // Function to add card to collection with timestamp
         function addCardToCollection(cardData) {
             // Check if card already collected
             if (collectedCards.find(c => c.name_short === cardData.name_short)) {
                 return; // Already have this card
             }
 
-            // Add card if less than 3
-            if (collectedCards.length < maxCards) {
-                collectedCards.push({
-                    name_short: cardData.name_short,
-                    image: `./public/cards/${cardData.name_short}.jpg`,
-                    name: cardData.name,
-                    order: collectedCards.length + 1
-                });
+            // Add card with timestamp
+            collectedCards.push({
+                name_short: cardData.name_short,
+                image: `./public/cards/${cardData.name_short}.jpg`,
+                name: cardData.name,
+                timestamp: new Date().toISOString(),
+                order: collectedCards.length + 1
+            });
 
-                // Save to session
-                sessionStorage.setItem('collectedCards', JSON.stringify(collectedCards));
-
-                // Update UI and show notification
-                updateCollectionUI();
-                showCollectionNotification();
-            }
+            // Save to session
+            sessionStorage.setItem('collectedCards', JSON.stringify(collectedCards));
         }
 
-        // Function to update collection UI
-        function updateCollectionUI() {
-            const count = collectedCards.length;
 
-            // Update progress text
-            document.getElementById('progressText').textContent = `${count}/3`;
-
-            // Update dots
-            for (let i = 1; i <= 3; i++) {
-                const dot = document.getElementById(`dot${i}`);
-                if (i <= count) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            }
-
-            // Update lines
-            for (let i = 1; i <= 2; i++) {
-                const line = document.getElementById(`line${i}`);
-                if (i < count) {
-                    line.classList.add('active');
-                } else {
-                    line.classList.remove('active');
-                }
-            }
-
-            // Update card slots
-            for (let i = 0; i < 3; i++) {
-                const slot = document.getElementById(`slot${i + 1}`);
-                if (i < collectedCards.length) {
-                    slot.classList.remove('empty');
-                    slot.classList.add('filled');
-                    slot.innerHTML = `<img src="${collectedCards[i].image}" alt="${collectedCards[i].name}">`;
-                }
-            }
-
-            // Check if complete
-            if (count === 3) {
-                const notif = document.getElementById('cardCollectionNotif');
-                notif.classList.add('complete');
-                const compositeMsg = document.getElementById('compositeMessage');
-                compositeMsg.style.display = 'flex';
-            }
-        }
-
-        // Function to show notification
-        function showCollectionNotification() {
-            const notif = document.getElementById('cardCollectionNotif');
-
-            // Clear any existing timeout
-            if (notificationTimeout) {
-                clearTimeout(notificationTimeout);
-            }
-
-            // Show notification
-            notif.classList.add('show');
-
-            // Auto-hide after 3 seconds (unless complete)
-            if (collectedCards.length < 3) {
-                notificationTimeout = setTimeout(() => {
-                    notif.classList.remove('show');
-                }, 3000);
-            }
-            // If complete (3/3), keep it visible
-        }
-
-        // Function to reset collection
-        function resetCollection() {
-            collectedCards = [];
-            sessionStorage.removeItem('collectedCards');
-
-            // Reset UI
-            document.getElementById('progressText').textContent = '0/3';
-
-            // Reset dots and lines
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById(`dot${i}`).classList.remove('active');
-                if (i <= 2) {
-                    document.getElementById(`line${i}`).classList.remove('active');
-                }
-            }
-
-            // Reset slots
-            for (let i = 1; i <= 3; i++) {
-                const slot = document.getElementById(`slot${i}`);
-                slot.classList.remove('filled');
-                slot.classList.add('empty');
-                slot.innerHTML = '<span class="slot-placeholder">?</span>';
-            }
-
-            // Hide composite message and notification
-            document.getElementById('compositeMessage').style.display = 'none';
-            const notif = document.getElementById('cardCollectionNotif');
-            notif.classList.remove('show', 'complete');
-        }
-
-        // Initialize collection UI on load
-        if (collectedCards.length > 0) {
-            updateCollectionUI();
-        }
 
 
         // Arrays globales para almacenar todos los conceptos por categoría (22 conceptos cada uno)
@@ -2469,8 +2193,10 @@
             if (isProcessing) return;
             isProcessing = true;
 
-            // Reset 3-card collection
-            resetCollection();
+            // Reset 3-card collection ONLY if full (new cycle)
+            if (collectedCards.length >= maxCards) {
+                resetCollection();
+            }
 
             // 1. Desactivar wallpaper dinámico
             wallpaper.classList.remove('active');
@@ -2822,6 +2548,7 @@
             // 1. Si es modo amigos, pase directo
             if (IS_FRIENDS_MODE) {
                 console.log('Modo Amigos: Pago IA omitido.');
+                await generateAIReading('sim_friends_bypass');
                 return true;
             }
 
@@ -2858,7 +2585,7 @@
                 if (response.finalPayload.status === 'success') {
                     // Pago exitoso! Procedemos a generar la lectura
                     // Importante: Pasamos el transaction_id para que el backend lo verifique
-                    await handlePaymentSuccess(response.finalPayload.transaction_id);
+                    await generateAIReading(response.finalPayload.transaction_id);
                     return true; // Indicate success
                 } else {
                     throw new Error('Payment failed status: ' + response.finalPayload.status);
@@ -2872,9 +2599,10 @@
 
         // Función para generar la lectura de IA
         async function generateAIReading(transactionId) {
-            const aiBtn = document.getElementById('ai-btn'); // Correct ID
-            const aiResult = document.getElementById('ai-result'); // Correct ID
-            const aiText = document.getElementById('ai-text'); // Correct ID
+            // Recapture elements to be safe, though globals exist
+            const aiBtn = document.getElementById('aiBtn');
+            const aiResult = document.getElementById('aiResult');
+            const aiText = document.getElementById('aiText');
 
             // 2. Estado de carga "Pensando"
             aiBtn.disabled = true;
@@ -2891,7 +2619,8 @@
                     misticismo: document.getElementById('textoAmpliado').textContent
                 },
                 examples: currentExampleIndices, // Enviamos los índices para referencia
-                transactionId: transactionId // Enviar transactionId verificado
+                transactionId: transactionId, // Enviar transactionId verificado
+                mode: IS_FRIENDS_MODE ? 'friends' : 'normal'
             };
 
             try {
@@ -2970,7 +2699,12 @@
         // Performance: Click debouncing
         let clickDebounce = false;
 
-        // Click en la carta (Intención o Nueva Consulta)
+        // Click Pattern State Machine: 1/2/3 clicks
+        let clickCount = 0;
+        let clickTimer = null;
+        const CLICK_WINDOW = 1000; // 1 second window
+        const FINAL_WAIT = 1500; // 1.5 second wait for triple click
+
         cardStage.addEventListener('click', async (e) => {
             // Debounce check
             if (clickDebounce) return;
@@ -2979,22 +2713,58 @@
 
             if (isProcessing) return;
 
-            // If video is playing, don't reset (video click handler will close it)
-            if (isVideoPlaying) return;
-
             // Ocultar pista visual
             const tapHint = document.getElementById('tapHint');
             if (tapHint) tapHint.style.opacity = '0';
 
-            if (!isRevealed && currentCardData) {
-                // Caso 1: Carta boca abajo -> Solicitar Pago -> Revelar Destino
-                const paymentSuccess = await requestPayment();
-                if (paymentSuccess) {
-                    revealDestiny();
-                }
-            } else if (isRevealed) {
-                // Caso 2: Carta revelada -> Resetear Oráculo
-                resetOracle();
+            // INCREMENT CLICK COUNT
+            clickCount++;
+
+            // Clear existing timer
+            if (clickTimer) {
+                clearTimeout(clickTimer);
+                clickTimer = null;
+            }
+
+            // STATE 1: First click (wait for more clicks or timeout)
+            if (clickCount === 1) {
+                clickTimer = setTimeout(async () => {
+                    // Single click confirmed: REVEAL CARD
+                    if (!isRevealed && currentCardData) {
+                        const paymentSuccess = await requestPayment();
+                        if (paymentSuccess) {
+                            revealDestiny();
+                        }
+                    }
+                    clickCount = 0;
+                }, CLICK_WINDOW);
+            }
+
+            // STATE 2: Double click (wait for 3rd click or timeout)
+            else if (clickCount === 2) {
+                clickTimer = setTimeout(async () => {
+                    // Double click confirmed: PLAY VIDEO
+                    if (isRevealed && !isVideoPlaying) {
+                        await playCardVideo();
+                    }
+                    clickCount = 0;
+                }, CLICK_WINDOW);
+            }
+
+            // STATE 3: Triple click (final action with longer wait)
+            else if (clickCount === 3) {
+                clickTimer = setTimeout(() => {
+                    // Triple click confirmed: FLIP BACK
+                    if (isRevealed) {
+                        resetOracle();
+                    }
+                    clickCount = 0;
+                }, FINAL_WAIT);
+            }
+
+            // Ignore additional clicks beyond 3
+            else if (clickCount > 3) {
+                clickCount = 0;
             }
         });
 
@@ -3606,6 +3376,47 @@
                 });
             }
         }, 500);
+
+        // Logic for Collection Button
+        const collectionBtn = document.getElementById('collectionBtn');
+        const collectionModal = document.getElementById('collectionModal');
+        const collectionClose = document.getElementById('collectionClose');
+        const collectionList = document.getElementById('collectionList');
+
+        if (collectionBtn) {
+            collectionBtn.addEventListener('click', () => {
+                // Render list
+                if (collectedCards.length === 0) {
+                    collectionList.innerHTML = '<p style="text-align:center; opacity:0.7; padding: 20px;">' + (window.i18n ? window.i18n.t('noCards') || "No hay cartas aún" : "No hay cartas aún") + '</p>';
+                } else {
+                    let html = '<div style="display:flex; flex-direction:column; gap:10px;">';
+                    collectedCards.forEach(card => {
+                        html += `
+                            <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); padding:10px; border-radius:10px;">
+                                <img src="${card.image}" style="width:40px; height:60px; object-fit:cover; border-radius:5px;">
+                                <span>${card.name}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    collectionList.innerHTML = html;
+                }
+                collectionModal.style.display = 'flex';
+            });
+        }
+
+        if (collectionClose) {
+            collectionClose.addEventListener('click', () => {
+                collectionModal.style.display = 'none';
+            });
+        }
+
+        // Close on overlay click
+        if (collectionModal) {
+            collectionModal.addEventListener('click', (e) => {
+                if (e.target === collectionModal) collectionModal.style.display = 'none';
+            });
+        }
 
     </script>
 
