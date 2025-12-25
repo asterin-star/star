@@ -4076,6 +4076,193 @@
             }
         }
 
+
+        /* ==================== PAYMENT VERIFICATION (10 WLD with Friends Bypass) ==================== */
+        async function verifyDeepAnalysisPayment() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isFriendsMode = urlParams.get('mode') === 'friends';
+
+            if (isFriendsMode) {
+                console.log('✅ Friends mode - payment bypassed for deep analysis');
+                return true;
+            }
+
+            // Request 10 WLD payment
+            const paymentSuccess = await requestPayment(10);
+            return paymentSuccess;
+        }
+
+        /* ==================== NEW ANALYSIS HANDLERS (10-Card Spreads from Full Deck) ==================== */
+
+        // Mind Analysis - 10 Cards
+        const mindAnalysisBtn = document.getElementById('requestMindAnalysis');
+        if (mindAnalysisBtn) {
+            mindAnalysisBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('mindAnalysisResult');
+
+                const fullName = document.getElementById('fullName')?.value;
+                const birthDate = document.getElementById('birthDate')?.value;
+                const birthTime = document.getElementById('birthTime')?.value;
+
+                if (!fullName || !birthDate || !birthTime) {
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Completa tus datos personales primero.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                mindAnalysisBtn.disabled = true;
+                mindAnalysisBtn.innerHTML = '<span class="btn-icon">💳</span> Verificando...';
+
+                const paymentOk = await verifyDeepAnalysisPayment();
+                if (!paymentOk) {
+                    mindAnalysisBtn.disabled = false;
+                    mindAnalysisBtn.innerHTML = '<span class="btn-icon">🧬</span> Realizar Tirada de Mente';
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Pago requerido (10 WLD).</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                const cardSpread = drawCardSpread(10);
+                mindAnalysisBtn.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
+                resultDiv.innerHTML = '<p style="opacity:0.7;">🧠 Analizando con 10 cartas...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    const response = await callDeepAnalysisAPI('mind', {
+                        cards: cardSpread,
+                        birthData: { name: fullName, date: birthDate, time: birthTime }
+                    });
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin:0 0 15px; font-weight:700;">🧠 Análisis de Mente</h5>
+                        <div style="white-space:pre-line; line-height:1.7;">${response.analysis}</div>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color:#ff6b6b;">❌ Error en análisis.</p>';
+                } finally {
+                    mindAnalysisBtn.disabled = false;
+                    mindAnalysisBtn.innerHTML = '<span class="btn-icon">🧬</span> Realizar Tirada de Mente';
+                }
+            });
+        }
+
+        // Body Analysis - 10 Cards  
+        const bodyAnalysisBtn2 = document.getElementById('requestBodyAnalysis');
+        if (bodyAnalysisBtn2) {
+            const oldHandler = bodyAnalysisBtn2.onclick;
+            bodyAnalysisBtn2.onclick = null;
+
+            bodyAnalysisBtn2.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('bodyAnalysisResult');
+
+                const fullName = document.getElementById('fullName')?.value;
+                const birthDate = document.getElementById('birthDate')?.value;
+                const birthTime = document.getElementById('birthTime')?.value;
+
+                if (!fullName || !birthDate || !birthTime) {
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Completa tus datos personales primero.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                bodyAnalysisBtn2.disabled = true;
+                bodyAnalysisBtn2.innerHTML = '<span class="btn-icon">💳</span> Verificando...';
+
+                const paymentOk = await verifyDeepAnalysisPayment();
+                if (!paymentOk) {
+                    bodyAnalysisBtn2.disabled = false;
+                    bodyAnalysisBtn2.innerHTML = '<span class="btn-icon">🌓</span> Realizar Tirada de Cuerpo';
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Pago requerido (10 WLD).</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                const cardSpread = drawCardSpread(10);
+                bodyAnalysisBtn2.innerHTML = '<span class="btn-icon">⏳</span> Analizando...';
+                resultDiv.innerHTML = '<p style="opacity:0.7;">⚖️ Analizando con 10 cartas...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    const response = await callDeepAnalysisAPI('body', {
+                        cards: cardSpread,
+                        birthData: { name: fullName, date: birthDate, time: birthTime }
+                    });
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin:0 0 15px; font-weight:700;">⚖️ Análisis de Cuerpo</h5>
+                        <div style="white-space:pre-line; line-height:1.7;">${response.analysis}</div>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color:#ff6b6b;">❌ Error en análisis.</p>';
+                } finally {
+                    bodyAnalysisBtn2.disabled = false;
+                    bodyAnalysisBtn2.innerHTML = '<span class="btn-icon">🌓</span> Realizar Tirada de Cuerpo';
+                }
+            });
+        }
+
+        // Natal Chart - Complete Synthesis
+        const natalChartBtn2 = document.getElementById('calculateNatalChart');
+        if (natalChartBtn2) {
+            const oldHandler = natalChartBtn2.onclick;
+            natalChartBtn2.onclick = null;
+
+            natalChartBtn2.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('natalChartResult');
+
+                const fullName = document.getElementById('fullName')?.value;
+                const birthDate = document.getElementById('birthDate')?.value;
+                const birthTime = document.getElementById('birthTime')?.value;
+                const lat = document.getElementById('selectedLat')?.textContent;
+                const lng = document.getElementById('selectedLng')?.textContent;
+
+                if (!fullName || !birthDate || !birthTime || lat === '-') {
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Completa todos los datos incluyendo ubicación.</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                natalChartBtn2.disabled = true;
+                natalChartBtn2.innerHTML = '<span class="btn-icon">💳</span> Verificando...';
+
+                const paymentOk = await verifyDeepAnalysisPayment();
+                if (!paymentOk) {
+                    natalChartBtn2.disabled = false;
+                    natalChartBtn2.innerHTML = '<span class="btn-icon">✨</span> Generar Análisis Completo';
+                    resultDiv.innerHTML = '<p style="color: #ffaa00;">⚠️ Pago requerido (10 WLD).</p>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+
+                natalChartBtn2.innerHTML = '<span class="btn-icon">⏳</span> Generando...';
+                resultDiv.innerHTML = '<p style="opacity:0.7;">⭐ Generando análisis completo...</p>';
+                resultDiv.style.display = 'block';
+
+                try {
+                    const response = await callDeepAnalysisAPI('complete', {
+                        birthData: {
+                            name: fullName,
+                            date: birthDate,
+                            time: birthTime,
+                            latitude: parseFloat(lat),
+                            longitude: parseFloat(lng)
+                        }
+                    });
+
+                    resultDiv.innerHTML = `
+                        <h5 style="margin:0 0 15px; font-weight:700;">⭐ Análisis Holístico Completo</h5>
+                        <p style="margin-bottom:15px;"><strong>${fullName}</strong> - ${new Date(birthDate + 'T' + birthTime).toLocaleString('es-AR')}</p>
+                        <div style="white-space:pre-line; line-height:1.7;">${response.analysis}</div>
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = '<p style="color:#ff6b6b;">❌ Error al generar análisis.</p>';
+                } finally {
+                    natalChartBtn2.disabled = false;
+                    natalChartBtn2.innerHTML = '<span class="btn-icon">✨</span> Generar Análisis Completo';
+                }
+            });
+        }
+
         /* ==================== ANALYSIS BUTTON HANDLERS ==================== */
 
 
