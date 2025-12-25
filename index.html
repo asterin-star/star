@@ -3956,6 +3956,40 @@
             });
         }
 
+        /* ==================== TAB NAVIGATION (Main Tabs: Collection / Deep Analysis) ==================== */
+        document.querySelectorAll('.portal-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+
+                // Remove active from all tabs
+                document.querySelectorAll('.portal-tab').forEach(t => t.classList.remove('active'));
+                // Remove active from all tab contents
+                document.querySelectorAll('.portal-tab-content').forEach(tc => tc.classList.remove('active'));
+
+                // Activate clicked tab
+                tab.classList.add('active');
+                // Show corresponding content
+                document.getElementById(`tab-${targetTab}`).classList.add('active');
+            });
+        });
+
+        /* ==================== SUB-TAB NAVIGATION (Mind / Body / Natal) ==================== */
+        document.querySelectorAll('.analysis-sub-tab').forEach(subtab => {
+            subtab.addEventListener('click', () => {
+                const targetSubtab = subtab.getAttribute('data-subtab');
+
+                // Remove active from all sub-tabs
+                document.querySelectorAll('.analysis-sub-tab').forEach(st => st.classList.remove('active'));
+                // Remove active from all sub-tab contents
+                document.querySelectorAll('.analysis-sub-content').forEach(stc => stc.classList.remove('active'));
+
+                // Activate clicked sub-tab
+                subtab.classList.add('active');
+                // Show corresponding content
+                document.getElementById(`subtab-${targetSubtab}`).classList.add('active');
+            });
+        });
+
         // Close on overlay click
         if (collectionModal) {
             collectionModal.addEventListener('click', (e) => {
