@@ -8,9 +8,14 @@ from datetime import datetime
 GEMINI_API_KEY = "AIzaSyBz9Tzlklickh_1Psmz0n8yxOG9j8sxvDs"
 genai.configure(api_key=GEMINI_API_KEY)
 
-# Initialize models
+# Initialize models - Optimized selection
+# gemini-2.5-flash: Fast, cost-effective for brain/body/personality analysis
+# gemini-3-pro: Most powerful for complete holistic synthesis
 FLASH_MODEL = genai.GenerativeModel('gemini-2.5-flash')
-PRO_MODEL = genai.GenerativeModel('gemini-2.5-pro')
+PRO_MODEL = genai.GenerativeModel('gemini-3-pro')
+
+# Payment configuration
+DEEP_ANALYSIS_PRICE_WLD = 10  # 10 WLD per deep analysis session
 
 # ============================================================================
 # ANTIGRAVITY SYSTEM MANIFESTO - FOUNDATIONAL CONTEXT
